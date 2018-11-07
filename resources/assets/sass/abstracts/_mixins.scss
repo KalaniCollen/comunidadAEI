@@ -1,0 +1,54 @@
+@mixin d-flex($flex: flex, $dir: row, $wrap: wrap, $ai: stretch, $jc: flex-start) {
+    display: -webkit-#{$flex};
+    display: -ms-#{$flex};
+    display: $flex;
+    flex-flow: $dir $wrap;
+    align-items: $ai;
+    justify-content: $jc;
+}
+
+@mixin d-grid($dis: grid) {
+    display: -ms-#{$dis};
+    display: $dis;
+}
+
+@mixin hidden($vis: hidden) {
+    visibility: $vis;
+    display: none;
+}
+
+@mixin keyframes($name) {
+    @keyframes #{$name} {
+        @content;
+    }
+}
+
+// @mixin mobile() {
+//     @media screen and (min-width: 768px) {
+//         @content;
+//     }
+// }
+
+@mixin tablet() {
+    @media screen and (min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin desktop() {
+    @media screen and (min-width: 1024px) {
+        @content;
+    }
+}
+
+@mixin widescreen() {
+    @media screen and (min-width: 1366px) {
+        @content;
+    }
+}
+
+@mixin fullhd() {
+    @media screen and (min-width: 1408px) {
+        @content;
+    }
+}

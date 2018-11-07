@@ -1,0 +1,336 @@
+.menu {
+    width: 100%;
+    min-height: to-rem(80px);
+
+    &--main {
+        background: $main-color;
+        position: fixed;
+        padding: 0 getSpace(med);
+        z-index: 999;
+        @include d-grid;
+        align-items: center;
+        grid-template-columns: 48px 1fr 30px;
+        grid-template-areas: "navigation-brand navigation-search navigation-hamburger";
+
+        + .container {
+            padding-top: to-rem(80px);
+        }
+    }
+
+    &__brand {
+        grid-area: navigation-brand;
+    }
+
+    &__search {
+        grid-area: navigation-search;
+        @include d-grid;
+        grid-template-columns: 20px 1fr;
+        align-items: center;
+        justify-items: center;
+    }
+
+    &__nav,
+    &__user {
+        width: 90%;
+    }
+
+    &__nav {
+        min-height: 60%;
+        grid-area: navigation-nav;
+    }
+
+    &__user {
+        grid-area: navigation-user;
+    }
+
+    &__hamburger {
+        width: 100%;
+        height: 100%;
+        grid-area: navigation-hamburger;
+        @extend %flex-center;
+    }
+
+
+    &__wrap,
+    .brand__title{
+        @include hidden;
+    }
+
+    &__wrap {
+        grid-area: navigation-wrap;
+        will-change: visibility, display;
+        transition: display 0.2s ease, visibility;
+        &--open {
+            background: $main-color;
+            width: 100%;
+            height: calc(100vh - 80px);
+            top: to-rem(80px);
+            position: absolute;
+            @include hidden(visible);
+            @include d-flex($dir: column-reverse, $jc: space-around, $ai: center);
+        }
+    }
+
+    &__account {
+        margin-top: getSpace(min);
+        @include d-flex($dir: column, $ai: flex-end);
+
+        &-configure,
+        &-logout {
+            color: $ghost-color;
+            font-size: getFontSize(h6);
+            margin-bottom: getSpace(min);
+        }
+
+        &-logout {
+            color: $blue-color-l;
+            margin-bottom: 0;
+        }
+    }
+
+    &--guest {
+        flex-direction: column;
+        justify-content: center;
+
+        > .menu__user {
+            @include d-flex($ai: center, $jc: space-around);
+        }
+    }
+}
+
+.brand__logo,
+.user__picture {
+    width: 48px;
+    height: 48px;
+}
+
+.brand {
+    @extend %flex-center;
+    text-decoration: none;
+    &__logo {
+        object-fit: contain;
+    }
+
+    &__title {
+        color: #fff;
+        @include montserrat;
+    }
+}
+
+.search__icon {
+    color: #fff;
+    font-size: 1.1rem;
+    width: 100%;
+    height: 100%;
+    @extend %flex-center;
+
+    &:last-child {
+        opacity: 0;
+    }
+}
+
+.nav {
+    &--main {
+        width: 100%;
+        @include d-flex($flex: inline-flex);
+    }
+
+    &__list {
+        width: 100%;
+        list-style-type: none;
+    }
+
+    &__item {
+        border-bottom: 1px solid $gray-color-l;
+    }
+
+    &__link {
+        width: 100%;
+        height: 100%;
+        color: #fff;
+        text-decoration: none;
+        padding: getSpace(min) getSpace(med);
+        font-size: getFontSize(h6);
+        @include roboto(b);
+        @include d-flex($flex: inline-flex);
+    }
+}
+
+.user {
+    @include d-flex($dir: column, $ai: center);
+    &__picture {
+        object-fit: contain;
+        object-position: center;
+        border-radius: 50%;
+        background: #fff;
+        @include d-flex($flex: inline-flex);
+
+        &--big {
+            width: 64px;
+            height: 64px;
+        }
+    }
+
+    &__username {
+        text-align: center;
+        color: #fff;
+    }
+}
+
+.hamburger {
+    width: 30px;
+    height: 30px;
+
+    &__bar {
+        display: block;
+        height: 1px;
+        width: 24px;
+        background: #fff;
+        will-change: transform, opacity;
+        opacity: 1;
+        transition: opacity 0.1s ease, transform 0.2s ease;
+
+        &:first-child {
+            width: 18px;
+            transform: translate(9px, 8px);
+        }
+
+        &:nth-child(2) {
+            transform: translate(3px, 14px);
+        }
+
+        &:last-child {
+            width: 14px;
+            transform: translate(13px, 20px);
+        }
+    }
+
+    &--open {
+        > .hamburger__bar {
+            &:first-child,
+            &:last-child {
+                width: 24px;
+            }
+
+            &:nth-child(2) {
+                opacity: 0;
+            }
+
+            &:first-child {
+                transform: translate(3px, 15px) rotateZ(45deg);
+            }
+
+            &:last-child {
+                transform: translate(3px, 13px) rotateZ(-45deg);
+            }
+        }
+    }
+}
+
+
+// Responsive web Tablet
+@include tablet {
+    .menu {
+        &--main {
+            grid-template-columns: 25% 1fr 30px;
+            grid-column-gap: getSpace(min);
+        }
+
+        .brand__title {
+            text-align: center;
+            @include hidden(visible);
+            @include d-flex(inline-flex);
+        }
+    }
+};
+
+// Design Desktop
+
+@include widescreen {
+    .menu {
+
+        &--main {
+            grid-template-columns: 15% 230px 1fr;
+            grid-template-rows: 1fr;
+            grid-template-areas: "navigation-brand navigation-search navigation-wrap";
+        }
+
+        &__wrap {
+            height: 100%;
+            position: relative;
+            @include hidden(visible);
+            @include d-grid;
+            align-items: center;
+            grid-template-columns: 1fr 30%;
+            grid-template-areas: "navigation-nav navigation-user";
+
+            &--open {
+                height:100%;
+                position: relative;
+                top: 0;
+            }
+        }
+
+        &__nav {
+            width: 100%;
+            height: 100%;
+            @include d-flex($ai: center);
+        }
+
+        .nav {
+            &__list {
+                @include d-flex($jc: space-around);
+            }
+
+            &__item {
+                border: 0;
+            }
+        }
+
+        &__user {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            user-select: none;
+            @include d-flex($ai: center);
+        }
+
+        &__account {
+            width: to-rem(220px);
+            position: absolute;
+            background: #fff;
+            border-radius: $borde-material;
+            padding: getSpace(min) getSpace(med);
+            top: to-rem(70px);
+            right: to-rem(40px);
+            @include hidden;
+
+            &--open {
+                @include hidden(visible);
+                @include d-flex($dir: column, $ai: flex-end);
+            }
+
+            &-configure {
+                color: $text-color;
+            }
+        }
+
+        .user {
+            flex-direction: row;
+            position: relative;
+            &__picture {
+                width: 40px;
+                height: 40px;
+                margin-right: getSpace(med);
+            }
+        }
+    }
+
+
+
+
+
+    .hamburger {
+        @include hidden;
+    }
+};

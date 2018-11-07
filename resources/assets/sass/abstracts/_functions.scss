@@ -1,0 +1,23 @@
+@function getFontSize($size) {
+    @if map-has-key($fonts-sizes, $size) {
+        @return map-get($fonts-sizes, $size);
+    }
+    @warn "El tamaño de fuente #{$size} no existe en el mapa!";
+    @return null;
+}
+
+@function getSpace($size) {
+    @if map-has-key($margins, $size) {
+        @return map-get($margins, $size);
+    }
+    @warn "El tamaño de margen #{$size} no existe en el mapa!";
+    @return null;
+}
+
+@function to-rem($px) {
+    @return ($px / 16px) * 1rem;
+}
+
+@function to-em($px) {
+    @return ($px / 16px) * 1em;
+}

@@ -1,0 +1,9 @@
+@extends('layouts.head')
+@section('content')
+    <main>
+        <h1>Inicio</h1>
+        <h2>Productos</h2>
+        <card-servicios></card-servicios>
+        <card-productos></card-productos>
+    </main>
+@endsection

@@ -1,0 +1,125 @@
+.container {
+    min-height: 90vh;
+}
+
+
+.section {
+    padding: {
+        left: getSpace(min);
+        right: getSpace(min);
+    }
+
+    &__title {
+        text-align: center;
+        margin-bottom: 1.5vh;
+    }
+
+    &--cards {
+        @include d-grid;
+        grid-template-columns: 1fr;
+    }
+}
+
+
+// ########################################################################################
+// > TABLET DESIGN
+// ########################################################################################
+
+@include tablet {
+    .section {
+        padding: {
+            left: getSpace(med);
+            right: getSpace(med);
+        }
+
+        &__title {
+            text-align: left;
+        }
+
+        &--cards {
+            grid-template-columns: repeat(2, 1fr);
+            grid-column-gap: getSpace(med);
+        }
+    }
+};
+
+// ########################################################################################
+// > Desktop DESIGN
+// ########################################################################################
+
+@include widescreen {
+    .section {
+        padding: {
+            left: getSpace(big);
+            right: getSpace(big);
+        }
+
+        &--cards {
+            grid-template-columns: repeat(3, 1fr);
+            grid-column-gap: getSpace(big);
+        }
+    }
+};
+
+.section-form-slider {
+    min-height: 100vh;
+    background: deepskyblue;
+
+    &__form {
+
+    }
+}
+
+.decoration {
+    position: relative;
+    background: url('/img/login-goal.jpg') no-repeat center / cover;
+    z-index: 1;
+    height: 38vh;
+    @include d-flex($dir: column, $ai: center, $jc: center);
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: rgba($main-color, 0.8);
+    }
+
+    &__content {
+        padding: getSpace(med);
+    }
+
+    &__text,
+    &__title {
+        color: #fff;
+    }
+
+    &__title {
+        text-align: center;
+        &::before {
+            content: '\201c';
+        }
+        &::after {
+            content: '\201d';
+        }
+    }
+
+    &__text {
+        text-align: right;
+        &::before {
+            content: '- ';
+        }
+    }
+}
+
+.form--form-slider {
+    display: block;
+    min-height: 60vh;
+    background: lightseagreen;
+    padding: getSpace(min);
+}

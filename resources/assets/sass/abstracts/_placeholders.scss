@@ -1,0 +1,7 @@
+%flex-center {
+    @include d-flex($ai: center, $jc: center);
+}
+
+%no-select {
+    user-select: none;
+}

@@ -1,0 +1,127 @@
+// ##################################################################### //
+//  Creación de fuentes, a partir de los archivos en la carpeta fonts
+// ##################################################################### //
+@font-face {
+    font-family: 'Montserrat Regular';
+    src: url('/fonts/Montserrat/Montserrat-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Montserrat Medium';
+    src: url('/fonts/Montserrat/Montserrat-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'Lato Regular';
+    src: url('/fonts/Lato/Lato-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Lato Medium';
+    src: url('/fonts/Lato/Lato-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto Regular';
+    src: url('/fonts/Roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto Medium';
+    src: url('/fonts/Roboto/Roboto-Medium.ttf');
+}
+
+// ##################################################################### //
+//     Mixins para obtener el tipo de fuente tipográfica
+// ##################################################################### //
+@mixin montserrat($w: r, $lh: 1.5) {
+    @if $w == r {
+        font-family: 'Montserrat Regular', sans-serif;
+        font-weight: 400;
+    } @else if $w == b {
+        font-family: 'Montserrat Medium', sans-serif;
+        font-weight: 500;
+    }
+    line-height: $lh;
+}
+
+@mixin lato($w: r, $lh: 1.5) {
+    @if $w == r {
+        font-family: 'Lato Regular', sans-serif;
+        font-weight: 400;
+    } @else if $w == b {
+        font-family: 'Lato Medium', sans-serif;
+        font-weight: 700;
+    }
+    line-height: $lh;
+}
+
+@mixin roboto($w: r, $lh: 1.5) {
+    @if $w == r {
+        font-family: 'Roboto Regular', sans-serif;
+        font-weight: 400;
+    } @else if $w == b {
+        font-family: 'Roboto Medium', sans-serif;
+        font-weight: 500;
+    }
+    line-height: $lh;
+}
+
+// ##################################################################### //
+// Asignar tipo de fuente para los titulos y el tamaño
+// ##################################################################### //
+@for $i from 1 through 6 {
+    h#{$i} {
+        font-size: map-get($fonts-sizes, h#{$i});
+        color: $title-color;
+        @include montserrat;
+        margin: 0;
+    }
+}
+
+p,
+a,
+input,
+textarea,
+select,
+.text {
+    color: $text-color;
+    font-size: getFontSize(h5);
+    @include lato;
+}
+
+.text--accent {
+    color: $title-color;
+    @include lato(b);
+}
+
+.link,
+label {
+    @include roboto(b);
+}
+
+.link {
+    text-decoration: none;
+    border: 0;
+    background: none;
+
+    &--accent {
+        color: $blue-color-l;
+    }
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+label {
+    font-size: getFontSize(h6);
+    text-transform: capitalize;
+}
+
+label,
+input,
+textarea,
+select {
+    color: $title-color;
+}

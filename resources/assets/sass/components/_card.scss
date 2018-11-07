@@ -1,0 +1,94 @@
+.card {
+    border-radius: $borde-material;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    padding: {
+        top: getSpace(min);
+        bottom: getSpace(med);
+    }
+    margin-bottom: getSpace(med);
+    @include d-flex($dir: column);
+
+    &__owner,
+    &__body,
+    &__actions {
+        padding: {
+            left: getSpace(min);
+            right: getSpace(min);
+        }
+    }
+
+    &__owner {
+        @include d-flex($ai: center);
+        padding-bottom: getSpace(min);
+    }
+
+    &-user {
+        &--picture {
+            margin-right: getSpace(min);
+        }
+
+        &--username {
+            color: $title-color;
+        }
+    }
+
+    &__image {
+        width: 100%;
+        height: 300px;
+        margin-bottom: getSpace(min);
+        &-img {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    }
+
+    &__body {
+    }
+
+    &__title {
+        font-size: getFontSize(h4);
+        @include montserrat;
+    }
+
+    &__date {
+        font-size: getFontSize(h6);
+        @include roboto(b);
+    }
+
+    &__content,
+    &__actions {
+        padding-top: getSpace(min);
+    }
+
+    &__body {
+        min-height: 150px;
+        max-height: 180px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__wrap {
+        @include d-flex($dir: column, $jc: space-between);
+    }
+
+    &__actions--space {
+        @include d-flex($ai: center, $jc: space-between);
+    }
+}
+
+
+@include tablet {
+    .card {
+        &__owner,
+        &__body,
+        &__actions {
+            padding: {
+                left: getSpace(med);
+                right: getSpace(med);
+            }
+        }
+    }
+};

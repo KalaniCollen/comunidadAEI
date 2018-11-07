@@ -1,0 +1,36 @@
+.footer {
+    width: 100%;
+    min-height: to-rem(120px);
+    background: $main-color;
+    // margin-top: getSpace(med);
+    padding: getSpace(min);
+
+    &__content {
+        margin-top: 2rem;
+    }
+
+    &__link {
+        color: #fff;
+        text-decoration: none;
+        font-size: getFontSize(h6);
+    }
+
+    &__icon {
+        margin-right: getSpace(min);
+    }
+
+    &__foot {
+        @include d-flex($dir: column, $ai: center, $jc: center);
+        &-img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        &-text {
+            font-size: getFontSize(h6);
+            text-align: center;
+            color: #fff;
+        }
+    }
+}

@@ -1,0 +1,30 @@
+[Thu Oct 11 23:45:03.543516 2018] [authz_core:error] [pid 7840] [client 127.0.0.1:59246] AH01630: client denied by server configuration: /home/aarongmx/aei/public/
+[Thu Oct 11 23:45:03.720980 2018] [authz_core:error] [pid 7840] [client 127.0.0.1:59246] AH01630: client denied by server configuration: /home/aarongmx/aei/public/favicon.ico, referer: http://aei.mx/
+[Thu Oct 11 23:45:11.899956 2018] [authz_core:error] [pid 7841] [client 127.0.0.1:59248] AH01630: client denied by server configuration: /home/aarongmx/aei/public/, referer: http://aei.mx/
+[Thu Oct 11 23:45:11.987493 2018] [authz_core:error] [pid 7841] [client 127.0.0.1:59248] AH01630: client denied by server configuration: /home/aarongmx/aei/public/favicon.ico, referer: http://aei.mx/
+[Thu Oct 11 23:45:22.217763 2018] [authz_core:error] [pid 7843] [client 127.0.0.1:59258] AH01630: client denied by server configuration: /home/aarongmx/aei/public/
+[Thu Oct 11 23:45:22.309708 2018] [authz_core:error] [pid 7843] [client 127.0.0.1:59258] AH01630: client denied by server configuration: /home/aarongmx/aei/public/favicon.ico, referer: http://aei.mx/
+[Thu Oct 11 23:48:02.195196 2018] [authz_core:error] [pid 8311] [client 127.0.0.1:59298] AH01630: client denied by server configuration: /home/aarongmx/aei/public/
+[Thu Oct 11 23:48:02.383042 2018] [authz_core:error] [pid 8311] [client 127.0.0.1:59298] AH01630: client denied by server configuration: /home/aarongmx/aei/public/favicon.ico, referer: http://aei.mx/
+[Thu Oct 11 23:48:02.806023 2018] [authz_core:error] [pid 8311] [client 127.0.0.1:59298] AH01630: client denied by server configuration: /home/aarongmx/aei/public/
+[Thu Oct 11 23:48:02.897402 2018] [authz_core:error] [pid 8311] [client 127.0.0.1:59298] AH01630: client denied by server configuration: /home/aarongmx/aei/public/favicon.ico, referer: http://aei.mx/
+[Thu Oct 11 23:48:03.040556 2018] [authz_core:error] [pid 8311] [client 127.0.0.1:59298] AH01630: client denied by server configuration: /home/aarongmx/aei/public/
+[Thu Oct 11 23:48:03.128157 2018] [authz_core:error] [pid 8311] [client 127.0.0.1:59298] AH01630: client denied by server configuration: /home/aarongmx/aei/public/favicon.ico, referer: http://aei.mx/
+[Thu Oct 11 23:48:03.246876 2018] [authz_core:error] [pid 8311] [client 127.0.0.1:59298] AH01630: client denied by server configuration: /home/aarongmx/aei/public/
+[Thu Oct 11 23:48:03.332145 2018] [authz_core:error] [pid 8311] [client 127.0.0.1:59298] AH01630: client denied by server configuration: /home/aarongmx/aei/public/favicon.ico, referer: http://aei.mx/
+[Thu Oct 11 23:48:03.440205 2018] [authz_core:error] [pid 8311] [client 127.0.0.1:59298] AH01630: client denied by server configuration: /home/aarongmx/aei/public/
+[Thu Oct 11 23:48:03.522062 2018] [authz_core:error] [pid 8311] [client 127.0.0.1:59298] AH01630: client denied by server configuration: /home/aarongmx/aei/public/favicon.ico, referer: http://aei.mx/
+[Thu Oct 11 23:48:03.629014 2018] [authz_core:error] [pid 8311] [client 127.0.0.1:59298] AH01630: client denied by server configuration: /home/aarongmx/aei/public/
+[Thu Oct 11 23:48:03.704676 2018] [authz_core:error] [pid 8311] [client 127.0.0.1:59298] AH01630: client denied by server configuration: /home/aarongmx/aei/public/favicon.ico, referer: http://aei.mx/
+[Thu Oct 11 23:48:03.810208 2018] [authz_core:error] [pid 8311] [client 127.0.0.1:59298] AH01630: client denied by server configuration: /home/aarongmx/aei/public/
+[Thu Oct 11 23:48:03.889401 2018] [authz_core:error] [pid 8311] [client 127.0.0.1:59298] AH01630: client denied by server configuration: /home/aarongmx/aei/public/favicon.ico, referer: http://aei.mx/
+[Thu Oct 11 23:48:03.988319 2018] [authz_core:error] [pid 8311] [client 127.0.0.1:59298] AH01630: client denied by server configuration: /home/aarongmx/aei/public/
+[Thu Oct 11 23:48:04.065285 2018] [authz_core:error] [pid 8311] [client 127.0.0.1:59298] AH01630: client denied by server configuration: /home/aarongmx/aei/public/favicon.ico, referer: http://aei.mx/
+[Thu Oct 11 23:48:04.160834 2018] [authz_core:error] [pid 8311] [client 127.0.0.1:59298] AH01630: client denied by server configuration: /home/aarongmx/aei/public/
+[Thu Oct 11 23:48:04.236600 2018] [authz_core:error] [pid 8311] [client 127.0.0.1:59298] AH01630: client denied by server configuration: /home/aarongmx/aei/public/favicon.ico, referer: http://aei.mx/
+[Thu Oct 11 23:51:00.672564 2018] [authz_core:error] [pid 9058] [client 127.0.0.1:59800] AH01630: client denied by server configuration: /home/aarongmx/aei/public/
+[Thu Oct 11 23:51:00.848201 2018] [authz_core:error] [pid 9058] [client 127.0.0.1:59800] AH01630: client denied by server configuration: /home/aarongmx/aei/public/favicon.ico, referer: http://aei.mx/
+[Thu Oct 11 23:54:01.831005 2018] [authz_core:error] [pid 9732] [client 127.0.0.1:59978] AH01630: client denied by server configuration: /home/aarongmx/aei/public/
+[Thu Oct 11 23:54:02.666266 2018] [authz_core:error] [pid 9732] [client 127.0.0.1:59978] AH01630: client denied by server configuration: /home/aarongmx/aei/public/
+[Thu Oct 11 23:54:02.862213 2018] [authz_core:error] [pid 9732] [client 127.0.0.1:59978] AH01630: client denied by server configuration: /home/aarongmx/aei/public/
+[Thu Oct 11 23:54:03.067868 2018] [authz_core:error] [pid 9732] [client 127.0.0.1:59978] AH01630: client denied by server configuration: /home/aarongmx/aei/public/

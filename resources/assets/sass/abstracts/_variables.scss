@@ -1,0 +1,20 @@
+// Sizes margins & paddings
+$margins: (
+    sml:  0.25rem,    // 4px
+    min:  0.5rem,    // 8px
+    med:  1rem,     // 16px
+    big:  2rem,    // 32px
+    huge: 4rem    // 64px
+);
+
+$fonts-sizes: (
+    h1: 2.375em,
+    h2: 1.75em,
+    h3: 1.5em,
+    h4: 1.125em,
+    h5: 1em,
+    h6: 0.875em
+);
+
+// Variables
+$borde-material: 3px;

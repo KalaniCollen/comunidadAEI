@@ -1,0 +1,58 @@
+.btn {
+    background: $ghost-color-l;
+    border: 0;
+    border-radius: $borde-material;
+    color: $text-color;
+    min-width: to-rem(100px);
+    height: to-rem(36px);
+    padding: getSpace(min) getSpace(med);
+    font-size: getFontSize(h6);
+    text-decoration: none;
+    cursor: pointer;
+    @include d-flex($flex: inline-flex, $ai: center, $jc: center);
+    @include roboto;
+
+    &:focus,
+    &:active {
+        outline: none;
+    }
+
+    &__icon {
+        margin-right: getSpace(sml);
+    }
+
+    &--big {
+        width: to-rem(160px);
+        height: to-rem(46px);
+
+    }
+    &--accent {
+        background: $blue-color-l;
+        color: #fff;
+    }
+}
+
+
+@mixin change-color($bg, $color: #fff) {
+    background: $bg;
+    color: $color;
+}
+
+
+.btn--fab {
+    min-width: 0;
+    min-height: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: $ghost-color;
+    color: $text-color;
+    font-size: 1.6rem;
+    @include d-flex($ai: center, $jc: center);
+
+    &-mini {
+        width: 40px;
+        height: 40px;
+        font-size: 1.3rem;
+    }
+}

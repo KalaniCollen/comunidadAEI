@@ -1,0 +1,26 @@
+.registro {
+    &__decoration {
+        width: 45%;
+    }
+
+    &__form {
+        width: 55%;
+    }
+}
+
+@include widescreen {
+
+    .registro__form {
+        flex-direction: row;
+        justify-content: space-between;
+
+        h2,
+        h4 {
+            width: 100%;
+        }
+
+        .form__input {
+            width: 48%;
+        }
+    }
+};

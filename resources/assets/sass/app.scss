@@ -1,0 +1,33 @@
+
+// Fonts
+// @import url("https://unpkg.com/ionicons@4.4.6/dist/css/ionicons.min.css");
+
+@import "./abstracts/variables";
+@import "./abstracts/functions";
+@import "./abstracts/mixins";
+@import "./abstracts/colors";
+@import "./abstracts/placeholders";
+
+@import "./vendor/normalize";
+@import "node_modules/ionicons/dist/scss/ionicons.scss";
+@import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
+@import "node_modules/@glidejs/glide/src/assets/sass/glide.theme";
+
+@import "./base/reset";
+@import "./base/typography";
+
+@import "./layouts/nav";
+@import "./layouts/container";
+@import "./layouts/header";
+@import "./layouts/form";
+@import "./layouts/footer";
+
+@import "./components/buttons";
+@import "./components/inputs";
+@import "./components/card";
+@import "./components/quote";
+
+@import "./pages/login";
+@import "./pages/registro";
+@import "./pages/productos";
+@import "./pages/index";

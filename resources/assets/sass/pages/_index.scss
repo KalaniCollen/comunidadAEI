@@ -1,0 +1,262 @@
+html {
+    scroll-behavior: smooth;
+}
+
+.header {
+    min-height: calc(100vh - 80px);
+    padding: {
+        left: getSpace(min);
+        right: getSpace(min);
+    }
+    position: relative;
+    background: url('/img/header-bg.jpg') no-repeat center / cover;
+    z-index: 1;
+    @include d-flex($dir: column, $jc: center);
+
+    &::before {
+        content: '';
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        background: rgba($main-color, 0.8);
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+
+    &__container {
+        width: 100%;
+        height: 100%;
+        padding: 0 getSpace(min);
+        @include d-flex($dir: column, $ai: center, $jc: center);
+    }
+
+    &__decoration {
+        @include hidden;
+    }
+
+    &__logo {
+        width: 98px;
+        height: 98px;
+        background: url('/img/logoAEI-blanco.png') no-repeat center / cover;
+    }
+
+    &__title {
+        font-size: getFontSize(h2);
+    }
+
+    &__title,
+    &__date {
+        text-align: center;
+        color: #fff;
+    }
+
+    &__date {
+        @include roboto;
+    }
+}
+
+.section-socios {
+    padding: getSpace(big) getSpace(med);
+}
+
+.slider {
+    padding: getSpace(big) getSpace(min);
+    &__container {
+        width: 80%;
+        margin: 0 auto;
+        padding: 0 getSpace(med);
+        overflow: hidden;
+    }
+
+    width: 100%;
+    &__inner {
+        background: coral;
+        @include d-flex($wrap: nowrap);
+        will-change: transform;
+        transition: transform 0.3s ease;
+    }
+
+    &__img,
+    &__item {
+        width: 300px;
+        height: 75px;
+        object-fit: contain;
+        margin-right: 8px;
+
+        @include tablet {
+            width: 105px;
+            height: 65px;
+
+        };
+    }
+}
+
+.scroll {
+    position: absolute;
+    bottom: 30px;
+    left: calc(50% - 30px);
+    @include hidden;
+    cursor: pointer;
+}
+
+.icon__mouse {
+    display: block;
+    width: 30px;
+    height: 45px;
+    border-radius: 18px;
+    border: 2px solid #fff;
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 2px;
+        height: 10px;
+        border-radius: 1px;
+        background: #fff;
+        transform: translate(12px, 5px);
+    }
+}
+
+.icon__arrow {
+    color: #fff;
+    animation: down 0.7s infinite alternate ease;
+    @include keyframes(down) {
+        0% {
+            transform: translateY(10px);
+        }
+        100% {
+            transform: translateY(20px);
+        }
+    };
+}
+
+.section {
+    &-quienes-somos {
+        min-height: 380px;
+
+        &__content {
+            width: 100%;
+            padding: {
+                top: getSpace(big);
+                bottom: getSpace(huge);
+            }
+        }
+        background: #eee;
+        @include d-flex($ai: center, $jc: center);
+    }
+
+    &-afiliate {
+        padding: 0;
+        &__decoration {
+            min-height: to-rem(250px);
+            padding: getSpace(med);
+            background: $main-color;
+            background: url('/img/contacto-bg.jpeg') no-repeat center / cover;
+            @extend %flex-center;
+            flex-direction: column;
+            position: relative;
+            z-index: 1;
+
+            &::before {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                z-index: -1;
+                background: rgba($main-color, 0.8);
+            }
+
+            &-img {
+                width: 56px;
+                height: 56px;
+            }
+
+            &-title,
+            &-text {
+                color: #fff;
+                text-align: center;
+            }
+        }
+
+        &__form {
+            padding: getSpace(big) getSpace(big);
+            @include d-flex($jc: center);
+        }
+    }
+}
+
+
+
+
+// Tablet Design
+@include tablet {
+    .header {
+        &__title {
+            font-size: getFontSize(h1);
+        }
+    }
+
+    .section-quienes-somos {
+        min-height: 300px;
+        &-content {
+            width: 100%;
+            padding: getSpace(big) 0;
+            transform: skewY(2deg);
+        }
+    }
+
+    .section-afiliate {
+        padding: 0;
+        @include d-flex($dir: row-reverse);
+        &__form {
+            width: 35%;
+        }
+
+        &__decoration {
+            width: 65%;
+
+            &-img {
+                width: 110px;
+                height: 110px;
+            }
+        }
+    }
+};
+
+
+@include widescreen {
+    .scroll {
+        @include hidden(visible);
+        @include d-flex($ai: center, $jc: center);
+        flex-direction: column;
+    }
+
+    .section-afiliate {
+        &__form {
+            width: 25%;
+        }
+
+        &__decoration {
+            width: 75%;
+
+            &-img {
+                width: 128px;
+                height: 128px;
+            }
+
+            &-title {
+                font-size: getFontSize(h1);
+            }
+
+            &-text {
+                font-size: getFontSize(h4);
+            }
+        }
+    }
+
+};
