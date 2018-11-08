@@ -64,21 +64,13 @@ class PerfilUsuarioController extends Controller
         else{
           $user = User::FindOrFail($id);
 
-<<<<<<< HEAD
-                $result = $user->fill($datos)->save();
-                $user = User::FindOrFail($id);
-                if($request->name=="name" or  $request->name=="Apellido_Materno" or $request->name=="Apellido_Paterno"){
-                    $user->Slug_Usuario=Str::slug($user->name.' '.$user->Apellido_Paterno.' '.$user->Apellido_Materno.' '.$id);
-                    $user->save();
-                    $perfilee=Perfil_Usuario::where('id_usuario',$id)->first();
-=======
+
           $result = $user->fill($datos)->save();
             $user = User::FindOrFail($id);
           if($request->name=="name" or  $request->name=="apellido_materno" or $request->name=="apellido_paterno"){
             $user->slug_usuario=Str::slug($user->name.' '.$user->apellido_paterno.' '.$user->apellido_materno.' '.$id);
             $user->save();
             $perfilee=Perfil_Usuario::where('id_usuario',$id)->first();
->>>>>>> 27670647432db9b2bbc3629bab154ec4abeb3158
 
             $perfilee->slug_usuario=$user->slug_usuario;
             $perfilee->save();
@@ -98,16 +90,7 @@ class PerfilUsuarioController extends Controller
 
   }
 
-<<<<<<< HEAD
-    public function show($slug)
-    {
-        $perfil = Perfil_Usuario::where('Slug_Usuario',$slug)->first();
-        $perfilE = Perfil_Empresa::where('id_usuario',$perfil->id_usuario)->first();
-        $User = User::where('id_usuario',$perfil->id_usuario)->first();
-        //       $perfil=Perfil_Usuario::find($id_usuario)->first();
-        //    dd($perfil->Telefono_Fijo);
-        //$perfil=Perfil_Usuario::all()->first();
-=======
+
   public function show($slug)
   {
      $perfil = Perfil_Usuario::where('slug_usuario',$slug)->first();
@@ -116,7 +99,7 @@ class PerfilUsuarioController extends Controller
 //       $perfil=Perfil_Usuario::find($id_usuario)->first();
   //    dd($perfil->Telefono_Fijo);
       //$perfil=Perfil_Usuario::all()->first();
->>>>>>> 27670647432db9b2bbc3629bab154ec4abeb3158
+
 
       return view('Perfiles.perfil',[
         'perfil'=>$perfil,
