@@ -3,9 +3,12 @@
 <link href="{{asset('css/main.css')}}" rel="stylesheet">
     <link href="{{asset('galeria/fine-uploader-gallery.css')}}" rel="stylesheet">
       <link href="{{asset('css/album.css')}}" rel="stylesheet">
-      <link href="{{asset('css/lightgallery.css')}}" rel="stylesheet">
+      <link href="{{asset('css/lightgallery0.css')}}" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
-
+<link href="http://vjs.zencdn.net/4.12/video-js.css" rel="stylesheet">
+<!-- <link href="./p_files/css" rel="stylesheet" type="text/css"> -->
+{{-- <link href="{{asset('css/lightgallery.css')}}" rel="stylesheet"> --}}
+</style>
 
 @endsection
 @section('content')
@@ -13,34 +16,43 @@
       <div class="row">
           <div class="col-md-12">
               <div class="panel panel-default">
-                  <div class="panel-heading">{{ $Album->nombre}}</div>
+                  <div class="panel-heading">Videos Subidos</div>
                   <div class="panel-body">
-                        @include('multimedia.subir')
+                        @include('multimedia.subirvideo')
                       <br >
-                      @if(!empty ($Galeria))
+                      @if(!empty ($Videos))
+                        <br />
+                        <div id="galeria">
 
 
-                        <div class="demo-gallery " id="galeria">
-                            <ul id="lightgallery" class="list-unstyled row">
-                        @foreach ($Galeria as $key => $Galeria)
-                          {{-- {{$Galeria->direccion  }} --}}
-                          <li class="col-xs-6 col-sm-4 col-md-3" data-responsive="{{$Galeria->direccion  }} 375,  {{$Galeria->direccion  }} 480, {{$Galeria->direccion  }} 800" data-src="{{$Galeria->direccion  }}" data-sub-html='{{ $Galeria->id_imagen }}' >
-                                    <a href="">
-                                        <img class="img-responsive" src="{{$Galeria->direccion  }}" height="20px">
-                                        <div class="demo-gallery-poster">
-                                                                                    <img class="demo-gallery-poster" src="../img/zoom.png">
-                                                                                </div>
-                                    </a>
-                                </li>
-                          {{-- <img  src="{{$Galeria->direccion  }}" alt=" " width="100px" height="100px" /> --}}
-                        @endforeach
-                            </ul>
+                          @foreach ($Videos as $key => $Videos)
+  <!-- Hidden video div -->
+  <div style="display:none;" id="{{ $Videos->id_video }}">
+      <video class="lg-video-object lg-html5 video-js vjs-default-skin" controls preload="none">
+          <source src="{{ $Videos->enlace }}" type="video/mp4">
+           Your browser does not support HTML5 video.
+      </video>
+  </div>
+@endforeach
+<div class="demo-gallery dark mrb35" id="galeria" >
 
-                        </div>
+  <!-- data-src should not be provided when you use html5 videos -->
 
-                                          @include('Modal.Confirmacion',array('multimedia' => 'La imagen'))
-                      @else
-                        @if(empty ($Galeria))
+  <ul id="video-gallery" class="list-unstyled row">
+    @foreach ($video as $key => $Videos)
+    <li class="col-xs-6 col-sm-4 col-md-3 video" data-poster="{{ $Videos->enlace }}" data-sub-html="{{ $Videos->id_video }}" data-html="#{{ $Videos->id_video }}" >
+        <img src="{{ $Videos->enlace }}" id="pre" preload="metadata" />
+        <video src="{{ $Videos->enlace }}" width="90%"></video>
+    </li>
+  @endforeach
+
+  </ul>
+  </div>
+</div>
+
+
+                                          @include('Modal.Confirmacion',array('multimedia' => 'El video'))
+                        @if(empty ($Videos))
                         No hay imagenes
                         @endif
                       @endif
@@ -57,12 +69,29 @@
   ====================================================================== -->
   <script>
   var url="{{ asset('') }}";
-  var album="{{ $Album->slug_album  }}";
+  var album="";
   var imagen;
-    var $lg=$('#lightgallery');
+    var $lg=$('#video-gallery');
+
+
   </script>
-  <script src="{{asset('js/jquery.fine-uploader.js')}}"></script>
-<script src="{{asset('js/jquery.fine-uploader.js')}}"></script>
+  {{-- <script  src="{{asset('js/Videos0.js')}}"></script> --}}
+
+      <script src="{{asset('js/prettify.js')}}"></script>
+      <script src="{{asset('js/froogaloop2.min.js')}}"></script>
+      <script src="{{asset('js/jquery.justifiedGallery.min.js')}}"></script>
+      <script src="{{asset('js/transition.js')}}"></script>
+      <!-- <script src="./p_files/collapse.js"></script> -->
+      <script src="{{asset('js/lightgallery.js')}}"></script>
+      <!-- <script src="./p_files/lg-fullscreen.js"></script> -->
+      <script src="{{asset('js/lg-thumbnail.js')}}"></script>
+      <script src="{{asset('js/lg-video.js')}}"></script>
+      <script src="{{asset('js/lg-share.js')}}"></script>
+
+  {{-- <script src="{{asset('js/jquery.fine-uploader.js')}}"></script> --}}
+<script src="{{asset('js/jquery0.fine-uploader.js')}}"></script>
+
+<script src="http://vjs.zencdn.net/4.12/video.js"></script>
           <script src="https://cdn.jsdelivr.net/picturefill/2.3.1/picturefill.min.js"></script>
           <script src="{{asset('js/lightgallery-all.min.js')}}"></script>
           <script src="{{asset('js/jquery.mousewheel.min.js')}}"></script>
@@ -95,7 +124,7 @@
                     <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
                     <div class="qq-thumbnail-wrapper">
                         <a class="preview-link" target="_blank">
-                            <img class="qq-thumbnail-selector" qq-max-size="120" qq-server-scale>
+                            <img class="qq-thumbnail-selector" qq-max-size="120" qq-server-scale width="120px">
                         </a>
                     </div>
                     <button type="button" class="qq-upload-cancel-selector qq-upload-cancel">X</button>
@@ -149,6 +178,7 @@
             </dialog>
         </div>
     </script>
-  <script src="{{asset('js/uploadalbum.js')}}"></script>
+  <script src="{{asset('js/uploadVideo.js')}}"></script>
+
 
  @endsection

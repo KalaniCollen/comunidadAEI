@@ -21,15 +21,19 @@
                   <div class="panel-body">
                         {{-- @include('multimedia.subir') --}}
                       <br >
+                      <div id="contenido">
+
                       @include('Modal.VideoModal')
+                      <br />
                       @if(!empty ($Videos))
-                        <div class="demo-gallery dark mrb35" id="galeria">
+                        <br />
+                        <div class="demo-gallery dark mrb35" id="galeria" >
                                             <ul id="video-thumbnails" class="list-unstyled row">
                                               @foreach ($Videos as $key => $Videos)
 
-                                                 <li class="col-xs-6 col-sm-4 col-md-3 video" data-src="{{$Videos->Enlace  }}" data-sub-html="{{ $Videos->Id_Video }}">
+                                                 <li class="col-xs-6 col-sm-4 col-md-3 video" data-src="{{$Videos->enlace  }}" data-sub-html="{{ $Videos->id_video }}">
                                                     <a href="">
-                                                        <img class="img-responsive" src="http://img.youtube.com/vi/{{ $Videos->Codigo }}/0.jpg">
+                                                        <img class="img-responsive" src="http://img.youtube.com/vi/{{ $Videos->codigo }}/0.jpg"  onerror="this.src='/storage/img/YouTube.jpg'">
                                                         <div class="demo-gallery-poster">
                                                             <img src="../img/play-button.png">
                                                         </div>
@@ -47,7 +51,7 @@
                         No hay Videos
                         @endif
                       @endif
-
+</div>
                   </div>
               </div>
           </div>

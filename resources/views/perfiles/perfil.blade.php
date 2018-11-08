@@ -22,10 +22,10 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <div style="float:right; width: auto;" title="@if($perfil->Privacidad=="0") Sus datos de contacto son mostrados al publico @else Sus datos de contacto no son mostrados al publico @endif">
-                      <div id="privacidad" style="text-align:center;"> Privacidad:  @if($perfil->Privacidad=="0")Publico @else Privado @endif </div>
+                    <div style="float:right; width: auto;" title="@if($perfil->privacidad=="0") Sus datos de contacto son mostrados al publico @else Sus datos de contacto no son mostrados al publico @endif">
+                      <div id="privacidad" style="text-align:center;"> privacidad:  @if($perfil->privacidad=="0")Publico @else Privado @endif </div>
                         <div class="onoffswitch" >
-                            <input type="checkbox" name="Privacidad" class="onoffswitch-checkbox" id="myonoffswitch" value="1" @if($perfil->Privacidad=="0") checked @endif>
+                            <input type="checkbox" name="privacidad" class="onoffswitch-checkbox" id="myonoffswitch" value="1" @if($perfil->privacidad=="0") checked @endif>
                             <label class="onoffswitch-label" for="myonoffswitch">
                                 <span class="onoffswitch-inner"></span>
                                 <span class="onoffswitch-switch"></span>
@@ -42,7 +42,7 @@
                     <div class="container2" id="container2">
 
               <div id="Carga">
-              <img src="{{ $perfil->Imagen }}" alt="Avatar" class="img-thumbnail" id="matrix" style="  border-radius:150px;">
+              <img src="{{ $perfil->imagen }}" alt="Avatar" class="img-thumbnail" id="matrix" style="  border-radius:150px;">
             </div>
               <div class="overlay overlayFade" id="Ventana">
                   <div class="text">Cambiar foto</div>
@@ -79,7 +79,7 @@
             <div class="modal-footer">
               <button style="background-color:transparent;border:0;width:85px;height:0px;">
           <label for="upload_image" class="btn btn-primary"> Subir</label>
-                <input type="file" name="Imagen" class="form-control-file" id="upload_image" style="color: transparent;visibility: hidden;" />
+                <input type="file" name="imagen" class="form-control-file" id="upload_image" style="color: transparent;visibility: hidden;" />
               </button>
               <button class="btn btn-success crop_image">Guardar</button>
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -92,12 +92,12 @@
     </div>
 
 <div class="row">
-  <div class="col-md-6 col-sm-6" style="text-align:left;left:100px ;width:auto;">
+  <div class="col-md-6 col-sm-6" style="text-align:left;left:100px ;">
                 <div>
-                &nbsp;<label id="namedato" data="user"><p id="namecampo" data="Nombre">Nombre: </p></label>
+                &nbsp;<label id="namedato" data="user"><p id="namecampo" data="nombre">nombre: </p></label>
                 </div>
                   </div>
-                   <div class="col-md-6 col-sm-6" style="left:100px">
+                   <div class="col-md-6 col-sm-6" >
                   <div id="name" class="eff" data="boton01">
 
                 <label id="namedata"  class="user">{{ $user->name }}</label>
@@ -112,11 +112,11 @@
             </div>
           </div>
             <div class="col-md-4 col-sm-6">
-               <div id="Apellido_Paterno" class="eff" data="boton03">
+               <div id="apellido_paterno" class="eff" data="boton03">
 
-                <label id="Apellido_Paternodata" name="user">{{ $user->Apellido_Paterno }}</label>
+                <label id="Apellido_Paternodata" name="user">{{ $user->apellido_paterno }}</label>
 
-               <input type="button" name="Apellido_Paterno" id="boton03" class="boton01" value="Editar">
+               <input type="button" name="apellido_paterno" id="boton03" class="boton01" value="Editar">
               </div>
             </div>
           </div>
@@ -128,9 +128,9 @@
             </div>
           </div>
             <div class="col-md-4 col-sm-6">
-              <div id="Apellido_Materno" class="eff" data="boton04">
-                <label id="Apellido_Maternodata"  name="user">{{ $user->Apellido_Materno }}</label>
-              <input type="button" name="Apellido_Materno" id="boton04" class="boton01" value="Editar">
+              <div id="apellido_materno" class="eff" data="boton04">
+                <label id="Apellido_Maternodata"  name="user">{{ $user->apellido_materno }}</label>
+              <input type="button" name="apellido_materno" id="boton04" class="boton01" value="Editar">
              </div>
            </div>
          </div>
@@ -156,9 +156,9 @@
            </div>
          </div>
             <div class="col-md-4 col-sm-6">
-             <div id="Telefono_Movil" class="eff" data="boton05">
-              <label id="Telefono_Movildata" data="{{ $perfil->Telefono_Movil }}" name="perfil">{{ $perfil->Telefono_Movil }}</label>&nbsp;
-             <input type="button" name="Telefono_Movil" id="boton05" class="boton01" value="Editar">
+             <div id="telefono_movil" class="eff" data="boton05">
+              <label id="Telefono_Movildata" data="{{ $perfil->telefono_movil }}" name="perfil">{{ $perfil->telefono_movil }}</label>&nbsp;
+             <input type="button" name="telefono_movil" id="boton05" class="boton01" value="Editar">
             </div>
           </div>
         </div>
@@ -169,9 +169,9 @@
           </div>
         </div>
           <div class="col-md-4 col-sm-6">
-            <div id="Correo_Electronico" class="eff" data="boton07">
-             <label id="Correo_Electronicodata" data="{{ $perfil->Correo_Electronico }}" name="perfil">{{ $perfil->Correo_Electronico }}</label>&nbsp;
-            <input type="button" name="Correo_Electronico" id="boton07" class="boton01" value="Editar">
+            <div id="correo_electronico" class="eff" data="boton07">
+             <label id="Correo_Electronicodata" data="{{ $perfil->correo_electronico }}" name="perfil">{{ $perfil->correo_electronico }}</label>&nbsp;
+            <input type="button" name="correo_electronico" id="boton07" class="boton01" value="Editar">
            </div>
 </div>
 </div>

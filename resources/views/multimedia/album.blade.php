@@ -2,6 +2,7 @@
 @section('style')
   <link rel="stylesheet" type="text/css" href="{{ asset ('css/reset.css')}}"/>
   <link rel="stylesheet" type="text/css" href="{{ asset ('css/styles.css')}}"/>
+  <link rel="stylesheet" type="text/css" href="{{ asset ('css/jquery.alertable.css')}}"/>
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset ('css/album.css')}}"/> --}}
 
 
@@ -10,7 +11,7 @@
 
   <div class="container">
       <div class="row">
-          <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-12">
               <div class="panel panel-default">
                   <div class="panel-heading">Album</div>
                   <div class="panel-body">
@@ -19,6 +20,7 @@
 
                     <br>
                     @include('multimedia.Albums')
+                      @include('Modal.modal')
                     @else
                       No hay nada
 
@@ -34,7 +36,10 @@
 @section('script')
 
 <script src="{{ asset('js/Album.js')}}" ></script>
+<script src="{{ asset('js/jquery.alertable.js')}}" ></script>
+
 <script>
 var servidor ="{{asset ('') }}";
+
 </script>
   @endsection

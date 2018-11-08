@@ -1,7 +1,3 @@
-<div style="position: relative;bottom:8px;">
-
-@include('Modal.Album')
-</div>
 <main>
 
       <section class="cards" id="cartas">

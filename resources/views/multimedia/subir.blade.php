@@ -13,7 +13,7 @@
   <div class="modal-content">
     <div class="modal-header">
       <span class="close">&times;</span>
-      <h2>{{ $Album->Nombre}}</h2>
+      <h2>{{ $Album->nombre}}</h2>
     </div>
     {{-- <div id="fine-uploader-s3" class="modal-body"></div> --}}
 <div id="fine-uploader-manual-trigger" class="modal-body"></div>

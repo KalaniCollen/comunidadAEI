@@ -1,9 +1,11 @@
 @extends('layouts.app')
 @section('style')
-    <link rel="stylesheet" type="text/css" href="{{ asset ('css/logros.css')}}"/>
-@endsection
 
+    <link rel="stylesheet" type="text/css" href="{{ asset ('css/logros.css')}}"/>
+
+@endsection
 @section('content')
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -23,17 +25,17 @@
 
                     <center>
                       <div id="opciones" >
-                       <input type="button" name="Mis_Logros" id="boton01" class="btn btn-link" value="Editar">
+                       <input type="button" name="mis_logros" id="boton01" class="btn btn-link" value="Editar">
                      </div>
                    </center>
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token" >
         <input type="hidden" id="id" value="{{ auth()->user()->id_usuario }}">
 
                 <center>
-                <div id="Mis_Logros">
+                <div id="mis_logros">
 
 
-                <textarea type="textarea" class="form-control" name="Mis_Logrosdata" id="Mis_Logrosdata"  rows="6" cols="60" value="" style="">{{ $MisLogros->Mis_Logros }}</textarea>  &nbsp;
+                <textarea type="textarea" class="form-control" name="Mis_Logrosdata" id="Mis_Logrosdata"  rows="6" cols="60" value="" style="">{{ $MisLogros->mis_logros }}</textarea>  &nbsp;
 
                 </div>
 
@@ -43,8 +45,8 @@
         </div>
     </div>
 </div>
-@endsection
 
+@endsection
 @section('script')
 <script src="{{ asset('js/Logros.js')}}" type="text/javascript"></script>
 @endsection
