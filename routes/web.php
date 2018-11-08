@@ -59,7 +59,6 @@ Route::post('/Imagenes/{album}','AlbumController@Agregar');
 Route::delete('/DeleteImagen','ImagenesController@Delete');
 
 // Ruta a multimedia videos
-
 Route::resource('videos', 'VideosController');
 
 // Route::get('/Videos/{id}','VideosController@show');
@@ -89,7 +88,6 @@ Route::prefix('v1')->group(function () {
 // Rutas para correos
 Route::post('/afiliate', 'IndexController@sendMail')->name('afiliate');
 Route::post('/orden-servicio', 'ServiciosController@sendMail')->name('servicio.orden-servicio');
-
 
 // Ruta para la guía de estilos del sitio web aei
 Route::get('guidelines', function() {

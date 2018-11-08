@@ -22,7 +22,7 @@ class BuscadorController extends Controller
         // dd(Input::get('busqueda'));
 
         $salida="";
-        $busqueda = User::search($request->busqueda)->orderBy('Id_Usuario','desc')->get();
+        $busqueda = User::search($request->busqueda)->orderBy('id_usuario','desc')->get();
         //    for($i=0;$i<$busqueda;$i++){
         //   $salida=$salida."".$busqueda[$i]->name;
         // }
@@ -51,7 +51,7 @@ class BuscadorController extends Controller
         $output="";
 
         // $products=User::where('name','LIKE','%'.$request->search."%")->get();
-        $products =User::search($request->busqueda)->orderBy('Id_Usuario','desc')->get();
+        $products =User::search($request->busqueda)->orderBy('id_usuario','desc')->get();
 
         if($products){
 

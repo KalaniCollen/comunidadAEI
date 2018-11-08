@@ -14,9 +14,9 @@ use Illuminate\Http\Response;
 
 class AlbumController extends Controller
 {
-    public function index($Id_Usuario)
+    public function index($id_usuario)
     {
-        $Album = Album::where('Id_Usuario',$Id_Usuario)->get();
+        $Album = Album::where('id_usuario',$id_usuario)->get();
 
         return view('multimedia.album')->with('Album',$Album);
     }
@@ -28,14 +28,14 @@ class AlbumController extends Controller
             $Album=Album::create([
                 'Nombre' => Str::upper($request->Nombre),
                 'Slug_Album'=>Str::slug(Str::upper($request->Nombre.' '.time())),
-                'Id_Usuario'=>Auth::id(),
+                'id_usuario'=>Auth::id(),
             ]);
             $directory="public/Galeria/".$Album->Slug_Album;
             $dd=Storage::makeDirectory($directory);
             // $albums =store('public/Galeria/'.$Album->Nombre);
             return  response()->json("ok");
         }
-        // $Album = Album::where('Id_Usuario',$Id_Usuario)->first();
+        // $Album = Album::where('id_usuario',$id_usuario)->first();
 
         return view('multimedia.album')->with('Album',$Album);
     }
@@ -87,7 +87,7 @@ class AlbumController extends Controller
 
         }
 
-        // $Album = Album::where('Id_Usuario',$Id_Usuario)->first();
+        // $Album = Album::where('id_usuario',$id_usuario)->first();
 
     }
 }

@@ -67,7 +67,7 @@ class PerfilUsuarioController extends Controller
                 if($request->name=="name" or  $request->name=="Apellido_Materno" or $request->name=="Apellido_Paterno"){
                     $user->Slug_Usuario=Str::slug($user->name.' '.$user->Apellido_Paterno.' '.$user->Apellido_Materno.' '.$id);
                     $user->save();
-                    $perfilee=Perfil_Usuario::where('Id_Usuario',$id)->first();
+                    $perfilee=Perfil_Usuario::where('id_usuario',$id)->first();
 
                     $perfilee->Slug_Usuario=$user->Slug_Usuario;
                     $perfilee->save();
@@ -90,9 +90,9 @@ class PerfilUsuarioController extends Controller
     public function show($slug)
     {
         $perfil = Perfil_Usuario::where('Slug_Usuario',$slug)->first();
-        $perfilE = Perfil_Empresa::where('Id_Usuario',$perfil->Id_Usuario)->first();
-        $User = User::where('Id_Usuario',$perfil->Id_Usuario)->first();
-        //       $perfil=Perfil_Usuario::find($Id_Usuario)->first();
+        $perfilE = Perfil_Empresa::where('id_usuario',$perfil->id_usuario)->first();
+        $User = User::where('id_usuario',$perfil->id_usuario)->first();
+        //       $perfil=Perfil_Usuario::find($id_usuario)->first();
         //    dd($perfil->Telefono_Fijo);
         //$perfil=Perfil_Usuario::all()->first();
 

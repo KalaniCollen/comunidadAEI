@@ -9,6 +9,6 @@ class Videos extends Model
   protected $table = 'videos';
   protected $primaryKey = 'Id_Video';
   protected $fillable= [
-  'Id_Video','Enlace','Codigo','Id_Usuario',
+  'Id_Video','Enlace','Codigo','id_usuario',
   ];
 }

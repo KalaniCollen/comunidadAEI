@@ -138,7 +138,7 @@
           </div>
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
-                <input type="hidden" id="id" value="{{ auth()->user()->Id_Usuario }}">
+                <input type="hidden" id="id" value="{{ auth()->user()->id_usuario }}">
                 <div>
                 <div class="row">
                   <div class="col-md-6 col-sm-6" style="text-align:left;left:100px">

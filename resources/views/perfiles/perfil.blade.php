@@ -36,7 +36,7 @@
 
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
-        <input type="hidden" id="id" value="{{ auth()->user()->Id_Usuario }}">
+        <input type="hidden" id="id" value="{{ auth()->user()->id_usuario }}">
 
         <div class="panel-body" align="center">
                     <div class="container2" id="container2">

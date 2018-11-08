@@ -8,22 +8,22 @@ use Illuminate\Support\Facades\Auth;
 
 class VideosController extends Controller
 {
-    public function show($Id_Usuario)
+    public function show($id_usuario)
     {
-        $Videos = Videos::where('Id_Usuario',$Id_Usuario)->get();
+        $Videos = Videos::where('id_usuario',$id_usuario)->get();
 
         return view('multimedia.Videos')->with('Videos', $Videos);
     }
 
     public function create(Request $request)
     {
-        // $Videos = Videos::where('Id_Usuario',$Id_Usuario)->first();
+        // $Videos = Videos::where('id_usuario',$id_usuario)->first();
         if ($request->ajax())
         {
             $Album=Videos::create([
                 'Enlace' => $request->Nombre,
                 'Codigo'=>str_replace("https://www.youtube.com/watch?v=", "", $request->Nombre),
-                'Id_Usuario'=>Auth::id(),
+                'id_usuario'=>Auth::id(),
             ]);
 
             return response()->json("ok");
@@ -36,7 +36,7 @@ class VideosController extends Controller
     public function delete(Request $request)
     {
         if ( $request->ajax() ) {
-            $Videos = Videos::where('Id_Video',$request->video)->where('Id_Usuario',Auth::id())->first();
+            $Videos = Videos::where('Id_Video',$request->video)->where('id_usuario',Auth::id())->first();
             $Videos->delete();
             return  response()->json("ok");
         }

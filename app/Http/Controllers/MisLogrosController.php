@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use App\Perfil_Empresa;
 class MisLogrosController extends Controller
 {
-    public function MostrarMisLogros($Id_Usuario)
+    public function MostrarMisLogros($id_usuario)
     {
-        $perfilU = Perfil_Empresa::where('Id_Usuario',$Id_Usuario)->first();
+        $perfilU = Perfil_Empresa::where('id_usuario',$id_usuario)->first();
 
         return view('Perfiles.Mis_Logros')->with('MisLogros',$perfilU);
     }

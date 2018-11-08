@@ -9,6 +9,6 @@ class Album extends Model
     protected $table = 'album';
     protected $primaryKey = 'Id_Album';
     protected $fillable= [
-        'Id_Album','Slug_Album','Id_Usuario','Nombre',
+        'Id_Album','Slug_Album','id_usuario','Nombre',
     ];
 }

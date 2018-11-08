@@ -10,7 +10,7 @@ class Perfil_Empresa extends Model
     protected $table = 'perfil_empresa';
     protected $primaryKey = 'Id_Empresa';
     protected $fillable= [
-    'Nombre_Empresa', 'Id_Usuario','Tipo_Empresa','Giro_Empresa',
+    'Nombre_Empresa', 'id_usuario','Tipo_Empresa','Giro_Empresa',
     'Servicio_Empresa','Producto_Empresa','Logo_Empresa','Horario_Atencion',
     'Cantidad_Productos','Telefono_Fijo_Empresa','Telefono_Movil_Empresa',
     'Correo_Electronico_Empresa','Direccion_Empresa','Pag_Web_Empresa',

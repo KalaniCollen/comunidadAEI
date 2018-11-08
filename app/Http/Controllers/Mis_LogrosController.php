@@ -7,9 +7,9 @@ use App/Perfil_Usuario;
 
 class Mis_LogrosController extends Controller
 {
-    public function MostrarMis_Logros($Id_Usuario)
+    public function MostrarMis_Logros($id_usuario)
     {
-        $perfilU = Perfil_Usuario::where('Id_Usuario',$Id_Usuario)->first();
+        $perfilU = Perfil_Usuario::where('id_usuario',$id_usuario)->first();
         return view('Perfiles.Mis_Logros')->with('Biografia',$perfilU);
     }
 

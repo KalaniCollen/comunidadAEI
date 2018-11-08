@@ -17,11 +17,11 @@ class Servicios extends Model
         'horario_inicio',
         'horario_cierre',
         'slug',
-        'Id_Usuario'
+        'id_usuario'
     ];
 
     protected $hidden = [
-        'id'
+        'id_servicio'
     ];
 
     /**
@@ -40,6 +40,6 @@ class Servicios extends Model
      * @return \App\User
      */
     public function user() {
-        return $this->belongsTo('App\User', 'Id_Usuario');
+        return $this->belongsTo('App\User', 'id_usuario');
     }
 }

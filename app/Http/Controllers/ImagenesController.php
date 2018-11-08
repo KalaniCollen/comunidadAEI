@@ -15,7 +15,7 @@ class ImagenesController extends Controller
     {
         if ($request->ajax())
         {
-            $Album=Album::where('Slug_Album',$request->album)->where('Id_Usuario',Auth::id())->first();
+            $Album=Album::where('Slug_Album',$request->album)->where('id_usuario',Auth::id())->first();
             $Imagen=Imagenes::where('Id_Album',$Album->Id_Album)->where('Id_Imagen',$request->imagen)->first();
 
             // dd(str_replace("/storage", "public", $Imagen->Direccion));

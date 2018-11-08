@@ -57,7 +57,7 @@ public function edit(Request $request,$id)
 
 
         }
-        $perfilE =Perfil_Empresa::where('Id_Usuario',$id)->first();
+        $perfilE =Perfil_Empresa::where('id_usuario',$id)->first();
         // $perfilE = Perfil_Empresa::FindOrFail($id);
         if($request->name=="Imagen"){
             $perfilE->Logo_Empresa=$request->dato;
@@ -66,7 +66,7 @@ public function edit(Request $request,$id)
         if($request->name=="Nombre_Empresa"){
             $perfilE->Nombre_Empresa=Str::upper($request->dato);
             $perfilE->Slug_Empresa = Str::slug($request->dato.' '.$id);
-            $perfilU =User::where('Id_Usuario',$id)->first();
+            $perfilU =User::where('id_usuario',$id)->first();
             $perfilU->Slug_Empresa=Str::slug($request->dato.' '.$id);
             $perfilU->save();
             $perfilE->save();

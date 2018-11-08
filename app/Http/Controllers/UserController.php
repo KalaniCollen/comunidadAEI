@@ -45,10 +45,10 @@ class UserController extends Controller
             return redirect::to('/');
         }
     }
-    public function complete(RegistroRequest $request, $Id_Usuario)
+    public function complete(RegistroRequest $request, $id_usuario)
     {
 
-        $user = User::find($Id_Usuario);
+        $user = User::find($id_usuario);
         if($user->Tipo_Usuario=="Asociado"){
             $user->password=bcrypt($request->password);
         }
@@ -89,7 +89,7 @@ class UserController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function show($Id_Usuario)
+    public function show($id_usuario)
     {
 
     }
