@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Videos extends Model
 {
   protected $table = 'videos';
-  protected $primaryKey = 'Id_Video';
+  protected $primaryKey = 'id_video';
   protected $fillable= [
-  'Id_Video','Enlace','Codigo','Id_Usuario',
+  'id_video','enlace','codigo','id_usuario','tipo',
   ];
 }

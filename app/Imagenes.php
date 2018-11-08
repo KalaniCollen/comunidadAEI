@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Imagenes extends Model
 {
   protected $table = 'imagenes';
-  protected $primaryKey = 'Id_Imagen';
+  protected $primaryKey = 'id_imagen';
   protected $fillable= [
-  'Id_Imagen','Direccion','Id_Album',
+  'id_imagen','direccion','id_album',
   ];
 }

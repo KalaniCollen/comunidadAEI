@@ -9,7 +9,7 @@ class Perfil_Usuario extends Model
   protected $table = 'perfil_usuario';
     protected $primaryKey = 'Id_Perfil';
   protected $fillable = [
-          'name','Id_Usuario','Fecha_Nacimiento','Sexo','slug','Telefono_Movil','Imagen','Correo_Electronico','Slug_Usuario',
+          'name','id_usuario','fecha_nacimiento','sexo','slug','telefono_movil','imagen','correo_electronico','slug_usuario',
       ];    //
       public function getRouteKeyName()
     {

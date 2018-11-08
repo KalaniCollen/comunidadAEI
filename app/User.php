@@ -19,11 +19,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $table = 'users';
-      protected $primaryKey = 'Id_Usuario';
-      protected $searchableColumns = ['name', 'Apellido_Paterno','Apellido_Materno'];
+      protected $primaryKey = 'id_usuario';
+      protected $searchableColumns = ['name', 'apellido_paterno','apellido_materno'];
     protected $fillable = [
-       'email', 'password','confirmation_code','name','Apellido_Paterno','Apellido_Materno','Notificacion_Correo','Slug_Usuario',
-       'Slug_Empresa',
+       'email', 'password','confirmation_code','name','apellido_paterno','apellido_materno','privilegios_administrador','notificacion_correo','slug_usuario',
+       'slug_empresa',
     ];
 
     /**

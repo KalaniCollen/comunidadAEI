@@ -3,9 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Perfil_Usuario;
+use App\Perfil_Empresa;
+use App\Biografia;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Services\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str as Str;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 class RegisterController extends Controller
 {
@@ -27,10 +34,10 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/Respuesta';
 
     /**
-     * Create a new controller instance.
+     * Create a new controller
      *
      * @return void
      */
@@ -48,7 +55,6 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -62,10 +68,55 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+        DB::transaction(function()
+{
+  $code=str_random(25);
+  $email=Input::get('email');
+  $nombre=Input::get('name');
+  $data['name']='usuario';
+  $dates=array('code'=>$code);
+  $this->Email($dates,$email);
+        $user=User::create([
+          'name' => Str::upper($nombre),
+          'apellido_paterno'=> Str::upper(Input::get('apellido_paterno')),
+          'apellido_materno'=> Str::upper(Input::get('apellido_materno')),
+            'email' => Input::get('email'),
+            'password' => bcrypt(Input::get('password')),
+            'confirmation_code'=>$code,
+            'notificacion_correo' => Input::get('Notificacion'),
+
+
+
         ]);
+        $useru=User::where('id_usuario',$user->id_usuario)->first();
+        $useru->slug_usuario=Str::slug( Str::upper($nombre).' '.Str::upper(Input::get('apellido_paterno')).
+         ' '.Str::upper(Input::get('apellido_materno')).' '.$user->id_usuario);
+         $useru->slug_empresa=Str::slug( Str::upper($nombre).' '.Str::upper(Input::get('apellido_paterno')).
+          ' '.Str::upper(Input::get('apellido_materno')).' '.$user->id_usuario);
+          $useru->save();
+        $mensaje='El punto de partida de todo logro es el deseo...';
+        Perfil_Usuario::create([
+              'fecha_nacimiento'=> Input::get('fecha_nacimiento'),
+              'id_usuario'=>$user->id_usuario,
+              'sexo'=> Str::upper(Input::get('sexo')),
+              'slug_usuario'=> $useru->slug_usuario,
+
+        ]);
+
+        return Perfil_Empresa::create([
+            'id_usuario'=>$user->id_usuario,
+            'mis_logros'=>$mensaje,
+            'slug_empresa'=> $useru->slug_empresa,
+        ]);
+      });
+      return view('auth.register');
     }
+    function Email($dates,$email){
+          Mail::send('emails.plantilla',$dates,function($message) use ($email){
+            $message->subject('Bienvenido a AEI');
+            $message->to($email);
+            $message->from('kalanicollen1410@gmail.com','AEI');
+          });
+        }
+
 }
