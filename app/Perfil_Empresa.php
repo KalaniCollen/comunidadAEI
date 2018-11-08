@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Perfil_Empresa extends Model
 {
     //
-    protected $table = 'perfil_empresa';
+    protected $table = 'Perfil_Empresa';
     protected $primaryKey = 'id_empresa';
     protected $fillable= [
 

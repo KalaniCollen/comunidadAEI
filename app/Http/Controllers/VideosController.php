@@ -96,7 +96,7 @@ $Video = Videos::where('id_usuario',$id_usuario)->where('tipo','Video')->get();
     $Videos = Videos::where('slug_usuario',$request->video)->where('id_usuario',Auth::id())->first();
     if($Videos->tipo=="Video"){
         Storage::delete(str_replace("/storage", "public", $Videos->enlace));
->>>>>>> 27670647432db9b2bbc3629bab154ec4abeb3158
+
 
     }
 $Videos->delete();
