@@ -21,8 +21,13 @@ class BuscadorController extends Controller
         // $busque['busc']="Gerardo";
         // dd(Input::get('busqueda'));
 
+<<<<<<< HEAD
+        $salida="";
+        $busqueda = User::search($request->busqueda)->orderBy('id_usuario','desc')->get();
+=======
 $salida="";
            $busqueda = User::search($request->busqueda)->orderBy('id_usuario','desc')->get();
+>>>>>>> 27670647432db9b2bbc3629bab154ec4abeb3158
         //    for($i=0;$i<$busqueda;$i++){
         //   $salida=$salida."".$busqueda[$i]->name;
         // }
@@ -50,8 +55,13 @@ $salida="";
 
             $output="";
 
+<<<<<<< HEAD
+        // $products=User::where('name','LIKE','%'.$request->search."%")->get();
+        $products =User::search($request->busqueda)->orderBy('id_usuario','desc')->get();
+=======
             // $products=User::where('name','LIKE','%'.$request->search."%")->get();
             $products =User::search($request->busqueda)->orderBy('id_usuario','desc')->get();
+>>>>>>> 27670647432db9b2bbc3629bab154ec4abeb3158
 
             if($products){
 

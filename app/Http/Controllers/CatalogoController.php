@@ -18,8 +18,8 @@ class CatalogoController extends Controller
      */
     public function index()
     {
-        $productos = Productos::where('Id_Usuario', Auth::user()->Id_Usuario)->get();
-        $servicios = Servicios::where('Id_Usuario', Auth::user()->Id_Usuario)->get();
+        $productos = Productos::where('id_usuario', Auth::user()->id_usuario)->get();
+        $servicios = Servicios::where('id_usuario', Auth::user()->id_usuario)->get();
         return view('catalogo.index', compact('productos', 'servicios'));
     }
 }

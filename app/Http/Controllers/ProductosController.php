@@ -47,14 +47,14 @@ class ProductosController extends Controller
     {
         $nombreArchivo = null;
         $producto = new Productos();
-        $producto->fill($request->except('Id_Usuario','imagen', 'slug'));
+        $producto->fill($request->except('id_usuario','imagen', 'slug'));
         if ($request->hasFile('imagen')) {
             $imagen = Storage::putFile('public/catalogos_img', $request->file('imagen'));
             $producto->imagen = basename($imagen);
         } else {
             $producto->imagen = 'defaultProduct.jpg';
         }
-        $producto->Id_Usuario = Auth::user()->Id_Usuario;
+        $producto->id_usuario = Auth::user()->id_usuario;
         $producto->slug = Str::slug( $producto->nombre . ' ' . Auth::user()->id );
         $producto->save();
 
@@ -93,13 +93,13 @@ class ProductosController extends Controller
      */
     public function update(StoreProductosRequest $request, Productos $producto)
     {
-        $producto->fill($request->except('Id_Usuario','imagen', 'slug'));
+        $producto->fill($request->except('id_usuario','imagen', 'slug'));
         if ($request->hasFile('imagen')) {
             Storage::delete("public/catalogos_img/{$producto->imagen}");
             $imagen = Storage::putFile('public/catalogos_img', $request->file('imagen'));
             $producto->imagen = basename($imagen);
         }
-        $producto->Id_Usuario = Auth::user()->Id_Usuario;
+        $producto->id_usuario = Auth::user()->id_usuario;
         $producto->slug = Str::slug($producto->nombre);
         $producto->save();
 

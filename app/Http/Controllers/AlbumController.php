@@ -15,6 +15,13 @@ use Illuminate\Support\Facades\File;
 
 class AlbumController extends Controller
 {
+<<<<<<< HEAD
+    public function index($id_usuario)
+    {
+        $Album = Album::where('id_usuario',$id_usuario)->get();
+
+        return view('multimedia.album')->with('Album',$Album);
+=======
   public function index($id_usuario)
   {
      $Albums = Album::where('id_usuario',$id_usuario)->get();
@@ -56,12 +63,27 @@ class AlbumController extends Controller
    {
      $Album = Album::find($id);
      return response()->json($Album);
+>>>>>>> 27670647432db9b2bbc3629bab154ec4abeb3158
     }
     public function update(Request $request)
     {
 
         if ($request->ajax())
         {
+<<<<<<< HEAD
+
+            $Album=Album::create([
+                'Nombre' => Str::upper($request->Nombre),
+                'Slug_Album'=>Str::slug(Str::upper($request->Nombre.' '.time())),
+                'id_usuario'=>Auth::id(),
+            ]);
+            $directory="public/Galeria/".$Album->Slug_Album;
+            $dd=Storage::makeDirectory($directory);
+            // $albums =store('public/Galeria/'.$Album->Nombre);
+            return  response()->json("ok");
+        }
+        // $Album = Album::where('id_usuario',$id_usuario)->first();
+=======
           $slug_album=Str::slug(Str::upper($request->name.' '.time()));
             $Album =   Album::where('id_album',$request->id)->where('id_usuario',Auth::id())->first();
 
@@ -88,10 +110,14 @@ class AlbumController extends Controller
               return response()->json(['success'=>'false']);
             }
         }
+>>>>>>> 27670647432db9b2bbc3629bab154ec4abeb3158
 
 
     }
 
+<<<<<<< HEAD
+        // $Album = Album::where('id_usuario',$id_usuario)->first();
+=======
    public function Agregar(Request $request,$slug_album)
    {
      if ($request->ajax())
@@ -156,6 +182,7 @@ class AlbumController extends Controller
      {
          return response()->json(['success'=> 'false']);
      }
+>>>>>>> 27670647432db9b2bbc3629bab154ec4abeb3158
 
     }
 }

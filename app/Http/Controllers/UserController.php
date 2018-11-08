@@ -44,6 +44,16 @@ class UserController extends Controller
         else{
           return redirect::to('/');
         }
+<<<<<<< HEAD
+    }
+    public function complete(RegistroRequest $request, $id_usuario)
+    {
+
+        $user = User::find($id_usuario);
+        if($user->Tipo_Usuario=="Asociado"){
+            $user->password=bcrypt($request->password);
+=======
+>>>>>>> 27670647432db9b2bbc3629bab154ec4abeb3158
         }
         public function complete(RegistroRequest $request, $id_usuario)
    {
@@ -84,11 +94,19 @@ class UserController extends Controller
 
 
     /**
+<<<<<<< HEAD
+    * Display the specified resource.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
+=======
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+>>>>>>> 27670647432db9b2bbc3629bab154ec4abeb3158
     public function show($id_usuario)
     {
 

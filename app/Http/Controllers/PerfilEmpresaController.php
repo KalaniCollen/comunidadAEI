@@ -102,6 +102,19 @@ else{
 
 
         }
+<<<<<<< HEAD
+        $perfilE =Perfil_Empresa::where('id_usuario',$id)->first();
+        // $perfilE = Perfil_Empresa::FindOrFail($id);
+        if($request->name=="Imagen"){
+            $perfilE->Logo_Empresa=$request->dato;
+            $perfilE->save();
+        }
+        if($request->name=="Nombre_Empresa"){
+            $perfilE->Nombre_Empresa=Str::upper($request->dato);
+            $perfilE->Slug_Empresa = Str::slug($request->dato.' '.$id);
+            $perfilU =User::where('id_usuario',$id)->first();
+            $perfilU->Slug_Empresa=Str::slug($request->dato.' '.$id);
+=======
 $perfilE =Perfil_Empresa::where('id_usuario',$id)->first();
           // $perfilE = Perfil_Empresa::FindOrFail($id);
           if($request->name=="imagen"){
@@ -115,6 +128,7 @@ $perfilE =Perfil_Empresa::where('id_usuario',$id)->first();
             $perfilE->slug_empresa = Str::slug($request->dato.' '.$id);
             $perfilU =User::where('id_usuario',$id)->first();
             $perfilU->slug_empresa=Str::slug($request->dato.' '.$id);
+>>>>>>> 27670647432db9b2bbc3629bab154ec4abeb3158
             $perfilU->save();
             $perfilE->save();
               return response()->json($perfilU->slug_empresa);

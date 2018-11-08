@@ -27,7 +27,7 @@
                      </div>
                    </center>
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token" >
-        <input type="hidden" id="id" value="{{ auth()->user()->Id_Usuario }}">
+        <input type="hidden" id="id" value="{{ auth()->user()->id_usuario }}">
 
                 <center>
                 <div id="Mis_Logros">

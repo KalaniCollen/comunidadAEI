@@ -20,7 +20,11 @@ class User extends Authenticatable
      */
     protected $table = 'users';
       protected $primaryKey = 'id_usuario';
+<<<<<<< HEAD
+      protected $searchableColumns = ['name', 'Apellido_Paterno','Apellido_Materno'];
+=======
       protected $searchableColumns = ['name', 'apellido_paterno','apellido_materno'];
+>>>>>>> 27670647432db9b2bbc3629bab154ec4abeb3158
     protected $fillable = [
        'email', 'password','confirmation_code','name','apellido_paterno','apellido_materno','privilegios_administrador','notificacion_correo','slug_usuario',
        'slug_empresa',
