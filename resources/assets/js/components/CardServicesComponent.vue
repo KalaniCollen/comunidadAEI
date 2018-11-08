@@ -12,6 +12,7 @@
                 <p class="card__title">{{ servicio.nombre }}</p>
                 <p class="card__date">{{ servicio.created_at | moment("D MMMM YYYY") }}</p>
                 <p class="card__content">{{ servicio.descripcion }}</p>
+                <p><b>Horario de atención: </b>{{ servicio.horario_inicio }} a {{ servicio.horario_cierre }}</p>
             </div>
             <div class="card__actions card__actions--space">
                 <a :href="`servicios/${servicio.slug}`" class="btn btn--accent">Ver más</a>

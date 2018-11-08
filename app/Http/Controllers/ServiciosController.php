@@ -48,15 +48,15 @@ class ServiciosController extends Controller
     public function store(StoreServiciosRequest $request)
     {
         $servicio = new Servicios();
-        $servicio->fill($request->except('id_user','imagen', 'slug'));
+        $servicio->fill($request->except('Id_Usuario','imagen', 'slug'));
         if ($request->hasFile('imagen')) {
             $imagen = Storage::putFile('public/catalogos_img', $request->file('imagen'));
             $servicio->imagen = basename($imagen);
         } else {
             $servicio->imagen = 'defaultService.jpg';
         }
-        $servicio->id_user = Auth::user()->id;
-        $servicio->slug = Str::slug( $servicio->nombre . ' ' . Auth::user()->id );
+        $servicio->Id_Usuario = Auth::user()->Id_Usuario;
+        $servicio->slug = Str::slug( $servicio->nombre . ' ' . Auth::user()->Id_Usuario );
         $servicio->save();
 
         return redirect()->route('catalogo.index');

@@ -12,6 +12,7 @@
                 <p class="card__title">{{ producto.nombre }}</p>
                 <p class="card__date">{{ producto.created_at | moment("D MMMM YYYY")}}</p>
                 <p class="card__content">{{ producto.descripcion }}</p>
+                <p><b>Costo del producto:</b> ${{ producto.costo }}</p>
             </div>
             <div class="card__actions card__actions--space">
                 <a :href="`productos/${producto.slug}`" class="btn btn--accent">Ver más</a>

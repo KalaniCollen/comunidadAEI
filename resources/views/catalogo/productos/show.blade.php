@@ -1,6 +1,7 @@
 @extends('layouts.head')
 @section('content')
-    <div class="container">
+    <div class="section">
+        <img src="{{ asset('/storage/catalogos_img/'.$producto->imagen) }}" alt="" width="350px">
         <div class="row">
             <div class="col-md-12">
                 <h1>{{ $producto->nombre }}</h1>
@@ -11,7 +12,7 @@
                 <img src="" alt="">
             </div>
             <div class="col-md-5">
-                <p>{{ $producto->descripcion }}</p>
+                <p><b>Descripción: </b>{{ $producto->descripcion }}</p>
             </div>
         </div>
 
@@ -21,6 +22,11 @@
             </div>
             <div class="col-md-3">
                 <p><b>Tipo de Producto: </b>{{ $producto->tipo }}</p>
+            </div>
+            <div class="col-md-3">
+                @if ($producto->descuento > 0)
+                    <p><b>Descuento para asociados AEI:</b> {{ $producto->descuento }}%</p>
+                @endif
             </div>
         </div>
     </div>

@@ -17,33 +17,6 @@
         <section class="section section-socios">
             <h2 class="section__title">Empresas Asociadas</h2>
             <div class="slider">
-                {{-- <div class="slider__container"> --}}
-                    {{-- <div class="slider__inner">
-                        <a href="https://www.itiztapalapa.edu.mx/" target="_blank" class="slider__item">
-                            <img class="slider__img" src="{{ asset('img/slider-img/escudo_ITIZ_original.png') }}" alt="" >
-                        </a>
-                        <a href="https://heinekenmexico.com/" target="_blank" class="slider__item">
-                            <img src="https://heinekenmexico.com/informe-sustentabilidad/img/logo-cuamoc.png" alt="" class="slider__item">
-                        </a>
-                        <a href="https://www.esperanza.mx/" target="_blank" class="slider__item">
-                            <img src="https://heinekenmexico.com/informe-sustentabilidad/img/logo-cuamoc.png" alt="" class="slider__item">
-                        </a>
-                        <a href="https://www.esperanza.mx/" target="_blank" class="slider__item">
-                            <img src="https://heinekenmexico.com/informe-sustentabilidad/img/logo-cuamoc.png" alt="" class="slider__item">
-                        </a>
-                        <a href="https://www.esperanza.mx/" target="_blank" class="slider__item">
-                            <img src="https://heinekenmexico.com/informe-sustentabilidad/img/logo-cuamoc.png" alt="" class="slider__item">
-                        </a>
-                        <a href="https://www.esperanza.mx/" target="_blank" class="slider__item">
-                            <img src="https://heinekenmexico.com/informe-sustentabilidad/img/logo-cuamoc.png" alt="" class="slider__item">
-                        </a>
-                        {{-- <img src="http://www.iroimpresiones.com.mx/images/LEN.png" alt="" class="slider__item">
-                        <img src="http://www.potenciaindustrial.com.mx/images/logo-dark.png" alt="" class="slider__item">
-                        <img src="https://calentadoresdelta.com/wp-content/uploads/2018/02/LogoRojo.png" alt="" class="slider__item">
-                    </div>
-                    <button class="btn" id="slider-next">Next</button>
-                </div> --}}
-
                 <div class="glide">
                     <div class="glide__track" data-glide-el="track">
                         <ul class="glide__slides">
@@ -109,7 +82,13 @@
                 <h3 class="section-afiliate__decoration-title">Contactanos</h3>
                 <p class="section-afiliate__decoration-text">Forma parte de esta gran asociación y aprende a ser un buen lider para tu negocio.</p>
             </div>
-            <form action="{{ route('/afiliate') }}" method="post" class="section-afiliate__form">
+            @if ($errors->any())
+                @foreach ($error as $errors)
+                    <p>{{ $error }}</p>
+                @endforeach
+
+            @endif
+            <form action="{{ route('afiliate') }}" method="post" class="section-afiliate__form">
                 {{ csrf_field() }}
                 <h2>Afiliate</h2>
                 <div class="form__input form__input--column">
@@ -126,7 +105,7 @@
                 </div>
                 <div class="form__input form__input--column">
                     <label for="correo">Correo Electrónico</label>
-                    <input type="email" name="correo" class="form__input-input" required="required">
+                    <input type="email" name="correo" class="form__input-input" required="required" value="{{ old('correo') }}">
                 </div>
                 <div class="form__input form__input--column">
                     <label for="mensaje">Mensaje</label>
@@ -148,7 +127,7 @@
 
         new Glide('.glide', {
             type: 'carousel',
-            autoplay: 2000,
+            autoplay: 1500,
             startAt: 0,
             perView: 8
         }).mount()

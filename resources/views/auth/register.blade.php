@@ -4,8 +4,8 @@
 <div class="section login registro">
     <div class="login__decoration registro__decoration">
         <div class="login__content">
-            <p class="login__text">El valor de una empresa </p>
-            <p class="login__author">Juan Hernández</p>
+            <p class="login__text">La mejor publicidad es la que hacen los clientes satisfechos</p>
+            <p class="login__author">AEI</p>
         </div>
     </div>
 
@@ -15,7 +15,7 @@
 
         <div class="form__input form__input--column">
             <label for="nombres" class="form__input-label fc-white">Nombres</label>
-            <input type="text" name="nombres" value="" id="nombres" class="form__input-input">
+            <input type="text" name="name" value="" id="nombres" class="form__input-input">
             <span class="form__error {{ ($errors->has('nombre')) ? 'form__error--show' : '' }}">¡El correo que ingreso no existe!</span>
         </div>
 
@@ -33,7 +33,7 @@
 
         <div class="form__input form__input--column">
             <label for="Fecha_Nacimiento" class="form__input-label fc-white">Fecha de nacimiento</label>
-            <input type="date" name="Fecha_Nacimiento" value="" id="Fecha_Nacimiento" class="form__input-input">
+            <input type="date" name="fecha" value="" id="Fecha_Nacimiento" class="form__input-input" value="{{date('Y-m-d', strtotime('-40 year'))}}" min="{{date('Y-m-d', strtotime('-90 year'))}}" max="{{ date('Y-m-d') }}" required>
             <span class="form__error {{ ($errors->has('Fecha_Nacimiento')) ? 'form__error--show' : '' }}">¡El correo que ingreso no existe!</span>
         </div>
 
@@ -63,6 +63,12 @@
             <label for="password" class="form__input-label fc-white">Constraseña</label>
             <input type="password" name="password" value="" id="password" class="form__input-input">
             <span class="form__error {{ ($errors->has('password')) ? 'form__error--show' : '' }}">¡El correo que ingreso no existe!</span>
+        </div>
+
+        <div class="form__input form__input--column">
+            <label for="correo" class="form__input-label fc-white">Correo</label>
+            <input type="email" name="correo" value="" id="correo" class="form__input-input">
+            <span class="form__error {{ ($errors->has('correo')) ? 'form__error--show' : '' }}">¡El correo que ingreso no existe!</span>
         </div>
 
         <div class="form__checkbox">

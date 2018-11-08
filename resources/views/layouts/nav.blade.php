@@ -25,6 +25,9 @@
                     </li>
                     @if (Auth::check())
                         <li class="nav__item">
+                            <a href="{{ route('catalogo.index') }}" class="nav__link">Multimedia</a>
+                        </li>
+                        <li class="nav__item">
                             <a href="{{ route('catalogo.index') }}" class="nav__link">Mi Catálogo</a>
                         </li>
                         <li class="nav__item">
