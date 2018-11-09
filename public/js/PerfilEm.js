@@ -1,4 +1,6 @@
 $(document).ready(function(){
+
+  alert("hola");
  $('#conectar').click(function(){
    $('button').toggleClass('active');
    $('.title').toggleClass('active');

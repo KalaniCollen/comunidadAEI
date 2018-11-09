@@ -46,9 +46,11 @@ Route::get('/MisLogros/{id}','MisLogrosController@MostrarMisLogros');
 Route::get('/MisLogros','MisLogrosController@store');
 Route::put('/MisLogrosEditar/{id}','MisLogrosController@edit');
 
-Route::get('/PerfilE','PerfilEmpresaController@store');
-Route::get('/PerfilEmpresa/{id}','PerfilEmpresaController@Show');
+Route::put('/PerfilEmpresaUpdate','PerfilEmpresaController@update')->name('Actualizar');
 Route::put('/PerfilEEditar/{id}','PerfilEmpresaController@edit');
+Route::get('/PerfilEmpresa/{slug_empresa}','PerfilEmpresaController@Show');
+Route::get('/PerfilE','PerfilEmpresaController@store');
+
 
 // Ruta a los albums
 Route::get('/Albums/{id}','AlbumController@index');

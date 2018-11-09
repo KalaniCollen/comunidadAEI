@@ -1,10 +1,8 @@
-@extends('layouts.app')
-@section('style')
+@extends('layouts.head')
+@section('styles')
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/croppie.css')}}" />
   <link rel="stylesheet" type="text/css" href="{{ asset ('css/css.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset ('css/enlaces.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset ('css/logros.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset ('css/tarjetadesplegar.css')}}"/>
     @endsection
 @section('content')
@@ -144,18 +142,7 @@
               </div>
             </div>
           @endif
-            <div class="row">
-              <div class="col-md-6 col-sm-6" style="text-align:left;left:100px">
 
-                &nbsp;<label >Cantidad de Productos: </label>
-
-            </div>
-              <div class="col-md-4 col-sm-6">
-
-                  <label >{{ $perfilE->Cantidad_Productos }}</label>
-
-              </div>
-            </div>
             <div class="row">
               <div class="col-md-6 col-sm-6" style="text-align:left;left:100px">
 
@@ -201,12 +188,10 @@
 </div>
 
 @endsection
-@section('script')
+@section('scripts')
 <script>
 var url="{{asset('')  }}";
 </script>
-    <script src="{{ asset('js/croppie.js')}}" ></script>
-    {{-- <script src="{{ asset('js/bootstrap.min.js')}}" ></script> --}}
-    <script src="{{ asset('js/PerfilEm.js')}}" ></script>
-    <script src="{{ asset('js/cropE.js')}}" type="text/javascript"></script>
+<script src="{{ asset('js/PerfilEm.js')}}" harset="utf-8" ></script>
+
   @endsection

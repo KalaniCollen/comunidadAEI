@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Perfil_Usuario extends Model
 {
   protected $table = 'perfil_usuario';
-    protected $primaryKey = 'Id_Perfil';
+    protected $primaryKey = 'id_perfil';
   protected $fillable = [
 
           'name','id_usuario','fecha_nacimiento','sexo','slug','telefono_movil','imagen','correo_electronico','slug_usuario',

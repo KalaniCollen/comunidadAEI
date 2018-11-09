@@ -63,10 +63,12 @@ $PerfilEmpresa->save();
   }
   public function Show($slug_empresa)
   {
-  
+
      $PerfilEmpresa = Perfil_Empresa::where('slug_empresa',$slug_empresa)->first();
-     $Perfil=Perfil_Usuario::where('id_usuario',Auth::id())->first();
-      return view('Perfiles.PerfilEmpresa')->with([
+
+     $Perfil=Perfil_Usuario::where('id_usuario',"14")->first();
+
+           return view('Perfiles.PerfilEmpresa')->with([
         'perfilE'=>$PerfilEmpresa,
         'perfil'=>$Perfil]);
   }

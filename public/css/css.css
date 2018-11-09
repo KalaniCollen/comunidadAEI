@@ -1,0 +1,57 @@
+.title{
+    font-family: sans-serif;
+    color: #dc2d5e;
+}
+.container2 {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+
+
+}
+.container2 input {
+ /*display:none;*/
+/*si lo de arriba no funciona bien usar*/
+  visibility:hidden;
+    position: relative;
+text-align: center;
+ display: inline-block;
+}
+.img-thumbnail {
+    display: block;
+    width: 150px;
+    height: 150px;
+    border-radius:150px;
+
+}
+
+
+.text {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: sans-serif;
+cursor: pointer;
+}
+.overlayFade{
+    height: 75%;
+    width:75%;
+    top:0;
+    left:26px;
+    background-color: #000000;
+    border-radius:150px;
+}
+.overlay {
+    position: absolute;
+    opacity: 0;
+    transition:all .3s ease;
+    background-color: #000000;
+   cursor: pointer;
+}
+.container2:hover .overlay,.container2:hover .overlayFade {
+    opacity: 0.6;
+}
