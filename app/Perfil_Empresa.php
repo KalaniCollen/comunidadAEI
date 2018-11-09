@@ -15,7 +15,7 @@ class Perfil_Empresa extends Model
     'servicio_empresa','producto_empresa','logo_empresa','horario_atencion',
     'cantidad_productos','telefono_fijo_empresa','Telefono_Movil_Empresa',
     'correo_electronico_empresa','direccion_empresa','pag_web_empresa',
-    'red_social_twitter_empresa','Red_Social_Facebook_Empresa','Red_Social_Whatsapp_Empresa',
+    'red_social_twitter_empresa','red_social_facebook_empresa',
     'red_social_instagram','mis_logros','slug_empresa','descripcion',
 
     ];
