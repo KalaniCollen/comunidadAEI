@@ -9,7 +9,8 @@
         </div>
     </div>
 
-    <form action="" class="form login__form registro__form">
+    <form  method="POST" action="{{ route('register') }}" class="form login__form registro__form">
+        {{ csrf_field() }}
         <h2 class="fc-white">Registro</h2>
         <h4 class="fc-white">Información Personal</h4>
 
@@ -20,32 +21,31 @@
         </div>
 
         <div class="form__input form__input--column">
-            <label for="Apellido_Paterno" class="form__input-label fc-white">Apellido Paterno</label>
-            <input type="text" name="Apellido_Paterno" value="" id="Apellido_Paterno" class="form__input-input">
-            <span class="form__error {{ ($errors->has('Apellido_Paterno')) ? 'form__error--show' : '' }}">¡El correo que ingreso no existe!</span>
+            <label for="apellido_paterno" class="form__input-label fc-white">Apellido Paterno</label>
+            <input type="text" name="apellido_paterno" value="" id="apellido_paterno" class="form__input-input">
+            <span class="form__error {{ ($errors->has('apellido_paterno')) ? 'form__error--show' : '' }}">¡El correo que ingreso no existe!</span>
         </div>
 
         <div class="form__input form__input--column">
-            <label for="Apellido_Materno" class="form__input-label fc-white">Apellido Materno</label>
-            <input type="text" name="Apellido_Materno" value="" id="Apellido_Materno" class="form__input-input">
-            <span class="form__error {{ ($errors->has('Apellido_Materno')) ? 'form__error--show' : '' }}">¡El correo que ingreso no existe!</span>
+            <label for="apellido_materno" class="form__input-label fc-white">Apellido Materno</label>
+            <input type="text" name="apellido_materno" value="" id="apellido_materno" class="form__input-input">
+            <span class="form__error {{ ($errors->has('apellido_materno')) ? 'form__error--show' : '' }}">¡El correo que ingreso no existe!</span>
         </div>
 
         <div class="form__input form__input--column">
-            <label for="Fecha_Nacimiento" class="form__input-label fc-white">Fecha de nacimiento</label>
-            <input type="date" name="fecha" value="" id="Fecha_Nacimiento" class="form__input-input" value="{{date('Y-m-d', strtotime('-40 year'))}}" min="{{date('Y-m-d', strtotime('-90 year'))}}" max="{{ date('Y-m-d') }}" required>
-            <span class="form__error {{ ($errors->has('Fecha_Nacimiento')) ? 'form__error--show' : '' }}">¡El correo que ingreso no existe!</span>
+            <label for="fecha_nacimiento" class="form__input-label fc-white">Fecha de nacimiento</label>
+            <input type="date" name="fecha_nacimiento" value="" id="fecha_nacimiento" class="form__input-input" value="{{date('Y-m-d', strtotime('-40 year'))}}" min="{{date('Y-m-d', strtotime('-90 year'))}}" max="{{ date('Y-m-d') }}" required>
         </div>
 
         <div class="form__group-radio">
             <p class="link fc-white">Sexo</p>
             <div class="form__radio">
-                <input type="radio" name="sexo" id="mujer" class="form__radio-input">
+                <input type="radio" name="sexo" id="mujer" class="form__radio-input" value="M">
                 <label class="form__radio-label fc-white" for="mujer">Mujer</label>
             </div>
 
             <div class="form__radio">
-                <input type="radio" name="sexo" id="hombre" class="form__radio-input">
+                <input type="radio" name="sexo" id="hombre" class="form__radio-input" value="H">
                 <label class="form__radio-label fc-white" for="hombre">Hombre</label>
             </div>
         </div>
@@ -54,9 +54,9 @@
         <h4 class="fc-white">Información de Usuario</h4>
 
         <div class="form__input form__input--column">
-            <label for="name" class="form__input-label fc-white">Usuario</label>
-            <input type="text" name="name" value="" id="name" class="form__input-input">
-            <span class="form__error {{ ($errors->has('name')) ? 'form__error--show' : '' }}">¡El correo que ingreso no existe!</span>
+            <label for="correo" class="form__input-label fc-white">Correo</label>
+            <input type="email" name="email" value="{{ old('email') }}" id="correo" class="form__input-input">
+            <span class="form__error {{ ($errors->has('correo')) ? 'form__error--show' : '' }}">¡El correo que ingreso no existe!</span>
         </div>
 
         <div class="form__input form__input--column">
@@ -66,13 +66,14 @@
         </div>
 
         <div class="form__input form__input--column">
-            <label for="correo" class="form__input-label fc-white">Correo</label>
-            <input type="email" name="correo" value="" id="correo" class="form__input-input">
-            <span class="form__error {{ ($errors->has('correo')) ? 'form__error--show' : '' }}">¡El correo que ingreso no existe!</span>
+            <label for="password_confirmation" class="form__input-label fc-white">Confirmar Constraseña</label>
+            <input type="password" name="password_confirmation" value="" id="password_confirmation" class="form__input-input">
+            <span class="form__error {{ ($errors->has('password_confirmation')) ? 'form__error--show' : '' }}">¡El correo que ingreso no existe!</span>
         </div>
 
+
         <div class="form__checkbox">
-            <input type="checkbox" name="" value="" id="email-notificaciones" class="form__checkbox-input">
+            <input type="checkbox" name="Notificacion" value="" id="email-notificaciones" class="form__checkbox-input" checked>
             <label for="email-notificaciones" class="form__checkbox-label fc-white">Recibir notificaciones por e-mail</label>
         </div>
 
