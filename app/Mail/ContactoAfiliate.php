@@ -28,6 +28,6 @@ class ContactoAfiliate extends Mailable
      */
     public function build()
     {
-        return $this->view('mailAfiliate');
+        return $this->view('emails.afiliate');
     }
 }

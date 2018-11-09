@@ -25,7 +25,7 @@ class IndexController extends Controller
      * @return [type]            [description]
      */
     public function sendMail(Request $request) {
-        Mail::send('mailAfiliate', [
+        Mail::send('emails.afiliate', [
             "solicitante" => $request->nombre,
             "telefono" => $request->telefono,
             "empresa" => $request->empresa,
