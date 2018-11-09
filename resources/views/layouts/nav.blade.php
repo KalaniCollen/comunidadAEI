@@ -17,13 +17,10 @@
         <div class="menu__nav">
             <nav class="nav nav--main">
                 <ul class="nav__list">
-                    <li class="nav__item">
-                        <a href="/" class="nav__link">Incio</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="{{ route('home') }}" class="nav__link">Publicaciones</a>
-                    </li>
                     @if (Auth::check())
+                        <li class="nav__item">
+                            <a href="/home" class="nav__link">Incio</a>
+                        </li>
                         <li class="nav__item">
                             <a href="{{ route('catalogo.index') }}" class="nav__link">Multimedia</a>
                         </li>
@@ -37,6 +34,12 @@
                             <a href="{{ route('catalogo.index') }}" class="nav__link">Solicitar Evento</a>
                         </li>
                     @else
+                        <li class="nav__item">
+                            <a href="/" class="nav__link">Incio</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="{{ route('home') }}" class="nav__link">Publicaciones</a>
+                        </li>
                         <li class="nav__item">
                             <a href="/#quienes-somos" class="nav__link">¿Quiénes Somos?</a>
                         </li>
