@@ -11,8 +11,9 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
         @yield('styles')
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
         <div id="app">
@@ -24,12 +25,12 @@
         </div>
 
 
-        {{-- <script src="{{ asset ('js/jquery.min.js')}}" ></script>
 
-          <script src="{{ asset ('js/bootstrap.min.js')}}" ></script> --}}
-        <script src="{{ asset('js/app.js') }}" charset="utf-8"></script>
-        <script src="{{ asset('js/effects.js') }}" charset="utf-8"></script>
-
+                {{-- <script src="{{ asset('js/app.js') }}" charset="utf-8"></script> --}}
+                <script src="{{ asset('js/effects.js') }}" charset="utf-8"></script>
+                {{-- Scripts necesarios --}}
+                <script src="{{ asset ('js/jquery.min.js')}}" ></script>
+                <script src="{{ asset ('js/bootstrap.min.js')}}" ></script>
         @yield('scripts')
 
     </body>

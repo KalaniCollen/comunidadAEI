@@ -8,7 +8,7 @@ use App\Perfil_Usuario;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Redirect;
-use App\Http\Requests\RegistroRequest;
+use App\Http\Requests\Perfilrequest;
 use Illuminate\Support\Str as Str;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
@@ -30,7 +30,7 @@ class PerfilEmpresaController extends Controller
         'perfilE'=>$PerfilEmpresa,
         'perfil'=>$Perfil]);
   }
-  public function update(Request $request)
+  public function update(Perfilrequest $request)
   {
      $PerfilEmpresa = Perfil_Empresa::where('id_usuario',Auth::id())->first();
 // $PerfilEmpresa=$request;
@@ -47,7 +47,6 @@ $PerfilEmpresa->direccion_empresa=$request->direccion_empresa;
 $PerfilEmpresa->red_social_twitter_empresa=$request->red_social_twitter_empresa;
 $PerfilEmpresa->red_social_facebook_empresa=$request->red_social_facebook_empresa;
 $PerfilEmpresa->pag_web_empresa=$request->pag_web_empresa;
-
 
 $PerfilEmpresa->slug_empresa = Str::slug(Str::upper($request->nombre_empresa.' '.Auth::id()));
 $perfilU =User::where('id_usuario',Auth::id())->first();
@@ -67,12 +66,9 @@ $PerfilEmpresa->save();
   }
   public function Show($slug_empresa)
   {
-
      $PerfilEmpresa = Perfil_Empresa::where('slug_empresa',$slug_empresa)->first();
-
-     $Perfil=Perfil_Usuario::where('id_usuario',"14")->first();
-
-           return view('Perfiles.PerfilEmpresa')->with([
+     $Perfil=Perfil_Usuario::where('id_usuario',Auth::id())->first();
+      return view('Perfiles.PerfilEmpresa')->with([
         'perfilE'=>$PerfilEmpresa,
         'perfil'=>$Perfil]);
   }
@@ -109,7 +105,6 @@ else{
 
 
         }
-
 $perfilE =Perfil_Empresa::where('id_usuario',$id)->first();
           // $perfilE = Perfil_Empresa::FindOrFail($id);
           if($request->name=="imagen"){
@@ -123,7 +118,6 @@ $perfilE =Perfil_Empresa::where('id_usuario',$id)->first();
             $perfilE->slug_empresa = Str::slug($request->dato.' '.$id);
             $perfilU =User::where('id_usuario',$id)->first();
             $perfilU->slug_empresa=Str::slug($request->dato.' '.$id);
-
             $perfilU->save();
             $perfilE->save();
               return response()->json($perfilU->slug_empresa);
