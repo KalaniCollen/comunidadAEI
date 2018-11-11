@@ -27,7 +27,7 @@ Route::get('/busqe',function(){
 
 Route::get('/search','BuscadorController@search');
 
-Route::get('/Respuesta',function(){
+Route::get('/respuesta',function(){
   return view('response');
 });
 
@@ -50,6 +50,7 @@ Route::put('/PerfilEmpresaUpdate','PerfilEmpresaController@update')->name('Actua
 Route::put('/PerfilEEditar/{id}','PerfilEmpresaController@edit');
 Route::get('/PerfilEmpresa/{slug_empresa}','PerfilEmpresaController@Show');
 Route::get('/PerfilE','PerfilEmpresaController@store');
+Route::get('/PerfilShow/{slug_empresa}','PerfilEmpresaController@Index');
 
 
 // Ruta a los albums
