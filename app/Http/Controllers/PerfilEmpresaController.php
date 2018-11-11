@@ -22,6 +22,14 @@ class PerfilEmpresaController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
+   public function Index($slug_empresa)
+   {
+      $PerfilEmpresa = Perfil_Empresa::where('slug_empresa',$slug_empresa)->first();
+      $Perfil=Perfil_Usuario::where('id_usuario',Auth::id())->first();
+       return view('Perfiles.PerfilEmpresa')->with([
+         'perfilE'=>$PerfilEmpresa,
+         'perfil'=>$Perfil]);
+   }
   public function show($slug_empresa)
   {
      $PerfilEmpresa = Perfil_Empresa::where('slug_empresa',$slug_empresa)->first();
@@ -64,14 +72,7 @@ $PerfilEmpresa->save();
      $Perfil=Perfil_Usuario::where('id_usuario',Auth::id())->first();
       return redirect('PerfilEmpresa/'.$PerfilEmpresa->slug_empresa);
   }
-  public function Index($slug_empresa)
-  {
-     $PerfilEmpresa = Perfil_Empresa::where('slug_empresa',$slug_empresa)->first();
-     $Perfil=Perfil_Usuario::where('id_usuario',Auth::id())->first();
-      return view('Perfiles.PerfilEmpresa')->with([
-        'perfilE'=>$PerfilEmpresa,
-        'perfil'=>$Perfil]);
-  }
+
 
   public function store(Request $request)
 {
@@ -80,43 +81,26 @@ $PerfilEmpresa->save();
 
 
 
-  public function edit(Request $request,$id)
+  public function edit(Request $request)
   {
     if ($request->ajax())
       {
-        $dato=$request->only('name');
-        if($request->name=='correo_electronico_empresa' or $request->name=='red_social_instagram' or $request->name=='red_social_twitter_empresa' or
-        $request->name=='Red_Social_Facebook_Empresa' or $request->name=='pag_web_empresa' ){
-        $datos[$dato['name']] =$request->dato;
-        }
-        else{
-      $datos[$dato['name']] =Str::upper($request->dato);
 
-
-        }
-$perfilE =Perfil_Empresa::where('id_usuario',$id)->first();
+$perfilE =Perfil_Empresa::where('id_usuario',Auth::id())->first();
           // $perfilE = Perfil_Empresa::FindOrFail($id);
-          if($request->name=="imagen"){
+
             Storage::delete(str_replace("/storage", "public", $perfilE->logo_empresa));
 
             $perfilE->logo_empresa=$request->dato;
-            $perfilE->save();
-          }
-          if($request->name=="nombre_empresa"){
-            $perfilE->nombre_empresa=Str::upper($request->dato);
-            $perfilE->slug_empresa = Str::slug($request->dato.' '.$id);
-            $perfilU =User::where('id_usuario',$id)->first();
-            $perfilU->slug_empresa=Str::slug($request->dato.' '.$id);
-            $perfilU->save();
-            $perfilE->save();
-              return response()->json($perfilU->slug_empresa);
-          }
-          $result = $perfilE->fill($datos)->save();
-          $request->dato=$perfilE[$dato['name']];
+            $result=$perfilE->save();
+
+
+
+
 
           if ($result){
-            $request['mensaje']="El dato ha sido actualizado";
-              return view('form.dato')->with('dato', $request);
+return response()->json(['success'=>'true']);
+              // return view('form.dato')->with('dato', $request);
           }
           //else
           //{

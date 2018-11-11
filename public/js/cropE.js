@@ -45,7 +45,7 @@ $('#Muestra').attr('style',"width:100%;height:100%;")
         url:url+"upload.php",
         type: "POST",
         data:{"image": response,
-            carpeta:'ImagenEmpresa'
+            carpeta:'Imagen_Empresa'
       },
         success:function(data)
         {
@@ -55,7 +55,7 @@ $('#Muestra').attr('style',"width:100%;height:100%;")
           //$('#container2').empty().html(data);
           guardar(data);
 
-          $('#Carga').empty().html("<img src=/storage/ImagenEmpresa/"+data+" alt=Avatar class=img-thumbnail style=border-radius:150px; id=matrix>");
+          $('#Carga').empty().html("<img src=/storage/Imagen_Empresa/"+data+" alt=Avatar class=img-thumbnail style=border-radius:150px; id=matrix>");
 
         }
       });
@@ -64,12 +64,16 @@ $('#Muestra').attr('style',"width:100%;height:100%;")
 var guardar  = function(datos) {
 
 var ide = $("#id").val();
-var dato="/storage/ImagenEmpresa/"+datos;
-var route=url+"PerfilEEditar/"+ide+"";
+var dato="/storage/Imagen_Empresa/"+datos;
+var route=url+"PerfilEEditar";
 var token = $("#token").val();
+$.ajaxSetup({
+headers: {
+'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+}
+});
   $.ajax({
     type: "PUT",
-    headers:{'X-CSRF-TOKEN': token},
     datatype: "json",
     url:  route,
     data:{

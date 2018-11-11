@@ -18,19 +18,26 @@ class PerfilUsuarioController extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
+   public function Index($slug)
+   {
+      $perfil = Perfil_Usuario::where('slug_usuario',$slug)->first();
+     $perfilE = Perfil_Empresa::where('id_usuario',$perfil->id_usuario)->first();
+      $User = User::where('id_usuario',$perfil->id_usuario)->first();
+       return view('Perfiles.perfil',[
+         'perfil'=>$perfil,
+         'perfilE'=> $perfilE,
+         'user' => $User
+       ]);
+   }
+   public function show(Request $request)
+   {
+
+       return view('form.campo')->with('dato', $request);
+   }
+
   public function store(Request $request)
   {
-     if($request->name=="sexo"){
-       return view('form.sexo')->with('dato', $request);
-     }
 
-     if($request->name=="telefono_movil"){
-       $request['tipo']='number';
-     }
-     else{
-       $request['tipo']='text';
-     }
-      return view('form.campo')->with('dato', $request);
   }
 
   public function mostrar(Request $request,$id)
@@ -91,20 +98,5 @@ class PerfilUsuarioController extends Controller
   }
 
 
-  public function show($slug)
-  {
-     $perfil = Perfil_Usuario::where('slug_usuario',$slug)->first();
-    $perfilE = Perfil_Empresa::where('id_usuario',$perfil->id_usuario)->first();
-     $User = User::where('id_usuario',$perfil->id_usuario)->first();
-//       $perfil=Perfil_Usuario::find($id_usuario)->first();
-  //    dd($perfil->Telefono_Fijo);
-      //$perfil=Perfil_Usuario::all()->first();
 
-
-      return view('Perfiles.perfil',[
-        'perfil'=>$perfil,
-        'perfilE'=> $perfilE,
-        'user' => $User
-      ]);
-  }
 }
