@@ -17,7 +17,7 @@
 
                 <button id="Tarjeta" class="btn btn-primary">Contacto</button>
                 <div style="float:right; width: auto; padding-right:10px;">
-                    <a href="/PerfilShow/{{ $perfilE->slug_empresa }}" class="btn btn-primary">Editar</a>
+                    <a href="/PerfilEmpresa/{{ $perfilE->slug_empresa }}/Edit" class="btn btn-primary">Editar</a>
                 </div>
                 <div class="panel-body">
                     @if (session('status'))
@@ -42,10 +42,10 @@
                 <div>
                     {{-- Nombre --}}
                     <div class="row">
-                        <div class="col-md-6 col-sm-6" style="text-align:left;left:100px">
-                            &nbsp;<label>Nombre: </label>
+                        <div class="col-md-4 col-sm-6" style="text-align:left;left:100px">
+                            &nbsp;<label>Nombre: </label> <label>{{ $perfilE->nombre_empresa }}</label>
                         </div>
-                        <div class="col-md-4 col-sm-6">
+                        <div class="col-md-6 col-sm-6">
                             <label>{{ $perfilE->nombre_empresa }}</label>
                         </div>
                     </div>

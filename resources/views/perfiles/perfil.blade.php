@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('style')
+@extends('layouts.head')
+@section('styles')
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ asset('css/croppie.css')}}" />
   <link rel="stylesheet" type="text/css" href="{{ asset ('css/css.css')}}"/>
@@ -184,7 +184,7 @@
 
 
 @endsection
-@section('script')
+@section('scripts')
 
     <script src="{{ asset('js/croppie.js')}}" ></script>
     {{-- <script src="{{ asset('js/bootstrap.min.js')}}" ></script> --}}
