@@ -22,7 +22,7 @@ class PerfilEmpresaController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function Index($slug_empresa)
+  public function show($slug_empresa)
   {
      $PerfilEmpresa = Perfil_Empresa::where('slug_empresa',$slug_empresa)->first();
      $Perfil=Perfil_Usuario::where('id_usuario',Auth::id())->first();
@@ -64,7 +64,7 @@ $PerfilEmpresa->save();
      $Perfil=Perfil_Usuario::where('id_usuario',Auth::id())->first();
       return redirect('PerfilEmpresa/'.$PerfilEmpresa->slug_empresa);
   }
-  public function Show($slug_empresa)
+  public function Index($slug_empresa)
   {
      $PerfilEmpresa = Perfil_Empresa::where('slug_empresa',$slug_empresa)->first();
      $Perfil=Perfil_Usuario::where('id_usuario',Auth::id())->first();
@@ -74,18 +74,7 @@ $PerfilEmpresa->save();
   }
 
   public function store(Request $request)
-  {if($request->name=="tipo_empresa"){
-    return view('form.TipoE')->with('dato', $request);
-}
-if($request->name=="giro_empresa"){
-  return view('form.Giro')->with('dato', $request);
-}
-if($request->name=="Telefono_Movil_Empresa" or $request->name=="telefono_fijo_empresa" or $request->name=="cantidad_productos" or $request->name=="Red_Social_Whatsapp"){
-  $request['tipo']='number';
-}
-else{
-  $request['tipo']='text';
-}
+{
       return view('form.campo')->with('dato', $request);
   }
 

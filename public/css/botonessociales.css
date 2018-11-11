@@ -93,7 +93,7 @@ a.twitter-small, a.twitter-big{
     -moz-box-shadow: 0px 6px 0px #2695BC;
     box-shadow: 0px 6px 0px #2695BC;
 }
-a.twitter-small{background:#2CA9E1 url("images/twitter.png") no-repeat center center;}
+a.twitter-small{background:#2CA9E1 url("../img/Twitter.png") no-repeat center center;}
 a.twitter-big{background:#2CA9E1;}
 
 a.twitter-small:active, a.twitter-big:active{ -webkit-box-shadow: 0px 2px 0px #2695BC;
@@ -101,7 +101,7 @@ a.twitter-small:active, a.twitter-big:active{ -webkit-box-shadow: 0px 2px 0px #2
     box-shadow: 0px 2px 0px #2695BC;
 }
 
-a.twitter-big:before{background: url("images/twitter.png") no-repeat center center;
+a.twitter-big:before{background: url("../img/Twitter.png") no-repeat center center;
 content:"";
 width:30px;
 height:30px;
@@ -133,18 +133,18 @@ top:18%;
 }
 
 a.pinterest-small, a.pinterest-big{
- -webkit-box-shadow: 0px 6px 0px #8C151B;
-    -moz-box-shadow: 0px 6px 0px #8C151B;
-    box-shadow: 0px 6px 0px #8C151B;
+ -webkit-box-shadow: 0px 6px 0px #E13707;
+    -moz-box-shadow: 0px 6px 0px #E13707;
+    box-shadow: 0px 6px 0px #E13707;
 }
-a.pinterest-small{background:#CD1D1F url("images/pinterest.png") no-repeat center center;}
-a.pinterest-big{background:#CD1D1F}
+a.pinterest-small{background:#E13707 url("../img/Paginaweb.png") no-repeat center center;}
+a.pinterest-big{background:#E13707}
 
-a.pinterest-small:active, a.pinterest-big:active{ -webkit-box-shadow: 0px 2px 0px #8C151B;
-    -moz-box-shadow: 0px 2px 0px #8C151B;
-    box-shadow: 0px 2px 0px #8C151B;
+a.pinterest-small:active, a.pinterest-big:active{ -webkit-box-shadow: 0px 2px 0px #E13707;
+    -moz-box-shadow: 0px 2px 0px #E13707;
+    box-shadow: 0px 2px 0px #E13707;
 }
-a.pinterest-big:before{background: url("images/pinterest.png") no-repeat center center;
+a.pinterest-big:before{background: url("../img/Paginaweb.png") no-repeat center center;
 content:"";
 width:30px;
 height:30px;

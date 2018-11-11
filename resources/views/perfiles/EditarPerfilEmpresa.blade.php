@@ -83,7 +83,7 @@
                                       </div>
                                       <div class="form-group{{ $errors->has('tipo_empresa') ? ' has-error' : '' }}">
                                           <label for="tipo_empresa" class="col-md-4 control-label">Tipo Empresa</label>
-                                          <div class="col-md-6">
+                                          <div class="col-md-6" style="width:110px;">
                                               <select id="tipo_empresa" name="tipo_empresa" class="form-control" style="width:auto;">
                                                   <option value="{{ $perfilE->tipo_empresa}}" selected >{{ $perfilE->tipo_empresa}}</option>
                                                   <option  value=" @if($perfilE->tipo_empresa=="PRIVADA")PUBLICA @else PRIVADA @endif">@if($perfilE->tipo_empresa=="PRIVADA")PUBLICA @else PRIVADA @endif</option>
@@ -97,7 +97,7 @@
                                       </div>
                                       <div class="form-group{{ $errors->has('giro_empresa') ? ' has-error' : '' }}">
                                           <label for="giro_empresa" class="col-md-4 control-label">Giro</label>
-                                          <div class="col-md-6">
+                                          <div class="col-md-6" style="width:110px;">
                                               <select id="giro_empresa" name="giro_empresa" class="form-control" style="width:auto;" >
                                                   <option value="{{ $perfilE->giro_empresa}}" selected > {{ $perfilE->giro_empresa}}</option>
                                                   <option  value="@if($perfilE->giro_empresa=="COMERCIAL")INDUSTRIAL @else @if($perfilE->giro_empresa=="SERVICIO")INDUSTRIAL  @else @if($perfilE->giro_empresa=="INDUSTRIAL")COMERCIAL @endif @endif @endif ">@if($perfilE->giro_empresa=="COMERCIAL")INDUSTRIAL @else @if($perfilE->giro_empresa=="SERVICIO")INDUSTRIAL  @else @if($perfilE->giro_empresa=="INDUSTRIAL")COMERCIAL @endif @endif @endif</option>
@@ -231,6 +231,13 @@
                                               <button type="submit" class="btn btn-primary">
                                                   Guardar
                                               </button>
+                                              <a href="/PerfilShow/{{ auth()->user()->slug_empresa }}">
+
+                                                  <button type="submit" class="btn btn-primary">
+                                                      Cancelar
+                                                  </button>
+                                              </a>
+
                                           </div>
                                       </div>
                                   </form>
