@@ -17,7 +17,7 @@
 
                 <button id="Tarjeta" class="btn btn-primary">Contacto</button>
                 <div style="float:right; width: auto; padding-right:10px;">
-                    <a href="/PerfilShow/{{ $perfilE->slug_empresa }}" class="btn btn-primary">Editar</a>
+                    <a href="/PerfilEmpresa/{{ $perfilE->slug_empresa }}/Edit" class="btn btn-primary">Editar</a>
                 </div>
                 <div class="panel-body">
                     @if (session('status'))

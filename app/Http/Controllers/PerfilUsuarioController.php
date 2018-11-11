@@ -10,6 +10,7 @@ use Illuminate\Support\Str as Str;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\PerfilRequest;
+use Illuminate\Support\Facades\Auth;
 class PerfilUsuarioController extends Controller
 {
   /**
@@ -18,11 +19,11 @@ class PerfilUsuarioController extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
-   public function Index($slug)
+   public function Index($slug_empresa)
    {
-      $perfil = Perfil_Usuario::where('slug_usuario',$slug)->first();
-     $perfilE = Perfil_Empresa::where('id_usuario',$perfil->id_usuario)->first();
-      $User = User::where('id_usuario',$perfil->id_usuario)->first();
+      $perfil = Perfil_Usuario::where('id_usuario',Auth::id())->first();
+     $perfilE = Perfil_Empresa::where('id_usuario',Auth::id())->first();
+      $User = User::where('id_usuario',Auth::id())->first();
        return view('Perfiles.perfil',[
          'perfil'=>$perfil,
          'perfilE'=> $perfilE,
