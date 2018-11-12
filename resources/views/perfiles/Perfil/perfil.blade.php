@@ -79,13 +79,25 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6 col-sm-6" style="text-align:left;left:100px">
+                        &nbsp;<label id="fecha" data="perfil">
+                            <p id="fecha" data="fecha">Fecha Nacimiento:</p>
+                        </label>
+                    </Div>
+                    <div class="col-md-4 col-sm-6">
+                        <div id="fecha" class="eff" data="boton02">
+                            <label id="fecha" class="perfil">{{ $perfil->fecha_nacimiento }}</label>&nbsp;
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6" style="text-align:left;left:100px">
                         &nbsp;<label id="Sexodato" data="perfil">
                             <p id="Sexocampo" data="Sexo">Sexo:</p>
                         </label>
                     </Div>
                     <div class="col-md-4 col-sm-6">
                         <div id="Sexo" class="eff" data="boton02">
-                            <label id="Sexodata" class="perfil">{{ $perfil->Sexo }}</label>&nbsp;
+                            <label id="Sexodata" class="perfil">{{ $perfil->sexo }}</label>&nbsp;
                         </div>
                     </div>
                 </div>
