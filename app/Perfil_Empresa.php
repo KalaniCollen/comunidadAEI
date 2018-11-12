@@ -15,7 +15,7 @@ class Perfil_Empresa extends Model
         'cantidad_productos','telefono_fijo_empresa','Telefono_Movil_Empresa',
         'correo_electronico_empresa','direccion_empresa','pag_web_empresa',
         'red_social_twitter_empresa','red_social_facebook_empresa',
-        'red_social_instagram','mis_logros','slug_empresa','descripcion',
+        'red_social_instagram','mis_logros','slug_empresa','descripcion','img_logros',
     ];
 
     public function getRouteKeyName()
