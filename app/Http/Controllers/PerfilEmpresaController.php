@@ -41,33 +41,33 @@ class PerfilEmpresaController extends Controller
 
     public function update(Perfilrequest $request)
     {
-        // $PerfilEmpresa = Perfil_Empresa::where('id_usuario',Auth::id())->first();
-        // $PerfilEmpresa->nombre_empresa=Str::upper($request->nombre_empresa);
-        // $user =User::where('id_usuario',Auth::id())->first();
-        // $user->slug_empresa=Str::slug($request->nombre_empresa.' '.Auth::id());
-        // $PerfilEmpresa->slug_empresa=Str::slug($request->nombre_empresa.' '.Auth::id());
-        // $PerfilEmpresa->tipo_empresa=Str::upper($request->tipo_empresa);
-        // $PerfilEmpresa->giro_empresa=Str::upper($request->giro_empresa);
-        // $PerfilEmpresa->telefono_fijo_empresa=$request->telefono_fijo_empresa;
-        // $PerfilEmpresa->horario_atencion=Str::upper($request->horario_atencion);
-        // $PerfilEmpresa->correo_electronico_empresa=$request->correo_electronico_empresa;
-        // $PerfilEmpresa->direccion_empresa=$request->direccion_empresa;
-        // $PerfilEmpresa->red_social_twitter_empresa=$request->red_social_twitter_empresa;
-        // $PerfilEmpresa->red_social_facebook_empresa=$request->red_social_facebook_empresa;
-        // $PerfilEmpresa->pag_web_empresa=$request->pag_web_empresa;
-        //
-        // $PerfilEmpresa->slug_empresa = Str::slug(Str::upper($request->nombre_empresa.' '.Auth::id()));
-        // $perfilU =User::where('id_usuario',Auth::id())->first();
-        // if($perfilU->tipo_usuario=="Asociado"){
-        //     $PerfilEmpresa->descripcion=Str::upper($request->descripcion);
-        // }
-        // $perfilU->slug_empresa=Str::slug(Str::upper($request->nombre_empresa.' '.Auth::id()));
-        //
-        // $perfilU->save();
-        // $PerfilEmpresa->save();
-        // $user->save();
-        // $Perfil=Perfil_Usuario::where('id_usuario',Auth::id())->first();
-        // return redirect('PerfilEmpresa/'.$PerfilEmpresa->slug_empresa);
+        $PerfilEmpresa = Perfil_Empresa::where('id_usuario',Auth::id())->first();
+        $PerfilEmpresa->nombre_empresa=Str::upper($request->nombre_empresa);
+        $user =User::where('id_usuario',Auth::id())->first();
+        $user->slug_empresa=Str::slug($request->nombre_empresa.' '.Auth::id());
+        $PerfilEmpresa->slug_empresa=Str::slug($request->nombre_empresa.' '.Auth::id());
+        $PerfilEmpresa->tipo_empresa=Str::upper($request->tipo_empresa);
+        $PerfilEmpresa->giro_empresa=Str::upper($request->giro_empresa);
+        $PerfilEmpresa->telefono_fijo_empresa=$request->telefono_fijo_empresa;
+        $PerfilEmpresa->horario_atencion=Str::upper($request->horario_atencion);
+        $PerfilEmpresa->correo_electronico_empresa=$request->correo_electronico_empresa;
+        $PerfilEmpresa->direccion_empresa=$request->direccion_empresa;
+        $PerfilEmpresa->red_social_twitter_empresa=$request->red_social_twitter_empresa;
+        $PerfilEmpresa->red_social_facebook_empresa=$request->red_social_facebook_empresa;
+        $PerfilEmpresa->pag_web_empresa=$request->pag_web_empresa;
+
+        $PerfilEmpresa->slug_empresa = Str::slug(Str::upper($request->nombre_empresa.' '.Auth::id()));
+        $perfilU =User::where('id_usuario',Auth::id())->first();
+        if($perfilU->tipo_usuario=="Asociado"){
+            $PerfilEmpresa->descripcion=Str::upper($request->descripcion);
+        }
+        $perfilU->slug_empresa=Str::slug(Str::upper($request->nombre_empresa.' '.Auth::id()));
+
+        $perfilU->save();
+        $PerfilEmpresa->save();
+        $user->save();
+        $Perfil=Perfil_Usuario::where('id_usuario',Auth::id())->first();
+        return redirect('PerfilEmpresa/'.$PerfilEmpresa->slug_empresa);
         return strcmp($request->oferta, "servicio");
     }
 

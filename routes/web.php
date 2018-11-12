@@ -64,6 +64,7 @@ Route::get('/cambiarpassword',function () {
 Route::put('/Cuenta/Correo/Edit','PerfilUsuarioController@correo')->name('cambiarcorreo');
 Route::put('/Cuenta/password/Edit','PerfilUsuarioController@password')->name('cambiarpassword');
 Route::get('/Perfil','PerfilUsuarioController@store');
+Route::put('/PerfilEdit','PerfilUsuarioController@update')->name('ActualizarPerfil');
 Route::put('/PerfilEditar/{id}','PerfilUsuarioController@mostrar');
 Route::get('perfilUsuario/{id}','PerfilUsuarioController@show');
 

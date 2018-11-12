@@ -83,6 +83,23 @@ $correo->save();
       return redirect('/cambiarpassword')->withErrors($errors);
 
   }
+  public function update(Request $request)
+  {
+
+      $User=User::where('id_usuario',Auth::id())->first();
+      $User->names=Str::upper($request->name);
+      $User->apellido_paterno=Str::upper($request->apellido_materno);
+      $User->apellido_materno=Str::upper($request->apellido_materno);
+      $slug=str::slug($request->name.' '.$request->apellido_paterno.' '.$request->apellido_materno.' '.Auth::id());
+      $User->slug_empresa=$slug;
+      $Perfil=Perfil_Usuario::where('id_usuario', Auth::id())->first();
+      $Perfil->sexo=$request->sexo;
+      $Perfil->telefono_movil=$request->telefono_movil;
+      $Perfil->fecha_nacimiento=$request->fecha_nacimiento;
+      $Perfil->slug_usuario=$slug;
+      $Perfil->save();
+      return redirect('Cuenta/'.$slug);
+  }
 
   public function mostrar(Request $request)
   {

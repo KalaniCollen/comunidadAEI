@@ -78,7 +78,7 @@
                         </div>
                     </div>
                 </div>
-                <form class="form-horizontal" method="POST" action="{{ route('Actualizar') }}">
+                <form class="form-horizontal" method="POST" action="{{ route('ActualizarPerfil') }}">
                           {{ csrf_field() }}
                           {{ method_field('PUT') }}
                           <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -114,12 +114,23 @@
                                   @endif
                               </div>
                           </div>
+                          <div class="form-group{{ $errors->has('fecha_nacimiento') ? ' has-error' : '' }}">
+                              <label for="fecha_nacimiento" class="col-md-4 control-label">Fecha de Nacimiento</label>
+                              <div class="col-md-6">
+                                  <input id="fecha_nacimiento" type="date"  class="form-control" name="fecha_nacimiento" value="{{ $perfil->fecha_nacimiento}}" >
+                                  @if ($errors->has('fecha_nacimiento'))
+                                      <span class="help-block">
+                                      <strong>{{ $errors->first('fecha_nacimiento') }}</strong>
+                                      </span>
+                                  @endif
+                              </div>
+                          </div>
                           <div class="form-group{{ $errors->has('sexo') ? ' has-error' : '' }}">
                               <label for="sexo" class="col-md-4 control-label">Sexo</label>
                               <div class="col-md-6" style="width:110px;">
                                   <select  name="sexo" class="form-control" style="width:auto;">
                                       <option value="{{ $perfil->sexo}}" selected > {{ $perfil->sexo}}</option>
-                                      <option  value=" @if($perfil->sexo=="HOMBRE")MUJER @else HOMBRE @endif">@if($perfil->sexo=="HOMBRE")MUJER @else HOMBRE @endif</option>
+                                      <option  value=" @if($perfil->sexo=="H")M @else H @endif">@if($perfil->sexo=="H")M @else H @endif</option>
                                   </select>
                                   @if ($errors->has('sexo'))
                                       <span class="help-block">
