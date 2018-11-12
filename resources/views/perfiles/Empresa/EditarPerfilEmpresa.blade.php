@@ -231,11 +231,8 @@
                                               <button type="submit" class="btn btn-primary">
                                                   Guardar
                                               </button>
-                                              <a href="/PerfilShow/{{ auth()->user()->slug_empresa }}">
-
-                                                  <button type="submit" class="btn btn-primary">
+                                              <a href="/PerfilEmpresa/{{ auth()->user()->slug_empresa }}" class="btn btn-primary">
                                                       Cancelar
-                                                  </button>
                                               </a>
 
                                           </div>

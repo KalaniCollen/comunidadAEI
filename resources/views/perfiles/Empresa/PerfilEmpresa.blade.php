@@ -14,10 +14,10 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Mi empresa</div>
+                <a href="/PerfilEmpresa/{{ $perfilE->slug_empresa }}/Edit" class="btn btn-primary">Editar</a>
 
-                <button id="Tarjeta" class="btn btn-primary">Contacto</button>
                 <div style="float:right; width: auto; padding-right:10px;">
-                    <a href="/PerfilEmpresa/{{ $perfilE->slug_empresa }}/Edit" class="btn btn-primary">Editar</a>
+                    <button id="Tarjeta" class="btn btn-primary">Contacto</button>
                 </div>
                 <div class="panel-body">
                     @if (session('status'))

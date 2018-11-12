@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::get('/', 'IndexController@index')->name('/');
 
@@ -45,10 +46,25 @@ Route::get('/MisLogros','MisLogrosController@store');
 Route::put('/MisLogrosEditar/{id}','MisLogrosController@edit');
 
 // Rutas perfil id_usuario
+Route::get('/Cuenta/{slug_usuario}','PerfilUsuarioController@Index');
+Route::get('/Cuenta/{slug_usuario}/Edit','PerfilUsuarioController@show');
+Route::get('/cambiarcorreo',function () {
+    if(Auth::check()){
+    return view('perfiles.Perfil.Correo');
+    }
+    return redirect('/');
+});
+Route::get('/cambiarpassword',function () {
+    if(Auth::check()){
+    return view('perfiles.Perfil.password');
+    }
+    return redirect('/');
+});
+Route::put('/Cuenta/Correo/Edit','PerfilUsuarioController@correo')->name('cambiarcorreo');
+Route::put('/Cuenta/password/Edit','PerfilUsuarioController@password')->name('cambiarpassword');
 Route::get('/Perfil','PerfilUsuarioController@store');
 Route::put('/PerfilEditar/{id}','PerfilUsuarioController@mostrar');
 Route::get('perfilUsuario/{id}','PerfilUsuarioController@show');
-Route::get('/PerfilShow/{slug_empresa}','PerfilUsuarioController@Index');
 
 // Rutas empresa
 Route::get('/PerfilEmpresa/{slug_empresa}','PerfilEmpresaController@Index')->name('MiEmpresa');
