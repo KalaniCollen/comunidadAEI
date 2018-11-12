@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\PerfilRequest;
 use App\Http\Requests\CorreoRequest;
+use App\Http\Requests\CuentaRequest;
 use App\Http\Requests\passwordRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -83,7 +84,7 @@ $correo->save();
       return redirect('/cambiarpassword')->withErrors($errors);
 
   }
-  public function update(Request $request)
+  public function update(CuentaRequest $request)
   {
 
       $User=User::where('id_usuario',Auth::id())->first();

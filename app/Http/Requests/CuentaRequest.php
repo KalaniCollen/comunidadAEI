@@ -27,7 +27,16 @@ class CuentaRequest extends FormRequest
             'name' => 'required|string',
             'apellido_paterno' => 'required|string',
             'apellido_materno' => 'required|string',
-            'telefono_movila'  => 'nullable|regex:/(55)[0-9]{8}/',
+            'telefono_movil'  => 'nullable|regex:/(55)[0-9]{8}/',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required' => 'No puedes dejar este campo vacio',
+            'apellido_paterno' => 'No puedes dejar este campo vacio',
+            'apellido_materno' => 'No puedes dejar este campo vacio',
+            'telefono_movil.regex' => 'Introduce un telefono de 10 digitos'
         ];
     }
 }
