@@ -63,6 +63,17 @@ class PerfilEmpresaController extends Controller
         }
         $perfilU->slug_empresa=Str::slug(Str::upper($request->nombre_empresa.' '.Auth::id()));
 
+        if (strcmp($request->oferta, 'productos') == 0) {
+            $PerfilEmpresa->producto_empresa = 1;
+            $PerfilEmpresa->servicio_empresa = 0;
+        } else if (strcmp($request->oferta, 'servicios') == 0) {
+            $PerfilEmpresa->producto_empresa = 0;
+            $PerfilEmpresa->servicio_empresa = 1;
+        } else if (strcmp($request->oferta, 'ambos') == 0) {
+            $PerfilEmpresa->servicio_empresa = 1;
+            $PerfilEmpresa->producto_empresa = 1;
+        }
+
         $perfilU->save();
         $PerfilEmpresa->save();
         $user->save();

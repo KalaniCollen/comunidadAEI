@@ -58,7 +58,7 @@
                             <label>{{ $perfilE->tipo_empresa }}</label>
                         </div>
                     </div>
-                    {{-- Giro --}}
+                    <!-- Giro -->
                     <div class="row">
                         <div class="col-md-6 col-sm-6" style="text-align:left;left:100px">
                             &nbsp;<label>Giro: </label>
@@ -69,7 +69,7 @@
                     </div>
                     @if( $perfilE->servicio_empresa=="NINGUNO" or $perfilE->servicio_empresa=="Ninguno" or $perfilE->servicio_empresa=="" )
                     @else
-                    {{-- Servicio --}}
+                    <!-- Servicio -->
                     <div class="row">
                         <div class="col-md-6 col-sm-6" style="text-align:left;left:100px">
                             &nbsp;<label>Servicio: </label>
@@ -81,7 +81,7 @@
                     @endif
                     @if( $perfilE->producto_empresa=="NINGUNO" or $perfilE->producto_empresa=="Ninguno" or $perfilE->producto_empresa=="" )
                     @else
-                    {{-- Producto --}}
+                    <!-- Producto -->
                     <div class="row">
                         <div class="col-md-6 col-sm-6" style="text-align:left;left:100px">
                             &nbsp;<label>Producto: </label>
@@ -91,7 +91,7 @@
                         </div>
                     </div>
                     @endif
-                    {{-- Horario  --}}
+                    <!-- Horario  -->
                     <div class="row">
                         <div class="col-md-6 col-sm-6" style="text-align:left;left:100px">
                             &nbsp;<label>Horario de Atención: </label>
