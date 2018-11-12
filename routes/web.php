@@ -93,6 +93,9 @@ Route::resource('videos', 'VideosController');
 // Formulario de Servicio
 Route::get('/servicios/{servicio}/contact/', 'ServiciosController@contact')->name('servicios.contact');
 
+Route::resource('noticias', 'NoticiasController');
+Route::resource('bolsa-trabajo', 'BolsaDeTrabajoController');
+
 // Rutas para el catálogo de cada usuario
 Route::group(['middleware' => 'auth'], function() {
     Route::get('catalogo', 'CatalogoController@index')->name('catalogo.index');
