@@ -152,6 +152,7 @@ create table `perfil_empresa` (
   `red_social_instagram` varchar(191) collate utf8_spanish2_ci default null,
   `descripcion` varchar(255) collate utf8_spanish2_ci default null,
   `mis_logros` text collate utf8_spanish2_ci,
+  `img_logros` varchar(191) collate utf8_spanish2_ci not null default '/storage/img/empresa.png',
   `slug_empresa` varchar(150) collate utf8_spanish2_ci not null,
   `created_at` timestamp null default null,
   `updated_at` timestamp null default null,

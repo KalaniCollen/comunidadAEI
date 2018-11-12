@@ -41,7 +41,8 @@ Route::get('/imagen', function () {
 
 
 
-Route::get('/MisLogros/{id}','MisLogrosController@MostrarMisLogros');
+// Logros
+Route::get('/MisLogros/{slug_empresa}','MisLogrosController@MostrarMisLogros');
 Route::get('/MisLogros','MisLogrosController@store');
 Route::put('/MisLogrosEditar/{id}','MisLogrosController@edit');
 
