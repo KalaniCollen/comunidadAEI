@@ -8,43 +8,21 @@ use App\Perfil_Empresa;
 class MisLogrosController extends Controller
 {
 
-  public function MostrarMisLogros($id_usuario)
+  public function Index($slug_empresa)
   {
-     $perfilU = Perfil_Empresa::where('id_usuario',$id_usuario)->first();
+     $perfilU = Perfil_Empresa::where('slug_empresa',$slug_empresa)->first();
 
-      return view('Perfiles.Logros.mis_logros')->with('MisLogros',$perfilU);
+      return view('Perfiles.Logros.Mis_Logros')->with('MisLogros',$perfilU);
   }
   public function store(Request $request)
   {
       return view('form.campo')->with('dato', $request);
   }
    //
-   public function edit(Request $request,$id)
+   public function edit($slug_empresa)
    {
-     if ($request->ajax())
-       {
-         $dato=$request->only('name');
-         $datos[$dato['name']] =$request->dato;
-
-
-           $perfilU = Perfil_Empresa::FindOrFail($id);
-
-           $result = $perfilU->fill($datos)->save();
-
-
-           if ($result){
-             $request['mensaje']="El dato ha sido actualizado";
-               //return Response::json($request->dato);
-               return response()->json([
-    'data' => $request->dato,
-]);
-           }
-           //else
-           //{
-             //return response()->json(['success'=>'false']);
-           //}
-       }
-
+       $perfilU = Perfil_Empresa::where('slug_empresa',$slug_empresa)->first();
+        return view('Perfiles.Logros.EditarMis_Logros')->with('MisLogros',$perfilU);
    }
 
 }
