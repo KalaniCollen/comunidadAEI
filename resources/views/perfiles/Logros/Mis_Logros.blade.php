@@ -22,8 +22,16 @@
 
                 </div>
                 <div class="panel-body" align="center">
-                    <img src="" />
+                    <img src="/storage/img/DefaultEmpresa.png" />
+                    <center>
+                                  <div id="mis_logros">
 
+
+                                  <textarea type="textarea" class="form-control" name="Mis_Logrosdata" id="Mis_Logrosdata"  rows="6" cols="60" value="" style="" placeholder="Mis logros son....">{{ $MisLogros->mis_logros }}</textarea>  &nbsp;
+
+                                  </div>
+
+                                </center>
                 </div>
             </div>
         </div>
