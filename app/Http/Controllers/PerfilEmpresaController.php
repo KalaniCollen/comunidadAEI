@@ -46,8 +46,7 @@ $PerfilEmpresa->nombre_empresa=Str::upper($request->nombre_empresa);
 $user =User::where('id_usuario',Auth::id())->first();
 $user->slug_empresa=Str::slug($request->nombre_empresa.' '.Auth::id());
 $PerfilEmpresa->slug_empresa=Str::slug($request->nombre_empresa.' '.Auth::id());
-$user->save();
-$PerfilEmpresa->tipo_empresa=Str::upper($request->tipo_empresa);
+
 $PerfilEmpresa->tipo_empresa=Str::upper($request->tipo_empresa);
 $PerfilEmpresa->giro_empresa=Str::upper($request->giro_empresa);
 $PerfilEmpresa->servicio_empresa=Str::upper($request->servicio_empresa);
@@ -62,16 +61,12 @@ $PerfilEmpresa->pag_web_empresa=$request->pag_web_empresa;
 
 $PerfilEmpresa->slug_empresa = Str::slug(Str::upper($request->nombre_empresa.' '.Auth::id()));
 $perfilU =User::where('id_usuario',Auth::id())->first();
-if($perfilU->tipo_usuario=="Asociado"){
+if($perfilU->tipo_usuario=="asociado"){
 $PerfilEmpresa->descripcion=Str::upper($request->descripcion);
 }
 $perfilU->slug_empresa=Str::slug(Str::upper($request->nombre_empresa.' '.Auth::id()));
 $perfilU->save();
-
-
-
-
-
+$user->save();
 $PerfilEmpresa->save();
      $Perfil=Perfil_Usuario::where('id_usuario',Auth::id())->first();
       return redirect('PerfilEmpresa/'.$PerfilEmpresa->slug_empresa);
