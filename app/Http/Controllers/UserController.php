@@ -31,7 +31,7 @@ class UserController extends Controller
         $user = $users->first();
         if($exist==1 and $user->status==0)
         {
-          if($user->tipo_usuario=="Asociado"){
+          if($user->tipo_usuario=="asociado"){
 
               return view('auth.date_complete')->with('user',$user);
           }

@@ -43,7 +43,7 @@ trait AuthenticatesUsers
           if($user){
             $mensaje="";
                 if($user->status == "0" ){
-                  if($user->tipo_usuario=="Asociado"){
+                  if($user->tipo_usuario=="asociado"){
                     $dates= array('name' => $user->name,'code'=>$user['confirmation_code']);
                     $this->Email($dates,$request->email);
 

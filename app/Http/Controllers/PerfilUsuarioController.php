@@ -10,7 +10,11 @@ use Illuminate\Support\Str as Str;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\PerfilRequest;
+use App\Http\Requests\CorreoRequest;
+use App\Http\Requests\passwordRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Hash;
 class PerfilUsuarioController extends Controller
 {
   /**
@@ -24,71 +28,84 @@ class PerfilUsuarioController extends Controller
       $perfil = Perfil_Usuario::where('id_usuario',Auth::id())->first();
      $perfilE = Perfil_Empresa::where('id_usuario',Auth::id())->first();
       $User = User::where('id_usuario',Auth::id())->first();
-       return view('Perfiles.perfil',[
+       return view('Perfiles.Perfil.perfil',[
          'perfil'=>$perfil,
          'perfilE'=> $perfilE,
          'user' => $User
        ]);
    }
-   public function show(Request $request)
+   public function show($slug_empresa)
    {
-
+       $perfil = Perfil_Usuario::where('id_usuario',Auth::id())->first();
+      $perfilE = Perfil_Empresa::where('id_usuario',Auth::id())->first();
+       $User = User::where('id_usuario',Auth::id())->first();
+        return view('Perfiles.Perfil.EditarPerfil',[
+          'perfil'=>$perfil,
+          'perfilE'=> $perfilE,
+          'user' => $User
+        ]);
        return view('form.campo')->with('dato', $request);
    }
-
+// 'email' => ['required', 'email', Rule::unique('users')->ignore($user->id, 'user_id')]
   public function store(Request $request)
   {
 
+
   }
 
-  public function mostrar(Request $request,$id)
+  public function correo(CorreoRequest $request)
+  {
+// dd($request->email);
+      $correo=User::where('id_usuario',Auth::id())->first();
+      // $correo->fill($request)->ignore(Auth::id(),'id_usuario');
+$correo->email=$request->email;
+$correo->save();
+// dd($correo);
+       Auth::logout();
+      return redirect("/");
+  }
+  public function password(passwordRequest $request)
+  {
+// dd($request->email);
+      $password=User::where('id_usuario',Auth::id())->first();
+      // $correo->fill($request)->ignore(Auth::id(),'id_usuario');
+      // dd($request->mypassword);
+      if(Hash::check($request->mypassword,$password->password))
+      {
+
+          $password->password=bcrypt($request->password);
+          $password->save();
+          // dd($correo);
+                 Auth::logout();
+                return redirect("/");
+      }
+      $errors=["mypassword"=>"La contraseña  es incorrecta"];
+      return redirect('/cambiarpassword')->withErrors($errors);
+
+  }
+
+  public function mostrar(Request $request)
   {
     if ($request->ajax())
       {
-        $dato=$request->only('name');
-            if($request->name=='name' or $request->name=='apellido_materno' or $request->name=='apellido_paterno'){
-                $datos[$dato['name']] =Str::upper(Input::get('dato'));
-                  $request['dato'] =Str::upper(Input::get('dato'));
-            }
-            else{
-        $datos[$dato['name']] =$request->dato;
-        }
+$id=Auth::id();
         if($request->tabla=="perfil"){
 
           $perfil = Perfil_Usuario::FindOrFail($id);
           if($request->name=="imagen"){
             Storage::delete(str_replace("/storage", "public", $perfil->imagen));
             $perfil->imagen=$request->dato;
-            $perfil->save();
+            $result = $perfil->save();
           }
           if($request->name=="privacidad"){
             $perfil->privacidad=$request->dato;
-            $perfil->save();
-          }
-
-          $result = $perfil->fill($datos)->save();
-
+            $result = $perfil->save();
         }
-        else{
-          $user = User::FindOrFail($id);
+        }
 
-
-          $result = $user->fill($datos)->save();
-            $user = User::FindOrFail($id);
-          if($request->name=="name" or  $request->name=="apellido_materno" or $request->name=="apellido_paterno"){
-            $user->slug_usuario=Str::slug($user->name.' '.$user->apellido_paterno.' '.$user->apellido_materno.' '.$id);
-            $user->save();
-            $perfilee=Perfil_Usuario::where('id_usuario',$id)->first();
-
-            $perfilee->slug_usuario=$user->slug_usuario;
-            $perfilee->save();
-            return response()->json($user->slug_usuario);
-          }
-}
           if ($result){
 
-            $request['mensaje']="El dato ha sido actualizado";
-              return view('form.dato')->with('dato', $request);
+    return response()->json(['success'=>'true']);
           }
           //else
           //{

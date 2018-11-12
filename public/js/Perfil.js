@@ -40,9 +40,14 @@ $('body').on('mouseover', '.eff', function(){
       }
       var route=url+"PerfilEditar/"+ide+"";
       var token = $("#token").val();
+      $.ajaxSetup({
+      headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+      });
         $.ajax({
           type: "PUT",
-          headers:{'X-CSRF-TOKEN': token},
+
           datatype: "json",
           url:  route,
           data:{

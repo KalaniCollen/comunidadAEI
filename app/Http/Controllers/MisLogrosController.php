@@ -12,7 +12,7 @@ class MisLogrosController extends Controller
   {
      $perfilU = Perfil_Empresa::where('id_usuario',$id_usuario)->first();
 
-      return view('Perfiles.mis_logros')->with('MisLogros',$perfilU);
+      return view('Perfiles.Logros.mis_logros')->with('MisLogros',$perfilU);
   }
   public function store(Request $request)
   {
