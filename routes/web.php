@@ -42,9 +42,9 @@ Route::get('/imagen', function () {
 
 
 // Logros
-Route::get('/MisLogros/{slug_empresa}','MisLogrosController@MostrarMisLogros');
+Route::get('/MisLogros/{slug_empresa}','MisLogrosController@Index');
 Route::get('/MisLogros','MisLogrosController@store');
-Route::put('/MisLogrosEditar/{id}','MisLogrosController@edit');
+Route::get('/MisLogros/{slug_empresa}/Edit','MisLogrosController@edit');
 
 // Rutas perfil id_usuario
 Route::get('/Cuenta/{slug_usuario}','PerfilUsuarioController@Index');

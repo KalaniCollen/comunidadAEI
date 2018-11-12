@@ -43,6 +43,10 @@ class PerfilEmpresaController extends Controller
      $PerfilEmpresa = Perfil_Empresa::where('id_usuario',Auth::id())->first();
 // $PerfilEmpresa=$request;
 $PerfilEmpresa->nombre_empresa=Str::upper($request->nombre_empresa);
+$user =User::where('id_usuario',Auth::id())->first();
+$user->slug_empresa=Str::slug($request->nombre_empresa.' '.Auth::id());
+$PerfilEmpresa->slug_empresa=Str::slug($request->nombre_empresa.' '.Auth::id());
+$user->save();
 $PerfilEmpresa->tipo_empresa=Str::upper($request->tipo_empresa);
 $PerfilEmpresa->tipo_empresa=Str::upper($request->tipo_empresa);
 $PerfilEmpresa->giro_empresa=Str::upper($request->giro_empresa);
