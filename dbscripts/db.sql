@@ -21,6 +21,7 @@ set time_zone = "+00:00";
 --
 -- base de datos: `aei`
 --
+drop database `aei`;
 create database if not exists `aei` default character set utf8 collate utf8_swedish_ci;
 use `aei`;
 
@@ -286,6 +287,21 @@ create table `servicios` (
 ) engine=innodb default charset=utf8;
 
 --
+-- estructura para la tabla noticias
+--
+create table `noticias` (
+    `id_noticia` int(11) unsigned not null,
+    `imagen` varchar(250) not null,
+    `titulo` varchar(180) not null default 'Noticia',
+    `contenido` text not null,
+    `slug` varchar(250) not null,
+    `id_usuario` int(11) unsigned not null,
+    `created_at` timestamp null default current_timestamp on update current_timestamp,
+    `updated_at` timestamp null default '0000-00-00 00:00:00'
+) engine=innodb default charset=utf8;
+
+
+--
 -- índices para tablas volcadas
 --
 
@@ -335,6 +351,15 @@ alter table `notificacion_administrador`
 alter table `password_resets`
 --
   add key `password_resets_email_index` (`email`);
+
+--
+-- indices de la tabla noticias
+--
+alter table `noticias`
+add primary key (`id_noticia`),
+add unique key `slug` (`slug`),
+add key `noticias_id_usuario_foreign` (`id_usuario`);
+
 
 --
 -- indices de la tabla `productos`
@@ -409,6 +434,13 @@ alter table `videos`
 --
 -- auto_increment de las tablas volcadas
 --
+
+
+--
+-- auto_increment de la tabla `noticias`
+--
+alter table `noticias`
+    modify `id_noticia` int(11) not null auto_increment;
 
 --
 -- auto_increment de la tabla `album`
@@ -499,6 +531,9 @@ alter table `videos`
 --
 -- restricciones para tablas volcadas
 --
+
+alter table `noticias`
+    add constraint `noticias_id_usuario_foreign` foreign key (`id_usuario`) references `users` (`id_usuario`);
 
 --
 -- filtros para la tabla `evento`
