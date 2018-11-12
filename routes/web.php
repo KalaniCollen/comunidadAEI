@@ -31,7 +31,6 @@ Route::get('/search','BuscadorController@search');
 Route::get('/respuesta',function(){
   return view('response');
 });
-
 Route::get('activacion/{code}','UserController@activate');
 Route::put('complete/{id}','UserController@complete');
 
@@ -77,7 +76,14 @@ Route::get('/Empresa/{slug_empresa}','PerfilEmpresaController@store')->name("Ver
 
 
 // Ruta a los albums
+
+Route::get('/Album/{slug}','AlbumController@Show');
+
+Route::get('/album/{id}/edit','AlbumController@Edit');
+Route::put('/AlbumUpdate','AlbumController@update');
 Route::get('/Albums/{id}','AlbumController@index');
+
+Route::delete('/DeleteAlbum/{id}','AlbumController@delete');
 Route::post('/CreateAlbum','AlbumController@create');
 
 Route::get('/Album/{slug}','AlbumController@Show');

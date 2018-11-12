@@ -15,13 +15,12 @@ use Illuminate\Support\Facades\File;
 
 class AlbumController extends Controller
 {
-
   public function index($id_usuario)
   {
-     $Albums = Album::where('id_usuario',$id_usuario)->get();
+     $Albums = Album::where('id_usuario',Auth::id())->get();
 
 
-      return view('multimedia.album')->with('Album', $Albums);
+      return view('multimedia.album.album')->with('Album', $Albums);
   }
   public function create(Request $request)
   {
@@ -33,7 +32,7 @@ class AlbumController extends Controller
           'slug_album'=>Str::slug(Str::upper($request->nombre.' '.time())),
           'id_usuario'=>Auth::id(),
         ]);
-        $directory="public/Galeria/".$Album->slug_album;
+        $directory="storage/galeria/".$Album->slug_album;
 
         $dd=File::makeDirectory($directory,0777,true);
         // $albums =store('public/Galeria/'.$Album->nombre);
@@ -41,14 +40,14 @@ class AlbumController extends Controller
       }
      // $Album = Album::where('id_usuario',$id_usuario)->first();
 
-      return view('multimedia.album')->with('Album',$Album);
+      return view('multimedia.album.album')->with('Album',$Album);
   }
   public function Show($slug_album)
   {
     $Album = Album::where('slug_album',$slug_album)->first();
      $Galeria = Imagenes::where('id_album',$Album->id_album)->get();
 
-     return view('multimedia.veralbum',[
+     return view('multimedia.album.veralbum',[
        'Album'=>$Album,
        'Galeria'=> $Galeria
      ]);
@@ -57,26 +56,24 @@ class AlbumController extends Controller
    {
      $Album = Album::find($id);
      return response()->json($Album);
-
     }
     public function update(Request $request)
     {
 
         if ($request->ajax())
         {
-
           $slug_album=Str::slug(Str::upper($request->name.' '.time()));
             $Album =   Album::where('id_album',$request->id)->where('id_usuario',Auth::id())->first();
 
-            File::makeDirectory('public/galeria/'.$slug_album,0777,true);
+            File::makeDirectory('storage/galeria/'.$slug_album,0777,true);
               $Imagenes = Imagenes::where('id_album',$request->id)->get();
               foreach ($Imagenes as $key => $imagen) {
                  $NuevoAlbum = str_replace("/storage/galeria/".$Album->slug_album,"",$imagen->direccion);
-                File::move("public/galeria/".$Album->slug_album.'/'.$NuevoAlbum, "public/galeria/".$slug_album.'/'.$NuevoAlbum);
-                $imagen->direccion="/storage/galeria/".$slug_album."/".$NuevoAlbum;
+                File::move("storage/galeria/".$Album->slug_album.''.$NuevoAlbum, "storage/galeria/".$slug_album.'/'.$NuevoAlbum);
+                $imagen->direccion="storage/galeria/".$slug_album."".$NuevoAlbum;
                 $imagen->save();
               }
-              File::deleteDirectory("public/galeria/".$Album->slug_album);
+              File::deleteDirectory("storage/galeria/".$Album->slug_album);
               $Album->nombre=$request->name;
               $Album->slug_album=$slug_album;
 
@@ -91,7 +88,6 @@ class AlbumController extends Controller
               return response()->json(['success'=>'false']);
             }
         }
-
 
 
     }
@@ -140,12 +136,7 @@ class AlbumController extends Controller
    public function delete($id)
    {
      $Album = Album::where('id_album',$id)->where('id_usuario',Auth::id())->first();
-     $Imagenes=Imagenes::where('id_album',$Album->id_album)->get();
-     foreach ($Imagenes as $key => $imagen) {
-       // Storage::delete(str_replace("/storage", "public", $imagen->direccion));
-       $imagen->delete();
-     }
- Storage::deleteDirectory("public/galeria/".$Album->slug_album);
+     File::deleteDirectory("storage/galeria/".$Album->slug_album);
      // Storage::delete("/");
      //eliminar carpeta
      $result = $Album->delete();
@@ -160,7 +151,6 @@ class AlbumController extends Controller
      {
          return response()->json(['success'=> 'false']);
      }
-
 
     }
 }
