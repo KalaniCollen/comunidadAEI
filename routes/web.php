@@ -43,7 +43,7 @@ Route::get('/imagen', function () {
 
 // Logros
 Route::get('/MisLogros/{slug_empresa}','MisLogrosController@Index');
-Route::get('/MisLogros','MisLogrosController@store');
+Route::put('/MisLogrosEdit','MisLogrosController@update')->name('ActualizarLogro');
 Route::get('/MisLogros/{slug_empresa}/Edit','MisLogrosController@edit');
 
 // Rutas perfil id_usuario

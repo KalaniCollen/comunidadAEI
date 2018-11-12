@@ -22,7 +22,7 @@
 
                 </div>
                 <div class="panel-body" align="center">
-                    <img src="/storage/img/DefaultEmpresa.png" />
+                    <img src="{{$MisLogros->img_logros  }}" onerror="this.src='/storage/img/DefaultEmpresa.png'" />
                     <center>
                                   <div id="mis_logros">
                                   <textarea type="textarea" class="form-control" name="Mis_Logrosdata" id="Mis_Logrosdata"  rows="6" cols="60" value="" style="" placeholder="Mis logros son....">{{ $MisLogros->mis_logros }}</textarea>  &nbsp;
