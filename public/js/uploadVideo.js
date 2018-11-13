@@ -5,7 +5,7 @@ $(document).ready(function(){
 
 
   $lg.lightGallery({
-    
+
     });
 
     $('body').on('click', '#lg-share', function(){
@@ -16,7 +16,6 @@ $(document).ready(function(){
     $('body').on('click', '#lg-share', function(){
       $lg.data('lightGallery').destroy();
       imagen=$('.lg-sub-html').html();
-
       $("#mi-modal").show();
     });
     $('body').on('click', '#conf', function(){
@@ -53,11 +52,11 @@ album:album,
 success:function(msg){
 if(msg == 'ok'){
 
-$('#not').show();
+// $('#not').show();
 
 
-$("#galeria").load(" #galeria");
-  // location.reload();
+
+  location.reload();
 }
 else{
   $('.statusMsg').html('<span style="color:red;">Ocurrio un problema, intentalo de nuevo mas tarde.</span>');
@@ -76,11 +75,13 @@ $("#result").html("NO CONFIRMADO");
 $('#myModal').show();
 $("#galeria").load(" #galeria");
 
+
 });
 $('body').on('click', '.close', function(){
 $('#myModal').hide();
-$("#galeria").load(" #galeria");
-
+// $("#galeria").load(" #galeria");
+// $lg.lightGallery();
+location.reload();
 });
       $('#fine-uploader-manual-trigger').fineUploader({
           template: 'qq-template-manual-trigger',
@@ -105,9 +106,12 @@ $("#galeria").load(" #galeria");
       });
 
       $('#trigger-upload').click(function() {
-          $('#fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
-         $("#galeria").load(" #galeria");
+          $('#fine-uploader-manual-trigger').fineUploader('uploadStoredFiles',function(){
 
+              location.reload();
+          });
+         $("#galeria").load(" #galeria");
+         $lg.lightGallery();
 
 
            });
