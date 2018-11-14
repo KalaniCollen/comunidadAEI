@@ -33,7 +33,7 @@ class Perfilrequest extends FormRequest
     public function messages()
     {
         return [
-            'telefono_fijo_empresa.regex' => 'El numero telefonico debe tener 10 digitos',
+            'telefono_fijo_empresa.regex' => 'Número de telefono es incorrecto ej: 5518943674',
             'correo_electronico_empresa.email' => 'Correo electronico invalido'
 
         ];

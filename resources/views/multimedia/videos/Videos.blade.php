@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('style')
+@extends('layouts.head')
+@section('styles')
 <link href="{{asset('css/main.css')}}" rel="stylesheet">
     {{-- <link href="{{asset('galeria/fine-uploader-gallery.css')}}" rel="stylesheet"> --}}
       {{-- <link href="{{asset('css/album.css')}}" rel="stylesheet"> --}}
@@ -22,36 +22,31 @@
                         {{-- @include('multimedia.subir') --}}
                       <br >
                       <div id="contenido">
-
-                      @include('Modal.VideoModal')
-                      <br />
-                      @if(!empty ($Videos))
-                        <br />
-                        <div class="demo-gallery dark mrb35" id="galeria" >
-                                            <ul id="video-thumbnails" class="list-unstyled row">
-                                              @foreach ($Videos as $key => $Videos)
-
+                          @include('Modal.VideoModal')
+                          <br />
+                          @if(!empty ($Videos))
+                              <br />
+                              <div class="demo-gallery dark mrb35" id="galeria" >
+                                  <ul id="video-thumbnails" class="list-unstyled row">
+                                      @foreach ($Videos as $key => $Videos)
                                                  <li class="col-xs-6 col-sm-4 col-md-3 video" data-src="{{$Videos->enlace  }}" data-sub-html="{{ $Videos->id_video }}">
                                                     <a href="">
-                                                        <img class="img-responsive" src="http://img.youtube.com/vi/{{ $Videos->codigo }}/0.jpg"  onerror="this.src='/storage/img/YouTube.jpg'">
+                                                        <img class="img-responsive" src="http://img.youtube.com/vi/{{ $Videos->codigo }}/0.jpg"  onerror="this.src='/storage/img/YouTube.jpg'"/>
                                                         <div class="demo-gallery-poster">
                                                             <img src="../img/play-button.png">
                                                         </div>
                                                     </a>
-                                                </li>
-                                                @endforeach
-                                              </ul>
-            </div>
-
-@include('Modal.Confirmacion',array('multimedia' => 'El video'))
-
-
-                        @else
-                        @if(empty ($Videos))
-                        No hay Videos
-                        @endif
-                      @endif
-</div>
+                                                 </li>
+                                      @endforeach
+                                  </ul>
+                              </div>
+                              @include('Modal.Confirmacion',array('multimedia' => 'El video'))
+                          @else
+                              @if(empty ($Videos))
+                                  No hay Videos
+                              @endif
+                          @endif
+                      </div>
                   </div>
               </div>
           </div>
@@ -59,7 +54,7 @@
   </div>
 
 @endsection
-@section('script')
+@section('scripts')
   <!-- Fine Uploader Thumbnails template w/ customization
   ====================================================================== -->
   <script type="text/javascript">

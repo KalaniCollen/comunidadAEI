@@ -78,21 +78,22 @@ Route::get('/Empresa/{slug_empresa}','PerfilEmpresaController@store')->name("Ver
 // Ruta a los albums
 
 Route::get('/Album/{slug}','AlbumController@Show');
-
 Route::get('/album/{id}/edit','AlbumController@Edit');
 Route::put('/AlbumUpdate','AlbumController@update');
 Route::get('/Albums/{id}','AlbumController@index');
-
 Route::delete('/DeleteAlbum/{id}','AlbumController@delete');
 Route::post('/CreateAlbum','AlbumController@create');
-
-Route::get('/Album/{slug}','AlbumController@Show');
 Route::post('/Imagenes/{album}','AlbumController@Agregar');
 Route::delete('/DeleteImagen','ImagenesController@Delete');
 
 // Ruta a multimedia videos
 Route::resource('videos', 'VideosController');
-
+Route::get('/Videos','VideosController@index');
+Route::get('/Videos/{id}','VideosController@show');
+Route::get('/VideosSubidos/{id}','VideosController@mostrar');
+Route::post('/SubirVideo','VideosController@subir');
+Route::post('/CreateVideo','VideosController@create');
+Route::delete('/DeleteVideo','VideosController@Delete');
 // Route::get('/Videos/{id}','VideosController@show');
 // Route::post('/CreateVideo','VideosController@create');
 // Route::delete('/DeleteVideo','VideosController@Delete');

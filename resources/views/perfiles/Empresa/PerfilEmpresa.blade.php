@@ -43,7 +43,7 @@
                     {{-- Nombre --}}
                     <div class="row">
                         <div class="col-md-4 col-sm-6" style="text-align:left;left:100px">
-                            &nbsp;<label>Nombre: </label> <label>{{ $perfilE->nombre_empresa }}</label>
+                            &nbsp;<label>Nombre: </label>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <label>{{ $perfilE->nombre_empresa }}</label>

@@ -27,7 +27,7 @@
                     <div class="panel-body" align="center">
                         <div class="container2" id="container2">
                             <div id="Carga">
-                                <img src="{{ $perfilE->logo_empresa }}" alt="Avatar" class="img-thumbnail" id="matrix" style="  border-radius:100px;">
+                                <img src="{{ $perfilE->logo_empresa }}" onerror="this.src='/storage/img/DefaultEmpresa.png'" alt="Avatar" class="img-thumbnail" id="matrix" style="  border-radius:100px;">
                             </div>
                             <div class="overlay overlayFade" id="Ventana">
                                 <div class="text">Cambiar foto</div>
@@ -55,7 +55,7 @@
                                         <div class="modal-footer">
                                             <button style="background-color:transparent;border:0;width:85px;height:0px;">
                                                 <label for="upload_image" class="btn btn-primary"> Subir</label>
-                                                <input type="file" name="imagen" class="form-control-file" id="upload_image" style="color: transparent;width:0px;visibility: hidden;" />
+                                                <input type="file" accept="image/*" name="imagen" class="form-control-file" id="upload_image" style="color: transparent;width:0px;visibility: hidden;" />
                                             </button>
                                             <button class="btn btn-success crop_image">Guardar</button>
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -160,7 +160,7 @@
                                         <div class="form-group{{ $errors->has('telefono_fijo_empresa') ? ' has-error' : '' }}">
                                             <label for="telefono_fijo_empresa" class="col-md-4 control-label">Telefono Fijo</label>
                                             <div class="col-md-6">
-                                                <input id="telefono_fijo_empresa" type="number" min="0" class="form-control" name="telefono_fijo_empresa" value="{{ $perfilE->telefono_fijo_empresa }}" style="" >
+                                                <input id="telefono_fijo_empresa" type="text" min="0" class="form-control" name="telefono_fijo_empresa" value="{{ $perfilE->telefono_fijo_empresa }}" style="" >
                                                 @if ($errors->has('telefono_fijo_empresa'))
                                                     <span class="help-block">
                                                         <strong>{{ $errors->first('telefono_fijo_empresa') }}</strong>
