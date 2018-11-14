@@ -229,7 +229,7 @@
                                                 <button type="submit" class="btn btn-primary">
                                                     Guardar
                                                 </button>
-                                                <a href="/PerfilEmpresa/{{ auth()->user()->slug_empresa }}" class="btn btn-primary">
+                                                <a href="{{ route('perfil-empresa.index') }} }}" class="btn btn-primary">
                                                     Cancelar
                                                 </a>
 

@@ -22,20 +22,22 @@ class PerfilEmpresaController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function Index($slug_empresa)
+    public function index()
     {
-        $PerfilEmpresa = Perfil_Empresa::where('slug_empresa',$slug_empresa)->first();
-        $Perfil=Perfil_Usuario::where('id_usuario',Auth::id())->first();
+        $perfilEmpresa = Auth::user()->empresa()->first();
+            $Perfil=Perfil_Usuario::where('id_usuario',Auth::id())->first();
         return view('perfiles.Empresa.PerfilEmpresa')->with([
-            'perfilE'=>$PerfilEmpresa,
+            'perfilE'=>$perfilEmpresa,
             'perfil'=>$Perfil]);
     }
+
     public function show($slug_empresa)
     {
-        $PerfilEmpresa = Perfil_Empresa::where('slug_empresa',$slug_empresa)->first();
+        $perfilEmpresa = Auth::user()->empresa()->first();
+        // $PerfilEmpresa = Perfil_Empresa::where('slug_empresa',$slug_empresa)->first();
         $Perfil=Perfil_Usuario::where('id_usuario',Auth::id())->first();
         return view('perfiles.Empresa.EditarPerfilEmpresa')->with([
-            'perfilE'=>$PerfilEmpresa,
+            'perfilE'=>$perfilEmpresa,
             'perfil'=>$Perfil]);
     }
 
@@ -78,7 +80,7 @@ class PerfilEmpresaController extends Controller
         $PerfilEmpresa->save();
         $user->save();
         $Perfil=Perfil_Usuario::where('id_usuario',Auth::id())->first();
-        return redirect('PerfilEmpresa/'.$PerfilEmpresa->slug_empresa);
+        return redirect()->route('perfil-empresa.index');
         return strcmp($request->oferta, "servicio");
     }
 

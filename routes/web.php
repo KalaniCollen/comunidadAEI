@@ -68,7 +68,7 @@ Route::put('/PerfilEditar/{id}','PerfilUsuarioController@mostrar');
 Route::get('perfilUsuario/{id}','PerfilUsuarioController@show');
 
 // Rutas empresa
-Route::get('/PerfilEmpresa/{slug_empresa}','PerfilEmpresaController@Index')->name('MiEmpresa');
+// Route::get('/PerfilEmpresa/{slug_empresa}','PerfilEmpresaController@Index')->name('MiEmpresa');
 Route::put('/PerfilEmpresaUpdate','PerfilEmpresaController@update')->name('Actualizar');
 Route::put('/PerfilEEditar','PerfilEmpresaController@edit');
 Route::get('/PerfilEmpresa/{slug_empresa}/Edit','PerfilEmpresaController@show');
@@ -100,15 +100,21 @@ Route::resource('videos', 'VideosController');
 // Formulario de Servicio
 Route::get('/servicios/{servicio}/contact/', 'ServiciosController@contact')->name('servicios.contact');
 
-Route::resource('noticias', 'NoticiasController');
-Route::resource('bolsa-trabajo', 'BolsaDeTrabajoController');
 
 // Rutas para el catálogo de cada usuario
 Route::group(['middleware' => 'auth'], function() {
     Route::get('catalogo', 'CatalogoController@index')->name('catalogo.index');
+    Route::get('perfil-empresa','PerfilEmpresaController@index')->name('perfil-empresa.index');
     Route::resource('servicios', 'ServiciosController', [ 'except' => ['index','show'] ]);
     Route::resource('productos', 'ProductosController', [ 'except' => ['index','show'] ]);
 });
+
+#########################################################
+#                      RUTAS PÚBLICAS
+#########################################################
+
+Route::resource('noticias', 'NoticiasController');
+Route::resource('bolsa-trabajo', 'BolsaDeTrabajoController');
 
 // Rutas públicas para consultar productos y servicios de los socios
 Route::get('/servicios/{servicio}', 'ServiciosController@show')->name('servicios.show');
@@ -123,6 +129,14 @@ Route::prefix('v1')->group(function () {
 // Rutas para correos
 Route::post('/afiliate', 'IndexController@sendMail')->name('afiliate');
 Route::post('/orden-servicio', 'ServiciosController@sendMail')->name('servicio.orden-servicio');
+
+Route::get('api', function() {
+    return view('api');
+})->name('api.index');
+
+Route::get('developers', function() {
+    return view('developers');
+})->name('developers.index');
 
 // Ruta para la guía de estilos del sitio web aei
 Route::get('guidelines', function() {
