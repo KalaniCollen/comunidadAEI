@@ -259,7 +259,7 @@ create table `productos` (
     `descripcion` text not null,
     `tipo` varchar(200) not null,
     `slug` varchar(250) not null,
-    `id_usuario` int(11) unsigned not null,
+    `id_empresa` int(11) unsigned not null,
     `descuento` int(10) unsigned not null default '0',
     `created_at` timestamp null default null,
     `updated_at` timestamp null default null
@@ -278,7 +278,7 @@ create table `servicios` (
     `descripcion` text,
     `tipo` varchar(200) default null,
     `slug` varchar(250) default null,
-    `id_usuario` int(11) unsigned not null,
+    `id_empresa` int(11) unsigned not null,
     `descuento` int(10) unsigned default '0',
     `horario_inicio` time default null,
     `horario_cierre` time default null,
@@ -295,7 +295,7 @@ create table `noticias` (
     `titulo` varchar(180) not null default 'Noticia',
     `contenido` text not null,
     `slug` varchar(250) not null,
-    `id_usuario` int(11) unsigned not null,
+    `id_empresa` int(11) unsigned not null,
     `created_at` timestamp null default current_timestamp on update current_timestamp,
     `updated_at` timestamp null default '0000-00-00 00:00:00'
 ) engine=innodb default charset=utf8;
@@ -358,7 +358,7 @@ alter table `password_resets`
 alter table `noticias`
 add primary key (`id_noticia`),
 add unique key `slug` (`slug`),
-add key `noticias_id_usuario_foreign` (`id_usuario`);
+add key `noticias_id_empresa_foreign` (`id_empresa`);
 
 
 --
@@ -367,7 +367,7 @@ add key `noticias_id_usuario_foreign` (`id_usuario`);
 alter table `productos`
 add primary key (`id_producto`),
 add unique key `slug` (`slug`),
-add key `fk_usr_prod` (`id_usuario`);
+add key `productos_id_empresa_foreign` (`id_empresa`);
 
 --
 -- indices de la tabla `servicios`
@@ -375,7 +375,7 @@ add key `fk_usr_prod` (`id_usuario`);
 alter table `servicios`
 add primary key (`id_servicio`),
 add unique key `slug` (`slug`),
-add key `fk_usr_serv` (`id_usuario`);
+add key `Servicios_id_empresa_foreign` (`id_empresa`);
 
 --
 -- indices de la tabla `perfil_empresa`
@@ -483,26 +483,26 @@ alter table `notificacion_administrador`
 -- auto_increment de la tabla `productos`
 --
 alter table `productos`
-    modify `id_producto` int(11) unsigned not null auto_increment, auto_increment=14;
+    modify `id_producto` int(11) unsigned not null auto_increment;
 
 --
 -- auto_increment de la tabla `servicios`
 --
 alter table `servicios`
-    modify `id_servicio` int(11) unsigned not null auto_increment, auto_increment=25;
+    modify `id_servicio` int(11) unsigned not null auto_increment;
 
 
 --
 -- auto_increment de la tabla `perfil_empresa`
 --
 alter table `perfil_empresa`
-  modify `id_empresa` int(10) unsigned not null auto_increment, auto_increment=14;
+  modify `id_empresa` int(10) unsigned not null auto_increment;
 
 --
 -- auto_increment de la tabla `perfil_usuario`
 --
 alter table `perfil_usuario`
-  modify `id_perfil` int(10) unsigned not null auto_increment, auto_increment=14;
+  modify `id_perfil` int(10) unsigned not null auto_increment;
 
 --
 -- auto_increment de la tabla `registro_evento`
@@ -520,20 +520,20 @@ alter table `registro_invitado_evento`
 -- auto_increment de la tabla `users`
 --
 alter table `users`
-  modify `id_usuario` int(10) unsigned not null auto_increment, auto_increment=14;
+  modify `id_usuario` int(10) unsigned not null auto_increment;
 
 --
 -- auto_increment de la tabla `videos`
 --
 alter table `videos`
-  modify `id_video` int(11) not null auto_increment, auto_increment=30;
+  modify `id_video` int(11) not null auto_increment;
 
 --
 -- restricciones para tablas volcadas
 --
 
 alter table `noticias`
-    add constraint `noticias_id_usuario_foreign` foreign key (`id_usuario`) references `users` (`id_usuario`);
+    add constraint `noticias_id_usuario_foreign` foreign key (`id_empresa`) references `perfil_empresa` (`id_empresa`);
 
 --
 -- filtros para la tabla `evento`
@@ -545,20 +545,20 @@ alter table `evento`
 -- filtros para la tabla `notificacion_administrador`
 --
 alter table `notificacion_administrador`
-  add constraint `notificacion_administrador_id_usuario_foreign` foreign key (`id_usuario`) references `users` (`id_usuario`);
+  add constraint `notificacion_administrador_id_usuario_foreign` foreign key (`id_usuario`) references `perfil_empresa` (`id_usuario`);
 
 
 --
 -- filtros para la tabla `productos`
 --
 alter table `productos`
-add constraint `fk_usr_prod` foreign key (`id_usuario`) references `users` (`id_usuario`);
+add constraint `productos_id_empresa_foreign` foreign key (`id_empresa`) references `perfil_empresa` (`id_empresa`);
 
 --
 -- filtros para la tabla `servicios`
 --
 alter table `servicios`
-add constraint `fk_usr_serv` foreign key (`id_usuario`) references `users` (`id_usuario`);
+add constraint `servicios_id_empresa_foreign` foreign key (`id_empresa`) references `perfil_empresa` (`id_empresa`);
 
 
 --
