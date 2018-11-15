@@ -38,7 +38,9 @@ Route::get('/imagen', function () {
     return view('multimedia.p');
 });
 
+Route::get('/Admin','AdminController@index');
 
+Route::get('/eventos','EventoController@index');
 
 // Logros
 Route::get('/MisLogros/{slug_empresa}','MisLogrosController@Index');
