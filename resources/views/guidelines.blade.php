@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Guias de estilo | AEI</title>
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
-    <div class="menu menu--main">
+    {{-- <div class="menu menu--main">
         <div class="menu__brand">
             <div class="brand">
                 <img src="http://v.fastcdn.co/t/e9b79025/fd2e429a/1533247864-21926311-168x168-logo-aei-BLANCO.fw.png" alt="" class="brand__logo">
@@ -119,8 +119,23 @@
                         <span class="form__error"></span>
                     </div>
 
+                    <div class="form__input form__input--material">
+                        <input type="text" name="" value="" id="input-nm" class="form__input-input" required>
+                        <label for="input-nm" class="form__input-label">Usuario</label>
+                        <span class="form__input--material-decoration"></span>
+                        <span class="form__error">¡El correo que ingreso no existe!</span>
+                    </div>
+
+                    @component('components.in', [
+                        'type' => 'text',
+                        'name' => 'nombre',
+                        'id' => 'in-name',
+                        'label' => 'Nombre Full'
+                    ])
+                    @endcomponent
+
                     <div class="form__file">
-                        <input type="file" name="" id="file" class="form__file-input">
+                        <input type="file" name="" id="file" class="form__file-input" onchange="getNameFile(this)">
                         <label for="file" class="btn btn--fab btn--fab-icon"><i class="ion-ios-cloud-upload"></i></label>
                         <span class="form__error"></span>
                     </div>
@@ -171,11 +186,30 @@
     </div>
 
     <script type="text/javascript">
+
+        const fileTypes = ["image/jpeg", "image/svg+xml"];
         let iconMenu = document.getElementsByClassName('hamburger');
         iconMenu[0].addEventListener('click', e => {
             iconMenu[0].classList.toggle('hamburger--open');
             document.getElementsByClassName('menu__wrap')[0].classList.toggle('menu__wrap--open');
         });
-    </script>
+
+        function getNameFile(input) {
+            if(input.files && input.files[0]) {
+                let name = input.files[0].name;
+                document.getElementById('file-text').innerHTML = name;
+            }
+        }
+    </script> --}}
+
+    <form class="" action="index.html" method="post">
+        @component('components.in',[
+            'id' => 'uno',
+            'type' => 'checkbox',
+            'name' => 'id_usuario',
+            'label' => 'Texto'
+        ])
+        @endcomponent
+    </form>
 </body>
 </html>

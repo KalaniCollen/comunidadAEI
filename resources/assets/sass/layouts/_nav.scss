@@ -9,8 +9,8 @@
         z-index: 999;
         @include d-grid;
         align-items: center;
-        grid-template-columns: 48px 1fr 30px;
-        grid-template-areas: "navigation-brand navigation-search navigation-hamburger";
+        grid-template-columns: 33px 1fr 30px;
+        grid-template-areas: "navigation-search navigation-brand navigation-hamburger";
 
         + .container {
             padding-top: to-rem(80px);
@@ -23,11 +23,36 @@
 
     &__search {
         grid-area: navigation-search;
-        @include d-grid;
-        grid-template-columns: 20px 1fr;
         align-items: center;
         justify-items: center;
     }
+
+    &__form-search {
+        width: 100%;
+        height: 80%;
+        background: $main-color;
+        position: absolute;
+        padding: 0 getSpace(min);
+        z-index: 100;
+        transform: scaleX(1);
+        @include hidden;
+
+        &--open {
+            animation: show 0.2s ease alternate forwards;
+            @include hidden(visible);
+            @include d-flex($ai: center);
+            @include keyframes(show) {
+                from{
+                    transform: scaleX(0);
+                }
+            };
+        }
+
+        .input--searcher {
+            border: 0;
+        }
+    }
+
 
     &__nav,
     &__user {
@@ -35,7 +60,6 @@
     }
 
     &__nav {
-        min-height: 60%;
         grid-area: navigation-nav;
     }
 
@@ -49,7 +73,6 @@
         grid-area: navigation-hamburger;
         @extend %flex-center;
     }
-
 
     &__wrap,
     .brand__title{
@@ -71,30 +94,64 @@
         }
     }
 
-    &__account {
-        margin-top: getSpace(min);
-        @include d-flex($dir: column, $ai: flex-end);
-
-        &-configure,
-        &-logout {
-            color: $ghost-color;
-            font-size: getFontSize(h6);
-            margin-bottom: getSpace(min);
-        }
-
-        &-logout {
-            color: $blue-color-l;
-            margin-bottom: 0;
-        }
-    }
-
     &--guest {
         flex-direction: column;
         justify-content: center;
 
-        > .menu__user {
+        .menu__user {
             @include d-flex($ai: center, $jc: space-around);
         }
+    }
+}
+
+.form__search{
+
+    &-form {
+        background: #fff;
+        width: 100%;
+        height: to-rem(40px);
+        border-radius: $borde-material;
+        overflow: hidden;
+        @include d-flex($ai: center, $jc: center);
+    }
+
+    &-btn,
+    &-icon {
+        width: to-rem(40px);
+        height: to-rem(40px);
+        border: 0;
+        border-radius: 0;
+        cursor: pointer;
+        user-select: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+
+    &-btn {
+        border: 0;
+        background: $ghost-color-l;
+        display: inline-block;
+    }
+
+    &-input {
+        width: calc(100% - 80px);
+        height: to-rem(40px);
+        border: 0;
+        padding: getSpace(sml);
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &-icon {
+        background: #fff;
+        color: $title-color;
+        @include d-flex($ai: center, $jc: center);
     }
 }
 
@@ -118,15 +175,13 @@
 }
 
 .search__icon {
+    width: to-rem(32px);
+    height: to-rem(32px);
+    cursor: pointer;
+    user-select: none;
     color: #fff;
-    font-size: 1.1rem;
-    width: 100%;
-    height: 100%;
+    font-size: 1.4rem;
     @extend %flex-center;
-
-    &:last-child {
-        opacity: 0;
-    }
 }
 
 .nav {
@@ -141,7 +196,9 @@
     }
 
     &__item {
+        user-select: none;
         border-bottom: 1px solid $gray-color-l;
+        position: relative;
     }
 
     &__link {
@@ -157,6 +214,7 @@
 }
 
 .user {
+    cursor: pointer;
     @include d-flex($dir: column, $ai: center);
     &__picture {
         object-fit: contain;
@@ -174,6 +232,67 @@
     &__username {
         text-align: center;
         color: #fff;
+    }
+}
+
+.submenu {
+    top: to-rem(60px);
+    left: 0;
+    right: 0;
+    list-style-type: none;
+    position: absolute;
+    width: 150%;
+    box-shadow: 0 3px 6px rgba($main-color, 0.6);
+    background: #fff;
+    border-radius: $borde-material;
+    overflow: hidden;
+    @include hidden;
+
+    &__item {
+        padding: getSpace(min) getSpace(med);
+        @include d-flex($ai:center);
+        &:hover {
+            background: $ghost-color-l;
+        }
+    }
+
+    &__link {
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        font-size: getFontSize(h6);
+        @include d-flex($ai: center);
+        @include roboto(b);
+    }
+
+    &--open {
+        @include hidden(visible);
+        display: block;
+        animation: tick 0.3s ease;
+    }
+}
+
+.account {
+    margin-top: getSpace(min);
+    @include d-flex($dir: column, $ai: flex-end);
+
+    &__icon {
+        font-size: 1.2rem;
+        margin-right: getSpace(min);
+    }
+
+    &__configure,
+    &__logout {
+        color: $ghost-color;
+        font-size: getFontSize(h6);
+        margin-bottom: getSpace(min);
+        text-decoration: none;
+        @include d-flex($ai: center);
+    }
+
+    &__logout {
+        color: $blue-color-l;
+        margin-bottom: 0;
     }
 }
 
@@ -206,7 +325,7 @@
     }
 
     &--open {
-        > .hamburger__bar {
+        .hamburger__bar {
             &:first-child,
             &:last-child {
                 width: 24px;
@@ -232,7 +351,7 @@
 @include tablet {
     .menu {
         &--main {
-            grid-template-columns: 25% 1fr 30px;
+            grid-template-columns: 33px 1fr 30px;
             grid-column-gap: getSpace(min);
         }
 
@@ -245,12 +364,10 @@
 };
 
 // Design Desktop
-
 @include widescreen {
     .menu {
-
         &--main {
-            grid-template-columns: 15% 230px 1fr;
+            grid-template-columns: 15% 30px 1fr;
             grid-template-rows: 1fr;
             grid-template-areas: "navigation-brand navigation-search navigation-wrap";
         }
@@ -261,8 +378,9 @@
             @include hidden(visible);
             @include d-grid;
             align-items: center;
-            grid-template-columns: 1fr 30%;
-            grid-template-areas: "navigation-nav navigation-user";
+            justify-content: center;
+            grid-template-columns: 1fr;
+            grid-template-areas: "navigation-nav";
 
             &--open {
                 height:100%;
@@ -277,16 +395,6 @@
             @include d-flex($ai: center);
         }
 
-        .nav {
-            &__list {
-                @include d-flex($jc: space-around);
-            }
-
-            &__item {
-                border: 0;
-            }
-        }
-
         &__user {
             width: 100%;
             height: 100%;
@@ -294,40 +402,48 @@
             user-select: none;
             @include d-flex($ai: center);
         }
+    }
 
-        &__account {
-            width: to-rem(220px);
-            position: absolute;
-            background: #fff;
-            border-radius: $borde-material;
-            padding: getSpace(min) getSpace(med);
-            top: to-rem(70px);
-            right: to-rem(40px);
-            @include hidden;
+    .account {
+        width: to-rem(220px);
+        position: absolute;
+        background: #fff;
 
-            &--open {
-                @include hidden(visible);
-                @include d-flex($dir: column, $ai: flex-end);
-            }
+        border-radius: $borde-material;
+        padding: getSpace(min) getSpace(med);
+        top: to-rem(70px);
+        right: to-rem(40px);
+        @include hidden;
 
-            &-configure {
-                color: $text-color;
-            }
+        &--open {
+            @include hidden(visible);
+            @include d-flex($dir: column, $ai: flex-start);
         }
 
-        .user {
-            flex-direction: row;
-            position: relative;
-            &__picture {
-                width: 40px;
-                height: 40px;
-                margin-right: getSpace(med);
-            }
+        &__configure {
+            color: $text-color;
         }
     }
 
+    .nav {
+        &__list {
+            @include d-flex($jc: space-around);
+        }
 
+        &__item {
+            border: 0;
+        }
+    }
 
+    .user {
+        flex-direction: row;
+        position: relative;
+        &__picture {
+            width: 40px;
+            height: 40px;
+            margin-right: getSpace(med);
+        }
+    }
 
 
     .hamburger {

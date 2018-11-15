@@ -16,7 +16,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Cuenta</div>
 
-                <a href="/Cuenta/{{ $perfil->slug_usuario }}/Edit" class="btn btn-primary">Editar</a>
+                <a href="{{ route('perfil-usuario.edit', $perfil->slug_usuario) }}" class="btn btn-primary">Editar</a>
                 <div style="float:right; width: auto; margin-right: 8px;" title="@if($perfil->privacidad==" 0")  Sus datos de contacto son mostrados al publico
                 @else Sus datos de contacto no son mostrados al publico @endif">
                     <div id="privacidad" style="text-align:center;"> Privacidad: @if($perfil->privacidad=="0")Publico
@@ -125,7 +125,7 @@
                     </div>
                     <div class="col-md-4 col-sm-6">
                         <div id="correo_electronico" class="eff" data="boton07">
-                            <label id="Correo_Electronicodata" data="{{ $perfil->correo_electronico }}" name="perfil">{{ $perfil->correo_electronico }}</label>&nbsp;
+                            <label id="Correo_Electronicodata" data="{{ auth()->user()->email }}" name="perfil">{{ auth()->user()->email }}</label>&nbsp;
                         </div>
                     </div>
                 </div>

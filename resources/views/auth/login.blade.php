@@ -1,47 +1,94 @@
-@extends('layouts.head')
+{{-- @extends('layouts.html')
+@section('styles')
+    <style media="screen">
+        .container {
+            min-height: 100vh;
+            display: -webkit-flex;
+            display: -ms-flex;
+            display: flex;
+            flex-direction: column;
+            -ms-align-items: center;
+            align-items: center;
+            justify-content: center;
+            background: url('https://images.pexels.com/photos/604661/pexels-photo-604661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') no-repeat center center / cover;
+        }
+    </style>
+@endsection
+@section('content')
+    <div class="card card--login js-card">
+        <div class="login__header">
+            <a class="brand login--brand" href="/">
+                <img src="/img/logoAEI-blanco.png" alt="" class="brand__logo">
+                <p class="brand__title">Comunidad AEI</p>
+            </a>
+            <h2 class="login__title text--center">Asociación de Empresarios de Iztapalapa A.C.</h2>
+            <h4 class="login__phrase text--white text--center">¡Bienvenido de nuevo!</h4>
+        </div>
+        {!! Form::open(['route' => ['login'], 'class' => 'login__form']) !!}
 
+            <div class="group">
+                {!! Form::label('email', 'Correo', ['class' => 'label']) !!}
+                {!! Form::email('email', null, ['class' => 'input']) !!}
+            </div>
+
+            <div class="group">
+                {!! Form::label('password', 'Contraseña', ['class' => 'label']) !!}
+                {!! Form::password('password', ['class' => 'input']) !!}
+            </div>
+
+            <div class="group">
+                {!! Form::check('remember', 'remember',true, 'Recordar Cuenta') !!}
+            </div>
+            <a href="{{ route('password.request') }}" class="link">¿Olvidó su contraseña?</a>
+
+            <button type="submit" class="btn btn--accent"><i class="btn__icon ion-ios-send"></i>Iniciar Sesión</button>
+
+            <a href="{{ route('register') }}" class="link">Aún no tiene una cuenta? Registrese</a>
+        {!! Form::close() !!}
+    </div>
+@endsection --}}
+@extends('layouts.html')
 @section('content')
     <section class="section login">
+        <div class="card card--login">
 
-    <div class="login__decoration">
-        <div class="login__content">
-            <p class="login__text">No te sientes a esperar que lleguen las oportunidades ¡Levantate y haz que pasen!</p>
-            <p class="login__author">MADAM CJ WALKER</p>
+            <div class="login__header">
+                <h1 class="h2 text--center">Iniciar Sesión</h1>
+                <img src="{{ asset('img/logoAEI-azul.png') }}" alt="" class="login__logo">
+                <h2 class="h4 text--center">Asociación de Empresarios de Iztapalapa A.C.</h2>
+            </div>
+
+            {!! Form::open(['class' => 'login__form']) !!}
+                <div class="group group--login">
+                    {!! Form::label('email', 'Correo eléctronico', ['class' => 'label']) !!}
+                    <i class="login__icon ion-ios-at"></i>
+                    {!! Form::email('email', null, ['class' => 'input']) !!}
+                    <span class="input__decoration {{ ($errors->has('email') == 1) ? 'input__decoration--error' : '' }}"></span>
+                    @if ($errors->has('email'))
+                        @foreach ($errors->get('email') as $error)
+                            <p class="error">{{ $error }}</p>
+                        @endforeach
+                    @endif
+                </div>
+                <div class="group group--login">
+                    {!! Form::label('password', 'Contraseña', ['class' => 'label']) !!}
+                    <i class="login__icon ion-ios-key"></i>
+                    {!! Form::password('password', ['class' => 'input']) !!}
+                    <span class="input__decoration {{ ($errors->has('email') == 1) ? 'input__decoration--error' : '' }}"></span>
+                    @if ($errors->has('password'))
+                        @foreach ($errors->get('password') as $error)
+                            <p class="error">{{ $error }}</p>
+                        @endforeach
+                    @endif
+                </div>
+
+                <a href="#" class="login__link link text--right">¿Olvidó su contraseña?</a>
+                {!! Form::submit('Iniciar Sesión', ['class' => 'btn']) !!}
+
+                <p class="login__link ">¿Aún no tiene una cuenta? <a href="#" class="link link--accent">Registrese</a></p>
+            {!! Form::close() !!}
+
+
         </div>
-    </div>
-    <div class="login__form">
-        <img src="/img/logoAEI-blanco.png" alt="" class="login__img">
-        <p class="login__title">¡Bienvenido de nuevo a la Comunidad Digital AEI!</p>
-        <form class="form" method="POST" action="{{ route('login') }}">
-            {{ csrf_field() }}
-
-            <div class="form__input{{ $errors->has('email') ? ' form--error' : '' }} form__input--column">
-                <label for="email" class="fc-white">E-Mail Address</label>
-                <input id="email" type="email" class="form__input-input" name="email" value="{{ old('email') }}" required autofocus>
-
-                @if ($errors->has('email'))
-                    <span class="form__error-show">{{ $errors->first('email') }}</span>
-                @endif
-            </div>
-
-            <div class="form__input{{ $errors->has('password') ? ' form--error' : '' }} form__input--column">
-                <label for="password" class="fc-white">Password</label>
-                <input id="password" type="password" class="form__input-input" name="password" required>
-
-                @if ($errors->has('password'))
-                    <span class="form__error--show">{{ $errors->first('password') }}</span>
-                @endif
-            </div>
-
-            <div class="form__checkbox">
-                <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} id="check" class="form__checkbox-input">
-                <label for="check" class="form__checkbox-label fc-white">Recordar Cuenta</label>
-            </div>
-
-            <a class="login__link" href="{{ route('password.request') }}">¿Olvidó su contraseña?</a>
-            <button type="submit" class="btn">Iniciar Sesión</button>
-        </form>
-        <p class="login__link">Aún no tiene una cuenta? <a href="{{ route('register') }}" class="link--accent">Registrese</a></p>
-    </div>
-</section>
+    </section>
 @endsection

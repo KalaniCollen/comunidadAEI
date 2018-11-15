@@ -8,8 +8,8 @@
         <form action="{{ route('servicio.orden-servicio') }}" method="post" class="form">
             {{ csrf_field('POST') }}
 
-            <input type="hidden" name="destinatario" value="{{ $servicio->user->name }}">
-            <input type="hidden" name="destinatarioCorreo" value="{{ $servicio->user->email }}">
+            <input type="hidden" name="destinatario" value="{{ $servicio->empresa->nombre_empresa }}">
+            <input type="hidden" name="destinatarioCorreo" value="{{ $servicio->empresa->correo_electronico_empresa }}">
             <input type="hidden" name="servicio" value="{{ $servicio->nombre}}">
 
             <div class="form__input form__input--column">

@@ -2,24 +2,57 @@
     width: 100%;
     min-height: to-rem(120px);
     background: $main-color;
-    // margin-top: getSpace(med);
     padding: getSpace(min);
 
+    &__title,
+    &__link {
+        user-select: none;
+    }
+
+    &__plus {
+        margin-right: getSpace(sml);
+    }
+
     &__content {
-        margin-top: 2rem;
+        @include d-grid;
+        grid-template-columns: 1fr;
+    }
+
+
+    &__list {
+        display: none;
+        width: 100%;
+        list-style-type: none;
+        transition: display 0.2s ease;
+
+        &--show {
+            display: block;
+        }
+    }
+
+    &__item {
+        padding: 0.4rem 0.6rem;
     }
 
     &__link {
         color: #fff;
         text-decoration: none;
         font-size: getFontSize(h6);
+        width: 100%;
+        height: 100%;
     }
 
     &__icon {
+        font-size: getFontSize(h5);
         margin-right: getSpace(min);
     }
 
+    &__subcontent {
+        @include d-flex($ai: center);
+    }
+
     &__foot {
+        padding: getSpace(med) 0;
         @include d-flex($dir: column, $ai: center, $jc: center);
         &-img {
             width: 50px;
@@ -33,4 +66,52 @@
             color: #fff;
         }
     }
+
+    &__title {
+        width: 100%;
+        cursor: pointer;
+        @include d-flex($ai: center, $jc: space-between);
+
+        &-text {
+            margin: getSpace(min) 0;
+        }
+    }
 }
+
+
+@include widescreen {
+    .footer {
+        &__content {
+            padding: 0 getSpace(big);
+            grid-template-columns: repeat(3, 25%);
+            grid-column-gap: getSpace(min);
+            align-content: center;
+            justify-content: center;
+        }
+
+        &__plus {
+            @include hidden;
+        }
+
+        &__subcontent {
+        }
+
+        &__title {
+            text-align: center;
+            &-text {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        &__subcontent,
+        &__list {
+            @include d-flex($dir: column, $ai: center);
+        }
+
+        &__list {
+            width: 55%;
+            align-items: flex-start;
+        }
+    }
+};

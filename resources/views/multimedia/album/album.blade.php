@@ -19,7 +19,7 @@
                       {{-- @include('multimedia.lista') --}}
 
                     <br>
-                    @include('multimedia.Albums')
+                    @include('multimedia.album.Albums')
                       @include('Modal.modal')
                     @else
                       No hay nada

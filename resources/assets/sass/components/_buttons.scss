@@ -9,6 +9,7 @@
     font-size: getFontSize(h6);
     text-decoration: none;
     cursor: pointer;
+    appearance: none;
     @include d-flex($flex: inline-flex, $ai: center, $jc: center);
     @include roboto;
 
@@ -22,10 +23,15 @@
     }
 
     &--big {
-        width: to-rem(160px);
-        height: to-rem(46px);
-
+        width: to-rem(146px);
+        height: to-rem(40px);
     }
+
+    &--ghost-accent {
+        background: $main-color;
+        color: #fff;
+    }
+
     &--accent {
         background: $blue-color-l;
         color: #fff;
@@ -39,18 +45,26 @@
 }
 
 
-.btn--fab {
-    min-width: 0;
-    min-height: 0;
+.fab {
+    position: fixed;
     width: 56px;
     height: 56px;
+    border: 0;
     border-radius: 50%;
     background: $ghost-color;
     color: $text-color;
     font-size: 1.6rem;
+    bottom: 40px;
+    right: 20px;
+    cursor: pointer;
     @include d-flex($ai: center, $jc: center);
 
-    &-mini {
+    &:focus,
+    &:active {
+        outline: none;
+    }
+
+    &--mini {
         width: 40px;
         height: 40px;
         font-size: 1.3rem;

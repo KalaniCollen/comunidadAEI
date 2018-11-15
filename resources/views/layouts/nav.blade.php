@@ -1,4 +1,13 @@
 <div class="menu menu--main">
+    <div class="menu__form-search" id="js-search-form">
+        {!! Form::open(['route' => ['search.search'], 'method' => 'post','class' => 'form__search-form']) !!}
+        <button type="submit" name="buscar" class="form__search-btn">
+            <i class="ion-ios-search" id="js-search"></i>
+        </button>
+        <input type="search" name="buscar" id="js-search-input" class="form__search-input" placeholder="Buscar..." autofocus>
+        <i class="form__search-icon ion-ios-close" id="js-search-close"></i>
+        {!! Form::close() !!}
+    </div>
     <div class="menu__brand">
         <a class="brand" href="/">
             <img src="/img/logoAEI-blanco.png" alt="" class="brand__logo">
@@ -7,10 +16,7 @@
     </div>
 
     <div class="menu__search">
-        <i class="ion-ios-search search__icon"></i>
-        <form action="#" class="form form--search-bar">
-            <input type="search" name="" id="" class="form__input-input form__input--search-main" placeholder="Buscar...">
-        </form>
+        <i class="ion-ios-search search__icon" id="js-search-btn"></i>
     </div>
 
     <div class="menu__wrap {{ Auth::check() ? '' : 'menu--guest' }}">
@@ -18,51 +24,75 @@
             <nav class="nav nav--main">
                 <ul class="nav__list">
                     @if (Auth::check())
-                        <li class="nav__item">
-                            <a href="/home" class="nav__link">Incio</a>
+                        @php
+                            $links = [
+                                ['link' => 'home', 'name' => 'Inicio'],
+                                ['link' => 'catalogo.index', 'name' => 'Mi Catálogo'],
+                                ['link' => '/', 'name' => 'Calendario'],
+                                ['link' => '/', 'name' => 'Solicitar Evento'],
+                            ];
+                        @endphp
+                        @each('components.item-menu', $links, 'link')
+                        <li class="nav__item" onclick="submenu(this)">
+                            <a href="" class="nav__link">Multimedia</a>
+                            <ul class="submenu">
+                                <li class="submenu__item">
+                                    <a href="#" class="submenu__link"><i class="account__icon ion-ios-camera"></i>Galería</a>
+                                </li>
+                                <li class="submenu__item">
+                                    <a href="#" class="submenu__link"><i class="account__icon ion-ios-videocam"></i>Videos</a>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="nav__item">
-                            <a href="{{ route('catalogo.index') }}" class="nav__link">Multimedia</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="{{ route('catalogo.index') }}" class="nav__link">Mi Catálogo</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="{{ route('catalogo.index') }}" class="nav__link">Mis Logros</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="{{ route('catalogo.index') }}" class="nav__link">Solicitar Evento</a>
+                        <li class="nav__item" onclick="submenu(this)">
+                            <div class="user">
+                                <img src="{{ Auth::user()->perfil->imagen }}" alt="" class="user__picture user__picture--big">
+                                <p class="user__username">{{ Auth::user()->name }}</p>
+                            </div>
+                            <ul class="submenu">
+                                <li class="submenu__item">
+                                    <a href="#" class="submenu__link"><i class="account__icon ion-ios-settings"></i>Mi Cuenta</a>
+                                </li>
+                                <li class="submenu__item">
+                                    <a href="#" class="submenu__link"><i class="account__icon ion-ios-business"></i>Mi Empresa</a>
+                                </li>
+                                <li class="submenu__item">
+                                    <a href="{{ route('logout') }}" class="submenu__link" onclick="event.preventDefault();document.getElementById('form-logout').submit();"><i class="account__icon ion-ios-log-out"></i>Cerrar Sesión</a>
+                                    <form action="{{ route('logout') }}" method="post" style="display: none;" id="form-logout">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            </ul>
                         </li>
                     @else
-                        <li class="nav__item">
-                            <a href="/" class="nav__link">Incio</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="{{ route('home') }}" class="nav__link">Publicaciones</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="/#quienes-somos" class="nav__link">¿Quiénes Somos?</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="/#socios" class="nav__link">Nuestros Socios</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="/#afiliate" class="nav__link">Afiliate</a>
-                        </li>
+                        @php
+                            $links = [
+                                ['link' => '/', 'name' => 'Inicio'],
+                                ['link' => '/', 'name' => '¿Quienes Somos?'],
+                                ['link' => '/', 'name' => 'Nuestros Socios'],
+                                ['link' => '/', 'name' => 'Contactanos'],
+                                ['link' => 'home', 'name' => 'Publicaciones'],
+                                ['link' => '/', 'name' => 'Calendario'],
+                            ];
+                        @endphp
+                        @each('components.item-menu', $links, 'link')
                     @endif
                 </ul>
             </nav>
         </div>
-        @if (Auth::check())
+        {{-- @if (Auth::check())
             <div class="menu__user">
                 <div class="user">
-                    <img src="https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/012016/untitled-1_77.png?itok=lw7cADiJ" alt="" class="user__picture user__picture--big">
+                    <img src="{{ Auth::user()->perfil->imagen }}" alt="" class="user__picture user__picture--big">
                     <p class="user__username">{{ Auth::user()->name }}</p>
                 </div>
-                <div class="menu__account">
-                    <a href="#" class="menu__account-configure">Configurar Cuenta</a>
-                    <a href="{{ route('logout') }}" class="menu__account-logout" onclick="event.preventDefault();document.getElementById('form-logout').submit();">Cerrar Sesión</a>
-                    <form action="{{ route('logout') }}" method="post" class="form form--logout" id="form-logout">
+                <div class="account">
+                    <a href="{{ route('perfil-usuario.index') }}" class="account__configure"><i class="account__icon ion-ios-cog"></i>Mi Cuenta</a>
+
+                    <a href="{{ route('perfil-empresa.index') }}" class="account__configure"><i class="account__icon ion-ios-business"></i>Mi Empresa</a>
+
+                    <a href="{{ route('logout') }}" class="account__logout" onclick="event.preventDefault();document.getElementById('form-logout').submit();"><i class="account__icon ion-ios-log-out"></i>Cerrar Sesión</a>
+                    <form action="{{ route('logout') }}" method="post" style="display: none;" id="form-logout">
                         {{ csrf_field() }}
                     </form>
                 </div>
@@ -72,7 +102,7 @@
                 <a href="{{ route('login') }}" class="btn btn--accent">Iniciar Sesión</a>
                 <a href="{{ route('register') }}" class="btn">Registrarse</a>
             </div>
-        @endif
+        @endif --}}
     </div>
 
     <div class="menu__hamburger">

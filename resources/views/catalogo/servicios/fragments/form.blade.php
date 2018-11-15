@@ -7,7 +7,7 @@
 
 
 <div class="form__file">
-    <input type="file" name="imagen" id="imagen-upload" class="form__file-input" accept="image/*">
+    <input type="file" name="imagen" id="imagen-upload" class="form__file-input" accept="image/*" onchange="previewImage(this, js-img-preview)">
     <label for="imagen-upload" class="form__file-label"><i class="ion-ios-cloud-upload"></i></label>
     <span class="form__error"></span>
 </div>

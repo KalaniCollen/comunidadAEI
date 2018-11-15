@@ -20,48 +20,35 @@
                 <div class="glide">
                     <div class="glide__track" data-glide-el="track">
                         <ul class="glide__slides">
-                            @component('components.item-slider',[
-                                "link" => "http://www.iztapalapa.tecnm.mx/",
-                                "img"  => "escudo_ITIZ_original.png"])
-                            @endcomponent
-                            @component('components.item-slider',[
-                                "link" => "https://calentadoresdelta.com/",
-                                "img"  => "delta.png"])
-                            @endcomponent
-                            @component('components.item-slider',[
-                                "link" => "http://www.corev.com.mx/",
-                                "img"  => "corev.png"])
-                            @endcomponent
-                            @component('components.item-slider',[
-                                "link" => "http://www.austromex.com.mx/",
-                                "img"  => "austromex.jpg"])
-                            @endcomponent
-                            @component('components.item-slider',[
-                                "link" => "https://www.esperanza.mx/",
-                                "img"  => "esperanza.png"])
-                            @endcomponent
-                            @component('components.item-slider',[
-                                "link" => "http://www.galasjanel.com.mx/",
-                                "img"  => "janel.png"])
-                            @endcomponent
-                            @component('components.item-slider',[
-                                "link" => "https://heinekenmexico.com/",
-                                "img"  => "cuamoc_logoB.png"])
-                            @endcomponent
-                            @component('components.item-slider',[
-                                "link" => "http://www.fabpsa.com.mx/",
-                                "img"  => "fabpsa.jpg"])
-                            @endcomponent
-                            @component('components.item-slider',[
-                                "link" => "http://www.potenciaindustrial.com.mx/",
-                                "img"  => "logo-dark.png"])
-                            @endcomponent
-                            @component('components.item-slider',[
-                                "link" => "https://www.4dioses.com/",
-                                "img"  => "FROoWSjo_400x400.jpg"])
-                            @endcomponent
+                            @php
+                                $contentSlider = [
+                                    [ 'link' => 'https://calentadoresdelta.com/', 'img' => 'delta.png' ],
+                                    [ 'link' => 'http://www.corev.com.mx/', 'img' => 'corev.png' ],
+                                    [ 'link' => 'http://www.austromex.com.mx/', 'img' => 'austromex.jpg' ],
+                                    [ 'link' => 'https://www.esperanza.mx/', 'img' => 'esperanza.png' ],
+                                    [ 'link' => 'http://www.iztapalapa.tecnm.mx/', 'img' => 'escudo_ITIZ_original.png' ],
+                                    [ 'link' => 'http://www.galasjanel.com.mx/', 'img' => 'janel.png' ],
+                                    [ 'link' => 'https://heinekenmexico.com/', 'img' => 'cuamoc_logoB.png' ],
+                                    [ 'link' => 'http://www.fabpsa.com.mx/', 'img' => 'fabpsa.jpg' ],
+                                    [ 'link' => 'http://www.potenciaindustrial.com.mx/', 'img' => 'logo-dark.png' ],
+                                    [ 'link' => 'https://www.4dioses.com/', 'img' => 'FROoWSjo_400x400.jpg' ],
+                                    [ 'link' => 'https://www.len.com.mx/', 'img' => 'len.png' ],
+                                    [ 'link' => 'http://www.lastur.mx/', 'img' => 'lastur.jpg' ],
+                                    [ 'link' => 'https://www.avimex.com.mx/', 'img' => 'avimex.png' ],
+                                    [ 'link' => 'http://isa.com.mx/', 'img' => 'isa.jpeg' ],
+
+                                ];
+                            @endphp
+                            @each('components.item-slider', $contentSlider, 'slide')
                         </ul>
                     </div>
+                    {{-- <div data-glide-el="controls">
+                        <button data-glide-dir="<">prev</button>
+                        <button data-glide-dir="=7" class="btn"></button>
+                        <button data-glide-dir="=13" class="btn"></button>
+                        <button data-glide-dir=">>">Last</button>
+                        <button data-glide-dir=">">next</button>
+                    </div> --}}
                 </div>
             </div>
         </section>
@@ -88,36 +75,40 @@
                 @endforeach
 
             @endif
-            <form action="{{ route('afiliate') }}" method="post" class="section-afiliate__form">
-                {{ csrf_field() }}
-                <h2>Afiliate</h2>
-                <div class="form__input form__input--column">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" name="nombre" class="form__input-input" required="required">
-                </div>
-                <div class="form__input form__input--column">
-                    <label for="empresa" class="form__input-label">Empresa</label>
-                    <input type="text" name="empresa" class="form__input-input" required="required">
-                </div>
-                <div class="form__input form__input--column">
-                    <label for="telefono">Teléfono</label>
-                    <input type="tel" maxlength="10" name="telefono" class="form__input-input" required="required">
-                </div>
-                <div class="form__input form__input--column">
-                    <label for="correo">Correo Electrónico</label>
-                    <input type="email" name="correo" class="form__input-input" required="required" value="{{ old('correo') }}">
-                </div>
-                <div class="form__input form__input--column">
-                    <label for="mensaje">Mensaje</label>
-                    <textarea name="mensaje" class="form__text-input" required="required"></textarea>
-                </div>
-                <input type="submit" value="Enviar" class="btn btn--big btn--accent">
-            </form>
+            {!! Form::open(['route' => ['afiliate'], 'class' => 'section-afiliate__form']) !!}
+            <h2>Afiliate</h2>
+            <div class="group">
+                {!! Form::label('nombre', 'Nombre', ['class' => 'label']) !!}
+                {!! Form::text('nombre', null, ['class' => 'input']) !!}
+            </div>
+
+            <div class="group">
+                {!! Form::label('empresa', 'Empresa', ['class' => 'label']) !!}
+                {!! Form::text('empresa', null, ['class' => 'input']) !!}
+            </div>
+
+            <div class="group">
+                {!! Form::label('correo', 'Correo', ['class' => 'label']) !!}
+                {!! Form::email('correo', null, ['class' => 'input']) !!}
+            </div>
+
+            <div class="group">
+                {!! Form::label('telefono', 'Teléfono', ['class' => 'label']) !!}
+                {!! Form::text('telefono', null, ['class' => 'input']) !!}
+            </div>
+
+            <div class="group">
+                {!! Form::label('mensaje', 'Mensaje', ['class' => 'label']) !!}
+                {!! Form::textarea('mensaje', null, ['class' => 'input']) !!}
+            </div>
+
+            {!! Form::submit('Enviar', ['class' => 'btn btn--big btn--ghost-accent']) !!}
+
+            {!! Form::close() !!}
         </section>
     </main>
 @endsection
 @section('scripts')
-    <script src="/js/glide.min.js" charset="utf-8"></script>
     <script type="text/javascript">
         let scrollIcon = document.getElementsByClassName('scroll');
         scrollIcon[0].addEventListener('click', e => {
@@ -129,7 +120,18 @@
             type: 'carousel',
             autoplay: 1500,
             startAt: 0,
-            perView: 8
+            perView: 8,
+            breakpoints: {
+                1024: {
+                    perView: 6
+                },
+                768: {
+                    perView: 4
+                },
+                360: {
+                    perView: 3
+                }
+            }
         }).mount()
     </script>
 @endsection

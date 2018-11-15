@@ -1,207 +1,140 @@
-.form {
-    width: 100%;
-    @include d-flex($dir: column);
+.label {
+    user-select: none;
 
-    &--search-bar {
-        width: calc(100% - 20px);
-    }
-
-    &__input,
-    &__switch,
-    &__file,
-    &__checkbox,
-    &__text {
-        width: 100%;
-
-        &--column {
-            @include d-flex($dir: column);
-        }
+    &--center {
+        @include d-flex($ai: center);
     }
 }
 
-.form__input--search-main {
+.group {
     width: 100%;
-    background: 0;
-    bottom: 0;
-    color: #fff;
+    margin-bottom: getSpace(med);
+    @include d-flex($ai: center, $jc: flex-start);
 
-    &::placeholder {
-        color: #fff;
-    }
-
-    &:focus {
-        outline: none;
+    &--column {
+        align-items: flex-start;
+        justify-content: stretch;
+        flex-direction: column;
     }
 }
 
-.form {
-    &__checkbox-input,
-    &__file-input,
-    &__switch-input,
-    &__radio-input {
-        display: none;
+.input {
+    min-width: 12vw;
+    min-height: to-rem(36px);
+    width: 100%;
+    padding: getSpace(sml);
+    border-radius: $borde-material;
+    border: 1px solid $gray-color-l;
+}
+
+.checkmark {
+    font: {
+        family: 'Ionicons';
+        size: 1.3rem;
+    }
+    margin: 0 getSpace(sml);
+
+    &--checkbox,
+    &--radio {
+        @include d-flex(inline-flex, $ai: center);
+        color: $gray-color-l;
+        will-change: transform, color;
     }
 
-    &__radio {
-        &-label {
-            @include d-flex($flex: inline-flex,$ai: center);
-
-            &::before {
-                font-family: 'Ionicons';
-                content: '\F360';
-                font-size: 1.2rem;
-                display: inline-block;
-                margin-right: getSpace(sml);
-                color: $ghost-color;
-            }
-        }
-
-        &-input:checked + .form__radio-label::before {
-            content: '\F361';
-            color: $blue-color-l;
-            animation: tick 0.2s ease;
-        }
-    }
-
-
-    &__checkbox {
-        &-label {
-            @include d-flex(inline-flex, $ai: center);
-            &::before {
-                font-family: 'Ionicons';
-                content: '\f380';
-                font-size: 1.4rem;
-                display: inline-block;
-                color: $ghost-color;
-                will-change: transform;
-                margin-right: getSpace(sml);
-            }
-        }
-
-        &-input:checked
-        + &-label{
-            &::before {
-                content: '\f2b9';
-                color: $blue-color-l;
-                animation: tick 0.2s ease-in-out;
-                @include keyframes(tick) {
-                    0% {
-                        transform: scale(0);
-                    }
-                    80% {
-                        transform: scale(1.2);
-                    }
-                    100% {
-                        transform: scale(1);
-                    }
-                }
-            }
+    &--checkbox {
+        &::before {
+            content: '\f380';
         }
     }
 
-    &__input {
-        margin-bottom: getSpace(min);
-        &-input {
-            min-height: to-rem(32px);
-            border: 1px solid $gray-color-l;
-            border-radius: $borde-material;
-            padding: 0 getSpace(min);
+    &--radio {
+        &::before {
+            content: '\f360';
         }
     }
 
-    &__file {
-        &-label {
-            width: 120px;
-            height: 40px;
-            border-radius: 20px;
-            font-size: 1.5rem;
-            background: $ghost-color;
-            @include d-flex(inline-flex, $ai: center, $jc: center);
-        }
-    }
+    &--switch {
+        display: block;
+        width: 36px;
+        height: 20px;
+        border-radius: 10px;
+        background: $gray-color;
+        position: relative;
+        will-change: background;
+        transition: background 0.2s ease;
 
-    &__text {
-        &-input {
-            min-height: to-rem(140px);
-            padding: getSpace(min);
-            border: 1px solid $gray-color-l;
-            border-radius: $borde-material;
-        }
-    }
-
-    &__switch {
-
-        &-label {
-            @include d-flex(inline-flex);
-        }
-
-        &-switch {
+        &::before {
+            content: '';
             display: block;
-            width: to-rem(38px);
-            height: to-rem(20px);
-            border-radius: calc(20px / 2);
-            background: $ghost-color;
-            will-change: background;
-            transition: background 0.2s ease;
-            margin-right: getSpace(min);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #fff;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            will-change: transform;
+        }
+    }
+}
 
-            &::before {
-                content: '';
-                width: 16px;
-                height: 16px;
-                border-radius: 50%;
-                background: #fff;
-                position: absolute;
-                will-change: transform;
-                transform: translate(2px, 2px);
-            }
+.checkbox,
+.radio,
+.switch {
+    display: none;
+}
+
+.checkbox {
+    &:checked + .checkmark--checkbox::before {
+        content: '\f148';
+        color: $blue-color-l;
+        animation: tick 0.2s cubic-bezier(1,.26,.14,.67) 1 alternate forwards;
+    }
+}
+
+.radio {
+    &:checked + .checkmark--radio::before {
+        content: '\f361';
+        color: $blue-color-l;
+        animation: tick 0.2s cubic-bezier(1,.26,.14,.67) 1 alternate forwards;
+    }
+}
+
+.switch {
+    &:checked {
+        + .checkmark--switch::before {
+            animation: switch 0.2s cubic-bezier(1,.26,.14,.67) 1 alternate forwards;
         }
 
-        .form__switch-input:checked + .form__switch-switch::before {
-            transform: translate(20px, 2px);
-            animation: switch 0.2s ease;
-
-            @include keyframes(switch) {
-                0% {
-                    transform: translate(2px, 2px) scale(0);
-                }
-                80% {
-                    transform: translate(12px, 2px) scale(0);
-                }
-                100% {
-                    transform: translate(20px, 2px) scale(1);
-                }
-            };
-        }
-
-        .form__switch-input:checked + .form__switch-switch {
+        + .checkmark {
             background: $blue-color-l;
         }
-
     }
+}
 
-    &__group-radio {
-        .link {
-            width: 100%;
-        }
-        @include d-flex($ai: center, $jc: space-around);
+@include keyframes(switch) {
+    0% {
+        transform: scale(0) translateX(2px);
     }
-
-    &--error {
-        border-color: $red-color;
+    100% {
+        transform: scale(1) translateX(16px);
     }
+};
 
-    &__error {
-        display: block;
-        visibility: hidden;
-        width: 100%;
-        height: 20px;
-        color: $red-color;
-        font-size: getFontSize(h6);
-        @include roboto;
-
-        // &--show {
-        //     visibility: visible;
-        // }
+@include keyframes(tick) {
+    0% {
+        transform: scale(0);
     }
+    80% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+};
+
+.error {
+    color: $red-color-l;
+    font-size: getFontSize(h6);
+    @include roboto();
 }

@@ -7,6 +7,11 @@
 }
 
 @font-face {
+    font-family: 'Montserrat Light';
+    src: url('/fonts/Montserrat/Montserrat-Light.ttf');
+}
+
+@font-face {
     font-family: 'Montserrat Medium';
     src: url('/fonts/Montserrat/Montserrat-Medium.ttf');
 }
@@ -41,6 +46,9 @@
     } @else if $w == b {
         font-family: 'Montserrat Medium', sans-serif;
         font-weight: 500;
+    } @else if $w == l {
+        font-family: 'Montserrat Light', sans-serif;
+        font-weight: 300;
     }
     line-height: $lh;
 }
@@ -79,6 +87,13 @@
     }
 }
 
+.lato {
+    @include lato;
+    &-regular {
+
+    }
+}
+
 p,
 a,
 input,
@@ -96,7 +111,7 @@ select,
 }
 
 .link,
-label {
+.label {
     @include roboto(b);
 }
 
@@ -104,6 +119,7 @@ label {
     text-decoration: none;
     border: 0;
     background: none;
+    font-size: getFontSize(h6);
 
     &--accent {
         color: $blue-color-l;
@@ -114,14 +130,33 @@ label {
     }
 }
 
-label {
+.label {
     font-size: getFontSize(h6);
-    text-transform: capitalize;
 }
 
-label,
+.label,
 input,
 textarea,
 select {
     color: $title-color;
+}
+
+.text {
+    &--right {
+        text-align: right;
+    }
+
+    &--center {
+        text-align: center;
+    }
+
+    &--white {
+        color: #fff;
+    }
+}
+
+@each $size, $val in $fonts-sizes {
+    .#{$size} {
+        font-size: $val;
+    }
 }
