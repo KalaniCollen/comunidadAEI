@@ -1,4 +1,3 @@
-
 <div id="Modelotarjeta" class="modal" role="dialog">
     <div class="contact-area">
         <div class="contact">
@@ -35,7 +34,7 @@
                         <div class="icon"><img src="/storage/img/302.jpg" width="53" height="53" id="image"/></div>
                         <div class="content">
                             <h1>Correo Electronico</h1>
-                            <span>{{ $perfil->correo_electronico }}</span>
+                            <span>{{ auth()->user()->email }}</span>
                         </div>
                     </a>
                     <a href="#" class="twitter">
@@ -43,7 +42,7 @@
                         </div>
                         <div class="content">
                             <h1>Red Social</h1>
-                            <span>{{$perfil->red_social}}</span>
+                            <span>{{$perfil->red_social_facebook_empresa}}</span>
                         </div>
                     </a>
                 </nav>
