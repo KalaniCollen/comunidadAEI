@@ -4,7 +4,6 @@
         <link rel="stylesheet" href="{{ asset('css/eventos/css/calendar.css')}}">
 <link rel="stylesheet" href="{{ asset('css/eventos/css/btn2.css')}}" />
         <link rel="stylesheet" href="{{ asset('css/eventos/css/bootstrap-datetimepicker.min.css')}}" />
-        <link rel="stylesheet" href="{{ asset('css/eventos/css/AdminLTE.min.css')}}" />
 
 @endsection
 @section('content')
@@ -42,7 +41,7 @@
         <h4 class="modal-title" id="myModalLabel">Agregar nuevo evento</h4>
       </div>
       <div class="modal-body">
-        <form action="" method="post">
+        <form action="" method="post" action="">
 
                     <label for="from">Inicio</label>
                     <div class='input-group date' id='from'>
@@ -128,34 +127,7 @@
 <input type="text" id="ponente" placeholder="Nombre"   name="event" required class="form-control precio" />
 <br />
 
-<div class="box box-solid">
-          <div class="box-header with-border">
-            <h3 class="box-title">Crear evento</h3>
-          </div>
-          <div class="box-body">
-            <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
-              <!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
-              <ul class="fc-color-picker" id="color-chooser">
-                <li><a class="text-aqua" href="#"><i class="fa fa-square"></i></a></li>
-                <li><a class="text-blue" href="#"><i class="fa fa-square"></i></a></li>
-                <li><a class="text-light-blue" href="#"><i class="fa fa-square"></i></a></li>
-                <li><a class="text-teal" href="#"><i class="fa fa-square"></i></a></li>
-                <li><a class="text-yellow" href="#"><i class="fa fa-square"></i></a></li>
-                <li><a class="text-orange" href="#"><i class="fa fa-square"></i></a></li>
-                <li><a class="text-green" href="#"><i class="fa fa-square"></i></a></li>
-                <li><a class="text-lime" href="#"><i class="fa fa-square"></i></a></li>
-                <li><a class="text-red" href="#"><i class="fa fa-square"></i></a></li>
-                <li><a class="text-purple" href="#"><i class="fa fa-square"></i></a></li>
-                <li><a class="text-fuchsia" href="#"><i class="fa fa-square"></i></a></li>
-                <li><a class="text-muted" href="#"><i class="fa fa-square"></i></a></li>
-                <li><a class="text-navy" href="#"><i class="fa fa-square"></i></a></li>
-              </ul>
-            </div>
 
-            </div><br/><br/>
-            <!-- /input-group -->
-          </div>
-        </div>
 
 
       </div>

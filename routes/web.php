@@ -41,6 +41,7 @@ Route::get('/imagen', function () {
 Route::get('/Admin','AdminController@index');
 
 Route::get('/eventos','EventoController@index');
+Route::post('/AgregarEvento','EventoController@create')->name('agregareveto');
 
 // Logros
 Route::get('/MisLogros/{slug_empresa}','MisLogrosController@Index');
