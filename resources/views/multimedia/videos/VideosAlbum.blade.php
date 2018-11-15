@@ -1,5 +1,7 @@
-@extends('layouts.app')
-@section('style')
+@extends('layouts.head')
+@section('styles')
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
+
   <link rel="stylesheet" type="text/css" href="{{ asset ('css/reset.css')}}"/>
   <link rel="stylesheet" type="text/css" href="{{ asset ('css/styles.css')}}"/>
   <link rel="stylesheet" type="text/css" href="{{ asset ('css/jquery.alertable.css')}}"/>
@@ -13,11 +15,9 @@
             <div class="col-md-12">
               <div class="panel panel-default">
                   <div class="panel-heading">Videos</div>
-                  <div class="panel-body">
-                    <main>
-
-                          <section class="cards" id="cartas">
-
+                    <div class="panel-body">
+                        <main>
+                            <section class="cards" id="cartas">
                               <article >
                                 <a href="/Videos/{{ Auth()->user()->id_usuario  }}">
                                 <img class="article-img" src="/storage/img/you.png" alt=" " />
@@ -44,7 +44,7 @@
   </div>
 @endsection
 
-@section('script')
+@section('scripts')
 
 <script src="{{ asset('js/Album.js')}}" ></script>
 <script src="{{ asset('js/jquery.alertable.js')}}" ></script>

@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('style')
+@extends('layouts.head')
+@section('styles')
 <link href="{{asset('css/main.css')}}" rel="stylesheet">
     <link href="{{asset('galeria/fine-uploader-gallery.css')}}" rel="stylesheet">
       <link href="{{asset('css/album.css')}}" rel="stylesheet">
@@ -18,7 +18,7 @@
               <div class="panel panel-default">
                   <div class="panel-heading">Videos Subidos</div>
                   <div class="panel-body">
-                        @include('multimedia.subirvideo')
+                        @include('multimedia.videos.subirvideo')
                       <br >
                       @if(!empty ($Videos))
                         <br />
@@ -42,7 +42,7 @@
     @foreach ($video as $key => $Videos)
     <li class="col-xs-6 col-sm-4 col-md-3 video" data-poster="{{ $Videos->enlace }}" data-sub-html="{{ $Videos->id_video }}" data-html="#{{ $Videos->id_video }}" >
         <img src="{{ $Videos->enlace }}" id="pre" preload="metadata" />
-        <video src="{{ $Videos->enlace }}" width="90%"></video>
+        <video src="{{ $Videos->enlace }}" width="90%" style="cursor: pointer;"></video>
     </li>
   @endforeach
 
@@ -64,7 +64,7 @@
   </div>
 @include('Modal.Confirmacion0')
 @endsection
-@section('script')
+@section('scripts')
   <!-- Fine Uploader Thumbnails template w/ customization
   ====================================================================== -->
   <script>

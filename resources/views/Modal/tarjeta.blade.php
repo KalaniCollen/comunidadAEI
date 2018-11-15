@@ -5,7 +5,7 @@
                 <section>
                     <div class="content">
                         <span class="close" id="cls">&times;</span>
-                        <div class="logo"><img src="{{ $perfilE->logo_empresa }}" width="100" height="100" id="image"/></div>
+                        <div class="logo"><img src="{{ $perfilE->logo_empresa }}" onerror="this.src='/storage/img/DefaultEmpresa.png'" width="100" height="100" id="image"/></div>
                         <aside>
                             <h1>{{ $perfilE->nombre_empresa }}</h1>
                             <p>Hola, soy <b>{{ auth()->user()->name}}</b> </p>

@@ -14,22 +14,19 @@ class VideosController extends Controller
   public function index()
   {
 
-
-
-
-      return view('multimedia.VideosAlbum');
+      return view('multimedia.videos.VideosAlbum');
   }
   public function show($id_usuario)
   {
      $Videos = Videos::where('id_usuario',$id_usuario)->where('tipo','enlace')->get();
 
-      return view('multimedia.Videos')->with('Videos', $Videos);
+      return view('multimedia.video.Videos')->with('Videos', $Videos);
   }
   public function mostrar($id_usuario)
   {
      $Videos = Videos::where('id_usuario',$id_usuario)->where('tipo','Video')->get();
 $Video = Videos::where('id_usuario',$id_usuario)->where('tipo','Video')->get();
-      return view('multimedia.VideoSubidos')->with(['Videos'=> $Videos,'video'=>$Video]);
+      return view('multimedia.videos.VideoSubidos')->with(['Videos'=> $Videos,'video'=>$Video]);
   }
 
   public function subir(Request $request ){
@@ -85,24 +82,21 @@ $Video = Videos::where('id_usuario',$id_usuario)->where('tipo','Video')->get();
          return  response()->json("ok");
        }
 
-      return view('multimedia.Videos')->with('Videos', $Videos);
+      return view('multimedia.videos.Videos')->with('Videos', $Videos);
   }
   public function Delete(Request $request)
   {
      // $Videos = Videos::where('id_usuario',$id_usuario)->first();
      if ($request->ajax())
        {
-
-    $Videos = Videos::where('slug_usuario',$request->video)->where('id_usuario',Auth::id())->first();
+    $Videos = Videos::where('id_video',$request->video)->where('id_usuario',Auth::id())->first();
     if($Videos->tipo=="Video"){
         Storage::delete(str_replace("/storage", "public", $Videos->enlace));
-
-
     }
 $Videos->delete();
          return  response()->json("ok");
        }
 
-      return view('multimedia.Videos')->with('Videos', $Videos);
+      return view('multimedia.videos.Videos')->with('Videos', $Videos);
   }
 }

@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('style')
+@extends('layouts.head')
+@section('styles')
 <link href="{{asset('css/main.css')}}" rel="stylesheet">
     <link href="{{asset('galeria/fine-uploader-gallery.css')}}" rel="stylesheet">
       <link href="{{asset('css/album.css')}}" rel="stylesheet">
@@ -15,7 +15,7 @@
               <div class="panel panel-default">
                   <div class="panel-heading">{{ $Album->nombre}}</div>
                   <div class="panel-body">
-                        @include('multimedia.subir')
+                        @include('multimedia.album.subir')
                       <br >
                       @if(!empty ($Galeria))
 
@@ -52,7 +52,7 @@
   </div>
 @include('Modal.Confirmacion0')
 @endsection
-@section('script')
+@section('scripts')
   <!-- Fine Uploader Thumbnails template w/ customization
   ====================================================================== -->
   <script>
