@@ -14,7 +14,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Mi empresa</div>
-                <a href="/PerfilEmpresa/{{ $perfilE->slug_empresa }}/Edit" class="btn btn-primary">Editar</a>
+                <a href="{{ route('perfil-empresa.edit', $perfilE->slug_empresa) }}" class="btn btn-primary">Editar</a>
 
                 <div style="float:right; width: auto; padding-right:10px;">
                     <button id="Tarjeta" class="btn btn-primary">Contacto</button>

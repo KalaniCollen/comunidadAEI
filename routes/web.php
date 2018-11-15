@@ -26,7 +26,7 @@ Route::get('/busqe',function(){
   return view('bus');
 });
 
-Route::get('/search','BuscadorController@search');
+Route::post('/search','BuscadorController@search')->name('search.search');
 
 Route::get('/respuesta',function(){
   return view('response');
@@ -46,33 +46,33 @@ Route::put('/MisLogrosEdit','MisLogrosController@update')->name('ActualizarLogro
 Route::get('/MisLogros/{slug_empresa}/Edit','MisLogrosController@edit');
 
 // Rutas perfil id_usuario
-Route::get('/Cuenta/{slug_usuario}','PerfilUsuarioController@Index');
-Route::get('/Cuenta/{slug_usuario}/Edit','PerfilUsuarioController@show');
-Route::get('/cambiarcorreo',function () {
-    if(Auth::check()){
-    return view('perfiles.Perfil.Correo');
-    }
-    return redirect('/');
-});
-Route::get('/cambiarpassword',function () {
-    if(Auth::check()){
-    return view('perfiles.Perfil.password');
-    }
-    return redirect('/');
-});
-Route::put('/Cuenta/Correo/Edit','PerfilUsuarioController@correo')->name('cambiarcorreo');
-Route::put('/Cuenta/password/Edit','PerfilUsuarioController@password')->name('cambiarpassword');
-Route::get('/Perfil','PerfilUsuarioController@store');
-Route::put('/PerfilEdit','PerfilUsuarioController@update')->name('ActualizarPerfil');
-Route::put('/PerfilEditar/{id}','PerfilUsuarioController@mostrar');
-Route::get('perfilUsuario/{id}','PerfilUsuarioController@show');
+// Route::get('/Cuenta/{slug_usuario}','PerfilUsuarioController@Index');
+// Route::get('/Cuenta/{slug_usuario}/Edit','PerfilUsuarioController@show');
+// Route::get('/cambiarcorreo',function () {
+//     if(Auth::check()){
+//         return view('perfiles.Perfil.Correo');
+//     }
+//     return redirect('/');
+// });
+// Route::get('/cambiarpassword',function () {
+//     if(Auth::check()){
+//         return view('perfiles.Perfil.password');
+//     }
+//     return redirect('/');
+// });
+// Route::put('/Cuenta/Correo/Edit','PerfilUsuarioController@correo')->name('cambiarcorreo');
+// Route::put('/Cuenta/password/Edit','PerfilUsuarioController@password')->name('cambiarpassword');
+// Route::get('/Perfil','PerfilUsuarioController@store');
+// Route::put('/PerfilEditar/{id}','PerfilUsuarioController@mostrar');
+// Route::put('/PerfilEdit','PerfilUsuarioController@update')->name('ActualizarPerfil');
+// Route::get('perfilUsuario/{id}','PerfilUsuarioController@show');
 
 // Rutas empresa
 // Route::get('/PerfilEmpresa/{slug_empresa}','PerfilEmpresaController@Index')->name('MiEmpresa');
-Route::put('/PerfilEmpresaUpdate','PerfilEmpresaController@update')->name('Actualizar');
-Route::put('/PerfilEEditar','PerfilEmpresaController@edit');
-Route::get('/PerfilEmpresa/{slug_empresa}/Edit','PerfilEmpresaController@show');
-Route::get('/Empresa/{slug_empresa}','PerfilEmpresaController@store')->name("VerEmpresa");
+// Route::put('/PerfilEmpresaUpdate','PerfilEmpresaController@update')->name('Actualizar');
+// Route::put('/PerfilEEditar','PerfilEmpresaController@edit');
+// Route::get('/PerfilEmpresa/{slug_empresa}/Edit','PerfilEmpresaController@show');
+// Route::get('/Empresa/{slug_empresa}','PerfilEmpresaController@store')->name("VerEmpresa");
 
 
 // Ruta a los albums
@@ -101,12 +101,14 @@ Route::resource('videos', 'VideosController');
 Route::get('/servicios/{servicio}/contact/', 'ServiciosController@contact')->name('servicios.contact');
 
 
-// Rutas para el catálogo de cada usuario
+// Rutas cada usuario
 Route::group(['middleware' => 'auth'], function() {
-    Route::get('catalogo', 'CatalogoController@index')->name('catalogo.index');
-    Route::get('perfil-empresa','PerfilEmpresaController@index')->name('perfil-empresa.index');
+    Route::resource('perfil-empresa','PerfilEmpresaController');
     Route::resource('servicios', 'ServiciosController', [ 'except' => ['index','show'] ]);
     Route::resource('productos', 'ProductosController', [ 'except' => ['index','show'] ]);
+    Route::resource('perfil-usuario', 'PerfilUsuarioController');
+    Route::get('catalogo', 'CatalogoController@index')->name('catalogo.index');
+    Route::get('perfil-usuario/update-email', 'PerfilUsuarioController@updateEmail')->name('perfil-usuario.update-email');
 });
 
 #########################################################
@@ -120,15 +122,21 @@ Route::resource('bolsa-trabajo', 'BolsaDeTrabajoController');
 Route::get('/servicios/{servicio}', 'ServiciosController@show')->name('servicios.show');
 Route::get('/productos/{producto}', 'ProductosController@show')->name('productos.show');
 
-// Api para los productos y servicios
+
+#########################################################
+#              RUTAS A API'S PÚBLICAS
+#########################################################
 Route::prefix('v1')->group(function () {
-    Route::get('/servicios', 'ServiciosController@index')->name('servicios.index');
-    Route::get('/productos', 'ProductosController@index')->name('productos.index');
+    Route::get('servicios', 'ServiciosController@index')->name('servicios.index');
+    Route::get('productos', 'ProductosController@index')->name('productos.index');
+    Route::get('noticias', 'NoticiasController@api')->name('noticias.api');
+    Route::get('bolsa-trabajo', 'BolsaDeTrabajoController@api')->name('bolsa-trabajo.api');
 });
 
-// Rutas para correos
+// Rutas para enviar correos
 Route::post('/afiliate', 'IndexController@sendMail')->name('afiliate');
 Route::post('/orden-servicio', 'ServiciosController@sendMail')->name('servicio.orden-servicio');
+
 
 Route::get('api', function() {
     return view('api');

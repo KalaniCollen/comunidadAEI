@@ -65,9 +65,8 @@
                             </div>
                         </div>
 
-
                         @include('Modal.tarjeta')
-                        <form class="form-horizontal" method="POST" action="{{ route('Actualizar') }}">
+                        <form class="form-horizontal" method="POST" action="{{ route('perfil-empresa.update', $perfilE->slug_empresa) }}">
                             {{ csrf_field() }}
                             {{ method_field('PUT') }}
                             <div class="form-group{{ $errors->has('nombre_empresa') ? ' has-error' : '' }}">
