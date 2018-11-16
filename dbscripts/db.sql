@@ -73,7 +73,7 @@ create table `evento` (
   `correo_electronico_organizador` varchar(191) collate utf8_spanish2_ci not null,
   `telefono_organizador` bigint(20) unsigned not null default '0',
   `estado_evento` tinyint(1) not null default '0',
-  `t_dia` tinyint(1) not null default '0',
+  `tipo` varchar(255),
   `color`varchar(255),
   `slug_evento` varchar(255) collate utf8_spanish2_ci not null,
   `id_usuario` int(10) unsigned default null,
