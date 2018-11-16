@@ -24,30 +24,30 @@ class PerfilUsuarioController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function Index($slug_empresa)
+    public function index()
     {
         $perfil = Perfil_Usuario::where('id_usuario',Auth::id())->first();
         $perfilE = Perfil_Empresa::where('id_usuario',Auth::id())->first();
         $User = User::where('id_usuario',Auth::id())->first();
-        return view('perfiles.Perfil.perfil',[
+        return view('perfiles.usuario.index',[
             'perfil'=>$perfil,
             'perfilE'=> $perfilE,
             'user' => $User
         ]);
     }
-    public function show($slug_empresa)
-    {
+
+    public function edit(PerfilRequest $request) {
         $perfil = Perfil_Usuario::where('id_usuario',Auth::id())->first();
         $perfilE = Perfil_Empresa::where('id_usuario',Auth::id())->first();
         $User = User::where('id_usuario',Auth::id())->first();
-        return view('perfiles.Perfil.EditarPerfil',[
+        return view('perfiles.usuario.edit',[
             'perfil'=>$perfil,
             'perfilE'=> $perfilE,
             'user' => $User
         ]);
         return view('form.campo')->with('dato', $request);
     }
-    // 'email' => ['required', 'email', Rule::unique('users')->ignore($user->id, 'user_id')]
+
     public function store(Request $request)
     {
 
@@ -56,37 +56,30 @@ class PerfilUsuarioController extends Controller
 
     public function correo(CorreoRequest $request)
     {
-        // dd($request->email);
         $correo=User::where('id_usuario',Auth::id())->first();
-        // $correo->fill($request)->ignore(Auth::id(),'id_usuario');
         $correo->email=$request->email;
         $correo->save();
-        // dd($correo);
         Auth::logout();
         return redirect("/");
     }
+
+
     public function password(passwordRequest $request)
     {
-        // dd($request->email);
         $password=User::where('id_usuario',Auth::id())->first();
-        // $correo->fill($request)->ignore(Auth::id(),'id_usuario');
-        // dd($request->mypassword);
         if(Hash::check($request->mypassword,$password->password))
         {
-
             $password->password=bcrypt($request->password);
             $password->save();
-            // dd($correo);
             Auth::logout();
             return redirect("/");
         }
         $errors=["mypassword"=>"La contraseña  es incorrecta"];
         return redirect('/cambiarpassword')->withErrors($errors);
-
     }
-    public function update(CuentaRequest $request)
-    {
 
+    public function update(PerfilRequest $request, Perfil_Usuario $usuario)
+    {
         $User=User::where('id_usuario',Auth::id())->first();
         $User->names=Str::upper($request->name);
         $User->apellido_paterno=Str::upper($request->apellido_materno);
@@ -99,7 +92,14 @@ class PerfilUsuarioController extends Controller
         $Perfil->fecha_nacimiento=$request->fecha_nacimiento;
         $Perfil->slug_usuario=$slug;
         $Perfil->save();
-        return redirect('Cuenta/'.$slug);
+        return redirect()->route('perfil-usuario.index');
+    }
+
+    public function updateEmail() {
+        if(Auth::check()){
+            return view('perfiles.Perfil.Correo');
+        }
+        return redirect('/');
     }
 
     public function mostrar(Request $request)
