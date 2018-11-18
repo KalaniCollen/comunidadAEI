@@ -45,6 +45,7 @@ Route::post('/AgregarEvento','EventoController@create')->name('agregarevento');
 Route::get('/calendario','EventoController@store');
 Route::get('cargaEventos{id?}','EventoController@select');
 Route::get('evento/{slug}','EventoController@show');
+Route::get('/evento/registro/{id}','RegistroEventoController@create');
 
 // Logros
 Route::get('/MisLogros/{slug_empresa}','MisLogrosController@Index');
