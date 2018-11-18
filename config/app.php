@@ -167,6 +167,8 @@ return [
         Laraveles\Spanish\SpanishServiceProvider::class,
         Cviebrock\EloquentSluggable\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        App\Providers\FormServiceProvider::class,
+
         /*
          * Package Service Providers...
          */
