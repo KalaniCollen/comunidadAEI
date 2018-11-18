@@ -40,8 +40,11 @@ Route::get('/imagen', function () {
 
 Route::get('/Admin','AdminController@index');
 
-Route::get('/eventos','EventoController@index');
-Route::post('/AgregarEvento','EventoController@create')->name('agregareveto');
+Route::get('/solicitarevento','EventoController@index');
+Route::post('/AgregarEvento','EventoController@create')->name('agregarevento');
+Route::get('/calendario','EventoController@store');
+Route::get('cargaEventos{id?}','EventoController@select');
+Route::get('evento/{slug}','EventoController@show');
 
 // Logros
 Route::get('/MisLogros/{slug_empresa}','MisLogrosController@Index');
