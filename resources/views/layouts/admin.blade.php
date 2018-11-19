@@ -66,7 +66,11 @@
                     </div> --}}
 
                     <div class="pull-right">
-                      <a href="logout" class="btn btn-default btn-flat">Salir</a>
+
+                      <a href="{{ route('logout') }}" class="btn btn-default btn-flat" onclick="event.preventDefault();document.getElementById('form-logout').submit();">Salir</a>
+                      <form action="{{ route('logout') }}" method="post" style="display: none;" id="form-logout">
+                          {{ csrf_field() }}
+                      </form>
                     </div>
                   </li>
                 </ul>
@@ -127,7 +131,7 @@
                           </li>
                           <li class="treeview">
                                 <a href="#">
-                                  <i class="fa fa-users"></i> <span>Empresas</span> <i class="fa fa-angle-left pull-right"></i>
+                                  <i class="fa fa-building"></i> <span>Empresas</span> <i class="fa fa-angle-left pull-right"></i>
                                 </a>
                                 <ul class="treeview-menu">
                                     <li class="active"><a href="javascript:void(0);" onclick="cargarempresas(1,1);" ><i class="fa fa-list-alt"></i>Listar</a></li>
@@ -142,7 +146,7 @@
                   <i class="fa fa-newspaper-o"></i> <span>Eventos</span><i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                  <li class="active"><a  href="{{ url('nuevo_evento') }}{{ Auth::user()->id_usuario }}"> <i class="fa fa-share-alt"></i>Crear evento</a></li>
+                  <li class="active"><a  href="{{ url('nuevo_evento') }}"> <i class="fa fa-share-alt"></i>Crear evento</a></li>
                   <li class="active"><a href="{{url('lista_evento')}}"><i class="fa fa-edit"></i>Lista de eventos</a></li>
                 </ul>
               </li>

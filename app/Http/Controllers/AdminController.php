@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use App\Perfil_Usuario;
 use Illuminate\Support\Str as Str;
+use Carbon\Carbon;
 
 
 
@@ -168,12 +169,17 @@ public function nuevo_evento(){
     return view('Admin.eventos.crear');
 }
 public function crear_evento(Request $request){
+    // dd($request);
+$fecha_inicio=new Carbon(str_replace('/','-',$request->from));
+$fecha_inicio->format('Y-m-d H:i:s');
+$fecha_final=new Carbon(str_replace('/','-',$request->to));
+$fecha_final->format('Y-m-d H:i:s');
 
             $Evento=Evento::create([
               'nombre_evento'=>$request->title,
               'descripcion_evento'=>$request->descipcion,
-              'fecha_inicio'=>$request->from,
-              'fecha_final'=>$request->to,
+              'fecha_inicio'=> $fecha_inicio,
+              'fecha_final'=>$fecha_final,
               'tipo'=>$request->tipo,
               'estado_evento'=>"1",
               'direccion_evento'=>$request->direccion_evento,
@@ -188,7 +194,7 @@ public function crear_evento(Request $request){
               'slug_evento'=>Str::slug($request->title.' '.Auth::id()),
               'id_usuario'=>Auth::id(),
           ]);
-return redirect('/Admin');
+return redirect()->route('lista_evento');
 }
 public function deleteUser($id){
      DB::statement('SET FOREIGN_KEY_CHECKS=0');
@@ -223,9 +229,8 @@ foreach ($productos as $key => $producto) {
 }
 
 public function lista_evento(){
-    $date =new \Carbon\Carbon(time());
-
-    $eventos=Evento::where('fecha_inicio','>',$date->format('d-m-y'))->get();
+    $date =Carbon::now();
+    $eventos=Evento::whereMonth('fecha_inicio','>=',$date->format('m'))->whereDay('fecha_inicio','>=',$date->format('d'))->orderBy('fecha_inicio', 'asc')->get();
 
 return view('Admin.eventos.lista_eventos')->with('eventos',$eventos);
 }
