@@ -17,11 +17,11 @@ class EventoController extends Controller
     }
 
     public function create(Request $request){
-// dd($request);
+
                 $Evento=Evento::create([
                   'nombre_evento'=>$request->title,
                   'descripcion_evento'=>$request->descipcion,
-                  'fecha_inicio'=>$request->form,
+                  'fecha_inicio'=>$request->from,
                   'fecha_final'=>$request->to,
                   'tipo'=>$request->tipo,
                   'direccion_evento'=>$request->direccion_evento,
