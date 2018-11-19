@@ -47,7 +47,10 @@ Route::get('cargaEventos{id?}','EventoController@select');
 Route::get('evento/{slug}','EventoController@show');
 Route::get('/evento/registro/{id}','RegistroEventoController@create');
 Route::get('/evento/cancelar/registro/{id}','RegistroEventoController@destroy');
-
+Route::get('/evento/registro/invitado/{id}',function ($id) {
+    return view('eventos.invitado')->with('id_evento', $id);
+});
+Route::post('/evento/registrar/invitado/{id}','RegistroEventoController@invitar')->name("registrar.invitado");
 
 // Logros
 Route::get('/MisLogros/{slug_empresa}','MisLogrosController@Index');
