@@ -6,7 +6,7 @@
 <div class="box box-primary">
 
 <div class="box-header">
- <h4 class="box-title">Lista de Usuarios</h4>
+ <h4 class="box-title">Lista de Eventos</h4>
 
 </div>
 
