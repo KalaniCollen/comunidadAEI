@@ -34,6 +34,8 @@ class User extends Authenticatable
         'notificacion_correo',
         'slug_usuario',
         'slug_empresa',
+        'tipo_usuario',
+        'status',
     ];
 
     /**

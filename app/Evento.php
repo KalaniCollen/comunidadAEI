@@ -26,5 +26,6 @@ class Evento extends Model
         'slug_evento',
         'id_usuario',
         'direccion_evento',
+        'estado_evento',
     ];
 }

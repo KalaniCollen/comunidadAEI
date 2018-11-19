@@ -10,13 +10,12 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">{{$evento->nombre_evento  }}</div>
-                    <a href="cancelar/registro/{{$evento->id_evento  }}" class="btn btn-primary">Registrar invitado</a>
+                    <a href="registro/invitado/{{$evento->id_evento  }}" class="btn btn-primary">Registrar invitado</a>
                     @if(empty($asistencia))
                     <a href="registro/{{$evento->id_evento  }}" class="btn btn-primary">Registarse</a>
                 @else Ya estas registrado para este evento
                     <a href="cancelar/registro/{{$evento->id_evento  }}" class="btn btn-primary">Cancelar</a>
                 @endif
-
                     @if (session('status'))
                         <div class="alert alert-success">
                             {{ session('status') }}

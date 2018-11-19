@@ -326,7 +326,6 @@ alter table `bolsa_trabajo`
 --
 alter table `evento`
   add primary key (`id_evento`),
-  add unique key `evento_correo_electronico_organizador_unique` (`correo_electronico_organizador`),
   add key `evento_id_usuario_foreign` (`id_usuario`);
 
 --
