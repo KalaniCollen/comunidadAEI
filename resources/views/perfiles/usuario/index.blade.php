@@ -1,6 +1,6 @@
 @extends('layouts.head')
 @section('styles')
-<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
+{{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" /> --}}
 
 <link rel="stylesheet" type="text/css" href="{{ asset ('css/css.css')}}"/>
 <link rel="stylesheet" type="text/css" href="{{ asset ('css/privacity.css')}}"/>
@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')
-<div class="container">
+{{-- <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -133,7 +133,8 @@
         </div>
     </div>
 </div>
-</div>
+</div> --}}
+@include('perfiles.layout', ['perfil' => $perfil])
 
 
 @endsection

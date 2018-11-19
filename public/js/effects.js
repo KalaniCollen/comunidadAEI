@@ -9,18 +9,12 @@ iconMenu[0].addEventListener('click', e => {
     document.getElementsByClassName('menu__wrap')[0].classList.toggle('menu__wrap--open');
 });
 
-// if (account[0] != undefined) {
-//     account[0].addEventListener('click', function(e) {
-//         document.getElementsByClassName('account')[0].classList.toggle('account--open');
+// [].forEach.call(links, function(link) {
+//     link.addEventListener('click', e => {
+//         iconMenu[0].classList.toggle('hamburger--open');
+//         document.getElementsByClassName('menu__wrap')[0].classList.toggle('menu__wrap--open');
 //     });
-// }
-
-[].forEach.call(links, function(link) {
-    link.addEventListener('click', e => {
-        iconMenu[0].classList.toggle('hamburger--open');
-        document.getElementsByClassName('menu__wrap')[0].classList.toggle('menu__wrap--open');
-    });
-});
+// });
 
 function previewImage(input, img) {
     if(input.files && input.files[0]) {
@@ -31,18 +25,6 @@ function previewImage(input, img) {
             document.getElementById(img).src = el.target.result;
         };
         reader.readAsDataURL(input.files[0]);
-    }
-}
-
-function previewImages(input) {
-    if(input.files && input.files[0]) {
-        // DEBUG:
-        // console.log(input.files[0].name);
-        let reader = new FileReader();
-        reader.onload = function(el) {
-            return el.target.result;
-        };
-        // return reader.readAsDataURL(input.files[0]);
     }
 }
 
@@ -65,6 +47,28 @@ btnCloseSearch.addEventListener('click', e =>  {
 });
 
 function submenu(element) {
-    event.preventDefault();
     element.lastChild.classList.toggle('submenu--open');
+}
+
+/*
+ * Funciones GLOBALES
+ */
+
+// Función para usar ajax
+function ajaxData(url = '', type = 'POST', token = '' , data = {}, success) {
+    $.ajax(url, {
+        headers: { 'X-CSRF-TOKEN': token },
+        type: type,
+        dataType: 'json',
+        data: data
+    }).done(success());
+}
+
+function deleteItem(form) {
+    event.preventDefault();
+    if (confirm("¿Seguro que desdea eliminar este item?")) {
+        form.submit();
+    } else {
+        return;
+    }
 }

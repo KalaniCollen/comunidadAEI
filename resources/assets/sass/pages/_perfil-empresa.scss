@@ -1,0 +1,28 @@
+.profile {
+    min-height: 100vh;
+    padding-top: getSpace(big);
+
+    &__header {
+        @include d-flex($dir: column, $jc: center, $ai: center);
+    }
+
+    &__name,
+    &__pin {
+        width: 100%;
+        text-align: center;
+        margin-bottom: getSpace(min);
+    }
+
+    &__name {
+        font-size: getFontSize(h2);
+    }
+
+    &__pin {
+        font-size: getFontSize(h5);
+    }
+
+    &__picture {
+        width: 160px;
+        height: 160px;
+    }
+}

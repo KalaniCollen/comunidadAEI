@@ -18,13 +18,9 @@ class ProductosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $productos = Productos::all();
-        $productos->each(function ($producto) {
-            $user = $producto->user;
-        });
-        return response($productos->jsonSerialize(), Response::HTTP_OK);
+        //
     }
 
     /**
@@ -54,8 +50,8 @@ class ProductosController extends Controller
         } else {
             $producto->imagen = 'defaultProduct.jpg';
         }
-        $producto->id_usuario = Auth::user()->id_usuario;
-        $producto->slug = Str::slug( $producto->nombre . ' ' . Auth::user()->id );
+        $producto->id_empresa = Auth::user()->empresa->id_empresa;
+        $producto->slug = Str::slug( $producto->nombre . $producto->id_empresa );
         $producto->save();
 
         return redirect()->route('home');
@@ -99,7 +95,7 @@ class ProductosController extends Controller
             $imagen = Storage::putFile('public/catalogos_img', $request->file('imagen'));
             $producto->imagen = basename($imagen);
         }
-        $producto->id_usuario = Auth::user()->id_usuario;
+        $producto->id_empresa = Auth::user()->empresa->id_empresa;
         $producto->slug = Str::slug($producto->nombre);
         $producto->save();
 
@@ -116,5 +112,13 @@ class ProductosController extends Controller
     {
         $producto = Productos::where('slug', $slug)->delete();
         return redirect()->route('catalogo.index');
+    }
+
+    public function api(Request $request) {
+        $productos = Productos::all();
+        $productos->each(function ($producto) {
+            $producto->empresa;
+        });
+        return response()->json($productos, Response::HTTP_OK);
     }
 }

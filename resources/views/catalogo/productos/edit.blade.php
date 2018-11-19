@@ -1,23 +1,14 @@
 @extends('layouts.head')
 @section('content')
-    <section class="servicios">
-        <form action="{{ route('productos.update', $producto->slug) }}" method="post" enctype="multipart/form-data" class="servicios__form" accept="image/*">
-            {{ method_field('PUT') }}
-            {{ csrf_field() }}
-            @component('catalogo.productos.fragments.form', [
-                'imagen' => $producto->imagen,
-                'nombre' => $producto->nombre,
-                'costo' => $producto->costo,
-                'descripcion' => $producto->descripcion,
-                'tipo' => $producto->tipo,
-                'descuento' => $producto->descuento,
-                'btnTitle' => 'Actualizar Producto'
-            ])
-            @endcomponent
-        </form>
+<section class="section">
+    <h1 class="section__title">Actualizar Producto</h1>
 
-        <div class="card">
-            <img src="{{ asset( 'storage/catalogos_img/' . $producto->imagen) }}" alt="">
-        </div>
-    </section>
+    {!! Form::open(['route' => ['productos.update', $producto->slug], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
+        @include('catalogo.productos.fragments.form')
+        {!! Form::submit('Actualizar producto', ['class' => 'btn btn--accent']) !!}
+    {!! Form::close() !!}
+
+    <img src="{{ asset("storage/catalogos_img/{$producto->imagen }") }}" alt="" id="js-img-preview">
+
+</section>
 @endsection

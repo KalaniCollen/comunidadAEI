@@ -54,8 +54,6 @@
     background: $ghost-color;
     color: $text-color;
     font-size: 1.6rem;
-    bottom: 40px;
-    right: 20px;
     cursor: pointer;
     @include d-flex($ai: center, $jc: center);
 

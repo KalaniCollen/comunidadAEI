@@ -12,19 +12,17 @@
       <strong id="error"></strong>
     </div>
 
-
-        <form role="form">
-          <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
+        <form role="form" method="post">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}" id="js-album-token">
           <input type="hidden" id="id">
-            <div class="form-group">
-                <label for="inputName">nombre del album</label>
-                <input type="text" class="form-control" id="name" placeholder="Album"/>
+            <div class="group">
+                <label for="js-album-name" class="label">Nombre del album</label>
+                <input type="text" class="input" id="js-album-name" placeholder="Ej. Mi album"/>
             </div>
-
+            <button type="button" class="btn btn--accent"  id="js-album-create">Crear</button>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary"  id="actualizar">Actualizar</button>
 
       {{-- {!!link_to('#', $title='Actualizar', $attributes = ['id'=>'actualizar', 'class'=>'btn btn-primary'])!!} --}}
       </div>

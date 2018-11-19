@@ -8,8 +8,7 @@
 
 @endsection
 @section('content')
-
-<div class="container">
+{{-- <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -34,13 +33,10 @@
                     </div>
                     @include('Modal.tarjeta')
                 </div>
-
-
-
-                <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
-                <input type="hidden" id="id" value="{{ auth()->user()->id_usuario }}">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" id="js-perfil-token">
+                <input type="hidden" id="js-perfil-slug" value="{{ $perfilE->slug_empresa }}">
                 <div>
-                    {{-- Nombre --}}
+                    Nombre
                     <div class="row">
                         <div class="col-md-4 col-sm-6" style="text-align:left;left:100px">
                             &nbsp;<label>Nombre: </label>
@@ -49,7 +45,7 @@
                             <label>{{ $perfilE->nombre_empresa }}</label>
                         </div>
                     </div>
-                    {{-- Tipo de empresa --}}
+                    Tipo de empresa
                     <div class="row">
                         <div class="col-md-6 col-sm-6" style="text-align:left;left:100px">
                             &nbsp;<label>Tipo:</label>
@@ -111,7 +107,7 @@
                             </div>
                         </div>
                         @endif
-                        {{-- Telefono --}}
+                        Telefono
                         <div class="row">
                             <div class="col-md-6 col-sm-6" style="text-align:left;left:100px">
                                 &nbsp;<label>Telefono Fijo:</p> </label>
@@ -120,7 +116,7 @@
                                 <label>{{ $perfilE->telefono_fijo_empresa }}</label>
                             </div>
                         </div>
-                        {{-- Correo --}}
+                        Correo
                         <div class="row">
                             <div class="col-md-6 col-sm-6" style="text-align:left;left:100px">
                                 &nbsp;<label>Correo Electronico: </label>
@@ -129,7 +125,7 @@
                                 <label>{{ $perfilE->correo_electronico_empresa }}</label>
                             </div>
                         </div>
-                        {{-- Direccion --}}
+                        Direccion
                         <div class="row">
                             <div class="col-md-6 col-sm-6" style="text-align:left;left:100px">
                                 &nbsp;<label>Direccion:</label>
@@ -182,7 +178,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 @endsection
 @section('scripts')

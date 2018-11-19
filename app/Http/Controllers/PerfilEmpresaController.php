@@ -26,7 +26,7 @@ class PerfilEmpresaController extends Controller
     {
         $perfilEmpresa = Auth::user()->empresa()->first();
             $Perfil=Perfil_Usuario::where('id_usuario',Auth::id())->first();
-        return view('perfiles.Empresa.PerfilEmpresa')->with([
+        return view('perfiles.empresa.index')->with([
             'perfilE'=>$perfilEmpresa,
             'perfil'=>$Perfil]);
     }

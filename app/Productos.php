@@ -16,7 +16,7 @@ class Productos extends Model
         'descuento',
         'tipo',
         'slug',
-        'id_usuario'
+        'id_empresa'
     ];
 
     protected $hidden = [
@@ -34,10 +34,10 @@ class Productos extends Model
     }
 
     /**
-     * Get the user that published products.
+     * Get the empresa that published products.
      */
-    public function user()
+    public function empresa()
     {
-        return $this->belongsTo('App\User', 'id_usuario');
+        return $this->belongsTo('App\Perfil_Empresa', 'id_empresa');
     }
 }

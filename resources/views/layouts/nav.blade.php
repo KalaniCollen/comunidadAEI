@@ -34,13 +34,13 @@
                         @endphp
                         @each('components.item-menu', $links, 'link')
                         <li class="nav__item" onclick="submenu(this)">
-                            <a href="" class="nav__link">Multimedia</a>
+                            <p class="nav__link">Multimedia</p>
                             <ul class="submenu">
                                 <li class="submenu__item">
-                                    <a href="#" class="submenu__link"><i class="account__icon ion-ios-camera"></i>Galería</a>
+                                    <a href="{{ route('album.index') }}" class="submenu__link"><i class="account__icon ion-ios-camera"></i>Galería</a>
                                 </li>
                                 <li class="submenu__item">
-                                    <a href="#" class="submenu__link"><i class="account__icon ion-ios-videocam"></i>Videos</a>
+                                    <a href="{{ route('videos.index') }}" class="submenu__link"><i class="account__icon ion-ios-videocam"></i>Videos</a>
                                 </li>
                             </ul>
                         </li>
@@ -51,10 +51,10 @@
                             </div>
                             <ul class="submenu">
                                 <li class="submenu__item">
-                                    <a href="#" class="submenu__link"><i class="account__icon ion-ios-settings"></i>Mi Cuenta</a>
+                                    <a href="{{ route('perfil-usuario.index') }}" class="submenu__link"><i class="account__icon ion-ios-settings"></i>Mi Cuenta</a>
                                 </li>
                                 <li class="submenu__item">
-                                    <a href="#" class="submenu__link"><i class="account__icon ion-ios-business"></i>Mi Empresa</a>
+                                    <a href="{{ route('perfil-empresa.index') }}" class="submenu__link"><i class="account__icon ion-ios-business"></i>Mi Empresa</a>
                                 </li>
                                 <li class="submenu__item">
                                     <a href="{{ route('logout') }}" class="submenu__link" onclick="event.preventDefault();document.getElementById('form-logout').submit();"><i class="account__icon ion-ios-log-out"></i>Cerrar Sesión</a>
@@ -86,6 +86,29 @@
                 </ul>
             </nav>
         </div>
+        {{-- @if (Auth::check())
+            <div class="menu__user">
+                <div class="user">
+                    <img src="{{ Auth::user()->perfil->imagen }}" alt="" class="user__picture user__picture--big">
+                    <p class="user__username">{{ Auth::user()->name }}</p>
+                </div>
+                <div class="account">
+                    <a href="{{ route('perfil-usuario.index') }}" class="account__configure"><i class="account__icon ion-ios-cog"></i>Mi Cuenta</a>
+
+                    <a href="{{ route('perfil-empresa.index') }}" class="account__configure"><i class="account__icon ion-ios-business"></i>Mi Empresa</a>
+
+                    <a href="{{ route('logout') }}" class="account__logout" onclick="event.preventDefault();document.getElementById('form-logout').submit();"><i class="account__icon ion-ios-log-out"></i>Cerrar Sesión</a>
+                    <form action="{{ route('logout') }}" method="post" style="display: none;" id="form-logout">
+                        {{ csrf_field() }}
+                    </form>
+                </div>
+            </div>
+        @else
+            <div class="menu__user">
+                <a href="{{ route('login') }}" class="btn btn--accent">Iniciar Sesión</a>
+                <a href="{{ route('register') }}" class="btn">Registrarse</a>
+            </div>
+        @endif --}}
     </div>
 
     <div class="menu__hamburger">

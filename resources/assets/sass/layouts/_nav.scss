@@ -190,18 +190,26 @@
         @include d-flex($flex: inline-flex);
     }
 
-    &__list {
+    &__list,
+    .submenu__list {
         width: 100%;
         list-style-type: none;
+        @include d-flex($dir: column);
     }
 
-    &__item {
+    &__item,
+    .submenu__item {
         user-select: none;
         border-bottom: 1px solid $gray-color-l;
         position: relative;
     }
 
-    &__link {
+    &__item:last-child {
+        order: -1;
+    }
+
+    &__link,
+    .submenu__link {
         width: 100%;
         height: 100%;
         color: #fff;
@@ -210,6 +218,10 @@
         font-size: getFontSize(h6);
         @include roboto(b);
         @include d-flex($flex: inline-flex);
+    }
+
+    &:last-child {
+        order: -6;
     }
 }
 
@@ -236,39 +248,39 @@
 }
 
 .submenu {
-    top: to-rem(60px);
-    left: 0;
-    right: 0;
+    // top: to-rem(60px);
+    // left: 0;
+    // right: 0;
     list-style-type: none;
-    position: absolute;
-    width: 150%;
-    box-shadow: 0 3px 6px rgba($main-color, 0.6);
-    background: #fff;
-    border-radius: $borde-material;
-    overflow: hidden;
+    // position: absolute;
+    // width: 150%;
+    // box-shadow: 0 3px 6px rgba($main-color, 0.6);
+    // background: #fff;
+    // border-radius: $borde-material;
+    // overflow: hidden;
     @include hidden;
 
-    &__item {
-        padding: getSpace(min) getSpace(med);
-        @include d-flex($ai:center);
-        &:hover {
-            background: $ghost-color-l;
-        }
-    }
-
-    &__link {
-        width: 100%;
-        height: 100%;
-        text-decoration: none;
-        font-size: getFontSize(h6);
-        @include d-flex($ai: center);
-        @include roboto(b);
-    }
-
+    // &__item {
+    //     padding: getSpace(min) getSpace(med);
+    //     @include d-flex($ai:center);
+    //     &:hover {
+    //         background: $ghost-color-l;
+    //     }
+    // }
+    //
+    // &__link {
+    //     width: 100%;
+    //     height: 100%;
+    //     text-decoration: none;
+    //     font-size: getFontSize(h6);
+    //     @include d-flex($ai: center);
+    //     @include roboto(b);
+    // }
+    //
     &--open {
         @include hidden(visible);
         display: block;
-        animation: tick 0.3s ease;
+        // animation: tick 0.3s ease;
     }
 }
 
