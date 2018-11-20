@@ -16,6 +16,9 @@ Route::get('/', 'IndexController@index')->name('/');
 
 Auth::routes();
 
+Route::get('/politicas',function(){
+    return view('politicas');
+});
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/busq',function(){
