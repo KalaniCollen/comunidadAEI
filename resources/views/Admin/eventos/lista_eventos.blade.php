@@ -6,7 +6,7 @@
 <div class="box box-primary">
 
 <div class="box-header">
- <h4 class="box-title">Lista de Usuarios</h4>
+ <h4 class="box-title">Lista de Eventos</h4>
 
 </div>
 
@@ -39,7 +39,7 @@
     <td>{{ $evento->fecha_final }}</td>
     <td>{{ $evento->costo_asociado }}</td>
     <td>{{ $evento->costo_no_asociado }}</td>
-    <td>{{ $evento->direccion }}</td>
+    <td>{{ $evento->direccion_evento }}</td>
     <td>{{ $evento->created_at}}</td>
     <td>
     <a href="{{url('eliminar_evento/'.$evento->id_evento)  }}" class="btn btn-lg btn-danger glyphicon glyphicon-trash btn-xs" ></a>

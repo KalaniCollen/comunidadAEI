@@ -3,10 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Gestor Academico | Panel Control</title>
+
+    <title>Comunidad AEI | Panel Control</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
+ <link rel="shortcut icon" href="img/aei.png" />
      {!! Html::style('css/bootstrap.min.css') !!}<!-- Bootstrap 3.3.5 -->
      {!! Html::style('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css') !!}<!-- Font Awesome -->
      {!! Html::style('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css') !!}<!-- Ionicons -->
@@ -25,7 +26,7 @@
 
       <header class="main-header">
         <!-- Logo -->
-        <a href="home" class="logo">
+        <a href="/Admin" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini">Administrador</span>
           <!-- logo for regular state and mobile devices -->
@@ -66,7 +67,11 @@
                     </div> --}}
 
                     <div class="pull-right">
-                      <a href="logout" class="btn btn-default btn-flat">Salir</a>
+
+                      <a href="{{ route('logout') }}" class="btn btn-default btn-flat" onclick="event.preventDefault();document.getElementById('form-logout').submit();">Salir</a>
+                      <form action="{{ route('logout') }}" method="post" style="display: none;" id="form-logout">
+                          {{ csrf_field() }}
+                      </form>
                     </div>
                   </li>
                 </ul>
@@ -127,7 +132,7 @@
                           </li>
                           <li class="treeview">
                                 <a href="#">
-                                  <i class="fa fa-users"></i> <span>Empresas</span> <i class="fa fa-angle-left pull-right"></i>
+                                  <i class="fa fa-building"></i> <span>Empresas</span> <i class="fa fa-angle-left pull-right"></i>
                                 </a>
                                 <ul class="treeview-menu">
                                     <li class="active"><a href="javascript:void(0);" onclick="cargarempresas(1,1);" ><i class="fa fa-list-alt"></i>Listar</a></li>
@@ -142,7 +147,7 @@
                   <i class="fa fa-newspaper-o"></i> <span>Eventos</span><i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                  <li class="active"><a  href="{{ url('nuevo_evento') }}{{ Auth::user()->id_usuario }}"> <i class="fa fa-share-alt"></i>Crear evento</a></li>
+                  <li class="active"><a  href="{{ url('nuevo_evento') }}"> <i class="fa fa-share-alt"></i>Crear evento</a></li>
                   <li class="active"><a href="{{url('lista_evento')}}"><i class="fa fa-edit"></i>Lista de eventos</a></li>
                 </ul>
               </li>

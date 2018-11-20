@@ -2,7 +2,7 @@
 <div class="box box-primary">
 
 <div class="box-header">
- <h4 class="box-title">Lista de Usuarios</h4>
+ <h4 class="box-title">Lista de Empresas</h4>
 
 </div>
 

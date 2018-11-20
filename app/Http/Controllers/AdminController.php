@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use App\Perfil_Usuario;
 use Illuminate\Support\Str as Str;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 
 
@@ -86,7 +88,7 @@ class AdminController extends Controller
         $usuario->apellido_materno=$data["last_names"];
 		//$usuario->rol=$data["rol"];
         $usuario->slug_usuario=Str::slug( $data["name"]." ".$data["last_name"]." ".$data["last_names"]." ".$idUsuario);
-
+        $usuario->notificacion_correo='1';
 
 		$resul= $usuario->save();
 
@@ -132,7 +134,7 @@ $nombre=Input::get('name');
         'confirmation_code'=>$code,
         'status'=>'1',
                 'tipo_usuario'=>Input::get('type'),
-        'notificacion_correo' => Input::get('Notificacion'),
+        'notificacion_correo' => '1',
     ]);
     $useru=User::where('id_usuario',$user->id_usuario)->first();
     $useru->slug_usuario=Str::slug( Str::upper($nombre).' '.Str::upper(Input::get('apellido_paterno')).
@@ -168,12 +170,17 @@ public function nuevo_evento(){
     return view('Admin.eventos.crear');
 }
 public function crear_evento(Request $request){
+    // dd($request);
+$fecha_inicio=new Carbon(str_replace('/','-',$request->from));
+$fecha_inicio->format('Y-m-d H:i:s');
+$fecha_final=new Carbon(str_replace('/','-',$request->to));
+$fecha_final->format('Y-m-d H:i:s');
 
             $Evento=Evento::create([
               'nombre_evento'=>$request->title,
               'descripcion_evento'=>$request->descipcion,
-              'fecha_inicio'=>$request->from,
-              'fecha_final'=>$request->to,
+              'fecha_inicio'=> $fecha_inicio,
+              'fecha_final'=>$fecha_final,
               'tipo'=>$request->tipo,
               'estado_evento'=>"1",
               'direccion_evento'=>$request->direccion_evento,
@@ -188,7 +195,12 @@ public function crear_evento(Request $request){
               'slug_evento'=>Str::slug($request->title.' '.Auth::id()),
               'id_usuario'=>Auth::id(),
           ]);
-return redirect('/Admin');
+
+          $correos=User::where('notificacion_correo','1')->lists('email');
+          $dates=array('nombre' =>'AEI');
+          $this->Email($dates,$correos);
+
+return redirect()->route('lista_evento');
 }
 public function deleteUser($id){
      DB::statement('SET FOREIGN_KEY_CHECKS=0');
@@ -223,9 +235,8 @@ foreach ($productos as $key => $producto) {
 }
 
 public function lista_evento(){
-    $date =new \Carbon\Carbon(time());
-
-    $eventos=Evento::where('fecha_inicio','>',$date->format('d-m-y'))->get();
+    $date =Carbon::now();
+    $eventos=Evento::whereMonth('fecha_inicio','>=',$date->format('m'))->whereDay('fecha_inicio','>=',$date->format('d'))->orderBy('fecha_inicio', 'asc')->get();
 
 return view('Admin.eventos.lista_eventos')->with('eventos',$eventos);
 }
@@ -240,8 +251,26 @@ public function verificar_evento($id){
 
     $evento= Evento::where('id_evento',$id)->first();
     $evento->estado_evento="1";
+    $user=User::where('id_usuario',$evento->id_usuario)->first();
+    $correos=User::where('notificacion_correo','1')->pluck('email');
+    $dates=array('nombre' =>$user->name);
+
+    $this->Email($dates,$correos);
     $evento->save();
 
     return redirect()->route('lista_evento');
 }
+function Email($dates,$email){
+
+      Mail::send('emails.evento',$dates,function($message) use (&$email){
+foreach ($email as $key => $email) {
+    $message->subject('Nuevo Evento!');
+    $message->to($email);
+    $message->from('kalanicollen1410@gmail.com','AEI');
+}
+
+
+
+      });
+    }
 }
