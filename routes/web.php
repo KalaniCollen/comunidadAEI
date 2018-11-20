@@ -62,14 +62,15 @@ Route::get('verificar_evento/{id}', 'AdminController@verificar_evento')->name('v
 
 
 
+Route::resource('evento', 'EventoController');
 
 Route::get('/solicitarevento','EventoController@index');
 Route::post('/AgregarEvento','EventoController@create')->name('agregarevento');
 Route::get('/calendario','EventoController@store');
 Route::get('cargaEventos{id?}','EventoController@select');
-Route::get('evento/{slug}','EventoController@show');
-Route::get('/evento/registro/{id}','RegistroEventoController@create');
-Route::get('/evento/cancelar/registro/{id}','RegistroEventoController@destroy');
+// Route::get('evento/{slug}','EventoController@show');
+// Route::get('/evento/registro/{id}','RegistroEventoController@create');
+// Route::get('/evento/cancelar/registro/{id}','RegistroEventoController@destroy');
 Route::get('/evento/registro/invitado/{id}',function ($id) {
     return view('eventos.invitado')->with('id_evento', $id);
 });
@@ -131,6 +132,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('perfil-empresa','PerfilEmpresaController');
     Route::resource('perfil-usuario', 'PerfilUsuarioController');
     Route::resource('album', 'AlbumController');
+    Route::post('album/{image}', 'AlbumController@addImage')->name('album.add-image');
     Route::resource('videos', 'VideosController');
     Route::resource('servicios', 'ServiciosController', [ 'except' => ['index','show'] ]);
     Route::resource('productos', 'ProductosController', [ 'except' => ['index','show'] ]);
