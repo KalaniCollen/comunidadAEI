@@ -1,9 +1,10 @@
 #app {
-    min-height: 100%;
+    min-height: 100vh;
 }
 
-.container {
+.container-fluid {
     min-height: 100vh;
+    padding: 0;
     position: relative;
 }
 
@@ -12,7 +13,13 @@
     padding: getSpace(min);
     position: relative;
 
-    &__title {
+    &__header {
+        @include d-flex($dir: column, $ai: center);
+        margin-bottom: 1.5vh;
+    }
+
+    &__title,
+    &__subtitle {
         text-align: center;
         margin-bottom: 1.5vh;
         @include montserrat(l);
@@ -36,6 +43,12 @@
 
         &__title {
             text-align: left;
+        }
+
+        &__header {
+            flex-direction: row;
+            justify-content: space-between;
+            margin-bottom: 1.5vh;
         }
 
         &--cards {
@@ -63,130 +76,3 @@
 
     }
 }
-
-.decoration {
-    position: relative;
-    background: url('/img/login-goal.jpg') no-repeat center / cover;
-    z-index: 1;
-    height: 38vh;
-    @include d-flex($dir: column, $ai: center, $jc: center);
-
-    &::before {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        background: rgba($main-color, 0.8);
-    }
-
-    &__content {
-        padding: getSpace(med);
-    }
-
-    &__text,
-    &__title {
-        color: #fff;
-    }
-
-    &__title {
-        text-align: center;
-        &::before {
-            content: '\201c';
-        }
-        &::after {
-            content: '\201d';
-        }
-    }
-
-    &__text {
-        text-align: right;
-        &::before {
-            content: '- ';
-        }
-    }
-}
-
-.form--form-slider {
-    display: block;
-    min-height: 60vh;
-    background: lightseagreen;
-    padding: getSpace(min);
-}
-//
-// .modal {
-//     width: 100%;
-//     height: calc(100vh - 60px);
-//     position: absolute;
-//     background: rgba($main-color, 0.7);
-//     top: to-rem(80px);
-//     left: 0;
-//     right: 0;
-//     bottom: 0;
-//     z-index: 98;
-//     overflow: hidden;
-//     display: none;
-//
-//     &__container {
-//         min-width: 90%;
-//         min-height: 70vh;
-//         background: #fff;
-//         border-radius: $borde-material;
-//     }
-//
-//
-//     &__header {
-//
-//     }
-//
-//     &__body {
-//
-//     }
-//
-//     &__footer {
-//
-//     }
-//
-//     &--is-open {
-//         @include d-flex($ai: center, $jc: center);
-//     }
-// }
-//
-//
-// .overlap {
-//     position: relative;
-//     &,
-//     &__image,
-//     &__text {
-//         width: 160px;
-//         height: 160px;
-//         border-radius: 50%;
-//         user-select: none;
-//     }
-//
-//     &__text {
-//         width: 100%;
-//         height: 100%;
-//         top: 0;
-//         left: 0;
-//         right: 0;
-//         bottom: 0;
-//         background: rgba($main-color, 0.8);
-//         position: absolute;
-//         opacity: 0;
-//         color: #fff;
-//         will-change: opacity;
-//         transition: opacity 0.2s ease-in-out;
-//         @include roboto;
-//         @include d-flex($ai: center, $jc: center);
-//
-//         &:hover {
-//             opacity: 1;
-//         }
-//     }
-//
-// }

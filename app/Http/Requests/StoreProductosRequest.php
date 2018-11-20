@@ -24,11 +24,11 @@ class StoreProductosRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required',
+            'nombre' => 'required|string',
             'imagen' => 'image',
-            'costo' => 'required|numeric|min:0',
-            'descripcion' => 'required',
-            'tipo' => 'required',
+            'costo' => 'required|numeric',
+            'descripcion' => 'required|string',
+            'tipo' => 'required|string',
             'descuento' => 'required|numeric|min:0|max:100',
 
         ];

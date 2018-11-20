@@ -1,23 +1,21 @@
-@extends('layouts.app')
-@section('style')
-  <link rel="stylesheet" type="text/css" href="{{ asset ('css/reset.css')}}"/>
-  <link rel="stylesheet" type="text/css" href="{{ asset ('css/styles.css')}}"/>
-  <link rel="stylesheet" type="text/css" href="{{ asset ('css/jquery.alertable.css')}}"/>
-    {{-- <link rel="stylesheet" type="text/css" href="{{ asset ('css/album.css')}}"/> --}}
-
-
-@endsection
+@extends('layouts.head')
 @section('content')
 
-  <div class="container">
+    <section class="section">
+        <h1 class="section__title">Albums</h1>
+
+        <section class="section section--cards">
+
+        </section>
+    </section>
+
+  {{-- <div class="container">
       <div class="row">
             <div class="col-md-12">
               <div class="panel panel-default">
                   <div class="panel-heading">Album</div>
                   <div class="panel-body">
                     @if(!empty ($Album))
-                      {{-- @include('multimedia.lista') --}}
-
                     <br>
                     @include('multimedia.album.Albums')
                       @include('Modal.modal')
@@ -30,16 +28,10 @@
               </div>
           </div>
       </div>
-  </div>
+  </div> --}}
 @endsection
 
-@section('script')
-
-<script src="{{ asset('js/Album.js')}}" ></script>
-<script src="{{ asset('js/jquery.alertable.js')}}" ></script>
-
-<script>
-var servidor ="{{asset ('') }}";
-
-</script>
-  @endsection
+@section('scripts')
+<script src="{{ asset('/js/Album.js')}}" ></script>
+{{-- <script src="{{ asset('/js/jquery.alertable.js')}}" ></script> --}}
+@endsection

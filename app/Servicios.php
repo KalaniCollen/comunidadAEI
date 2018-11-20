@@ -2,10 +2,13 @@
 
 namespace App;
 
+use Sofa\Eloquence\Eloquence;
 use Illuminate\Database\Eloquent\Model;
 
 class Servicios extends Model
 {
+    use Eloquence;
+
     protected $table = 'servicios';
     protected $primaryKey = 'id_servicio';
     protected $fillable = [
@@ -17,11 +20,15 @@ class Servicios extends Model
         'horario_inicio',
         'horario_cierre',
         'slug',
-        'id_usuario'
+        'id_empresa'
     ];
 
     protected $hidden = [
         'id_servicio'
+    ];
+
+    protected $searchableColumns = [
+        'nombre',
     ];
 
     /**
@@ -35,11 +42,12 @@ class Servicios extends Model
     }
 
     /**
-     * Get the name of the user who publishes a new service
+     * Get the name of the business who publishes a new service
      * @method user
-     * @return \App\User
+     * @return \App\Perfil_Empresa
      */
-    public function empresa() {
+    public function empresa()
+    {
         return $this->belongsTo('App\Perfil_Empresa', 'id_empresa');
     }
 }

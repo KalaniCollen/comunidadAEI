@@ -2,11 +2,11 @@
     <section class="section section--cards">
         <div class="card" v-for="(servicio, i) in servicios" :key="servicio.slug">
             <div class="card__owner">
-                <img src="https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/012016/untitled-1_77.png?itok=lw7cADiJ" class="user__picture card-user--picture">
-                <p class="user__username card-user--username">{{ servicio.user.name }}</p>
+                <img :src="servicio.empresa.logo_empresa" class="user__picture card-user--picture">
+                <p class="user__username card-user--username">{{ servicio.empresa.nombre_empresa }}</p>
             </div>
             <div class="card__image">
-                <div v-bind:style="{ backgroundImage: 'url(/storage/catalogos_img/' + servicio.imagen + ')' }" class="card__image-img"></div>
+                <div :style="{ backgroundImage: 'url(/storage/catalogos_img/' + servicio.imagen + ')' }" class="card__image-img"></div>
             </div>
             <div class="card__body">
                 <p class="card__title">{{ servicio.nombre }}</p>
@@ -24,7 +24,7 @@
 
 <script type="text/javascript">
     const moment = require('moment')
-    require('moment/locale/es')
+    // require('moment/locale/es')
 
     Vue.use(require('vue-moment'), {
         moment

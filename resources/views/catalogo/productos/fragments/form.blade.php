@@ -1,30 +1,42 @@
-<label for="file-image" class="form__file">
-    <input class="form-file" type="file" name="imagen" id="file-image" accept="image/*">
-</label>
+{!! Form::inText('nombre', isset($producto->nombre) ? $producto->nombre : '' , 'Nombre del producto', false) !!}
 
-<div class="form__input">
-    <label for="nombre-producto">Nombre del producto</label>
-    <input type="text" name="nombre" id="nombre-producto" value="{{ $nombre }}">
+<div class="group">
+    {!! Form::label('descripcion', 'Descripción', ['class' => 'label']) !!}
+    {!! Form::textarea('descripcion',isset($producto->descripcion) ? $producto->descripcion : '' , ['class' => 'input']) !!}
+    @if ($errors->has('descripcion'))
+        @foreach ($errors->get('descripcion') as $error)
+            <p class="error">{{ $error }}</p>
+        @endforeach
+    @endif
 </div>
 
-<div class="form__input">
-    <label for="costo-producto">Costo del producto</label>
-    <input type="number" name="costo" id="costo-producto" min="1" value="{{ $costo }}">
+<div class="group">
+    {!! Form::label('costo', 'Costo del producto', ['class' => 'label']) !!}
+    {!! Form::number('costo', isset($producto->descuento) ? $producto->descuento : null, ['class' => 'input', 'min' => 1]) !!}
+    @if ($errors->has('costo'))
+        @foreach ($errors->get('costo') as $error)
+            <p class="error">{{ $error }}</p>
+        @endforeach
+    @endif
 </div>
 
-<div class="form__input">
-    <label for="descripcion-producto">Descripción del producto</label>
-    <textarea name="descripcion" id="descripcion-producto">{{ $descripcion }}</textarea>
+
+<div class="group">
+    {!! Form::label('descuento', 'Descuento a socios', ['class' => 'label']) !!}
+    {!! Form::number('descuento', isset($producto->descuento) ? $producto->descuento : null, ['class' => 'input', 'min' => 0, 'max' => '100']) !!}
+    @if ($errors->has('descuento'))
+        @foreach ($errors->get('descuento') as $error)
+            <p class="error">{{ $error }}</p>
+        @endforeach
+    @endif
 </div>
 
-<div class="form__input">
-    <label for="tipo-producto">Tipo de producto</label>
-    <input type="text" name="tipo" id="tipo-producto" value="{{ $tipo }}">
-</div>
+{!! Form::inText('tipo', isset($producto->tipo) ? $producto->tipo : '' , 'Tipo de servicio', null) !!}
 
-<div class="form__input">
-    <label for="descuento-socios">Descuento para asociados:</label>
-    <input type="number" min="0" max="100" name="descuento" id="descuento-socios" value="{{ $descuento }}">
+<div class="group">
+    <label for="imagen-producto" class="file">
+        <i class="file__icon ion-md-cloud-upload"></i>
+        <input type="file" class="input" name="imagen" id="imagen-producto" accept="image/*" onchange="previewImage(this, 'js-img-preview', 'js-file-text');">
+    </label>
+    <span class="file__text" id="js-file-text"></span>
 </div>
-
-<input class="btn" type="submit" value="{{ $btnTitle }}">

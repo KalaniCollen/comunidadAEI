@@ -1,30 +1,35 @@
 
 /**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+* First we will load all of this project's JavaScript dependencies which
+* includes Vue and other libraries. It is a great starting point when
+* building robust, powerful web applications using Vue and Laravel.
+*/
 // require('./bootstrap');
+import Glide from '@glidejs/glide';
 try {
+    window.Glide = Glide;
+    // window.ScrollMagic = require('scrollmagic');
     window.$ = window.jQuery = require('jquery');
     window.Vue = require('vue');
     window.axios = require('axios');
-} catch (e) {}
+} catch (e) {
+    console.log(e.message);
+}
 
 /**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
+* We'll load the axios HTTP library which allows us to easily issue requests
+* to our Laravel back-end. This library automatically handles sending the
+* CSRF token as a header based on the value of the "XSRF" token cookie.
+*/
 
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**
- * Next we will register the CSRF Token as a common header with Axios so that
- * all outgoing HTTP requests automatically have it attached. This is just
- * a simple convenience so we don't have to attach every token manually.
- */
+* Next we will register the CSRF Token as a common header with Axios so that
+* all outgoing HTTP requests automatically have it attached. This is just
+* a simple convenience so we don't have to attach every token manually.
+*/
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
 
@@ -35,14 +40,15 @@ if (token) {
 }
 
 /**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+* Next, we will create a fresh Vue application instance and attach it to
+* the page. Then, you may begin adding components to this application
+* or customize the JavaScript scaffolding to fit your unique needs.
+*/
 
 Vue.component('card-servicios', require('./components/CardServicesComponent.vue'));
 Vue.component('card-productos', require('./components/CardProductsComponent.vue'));
 Vue.component('header-slider', require('./components/SliderContent.vue'));
+Vue.component('noticias', require('./components/NoticiasComponent.vue'));
 
 const app = new Vue({
     el: '#app',

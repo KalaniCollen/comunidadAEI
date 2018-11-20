@@ -9,9 +9,11 @@
 @import "./abstracts/placeholders";
 
 @import "./vendor/normalize";
+@import "node_modules/bootstrap/scss/bootstrap-grid";
 @import "node_modules/ionicons/dist/scss/ionicons.scss";
 @import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
 @import "node_modules/@glidejs/glide/src/assets/sass/glide.theme";
+@import "./vendor/dropzone";
 
 @import "./base/reset";
 @import "./base/typography";
@@ -30,5 +32,6 @@
 @import "./pages/login";
 @import "./pages/registro";
 @import "./pages/productos";
+@import "./pages/album";
 @import "./pages/perfil-empresa";
 @import "./pages/index";

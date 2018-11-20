@@ -6,6 +6,30 @@
     }
 }
 
+.file {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: $blue-color-l;
+    box-shadow: $shadow-material;
+    @include d-flex($ai: center, $jc: center);
+
+    &__icon {
+        font-size: 1.8rem;
+        color: #fff;
+    }
+
+    &__text {
+        margin-left: getSpace(min);
+        font-size: getFontSize(h6);
+        @include roboto;
+    }
+
+    .input {
+        @include hidden;
+    }
+}
+
 .group {
     width: 100%;
     margin-bottom: getSpace(med);

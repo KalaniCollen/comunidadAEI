@@ -2,78 +2,56 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\User;
+use App\Perfil_Empresa;
+use App\Servicios;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Response;
+// use Illuminate\Support\Facades\Response;
 use DB;
 
 class BuscadorController extends Controller
 {
 
-      /**
-       * Display a listing of the resource.
-       *
-       * @return \Illuminate\Http\Response
-       */
-      public function Ssearch(Request $request)
-      {
+    /**
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function Ssearch(Request $request)
+    {
         // $busque['busc']="Gerardo";
         // dd(Input::get('busqueda'));
 
-<<<<<<< HEAD
+
         $salida="";
-        $busqueda = User::search($request->busqueda)->orderBy('id_usuario','desc')->get();
-=======
-$salida="";
-           $busqueda = User::search($request->busqueda)->orderBy('id_usuario','desc')->get();
->>>>>>> 27670647432db9b2bbc3629bab154ec4abeb3158
         //    for($i=0;$i<$busqueda;$i++){
+        $busqueda = User::search($request->busqueda)->orderBy('id_usuario','desc')->get();
         //   $salida=$salida."".$busqueda[$i]->name;
         // }
         if($busqueda){
-        foreach ($busqueda as $key => $busqueda) {
-  $salida=$salida."<br>".$busqueda->name;
+            foreach ($busqueda as $key => $busqueda) {
+                $salida=$salida."<br>".$busqueda->name;
+            }
+            // dd($salida);
+            return  response()->json($salida);
         }
-        // dd($salida);
-              return  response()->json($salida);
-      }
-           // return Response::json($busqueda);
+        // return Response::json($busqueda);
 
         return  response()->json("No hay resultados");
-          // return view('busqueda',['busqueda' => $busqueda]);
-      }
+        // return view('busqueda',['busqueda' => $busqueda]);
+    }
 
-      /**
-       * Display a listing of the resource.
-       *
-       * @return \Illuminate\Http\Response
-       */
-      public function search(Request $request){
-
-        // if($request->ajax()){
-
-            $output="";
-
-<<<<<<< HEAD
-        // $products=User::where('name','LIKE','%'.$request->search."%")->get();
-        $products =User::search($request->busqueda)->orderBy('id_usuario','desc')->get();
-=======
-            // $products=User::where('name','LIKE','%'.$request->search."%")->get();
-            $products =User::search($request->busqueda)->orderBy('id_usuario','desc')->get();
->>>>>>> 27670647432db9b2bbc3629bab154ec4abeb3158
-
-            if($products){
-
-              foreach ($products as $key => $product) {
-                $output='<tr> <td>'.$product->name.'</td> </tr>';
-
-              }
-
-
-              return response()->json($output);
-            }
-
-//           }
-        }
+    /**
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function search(Request $request){
+        // $busqueda = Perfil_Empresa::search($request->buscar)->get();
+        $data = User::search("*{$request->buscar}*")->orderBy('id_usuario','desc')->get();
+        $data = Servicios::search("*{$request->buscar}*")->get();
+        return response()->json($data, Response::HTTP_OK);
+    }
 }

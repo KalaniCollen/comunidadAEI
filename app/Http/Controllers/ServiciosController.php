@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Servicios;
 use App\Mail\OrdenServicio;
-use App\Http\Requests\StoreServiciosRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\StoreServiciosRequest;
 
 
 class ServiciosController extends Controller
@@ -20,13 +20,9 @@ class ServiciosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $servicios = Servicios::all();
-        $servicios->each(function ($servicio) {
-            $user = $servicio->user;
-        });
-        return response($servicios->jsonSerialize(), Response::HTTP_OK);
+        //
     }
 
     /**
@@ -55,10 +51,9 @@ class ServiciosController extends Controller
         } else {
             $servicio->imagen = 'defaultService.jpg';
         }
-        $servicio->id_empresa = Auth::user()->id_usuario;
-        $servicio->slug = Str::slug( $servicio->nombre . ' ' . Auth::user()->id_usuario );
+        $servicio->id_empresa = Auth::user()->empresa->id_empresa;
+        $servicio->slug = Str::slug( $servicio->nombre . $servicio->id_empresa );
         $servicio->save();
-
         return redirect()->route('catalogo.index');
     }
 
@@ -81,7 +76,11 @@ class ServiciosController extends Controller
      */
     public function edit(Servicios $servicio)
     {
-        return view('catalogo.servicios.edit',compact('servicio'));
+        if($servicio->id_empresa == Auth::user()->empresa->id_empresa) {
+            return view('catalogo.servicios.edit', compact('servicio'));
+        } else {
+            return "Error 404";
+        }
     }
 
     /**
@@ -116,8 +115,18 @@ class ServiciosController extends Controller
         return redirect()->route('catalogo.index');
     }
 
+    public function api(Request $request)
+    {
+        $servicios = Servicios::all();
+        $servicios->each(function ($servicio) {
+            $servicio->empresa;
+        });
+        return response()->json($servicios, Response::HTTP_OK);
+    }
+
     /**
      * Redirigir al formulario para contactar
+     *
      * @method contact
      * @param  Servicios $servicio
      * @return view
@@ -128,6 +137,7 @@ class ServiciosController extends Controller
 
     /**
      * Enviar correo de orden de servicio
+     *
      * @method sendMail
      * @param  Request  $request
      * @return view
