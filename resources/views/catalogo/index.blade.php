@@ -15,13 +15,13 @@
                 <a href="{{ route('servicios.create') }}" class="btn btn-outline-secondary">Publicar Servicio</a>
 
 
-                {{-- @if (!$productos->isEmpty())
+                @if (!$productos->isEmpty())
                     <div class="section section--cards">
                         @foreach ($productos as $producto)
                             <div class="col-md-6 col-lg-4 mt-2 mb-5">
                                 @component('catalogo.components.card', [
-                                    'userimg'     => 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-                                    'username'    => $producto->user->name,
+                                    'userimg'     => $producto->empresa->logo_empresa,
+                                    'username'    => $producto->empresa->nombre_empresa,
                                     'img'         => $producto->imagen,
                                     'title'       => $producto->nombre,
                                     'date'        => $producto->created_at,
@@ -42,7 +42,7 @@
                         </div>
                     @endforeach
                 </div>
-            @endif --}}
+            @endif
             @if (!$servicios->isEmpty())
                 <h2>Servicios</h2>
                 <div class="section section--cards">
@@ -50,6 +50,8 @@
                         @component('catalogo.components.card', [
                             'userimg'     => $servicio->empresa->logo_empresa,
                             'username'    => $servicio->empresa->nombre_empresa,
+                            // 'userimg'     => "",
+                            // 'username'    => "",
                             'img'         => $servicio->imagen,
                             'title'       => $servicio->nombre,
                             'date'        => $servicio->created_at,

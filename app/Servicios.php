@@ -39,7 +39,7 @@ class Servicios extends Model
      * @method user
      * @return \App\User
      */
-    public function user() {
-        return $this->belongsTo('App\User', 'id_usuario');
+    public function empresa() {
+        return $this->belongsTo('App\Perfil_Empresa', 'id_empresa');
     }
 }
