@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Input;
 use App\Perfil_Usuario;
 use Illuminate\Support\Str as Str;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 
 
@@ -87,7 +88,7 @@ class AdminController extends Controller
         $usuario->apellido_materno=$data["last_names"];
 		//$usuario->rol=$data["rol"];
         $usuario->slug_usuario=Str::slug( $data["name"]." ".$data["last_name"]." ".$data["last_names"]." ".$idUsuario);
-
+        $usuario->notificacion_correo='1';
 
 		$resul= $usuario->save();
 
@@ -133,7 +134,7 @@ $nombre=Input::get('name');
         'confirmation_code'=>$code,
         'status'=>'1',
                 'tipo_usuario'=>Input::get('type'),
-        'notificacion_correo' => Input::get('Notificacion'),
+        'notificacion_correo' => '1',
     ]);
     $useru=User::where('id_usuario',$user->id_usuario)->first();
     $useru->slug_usuario=Str::slug( Str::upper($nombre).' '.Str::upper(Input::get('apellido_paterno')).
@@ -194,6 +195,11 @@ $fecha_final->format('Y-m-d H:i:s');
               'slug_evento'=>Str::slug($request->title.' '.Auth::id()),
               'id_usuario'=>Auth::id(),
           ]);
+
+          $correos=User::where('notificacion_correo','1')->lists('email');
+          $dates=array('nombre' =>'AEI');
+          $this->Email($dates,$correos);
+
 return redirect()->route('lista_evento');
 }
 public function deleteUser($id){
@@ -245,8 +251,26 @@ public function verificar_evento($id){
 
     $evento= Evento::where('id_evento',$id)->first();
     $evento->estado_evento="1";
+    $user=User::where('id_usuario',$evento->id_usuario)->first();
+    $correos=User::where('notificacion_correo','1')->pluck('email');
+    $dates=array('nombre' =>$user->name);
+
+    $this->Email($dates,$correos);
     $evento->save();
 
     return redirect()->route('lista_evento');
 }
+function Email($dates,$email){
+
+      Mail::send('emails.evento',$dates,function($message) use (&$email){
+foreach ($email as $key => $email) {
+    $message->subject('Nuevo Evento!');
+    $message->to($email);
+    $message->from('kalanicollen1410@gmail.com','AEI');
+}
+
+
+
+      });
+    }
 }
