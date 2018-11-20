@@ -51,7 +51,7 @@
 <p>Tampoco se responsabiliza o garantiza que el contenido o software al que pueda accederse a través de este Sitio Web, esté libre de error o cause un daño al sistema informático (software y hardware) del Usuario. &nbsp;En ningún caso Comunidad AEI
     será responsable por las pérdidas, daños o perjuicios de cualquier tipo que surjan por el acceso, navegación y el uso del Sitio Web, incluyéndose, pero no limitándose, a los ocasionados a los sistemas informáticos o los provocados por la
     introducción de virus.</p>
-<p>Comunidad AEI no se responsabiliza o garantiza que el contenido o software al que pueda accederse a través de este Sitio Web, esté libre de los derechos de autor, así como el contenido (imágenes, videos, textos, productos, servicios, etc)
+<p>Comunidad AEI asi como los desarrolladores no se responsabilizan o garantizab que el contenido o software al que pueda accederse a través de este Sitio Web, esté libre de los derechos de autor, así como el contenido (imágenes, videos, textos, productos, servicios, etc)
     proporcionado por el usuario este sujeto a derechos de autor, Comunidad AEI no se hace responsable por el mal uso del Sitio Web, así como las infracciones legales realizadas por los usuarios.</p>
 <br />
 <p><strong>El Usuario</strong></p>
