@@ -1,6 +1,6 @@
 @extends('layouts.head')
 @section('styles')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" /> --}}
 
   <link rel="stylesheet" type="text/css" href="{{ asset ('css/reset.css')}}"/>
   <link rel="stylesheet" type="text/css" href="{{ asset ('css/styles.css')}}"/>
@@ -19,7 +19,7 @@
                         <main>
                             <section class="cards" id="cartas">
                               <article >
-                                <a href="/Videos/{{ Auth()->user()->id_usuario  }}">
+                                <a href="{{ route('videos.show', Auth::user()->id_usuario) }}">
                                 <img class="article-img" src="/storage/img/you.png" alt=" " />
                                 <h1 class="article-title" style="bottom:-10px;">
                                 Link en YouTube

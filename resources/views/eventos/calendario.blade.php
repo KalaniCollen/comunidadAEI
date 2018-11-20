@@ -1,17 +1,27 @@
 @extends('layouts.head')
 @section('styles')
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/eventos/css/fullcalendar.min.css') }}" />
-
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/eventos/css/fullcalendar.min.css') }}" />
 @endsection
 @section('content')
+    <section class="section">
+        <h1 class="section__title">Eventos</h1>
 
-    <div class="row">
-     <h3>&nbsp;&nbsp;&nbsp;&nbsp;Hola </h3>
-      <div class="panel-group">
+        <div class="row">
+            <div class="col-md-3 col-lg-3">
+                @foreach ($eventos as $evento)
+                    <a href="{{ route('evento.show', $evento->slug_evento) }}" class="card card--mini">
+                        <p class="card__title">{{ $evento->nombre_evento }}</p>
+                        <p class="card__date">{{ $evento->fecha_inicio }}</p>
+                    </a>
+                @endforeach
+            </div>
+            <div class="col-md-9 col-lg-9">
+                <div id="calendar"></div>
+            </div>
+        </div>
+    </section>
 
-    	<div class="panel panel-default">
+    	{{-- <div class="panel panel-default">
         <div class="panel-body">
         <!-- Main content -->
         <section class="content">
@@ -23,20 +33,13 @@
                     <br />
                     <div>
 
-                    @foreach ($eventos as $key => $evento)
-                        <h5>@php
-                        $fecha_inicio =new \Carbon\Carbon($evento->fecha_inicio);
-                         echo $fecha_inicio->format('d D');
-                        @endphp
-                        </h5>
+                    @foreach ($eventos as $evento)
+                        <h5>{{ Carbon\Carbon::parse($evento->fecha_inicio)->format('d M Y') }}</h5>
                         Nombre:
                         {{ $evento->nombre_evento }}
                         <br />
                         Hora:
-                        @php
-                        echo$fecha_inicio->format('g a');
-                    @endphp
-                    <br />
+                            <br />
                     <a href="{{ url('evento', ['slug' => $evento->slug_evento])}}">ver detalles</a>
                     @endforeach
 
@@ -63,18 +66,18 @@
     </div>
     </div>
     <!--ventana modal para el calendario-->
-                  <div class="modal fade" id="events-modal">
-                      <div class="modal-dialog">
-                              <div class="modal-content">
-                                      <div class="modal-body" style="height: 400px">
-                                          <p>One fine body&hellip;</p>
-                                      </div>
-                                  <div class="modal-footer">
-                                      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                  </div>
-                              </div><!-- /.modal-content -->
-                      </div><!-- /.modal-dialog -->
-                  </div><!-- /.modal -->
+    <div class="modal fade" id="events-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body" style="height: 400px">
+                    <p>One fine body&hellip;</p>
+                </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal --> --}}
     @endsection
     @section('scripts')
       <script>

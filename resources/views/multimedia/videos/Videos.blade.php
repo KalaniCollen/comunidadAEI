@@ -3,8 +3,10 @@
 <link href="{{asset('css/main.css')}}" rel="stylesheet">
     {{-- <link href="{{asset('galeria/fine-uploader-gallery.css')}}" rel="stylesheet"> --}}
       {{-- <link href="{{asset('css/album.css')}}" rel="stylesheet"> --}}
+
+
       <link href="{{asset('css/lightgallery.css')}}" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
+      {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" /> --}}
       <link rel="stylesheet" type="text/css" href="{{ asset ('css/tarjetadesplegar.css')}}"/>
       <link rel="stylesheet" type="text/css" href="{{ asset ('css/tarjetadesplegar.css')}}"/>
       <link href="{{asset('css/justifiedGallery.min.css')}}" rel="stylesheet">

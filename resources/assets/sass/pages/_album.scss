@@ -1,0 +1,50 @@
+.album-images {
+    @include d-flex($wrap: wrap);
+
+    @include tablet {
+        column-count: 2;
+    };
+
+    &__list {
+        width: 100%;
+        list-style-type: none;
+        @include d-flex();
+    }
+
+    &__item {
+        width: calc(100% / 1);
+        padding: getSpace(sml);
+        @include d-flex(inline-flex);
+        flex: 1 1 auto;
+
+        @include tablet {
+            width: calc(100% / 2);
+        };
+
+        @include widescreen{
+            width: calc(100% / 3);
+        };
+    }
+
+    &__img {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+.album-add {
+    width: 100%;
+    @include d-flex($dir: column, $ai: center);
+
+    &__form {
+        width: 100%;
+    }
+
+    &__btn {
+        margin: getSpace(med) 0;
+    }
+
+    &--hidden {
+        @include hidden;
+    }
+}

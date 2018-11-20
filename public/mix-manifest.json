@@ -1,5 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/js/glide.min.js": "/js/glide.min.js"
+    "/js/glide.min.js": "/js/glide.min.js",
+    "/js/masonry.js": "/js/masonry.js",
+    "/js/dropzone.js": "/js/dropzone.js"
 }

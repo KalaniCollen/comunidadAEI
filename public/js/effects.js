@@ -16,10 +16,10 @@ iconMenu[0].addEventListener('click', e => {
 //     });
 // });
 
-function previewImage(input, img) {
+function previewImage(input, img, text) {
     if(input.files && input.files[0]) {
         // DEBUG:
-        console.log(input.files[0].name);
+        document.getElementById(text).innerHTML =  input.files[0].name;
         let reader = new FileReader();
         reader.onload = function(el) {
             document.getElementById(img).src = el.target.result;

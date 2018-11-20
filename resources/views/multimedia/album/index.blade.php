@@ -1,37 +1,33 @@
 @extends('layouts.head')
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/jquery.alertable.css') }}">
+@endsection
 @section('content')
-
     <section class="section">
-        <h1 class="section__title">Albums</h1>
-
+        <div class="section__header">
+            <h1 class="section__title">Albums</h1>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}" id="js-album-token">
+            <button class="btn btn--accent" id="js-album-new"><i class="btn__icon ion-md-add"></i>Agregar album</button>
+        </div>
         <section class="section section--cards">
-
+            @isset($albums)
+                @foreach ($albums as $album)
+                    <div class="card card--album">
+                        <h1 class="card__title">{{ $album->nombre }}</h1>
+                        <a href="{{ route('album.show', $album->slug_album) }}">
+                            <img src="{{ asset('img/download.png') }}" class="article-img" alt="">
+                        </a>
+                        <div class="card__body">
+                            <button class="btn js-album-edit" data-token="{{ csrf_token() }}" data-slug="{{ $album->slug_album }}"><i class="btn__icon ion-md-create"></i> Editar</button>
+                            <button class="btn js-album-delete" data-token="{{ csrf_token() }}" data-slug="{{ $album->slug_album }}" data-name="{{ $album->nombre }}"><i class="btn__icon ion-md-trash"></i> Eliminar</button>
+                        </div>
+                    </div>
+                @endforeach
+            @endisset
         </section>
     </section>
-
-  {{-- <div class="container">
-      <div class="row">
-            <div class="col-md-12">
-              <div class="panel panel-default">
-                  <div class="panel-heading">Album</div>
-                  <div class="panel-body">
-                    @if(!empty ($Album))
-                    <br>
-                    @include('multimedia.album.Albums')
-                      @include('Modal.modal')
-                    @else
-                      No hay nada
-
-                      @include('Modal.Album')
-                    @endif
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div> --}}
 @endsection
-
 @section('scripts')
+<script src="{{ asset('/js/jquery.alertable.js')}}" ></script>
 <script src="{{ asset('/js/Album.js')}}" ></script>
-{{-- <script src="{{ asset('/js/jquery.alertable.js')}}" ></script> --}}
 @endsection

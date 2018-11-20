@@ -1,9 +1,10 @@
 .profile {
     min-height: 100vh;
-    padding-top: getSpace(big);
+    // padding-top: getSpace(big);
 
     &__header {
         @include d-flex($dir: column, $jc: center, $ai: center);
+        margin-bottom: getSpace(big);
     }
 
     &__name,
@@ -21,8 +22,14 @@
         font-size: getFontSize(h5);
     }
 
+    &__data {
+        @include d-flex($dir: column, $ai: center);
+        margin-bottom: getSpace(big);
+    }
+
     &__picture {
-        width: 160px;
-        height: 160px;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
     }
 }

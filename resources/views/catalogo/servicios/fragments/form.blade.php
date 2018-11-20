@@ -1,8 +1,8 @@
 {!! Form::inText('nombre', isset($servicio->nombre) ? $servicio->nombre : '' , 'Nombre del servicio', false) !!}
 
-<label for="imagen-servicio">
+{{-- <label for="imagen-servicio">
     <input type="file" name="imagen" id="imagen-servicio" accept="image/*" onchange="previewImage(this, 'js-img-preview');">
-</label>
+</label> --}}
 
 <div class="group">
     {!! Form::label('descripcion', 'Descripción', ['class' => 'label']) !!}

@@ -10,7 +10,7 @@
             </div>
 
             {!! Form::open(['class' => 'login__form']) !!}
-                <div class="group group--login">
+                <div class="group group--material">
                     {!! Form::label('email', 'Correo eléctronico', ['class' => 'label']) !!}
                     <i class="login__icon ion-md-mail"></i>
                     {!! Form::email('email', null, ['class' => 'input']) !!}
@@ -21,7 +21,7 @@
                         @endforeach
                     @endif
                 </div>
-                <div class="group group--login">
+                <div class="group group--material">
                     {!! Form::label('password', 'Contraseña', ['class' => 'label']) !!}
                     <i class="login__icon ion-md-key"></i>
                     {!! Form::password('password', ['class' => 'input']) !!}

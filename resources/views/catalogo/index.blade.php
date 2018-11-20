@@ -1,14 +1,6 @@
 @extends('layouts.head')
 @section('content')
     <main class="main__catalogo">
-        <aside class="aside__search">
-            <h4>Filtros Avanzados</h4>
-            <div class="form__input">
-                <label for="buscar">Buscar</label>
-                <input type="search" name="buscador" id="buscar" class="form__input-input">
-            </div>
-            <button class="btn btn--primary"><i class="icon ion-md-search"></i>Buscar</button>
-        </aside>
         <section class="section">
                 <h1 class="section__title">Mi Catálogo</h1>
                 <a href="{{ route('productos.create') }}" class="btn btn-outline-secondary">Publicar Producto</a>
@@ -74,13 +66,6 @@
                 @endforeach
             </div>
         @endif
-        <button class="fab btn--accent" onclick="submenu(this)">
-            <ul class="submenu">
-                <li class="submenu__item">
-                    <a href="#" class="submenu__link">Click</a>
-                </li>
-            </ul>
-        </button>
     </section>
 
 </main>
