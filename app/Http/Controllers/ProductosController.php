@@ -95,11 +95,8 @@ class ProductosController extends Controller
             $imagen = Storage::putFile('public/catalogos_img', $request->file('imagen'));
             $producto->imagen = basename($imagen);
         }
-<<<<<<< HEAD
-        $producto->id_empresa = Auth::user()->id_usuario;
-=======
         $producto->id_empresa = Auth::user()->empresa->id_empresa;
->>>>>>> 1f5643275c593989ca5ee010dcfbb055e63a120f
+        $producto->id_empresa = Auth::user()->empresa->id_empresa;
         $producto->slug = Str::slug($producto->nombre);
         $producto->save();
 

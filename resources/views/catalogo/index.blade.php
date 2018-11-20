@@ -6,9 +6,7 @@
                 <a href="{{ route('productos.create') }}" class="btn btn-outline-secondary">Publicar Producto</a>
                 <a href="{{ route('servicios.create') }}" class="btn btn-outline-secondary">Publicar Servicio</a>
 
-
                 @isset($productos)
-
                     <div class="section section--cards">
                         @foreach ($productos as $producto)
                             <div class="col-md-6 col-lg-4 mt-2 mb-5">
