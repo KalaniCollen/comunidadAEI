@@ -3,10 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <title>Gestor Academico | Panel Control</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
+ <link rel="shortcut icon" href="img/aei.png" />
      {!! Html::style('css/bootstrap.min.css') !!}<!-- Bootstrap 3.3.5 -->
      {!! Html::style('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css') !!}<!-- Font Awesome -->
      {!! Html::style('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css') !!}<!-- Ionicons -->
