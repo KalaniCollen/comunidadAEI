@@ -30,7 +30,7 @@ margin-bottom: 10px;
   filter: alpha(opacity=80);
   z-index: 820;
 }
- 
+
 .bolet{
   text-decoration: none;
   color: white;
@@ -54,15 +54,15 @@ text-decoration: none;
   -webkit-box-shadow: 0 0 20px 0 #222;
   -moz-box-shadow: 0 0 20px 0 #222;
   display: none;
-  height: 98%;
+  height: auto;
   margin-left: 2%;
   margin-right: 2%;
-  left: 18%;
+  left: 7%;
   right: 0;
   padding: 10px;
   position: absolute;
   top: 10%;
-  width: 60%;
+  width: 82%;
   /*min-height: 98%;*/
   z-index: 830;
 }
@@ -80,6 +80,3 @@ text-decoration: none;
     text-align: center;
     width: 200px;
 }
-
-
-

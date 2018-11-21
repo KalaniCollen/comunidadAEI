@@ -40,4 +40,6 @@ class Productos extends Model
     {
         return $this->belongsTo('App\Perfil_Empresa', 'id_empresa');
     }
+
+
 }

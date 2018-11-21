@@ -20,10 +20,10 @@
 
 <div class="box-body col-xs-12">
 
-<div class="form-group col-xs-6">
+                <div class="form-group col-xs-6">
                       <label for="name">Nombres</label>
                       <input type="text" class="form-control" id="name" name="name"  value="<?= $usuario->name; ?>"  >
-</div>
+                  </div>
 <div class="form-group col-xs-6">
                       <label for="last_name">Apellido Paterno</label>
                       <input type="text" class="form-control" id="last_name" name="last_name" value="<?= $usuario->apellido_paterno; ?>" >
@@ -65,7 +65,7 @@
 
 </div> <!-- end col mod 6 -->
 
-  <div class="col-md-6">
+  <div class="col-md-6 col-xs-12">
 <div id="notificacion_resul_feu"></div>
       <div class="box box-primary">
                       <div class="box-header with-border">
@@ -75,7 +75,7 @@
                       <div id="notificacion_resul_fcp"></div>
                       <!-- form start -->
                       <form method="post" id="f_cambiar_password" class="form_entrada" action="cambiar_password" >
-                           <input type="hidden" name="id_usuario_password" value="<?= $usuario->id; ?>">
+                           <input type="hidden" name="id_usuario_password" value="<?= $usuario->id_usuario; ?>">
                          <input type="hidden" name="_token" id="_token"  value="<?= csrf_token(); ?>">
                         <div class="box-body">
                           <div class="form-group">
@@ -93,4 +93,3 @@
 
 
 </div> <!-- end row -->
-</div>

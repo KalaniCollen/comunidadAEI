@@ -43,7 +43,7 @@ class ProductosController extends Controller
     {
         $nombreArchivo = null;
         $producto = new Productos();
-        $producto->fill($request->except('id_usuario','imagen', 'slug'));
+        $producto->fill($request->except('id_empresa','imagen', 'slug'));
         if ($request->hasFile('imagen')) {
             $imagen = Storage::putFile('public/catalogos_img', $request->file('imagen'));
             $producto->imagen = basename($imagen);
@@ -89,12 +89,13 @@ class ProductosController extends Controller
      */
     public function update(StoreProductosRequest $request, Productos $producto)
     {
-        $producto->fill($request->except('id_usuario','imagen', 'slug'));
+        $producto->fill($request->except('id_empresa','imagen', 'slug'));
         if ($request->hasFile('imagen')) {
             Storage::delete("public/catalogos_img/{$producto->imagen}");
             $imagen = Storage::putFile('public/catalogos_img', $request->file('imagen'));
             $producto->imagen = basename($imagen);
         }
+        $producto->id_empresa = Auth::user()->empresa->id_empresa;
         $producto->id_empresa = Auth::user()->empresa->id_empresa;
         $producto->slug = Str::slug($producto->nombre);
         $producto->save();

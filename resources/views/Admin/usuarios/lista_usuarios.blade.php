@@ -1,4 +1,4 @@
-<div style="overflow-x:auto;">
+
 <div class="box box-primary">
 
 <div class="box-header">

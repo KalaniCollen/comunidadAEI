@@ -3,21 +3,7 @@
     <div class="panel panel-default">
     <div class="panel-heading"> <h2>&nbsp;&nbsp;&nbsp;Información de usuarios del sistema</h2></div>
     <div class="panel-body">
-          <div class="col-lg-2 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg-blue">
-          <div class="inner">
-            <h3>{!!$numasociados!!}</h3>
 
-            <p>Asociados</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-ios-personadd"></i>
-          </div>
-          <a href="javascript:void(0);" onclick="cargarlistadoaso(1,1);" class="small-box-footer">Mas informacion<i class="fa fa-arrow-circle-right"></i></a>
-
-        </div>
-      </div>
 
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
@@ -28,13 +14,13 @@
             <p>Usuarios registrados</p>
           </div>
           <div class="icon">
-            <i class="ion ion-ios-personadd"></i>
+            <i class="ion ion-ios-people"></i>
           </div>
           <a href="javascript:void(0);" onclick="cargarlistado(1,1);" class="small-box-footer">Mas informacion<i class="fa fa-arrow-circle-right"></i></a>
         </div>
       </div>
 
-      <div class="col-lg-2 col-xs-6">
+      <div class="col-lg-3 col-xs-6">
         <!-- small box -->
         <div class="small-box bg-red">
           <div class="inner">
@@ -43,13 +29,27 @@
             <p>Empresas</p>
           </div>
           <div class="icon">
-            <i class="ion ion-ios-personadd"></i>
+            <i class="ion ion-ios-briefcase"></i>
           </div>
           <a href="javascript:void(0);" onclick="cargarempresas(1,1);" class="small-box-footer">Mas informacion<i class="fa fa-arrow-circle-right"></i></a>
         </div>
       </div>
+      <div class="col-lg-2 col-xs-6">
+     <!-- small box -->
+     <div class="small-box bg-blue">
+      <div class="inner">
+        <h3>{!!$numasociados!!}</h3>
 
-      <div class="col-lg-3 col-xs-6">
+        <p>Asociados</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-ios-person"></i>
+      </div>
+      <a href="javascript:void(0);" onclick="cargarlistadoaso(1,1);" class="small-box-footer">Mas informacion<i class="fa fa-arrow-circle-right"></i></a>
+
+     </div>
+     </div>
+      <div class="col-lg-2 col-xs-6">
         <!-- small box -->
         <div class="small-box bg-green">
           <div class="inner">
@@ -58,7 +58,7 @@
             <p>No Asociados</p>
           </div>
           <div class="icon">
-            <i class="ion ion-ios-personadd"></i>
+            <i class="ion ion-ios-person"></i>
           </div>
           <a href="javascript:void(0);" onclick="cargarlistadonoa(1,1);" class="small-box-footer">Mas informacion<i class="fa fa-arrow-circle-right"></i></a>
         </div>
@@ -73,9 +73,9 @@
             <p>Eventos</p>
           </div>
           <div class="icon">
-            <i class="ion ion-key"></i>
+            <i class="ion ion-calendar"></i>
           </div>
-          <a href="javascript:void(0);" onclick="cargarlistadonoa(1,1);" class="small-box-footer">Mas informacion<i class="fa fa-arrow-circle-right"></i></a>
+          <a href="{{url('lista_evento')}}" class="small-box-footer">Mas informacion<i class="fa fa-arrow-circle-right"></i></a>
         </div>
       </div>
     </div>

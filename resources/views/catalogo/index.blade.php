@@ -44,6 +44,8 @@
                         @component('catalogo.components.card', [
                             'userimg'     => $servicio->empresa->logo_empresa,
                             'username'    => $servicio->empresa->nombre_empresa,
+                            // 'userimg'     => "",
+                            // 'username'    => "",
                             'img'         => $servicio->imagen,
                             'title'       => $servicio->nombre,
                             'date'        => $servicio->created_at,
