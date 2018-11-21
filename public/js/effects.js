@@ -3,6 +3,7 @@ let account = document.getElementsByClassName('user');
 let links = document.getElementsByClassName('nav__link');
 let btnSearch = document.getElementById('js-search-btn');
 let btnCloseSearch = document.getElementById('js-search-close');
+let listSearch = document.getElementById('js-search-list');
 
 iconMenu[0].addEventListener('click', e => {
     iconMenu[0].classList.toggle('hamburger--open');
@@ -53,7 +54,6 @@ function submenu(element) {
 /*
  * Funciones GLOBALES
  */
-
 // Función para usar ajax
 function ajaxData(url = '', type = 'POST', token = '' , data = {}, success) {
     $.ajax(url, {

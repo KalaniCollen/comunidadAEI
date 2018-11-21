@@ -23,11 +23,10 @@
   },
   "dependencies": {
     "@glidejs/glide": "^3.2.3",
+    "fullcalendar": "^3.9.0",
     "ionicons": "^4.4.6",
-    "masonry-layout": "^4.2.2",
+    "moment": "^2.22.2",
     "popper.js": "^1.14.5",
-    "scrollmagic": "^2.0.6",
-    "vue-moment": "^4.0.0",
-    "vue2-editor": "^2.6.6"
+    "vue-moment": "^4.0.0"
   }
 }

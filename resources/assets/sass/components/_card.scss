@@ -63,7 +63,8 @@
         @include montserrat;
     }
 
-    &__date {
+    &__date,
+    &__time {
         font-size: getFontSize(h6);
         @include roboto(b);
     }
@@ -71,6 +72,14 @@
     &__content,
     &__actions {
         padding-top: getSpace(min);
+    }
+
+    &__decoration {
+        display: block;
+        width: to-rem(15px);
+        height: to-rem(15px);
+        border-radius: 50%;
+        background: orange;
     }
 
     &__body {
@@ -134,17 +143,24 @@
 // THEMES
 .card {
     &--album {
-
+        width: 33.3%;
+        height: max-content;
+        // background: orange;
+        // min-height: max-content;
     }
 
     &--mini {
         min-width: auto;
         min-height: auto;
         width: 100%;
-        height: to-rem(80px);
-        // background: orange;
         margin-bottom: getSpace(min);
         padding: getSpace(med);
         text-decoration: none;
+
+        .card {
+            &__title {
+                width: 100%;
+            }
+        }
     }
 }

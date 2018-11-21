@@ -5,6 +5,7 @@
             <i class="ion-ios-search" id="js-search"></i>
         </button>
         <input type="search" name="buscar" id="js-search-input" class="form__search-input" placeholder="Buscar..." autofocus>
+        <ul id="js-search-list"></ul>
         <i class="form__search-icon ion-ios-close" id="js-search-close"></i>
         {!! Form::close() !!}
     </div>
@@ -28,8 +29,8 @@
                             $links = [
                                 ['link' => 'home', 'name' => 'Inicio'],
                                 ['link' => 'catalogo.index', 'name' => 'Mi Catálogo'],
-                                ['link' => '/', 'name' => 'Calendario'],
-                                ['link' => '/', 'name' => 'Solicitar Evento'],
+                                ['link' => 'calendario', 'name' => 'Calendario'],
+                                ['link' => 'evento.create', 'name' => 'Solicitar Evento'],
                             ];
                         @endphp
                         @each('components.item-menu', $links, 'link')
@@ -71,8 +72,8 @@
                                 ['link' => '/', 'name' => '¿Quienes Somos?'],
                                 ['link' => '/', 'name' => 'Nuestros Socios'],
                                 ['link' => '/', 'name' => 'Contactanos'],
-                                ['link' => 'home', 'name' => 'Publicaciones'],
-                                ['link' => '/', 'name' => 'Calendario'],
+                                ['link' => '/', 'name' => 'Publicaciones'],
+                                ['link' => 'calendario', 'name' => 'Calendario'],
                             ];
                         @endphp
                         @each('components.item-menu', $links, 'link')

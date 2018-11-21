@@ -48,7 +48,7 @@ class BuscadorController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function search(Request $request){
+    public function search(Response $response, Request $request){
         // $busqueda = Perfil_Empresa::search($request->buscar)->get();
         $data = User::search("*{$request->buscar}*")->orderBy('id_usuario','desc')->get();
         $data = Servicios::search("*{$request->buscar}*")->get();

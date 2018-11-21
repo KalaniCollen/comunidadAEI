@@ -1,12 +1,48 @@
 @extends('layouts.head')
-@section('styles')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
-
-
-@endsection
 @section('content')
-    <div class="container">
-        <div class="row">
+<section class="section">
+    <section class="section__header">
+        {{-- <h1 class="section__title">Evento</h1> --}}
+        <h1 class="section__title">{{ $evento->nombre_evento }}</h1>
+        <a href="{{ route('/') }}" class="btn btn--accent">Registrarse</a>
+    </section>
+
+    <div class="row section__content">
+        <div class="col-md-4 col-lg-4">
+            <p class="h3">Fecha</p>
+            <p>{{ \Carbon\Carbon::parse($evento->fecha_inicio)->format('d M Y') }}</p>
+            <br>
+            <p class="h3">Hora</p>
+            <p>{{ \Carbon\Carbon::parse($evento->fecha_inicio)->format('H:i') }} hrs.</p>
+            <br>
+            <p class="h3">Descripción del evento</p>
+            <p>{{ $evento->descripcion_evento }}</p>
+            <br>
+            <p class="h3">Costos</p>
+            <p><b>Asociado:</b> $@money($evento->costo_asociado)</p>
+            <p><b>No asociado:</b> $@money($evento->costo_no_asociado)</p>
+            <br>
+            <p class="h3">Ponente</p>
+            <p>{{ $evento->ponente }}</p>
+            <br>
+            <p class="h3">Capacidad del lugar</p>
+            <p>{{ $evento->num_invitados }} asistentes</p>
+            <br>
+            <p class="h3">Organizador</p>
+            <p>{{ $evento->organizador }}</p>
+            <br>
+            <p class="h3">Teléfono del organizador</p>
+            <p>{{ $evento->telefono_organizador }}</p>
+            <br>
+            <p class="h3">Correo del organizador</p>
+            <p>{{ $evento->correo_electronico_organizador }}</p>
+        </div>
+        <div class="col-md-8 col-lg-8">
+            <img src="/img/evento.png" alt="">
+        </div>
+    </div>
+</section>
+        {{-- <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">{{$evento->nombre_evento  }}</div>
@@ -78,9 +114,5 @@
                 </div>
             </div>
         </div>
-    </div>
-@endsection
-@section('scripts')
-    <script src="{{ asset('js/bootstrap.min.js')}}" ></script>
-
+    </div> --}}
 @endsection

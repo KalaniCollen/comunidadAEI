@@ -28,4 +28,9 @@ class Evento extends Model
         'direccion_evento',
         'estado_evento',
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'slug_evento';
+    }
 }

@@ -6,10 +6,11 @@
 */
 // require('./bootstrap');
 import Glide from '@glidejs/glide';
+import 'fullcalendar';
 try {
-    window.Glide = Glide;
-    // window.ScrollMagic = require('scrollmagic');
     window.$ = window.jQuery = require('jquery');
+    window.Glide = Glide;
+    window.moment = require('moment');
     window.Vue = require('vue');
     window.axios = require('axios');
 } catch (e) {

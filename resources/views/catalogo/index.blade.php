@@ -2,39 +2,42 @@
 @section('content')
     <main class="main__catalogo">
         <section class="section">
+            <div class="section__header">
                 <h1 class="section__title">Mi Catálogo</h1>
-                <a href="{{ route('productos.create') }}" class="btn btn-outline-secondary">Publicar Producto</a>
-                <a href="{{ route('servicios.create') }}" class="btn btn-outline-secondary">Publicar Servicio</a>
-
-                @isset($productos)
-                    <div class="section section--cards">
-                        @foreach ($productos as $producto)
-                            <div class="col-md-6 col-lg-4 mt-2 mb-5">
-                                @component('catalogo.components.card', [
-                                    'userimg'     => $producto->empresa->logo_empresa,
-                                    'username'    => $producto->empresa->nombre_empresa,
-                                    'img'         => $producto->imagen,
-                                    'title'       => $producto->nombre,
-                                    'date'        => $producto->created_at,
-                                    'description' => $producto->descripcion,
-                                ])
-                                @slot('data')
-                                    Costo: <b>$@money($producto->costo)</b>
-                                @endslot
-
-                                <a href="/productos/{{ $producto->slug }}" class="link">Ver Más</a>
-                                <a href="/productos/{{ $producto->slug }}/edit" class="link">Actualizar</a>
-                                <form id="delete-product" action="{{ route('productos.destroy', [$producto->slug]) }}" method="post" style="display: inline-block;" onsubmit="deleteItem(this);">
-                                    {{ method_field('DELETE') }}
-                                    {{ csrf_field() }}
-                                    <input type="submit" class="link" value="Eliminar">
-                                </form>
-                            @endcomponent
-                        </div>
-                    @endforeach
+                <div class="section__options">
+                    <a href="{{ route('productos.create') }}" class="btn btn-outline-secondary">Publicar Producto</a>
+                    <a href="{{ route('servicios.create') }}" class="btn btn-outline-secondary">Publicar Servicio</a>
                 </div>
-                @endisset
-            @if (!$servicios->isEmpty())
+            </div>
+
+            @isset($productos)
+                <h2>Productos</h2>
+                <div class="section section--cards">
+                    @foreach ($productos as $producto)
+                        @component('catalogo.components.card', [
+                            'userimg'     => $producto->empresa->logo_empresa,
+                            'username'    => $producto->empresa->nombre_empresa,
+                            'img'         => $producto->imagen,
+                            'title'       => $producto->nombre,
+                            'date'        => $producto->created_at,
+                            'description' => $producto->descripcion,
+                        ])
+                        @slot('data')
+                            Costo: <b>$@money($producto->costo)</b>
+                        @endslot
+
+                        <a href="/productos/{{ $producto->slug }}" class="link">Ver Más</a>
+                        <a href="/productos/{{ $producto->slug }}/edit" class="link">Actualizar</a>
+                        <form id="delete-product" action="{{ route('productos.destroy', [$producto->slug]) }}" method="post" style="display: inline-block;" onsubmit="deleteItem(this);">
+                            {{ method_field('DELETE') }}
+                            {{ csrf_field() }}
+                            <input type="submit" class="link" value="Eliminar">
+                        </form>
+                    @endcomponent
+                @endforeach
+            </div>
+            @endisset
+            @isset($servicios)
                 <h2>Servicios</h2>
                 <div class="section section--cards">
                     @foreach ($servicios as $servicio)
@@ -53,20 +56,19 @@
                             </b>
                         @endslot
 
-                        <a href="{{ route('servicios.show', [$servicio->slug]) }}" class="link">Ver Más</a>
+                            <a href="{{ route('servicios.show', [$servicio->slug]) }}" class="link">Ver Más</a>
 
-                        <a href="{{ route('servicios.edit', [$servicio->slug]) }}" class="link">Actualizar</a>
+                            <a href="{{ route('servicios.edit', [$servicio->slug]) }}" class="link">Actualizar</a>
 
-                        <form id="delete-service" action="{{ route('servicios.destroy', [$servicio->slug]) }}" method="post" style="display: inline-block;"  onsubmit="deleteItem(this);">
-                            {{ method_field('DELETE') }}
-                            {{ csrf_field() }}
-                            <input type="submit" class="link" value="Eliminar">
-                        </form>
-                    @endcomponent
-                @endforeach
-            </div>
-        @endif
+                            <form id="delete-service" action="{{ route('servicios.destroy', [$servicio->slug]) }}" method="post" style="display: inline-block;"  onsubmit="deleteItem(this);">
+                                {{ method_field('DELETE') }}
+                                {{ csrf_field() }}
+                                <input type="submit" class="link" value="Eliminar">
+                            </form>
+                        @endcomponent
+                    @endforeach
+                </div>
+            @endisset
     </section>
-
 </main>
 @endsection

@@ -17,7 +17,7 @@
                         <a href="{{ route('album.show', $album->slug_album) }}">
                             <img src="{{ asset('img/download.png') }}" class="article-img" alt="">
                         </a>
-                        <div class="card__body">
+                        <div>
                             <button class="btn js-album-edit" data-token="{{ csrf_token() }}" data-slug="{{ $album->slug_album }}"><i class="btn__icon ion-md-create"></i> Editar</button>
                             <button class="btn js-album-delete" data-token="{{ csrf_token() }}" data-slug="{{ $album->slug_album }}" data-name="{{ $album->nombre }}"><i class="btn__icon ion-md-trash"></i> Eliminar</button>
                         </div>

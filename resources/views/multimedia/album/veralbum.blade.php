@@ -9,6 +9,7 @@
 
     <section class="section">
         <div class="section__header">
+            <a href="{{ route('album.index') }}" class="btn"><i class="ion-md-arrow-back"></i></a>
             <h1 class="section__title">{{ $album->nombre }}</h1>
             <button class="btn" id="js-album-upload">Subir Imagénes</button>
         </div>
@@ -25,7 +26,7 @@
             </button>
         </div>
         <div class="album-images">
-            <ul class="album-images__list" id="js-lightgallery js-masonry">
+            <ul class="album-images__list" id="js-lightgallery">
             @for ($i = 1; $i <= 8; $i++)
                     <li class="album-images__item" data-src="https://fakeimg.pl/350x200/?text=Hello">
                         <img class="album-images__img" src="https://fakeimg.pl/350x200/?text=Hello" alt="">
@@ -53,23 +54,24 @@
         });
 
         Dropzone.options.jsDropzone = {
-            paramName: 'file',
+            // paramName: 'file',
             addRemoveLinks: true,
-            autoProcessQueue : false,
+            // autoProcessQueue : false,
+            // autoQueue: false,
             acceptedFiles: 'image/*',
-            dictDefaultMessage: '+ Agregar imagenes',
-            dictRemoveFile: 'Eliminar imagen',
-            dictCancelUploadConfirmation: "Are you sure you want to cancel this upload?",
+            // dictDefaultMessage: '+ Agregar imagenes',
+            // dictRemoveFile: 'Eliminar imagen',
+            // dictCancelUploadConfirmation: "Are you sure you want to cancel this upload?",
             maxFilesize: 2, // MB
             init: function() {
-                let submitBtn = document.getElementById('js-send-btn');
-                let jsDrop = this;
-                submitBtn.addEventListener('click', function() {
-                    jsDrop.processQueue();
-                });
+                // let submitBtn = document.getElementById('js-send-btn');
+                // let jsDrop = this;
+                // submitBtn.addEventListener('click', function() {
+                //     jsDrop.processQueue();
+                // });
             }
         };
     });
     </script>
-    <script src="{{asset('js/uploadalbum.js')}}"></script>
+    {{-- <script src="{{asset('js/uploadalbum.js')}}"></script> --}}
 @endsection

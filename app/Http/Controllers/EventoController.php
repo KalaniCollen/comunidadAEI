@@ -6,21 +6,44 @@ use Auth;
 use App\Evento;
 use App\Registro_Evento;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 
 class EventoController extends Controller
 {
+    private $listaColores = [
+        ['juntas' => '#567'],
+        ['congresos' => '#8fe'],
+        ['comidas' => '#ffe188'],
+        ['event_important' => '#f56'],
+    ];
     //
-    public function index(){
-        return view('eventos.index');
+    public function index(Response $response){
+        $mesActual = \Carbon\Carbon::now()->month;
+        $eventos = Evento::whereMonth('fecha_inicio', $mesActual)->where('estado_evento', '1')->get();
+        $data = [];
+        $eventosList = [];
+        foreach ($eventos as $evento) {
+            $data['title'] = $evento->nombre_evento;
+            $data['start'] = $evento->fecha_inicio;
+            $data['end'] = $evento->fecha_final;
+            $data['url'] = "/evento/$evento->slug_evento";
+            $data['color'] = "#484d50";
+            array_push($eventosList, $data);
+        }
+        return response()->json($eventosList, Response::HTTP_OK);
     }
 
     public function create(Request $request){
-        $Evento=Evento::create([
+        return view('eventos.create');
+    }
+
+    public function store(Request $request) {
+        $evento = Evento::create([
             'nombre_evento'=>$request->title,
             'descripcion_evento'=>$request->descipcion,
-            'fecha_inicio'=>$request->from,
-            'fecha_final'=>$request->to,
+            'fecha_inicio'=>$request->fecha_inicio,
+            'fecha_final'=>$request->fecha_final,
             'tipo'=>$request->tipo,
             'direccion_evento'=>$request->direccion_evento,
             'num_invitados'=>$request->capacidad,
@@ -30,21 +53,18 @@ class EventoController extends Controller
             'organizador'=>$request->organizador,
             'correo_electronico_organizador'=>$request->correo_electronico_organizador,
             'telefono_organizador'=>$request->telefono_organizador,
-            // 'color'
             'slug_evento'=>Str::slug($request->title.' '.Auth::id()),
             'id_usuario'=>Auth::id(),]
         );
-        return view('eventos.index');
+
+        // $date = \Carbon\Carbon::now()->month;
+        //
+        // // $eventos=Evento::where('fecha_inicio','<=',$date)->take(10)->get();
+        // $eventos = Evento::where('fecha_inicio', '<=', $date)->take(10)->get();
+        // return view('eventos.calendario')->with('eventos',$eventos);
+        return redirect()->back();
     }
 
-    public function store(){
-        $date = \Carbon\Carbon::now()->month;
-
-        // $eventos=Evento::where('fecha_inicio','<=',$date)->take(10)->get();
-        $eventos = Evento::where('fecha_inicio', '<=', $date)->take(10)->get();
-        return view('eventos.calendario')->with('eventos',$eventos);
-
-    }
     public function select()
     {
         $data = array(); //declaramos un array principal que va contener los datos
@@ -73,14 +93,18 @@ class EventoController extends Controller
         return $data; //para luego retornarlo y estar listo para consumirlo
     }
     public function show(Evento $evento){
-        // $evento=Evento::where('slug_evento',$slug)->first();
-        // $lugares=Registro_Evento::where('id_evento',$evento->id_evento)->get();
-        // $lugaresdispo=$evento->num_invitados-count($lugares);
-        // if($lugaresdispo<0){
-        //     $lugaresdispo=0;
-        // }
-        // $asistencia=Registro_Evento::where('id_usuario',Auth::id())->where('id_evento',$evento->id_evento)->first();
-        //
-        // return view('eventos.detalles')->with(['evento'=> $evento, 'lugares'=>$lugaresdispo , 'asistencia'=>$asistencia]);
+        $lugares=Registro_Evento::where('id_evento',$evento->id_evento)->get();
+        $lugaresdispo=$evento->num_invitados-count($lugares);
+        if($lugaresdispo<0){
+            $lugaresdispo=0;
+        }
+        $asistencia=Registro_Evento::where('id_usuario',Auth::id())->where('id_evento',$evento->id_evento)->first();
+        return view('eventos.detalles')->with(['evento'=> $evento, 'lugares'=>$lugaresdispo , 'asistencia'=>$asistencia]);
+    }
+
+    public function showCalendar() {
+        $date = \Carbon\Carbon::now()->month;
+        $eventos = Evento::whereMonth('fecha_inicio', '=', $date)->where('estado_evento', '1')->get();
+        return view('eventos.calendario')->with('eventos',$eventos);
     }
 }
