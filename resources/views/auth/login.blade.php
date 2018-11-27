@@ -11,24 +11,38 @@
 
             {!! Form::open(['class' => 'login__form']) !!}
                 {!! Form::inEmail('email', null, 'Correo eléctronico', 'group--material group--material-icon', 'mail') !!}
-                <div class="group group--material">
+
+                <div class="group group--material group--material-icon">
                     {!! Form::label('password', 'Contraseña', ['class' => 'label']) !!}
-                    <i class="login__icon ion-md-key"></i>
+                    <i class="input__icon ion-md-key"></i>
                     {!! Form::password('password', ['class' => 'input']) !!}
-                    <span class="input__decoration {{ ($errors->has('email') == 1) ? 'input__decoration--error' : '' }}"></span>
+                    <span class="input__decoration {{ ($errors->has('password') == 1) ? 'input__decoration--error' : '' }}"></span>
                     @if ($errors->has('password'))
                         @foreach ($errors->get('password') as $error)
                             <p class="error">{{ $error }}</p>
                         @endforeach
                     @endif
                 </div>
+                <a href="{{ route('password.request') }}" class="login__link link text--left">¿Olvidó su contraseña?</a>
 
                 {!! Form::inCheck('remember', 'remember', 'Mantener sesión abierta') !!}
-                <a href="{{ route('password.request') }}" class="login__link link text--right">¿Olvidó su contraseña?</a>
-                {!! Form::submit('Iniciar Sesión', ['class' => 'btn']) !!}
+
+                <button class="btn btn--accent"><i class="btn__icon ion-md-send"></i> Iniciar Sesión</button>
 
                 <p class="login__link ">¿Aún no tiene una cuenta? <a href="{{ route('register') }}" class="link link--accent">Registrese</a></p>
             {!! Form::close() !!}
         </div>
     </section>
+@endsection
+@section('scripts')
+    <script type="text/javascript">
+
+        @if (Session::has('info'))
+        iziToast.success({
+            title: '{{ session('info') }}',
+            position: "bottomRight"
+        });
+        @endif
+
+    </script>
 @endsection

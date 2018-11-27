@@ -29,6 +29,8 @@ class FormServiceProvider extends ServiceProvider
 
         \Form::component('inText', 'components.form.text', ['name', 'value', 'label' => 'Texto', 'classesIn' => '', 'options' => []]);
 
+        \Form::component('inNumber', 'components.form.number', ['name', 'value', 'label' => 'Texto', 'classesIn' => '', 'options' => []]);
+
         \Form::component('inEmail', 'components.form.email', ['name', 'value', 'label' => 'Email', 'classesIn' => '', 'icon' => null]);
 
         \Form::component('inTextArea', 'components.form.textarea', ['name', 'value', 'label' => 'TextArea', 'classesIn' => '', 'options' => [], 'icon' => null ] );

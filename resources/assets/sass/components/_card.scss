@@ -36,8 +36,6 @@
         height: to-rem(220px);
         flex-grow: 1;
         flex-shrink: 0;
-        // object-fit: contain;
-        // object-position: center;
         background: {
             repeat: no-repeat;
             size: cover;
@@ -85,6 +83,7 @@
     &--mini {
         .card {
             &__title {
+                font-size: getFontSize(h4);
                 text-align: left;
             }
             &__body {

@@ -25,29 +25,18 @@ class UserController extends Controller
         //
     }
     public function activate($code)
-        {
-        $users = User::where('confirmation_code',$code);
-        $exist = $users->count();
-        $user = $users->first();
-        if($exist==1 and $user->status==0)
-        {
-          if($user->tipo_usuario=="asociado"){
+    {
+        $user = User::where('confirmation_code', $code)->first();
+        $user->status = 1;
+        $user->save();
+        if ($user->tipo_usuario == "asociado") {
+            return view('auth.date_complete')->with('user', $user);
+        }
+        return redirect('login')->with('info','¡Cuenta activada satisfactoriamente!');
+    }
 
-              return view('auth.date_complete')->with('user',$user);
-          }
-          else{
-            $user->status=1;
-            $user->save();
-              return view('auth.login')->with('info', 'Tu cuenta ha sido activada');
-          }
-        }
-        else{
-          return redirect::to('/');
-        }
-
-        }
-        public function complete(RegistroRequest $request, $id_usuario)
-   {
+    public function complete(RegistroRequest $request, $id_usuario)
+    {
 
      $user = User::find($id_usuario);
      if($user->tipo_usuario=="Asociado"){

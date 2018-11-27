@@ -1,24 +1,27 @@
 @extends('layouts.app')
 @section('styles')
- <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
+    <style media="screen">
+        .section--welcome {
+            height: 100vh;
+            background: url('/img/response-bg.jpeg') no-repeat center / cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+    </style>
 @endsection
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Bienvenido</div>
-
-                <div class="panel-body">
-
-                  @if(!empty($mensaje))
-              {{$mensaje}}
-              @else
-              Verifica tu correo electronico
-              @endif
-                </div>
-            </div>
-        </div>
+<section class="section section--welcome">
+    <div class="section__header">
+        <h1 class="section__title">¡Bienvenido a nuestra COMUNIDAD AEI!</h1>
     </div>
-</div>
+    <div class="section__body">
+        @if(!empty($mensaje))
+            {{$mensaje}}
+        @else
+            <p class="h2">¡Por favor antes de continuar verifique su correo!</p>
+        @endif
+    </div>
+</section>
 @endsection

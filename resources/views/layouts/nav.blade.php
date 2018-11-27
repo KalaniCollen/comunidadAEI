@@ -69,17 +69,23 @@
                         @php
                             $links = [
                                 ['link' => '/', 'name' => 'Inicio'],
-                                ['link' => '/', 'name' => '¿Quienes Somos?'],
-                                ['link' => '/', 'name' => 'Nuestros Socios'],
-                                ['link' => '/', 'name' => 'Contactanos'],
-                                ['link' => '/', 'name' => 'Publicaciones'],
+                                ['link' => '/#quienes-somos', 'name' => '¿Quienes Somos?'],
+                                ['link' => '/#nuestos-socios', 'name' => 'Nuestros Socios'],
+                                ['link' => '/#afiliate', 'name' => 'Contactanos'],
+                                ['link' => '/home', 'name' => 'Publicaciones'],
                                 ['link' => 'calendario', 'name' => 'Calendario'],
                             ];
                         @endphp
-                        @each('components.item-menu', $links, 'link')
+                        @foreach ($links as $link)
+                            <li class="nav__item">
+                                <a href="{{ $link['link'] }}" class="nav__link">{{ $link['name'] }}</a>
+                            </li>
+                        @endforeach
                         <li class="nav__item">
-                            <a href="{{ route('login') }}" class="btn btn--accent">Iniciar Sesión</a>
-                            <a href="{{ route('register') }}" class="btn">Registrarse</a>
+                            <a href="{{ route('login') }}" class="btn btn--accent nav__link">Iniciar Sesión</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="{{ route('register') }}" class="btn nav__link">Registrarse</a>
                         </li>
                     @endif
                 </ul>

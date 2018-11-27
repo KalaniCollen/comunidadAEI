@@ -18,12 +18,6 @@
     }
 }
 
-// .row,
-// [class|="col"] {
-//     margin: 0;
-//     padding: 0;
-// }
-//
 .section {
     padding: getSpace(min);
     position: relative;
@@ -79,15 +73,6 @@
 
 @include widescreen {
     .section {
-        padding: getSpace(big);
+        // padding: getSpace(big);
     }
 };
-
-.section-form-slider {
-    min-height: 100vh;
-    background: deepskyblue;
-
-    &__form {
-
-    }
-}

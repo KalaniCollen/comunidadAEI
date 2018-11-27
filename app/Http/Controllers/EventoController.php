@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 class EventoController extends Controller
 {
     private $listaColores = [
+        'exposicion' => 'Exposición', 'convencion' => 'Convención', 'conferencia' => 'Conferencia', 'congreso' => 'Congreso', 'capacitacion' => 'Capacitación', 'comida' => 'Comida',
         'juntas' => '#556677',
         'event-success' => '#009688',
         'comidas' => '#FF9800',
@@ -19,7 +20,7 @@ class EventoController extends Controller
     ];
 
     public function index(Response $response){
-        $eventos = Evento::all();
+        $eventos = Evento::where('estado_evento', 1)->get();
         $data = [];
         $eventosList = [];
         foreach ($eventos as $evento) {
@@ -28,7 +29,7 @@ class EventoController extends Controller
             $data['start'] = $evento->fecha_inicio;
             $data['end'] = $evento->fecha_final;
             $data['url'] = "/evento/$evento->slug_evento";
-            $data['color'] = $this->listaColores[$evento->tipo];
+            // $data['color'] = $this->listaColores[$evento->tipo];
             array_push($eventosList, $data);
         }
         return response()->json($eventosList, Response::HTTP_OK);
@@ -39,24 +40,14 @@ class EventoController extends Controller
     }
 
     public function store(Request $request) {
-        $evento = Evento::create([
-            'nombre_evento'=>$request->title,
-            'descripcion_evento'=>$request->descipcion,
-            'fecha_inicio'=>$request->fecha_inicio,
-            'fecha_final'=>$request->fecha_final,
-            'tipo'=>$request->tipo,
-            'direccion_evento'=>$request->direccion_evento,
-            'num_invitados'=>$request->capacidad,
-            'costo_asociado'=>$request->precioasociado,
-            'costo_no_asociado'=>$request->precionoasociado,
-            'ponente'=>$request->ponente,
-            'organizador'=>$request->organizador,
-            'correo_electronico_organizador'=>$request->correo_electronico_organizador,
-            'telefono_organizador'=>$request->telefono_organizador,
-            'slug_evento'=>Str::slug($request->title.' '.Auth::id()),
-            'id_usuario'=>Auth::id(),]
-        );
-        return redirect()->back();
+        $evento = new Evento();
+        $evento->fill($request->except('slug_evento', 'fecha_inicio', 'fecha_final', 'id_usuario'));
+        $evento->fecha_inicio = \Date::parse($request->fecha_inicio)->format('Y-m-d H:m:s');
+        $evento->fecha_final = \Date::parse($request->fecha_final)->format('Y-m-d H:m:s');
+        $evento->slug_evento = str_slug($request->nombre_evento);
+        $evento->id_usuario = Auth::user()->id_usuario;
+        $evento->save();
+        return redirect()->back()->with('info', '¡Solicitud enviada correctamente!');
     }
 
     public function select()

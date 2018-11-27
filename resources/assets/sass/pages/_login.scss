@@ -10,6 +10,7 @@
 }
 
 .login {
+    min-height: 100vh;
     background: url('/img/bienvenido.jpeg') no-repeat center / cover;
 
     &__header {
@@ -38,6 +39,7 @@
 
     &__form {
         min-height: 80%;
+        width: 100%;
         padding: getSpace(min);
         @include d-flex($dir: column, $ai: center, $jc: space-around);
     }
@@ -59,7 +61,6 @@
     .input {
         border: 0;
         border-radius: 0;
-        width: 100%;
         &:focus {
             outline: none;
 
@@ -116,7 +117,8 @@
 
 @include widescreen {
     .card--login {
-        width: 16%;
+        width: 30%;
+        padding: var(--med-mp);
         min-height: 90vh;
     }
 
@@ -126,10 +128,6 @@
         }
         &__form,
         &__header {
-            padding: {
-                left: getSpace(big);
-                right: getSpace(big);
-            }
         }
     }
 };

@@ -13716,6 +13716,7 @@ select {
 }
 
 .menu__nav {
+  height: calc(100% - var(--nav-height));
   grid-area: navigation-nav;
 }
 
@@ -13904,6 +13905,7 @@ select {
 
 .nav--main {
   width: 100%;
+  height: 100%;
   display: -ms-inline-flex;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -13920,8 +13922,7 @@ select {
           justify-content: flex-start;
 }
 
-.nav__list,
-.submenu {
+.nav__list {
   width: 100%;
   list-style-type: none;
   display: -ms-flex;
@@ -13949,6 +13950,26 @@ select {
   position: relative;
 }
 
+.nav__item:nth-child(7),
+.nav__item:last-child {
+  border: 0;
+  margin: var(--min-mp) 0;
+  display: -ms-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
 .nav__item--active {
   -webkit-box-ordinal-group: 0;
       -ms-flex-order: -1;
@@ -13974,24 +13995,25 @@ select {
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
 }
 
 .user {
+  padding: 0.5rem;
   cursor: pointer;
   display: -ms-flex;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-flow: column wrap;
-          flex-flow: column wrap;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -14007,6 +14029,7 @@ select {
      object-position: center;
   border-radius: 50%;
   background: #fff;
+  margin-right: 0.5rem;
   display: -ms-inline-flex;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -14034,18 +14057,28 @@ select {
 }
 
 .submenu {
+  list-style-type: none;
   visibility: hidden;
   display: none;
 }
 
 .submenu__item {
+  width: 100%;
   border: 0;
-}
-
-.submenu__link {
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  display: -ms-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .submenu--open {
@@ -14260,8 +14293,7 @@ select {
     color: #62626a;
   }
 
-  .nav__list,
-  .submenu {
+  .nav__list {
     display: -ms-flex;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -14273,12 +14305,34 @@ select {
     -webkit-box-align: stretch;
         -ms-flex-align: stretch;
             align-items: stretch;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
   }
 
   .nav__item {
     border: 0;
+  }
+
+  .nav__item:nth-child(7),
+  .nav__item:last-child {
+    display: -ms-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+
+  .nav__item:nth-child(7) {
+    margin-right: 0.5rem;
   }
 
   .nav__item--active {
@@ -14298,7 +14352,6 @@ select {
   .user__picture {
     width: 40px;
     height: 40px;
-    margin-right: 1rem;
   }
 
   .hamburger {
@@ -14425,17 +14478,6 @@ select {
     grid-template-rows: 2;
     grid-column-gap: 1rem;
   }
-}
-
-@media screen and (min-width: 1366px) {
-  .section {
-    padding: 2rem;
-  }
-}
-
-.section-form-slider {
-  min-height: 100vh;
-  background: deepskyblue;
 }
 
 .form {
@@ -15165,6 +15207,7 @@ select {
 }
 
 .card--mini .card__title {
+  font-size: 1.125em;
   text-align: left;
 }
 
@@ -15309,6 +15352,7 @@ select {
 }
 
 .login {
+  min-height: 100vh;
   background: url("/img/bienvenido.jpeg") no-repeat center/cover;
 }
 
@@ -15367,6 +15411,7 @@ select {
 
 .login__form {
   min-height: 80%;
+  width: 100%;
   padding: 0.5rem;
   display: -ms-flex;
   display: -webkit-box;
@@ -15394,7 +15439,6 @@ select {
 .group--material .input {
   border: 0;
   border-radius: 0;
-  width: 100%;
 }
 
 .group--material .input:focus {
@@ -15459,47 +15503,23 @@ select {
 
 @media screen and (min-width: 1366px) {
   .card--login {
-    width: 16%;
+    width: 30%;
+    padding: var(--med-mp);
     min-height: 90vh;
   }
 
   .login__logo {
     width: 8vw;
   }
-
-  .login__form,
-  .login__header {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
 }
 
-.registro__decoration {
-  width: 45%;
-}
-
-.registro__form {
-  width: 55%;
+.registro {
+  background: url("/img/register-bg.jpeg") no-repeat center/cover;
 }
 
 @media screen and (min-width: 1366px) {
-  .registro__form {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-  }
-
-  .registro__form h2,
-  .registro__form h4 {
-    width: 100%;
-  }
-
-  .registro__form .form__input {
-    width: 48%;
+  .registro {
+    background-attachment: fixed;
   }
 }
 

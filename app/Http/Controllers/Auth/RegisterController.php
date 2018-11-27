@@ -70,11 +70,11 @@ class RegisterController extends Controller
     {
         DB::transaction(function()
         {
-            $code=str_random(25);
-            $email=Input::get('email');
-            $nombre=Input::get('name');
-            $data['name']='usuario';
-            $dates=array('code'=>$code);
+            $code = str_random(25);
+            $email = Input::get('email');
+            $nombre = Input::get('name');
+            $data['name'] = 'usuario';
+            $dates = array('code'=>$code);
             $this->Email($dates,$email);
             $user=User::create([
                 'name' => Str::upper($nombre),
@@ -83,20 +83,20 @@ class RegisterController extends Controller
                 'email' => Input::get('email'),
                 'password' => bcrypt(Input::get('password')),
                 'confirmation_code'=>$code,
-                'notificacion_correo' => Input::get('Notificacion'),
+                'notificacion_correo' => Input::get('notificacion_correo'),
             ]);
-            $useru=User::where('id_usuario',$user->id_usuario)->first();
-            $useru->slug_usuario=Str::slug( Str::upper($nombre).' '.Str::upper(Input::get('apellido_paterno')).
+            $useru = User::where('id_usuario',$user->id_usuario)->first();
+            $useru->slug_usuario = Str::slug( Str::upper($nombre).' '.Str::upper(Input::get('apellido_paterno')).
             ' '.Str::upper(Input::get('apellido_materno')).' '.$user->id_usuario);
-            $useru->slug_empresa=Str::slug( Str::upper($nombre).' '.Str::upper(Input::get('apellido_paterno')).
+            $useru->slug_empresa = Str::slug( Str::upper($nombre).' '.Str::upper(Input::get('apellido_paterno')).
             ' '.Str::upper(Input::get('apellido_materno')).' '.$user->id_usuario);
             $useru->save();
             $mensaje='El punto de partida de todo logro es el deseo...';
             Perfil_Usuario::create([
-                'fecha_nacimiento'=> Input::get('fecha_nacimiento'),
-                'id_usuario'=>$user->id_usuario,
-                'sexo'=> Str::upper(Input::get('sexo')),
-                'slug_usuario'=> $useru->slug_usuario,
+                'fecha_nacimiento' => Input::get('fecha_nacimiento'),
+                'id_usuario' => $user->id_usuario,
+                'sexo' => Str::upper(Input::get('sexo')),
+                'slug_usuario' => $useru->slug_usuario,
 
             ]);
 
