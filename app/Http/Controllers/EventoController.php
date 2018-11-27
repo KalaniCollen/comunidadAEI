@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ComunidadAEI\Http\Controllers;
 
 use Auth;
-use App\Evento;
-use App\Registro_Evento;
+use ComunidadAEI\Evento;
+use ComunidadAEI\Registro_Evento;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
@@ -12,23 +12,23 @@ use Illuminate\Support\Str;
 class EventoController extends Controller
 {
     private $listaColores = [
-        ['juntas' => '#567'],
-        ['congresos' => '#8fe'],
-        ['comidas' => '#ffe188'],
-        ['event_important' => '#f56'],
+        'juntas' => '#556677',
+        'event-success' => '#009688',
+        'comidas' => '#FF9800',
+        'event-important' => '#E91E63',
     ];
-    //
+
     public function index(Response $response){
-        $mesActual = \Carbon\Carbon::now()->month;
-        $eventos = Evento::whereMonth('fecha_inicio', $mesActual)->where('estado_evento', '1')->get();
+        $eventos = Evento::all();
         $data = [];
         $eventosList = [];
         foreach ($eventos as $evento) {
+            $data['id'] = $evento->id_evento;
             $data['title'] = $evento->nombre_evento;
             $data['start'] = $evento->fecha_inicio;
             $data['end'] = $evento->fecha_final;
             $data['url'] = "/evento/$evento->slug_evento";
-            $data['color'] = "#484d50";
+            $data['color'] = $this->listaColores[$evento->tipo];
             array_push($eventosList, $data);
         }
         return response()->json($eventosList, Response::HTTP_OK);
@@ -56,12 +56,6 @@ class EventoController extends Controller
             'slug_evento'=>Str::slug($request->title.' '.Auth::id()),
             'id_usuario'=>Auth::id(),]
         );
-
-        // $date = \Carbon\Carbon::now()->month;
-        //
-        // // $eventos=Evento::where('fecha_inicio','<=',$date)->take(10)->get();
-        // $eventos = Evento::where('fecha_inicio', '<=', $date)->take(10)->get();
-        // return view('eventos.calendario')->with('eventos',$eventos);
         return redirect()->back();
     }
 
@@ -93,18 +87,16 @@ class EventoController extends Controller
         return $data; //para luego retornarlo y estar listo para consumirlo
     }
     public function show(Evento $evento){
-        $lugares=Registro_Evento::where('id_evento',$evento->id_evento)->get();
-        $lugaresdispo=$evento->num_invitados-count($lugares);
-        if($lugaresdispo<0){
-            $lugaresdispo=0;
+        $lugares = Registro_Evento::where('id_evento',$evento->id_evento)->get();
+        $lugaresdispo = $evento->num_invitados - count($lugares);
+        if($lugaresdispo < 0){
+            $lugaresdispo = 0;
         }
-        $asistencia=Registro_Evento::where('id_usuario',Auth::id())->where('id_evento',$evento->id_evento)->first();
+        $asistencia = Registro_Evento::where('id_usuario',Auth::id())->where('id_evento',$evento->id_evento)->first();
         return view('eventos.detalles')->with(['evento'=> $evento, 'lugares'=>$lugaresdispo , 'asistencia'=>$asistencia]);
     }
 
     public function showCalendar() {
-        $date = \Carbon\Carbon::now()->month;
-        $eventos = Evento::whereMonth('fecha_inicio', '=', $date)->where('estado_evento', '1')->get();
-        return view('eventos.calendario')->with('eventos',$eventos);
+        return view('eventos.calendario');
     }
 }

@@ -7,15 +7,54 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-:root {
-    --main-color: #323846;
-    --accent-color: #2ac;
-}
-
 html,
 body {
     height: 100vh;
 }
+
+/*
+    CSS CUSTOM PROPERTIES
+*/
+:root {
+
+    --twitter-color:  #1DA1F2;
+    --facebook-color: #3C5A99;
+    --instagram-color: #E1306C;
+
+    --nav-height: #{to-rem(80px)};
+
+    --min-mp: #{to-rem(8px)};
+    --med-mp: #{to-rem(16px)};
+    --big-mp: #{to-rem(32px)};
+    --huge-mp: #{to-rem(32px)};
+
+    --min-size: #{to-rem(40px)};
+    --med-size: #{to-rem(56px)};
+    --big-size: #{to-rem(110px)};
+    --huge-size: #{to-rem(140px)};
+
+    @include widescreen {
+        --min-size: #{to-rem(50px)};
+        --med-size: #{to-rem(66px)};
+        --big-size: #{to-rem(140px)};
+        --huge-size: #{to-rem(160px)};
+    };
+}
+
+.min-mp {
+    padding: var(--min-mp);
+}
+.med-mp {
+    padding: var(--med-mp);
+}
+.big-mp {
+    padding: var(--big-mp);
+}
+.huge-mp {
+    padding: var(--huge-mp);
+}
+
+
 
 html {
     font-size: 1em;
@@ -36,6 +75,20 @@ html {
 // }
 
 img {
+    vertical-align: middle;
     max-width: 100%;
     height: auto;
+}
+
+
+[class*="facebook"] {
+    color: var(--facebook-color);
+}
+
+[class*="twitter"] {
+    color: var(--twitter-color);
+}
+
+[class*="instagram"] {
+    color: var(--instagram-color);
 }

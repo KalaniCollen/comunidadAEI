@@ -10,17 +10,7 @@
             </div>
 
             {!! Form::open(['class' => 'login__form']) !!}
-                <div class="group group--material">
-                    {!! Form::label('email', 'Correo eléctronico', ['class' => 'label']) !!}
-                    <i class="login__icon ion-md-mail"></i>
-                    {!! Form::email('email', null, ['class' => 'input']) !!}
-                    <span class="input__decoration {{ ($errors->has('email') == 1) ? 'input__decoration--error' : '' }}"></span>
-                    @if ($errors->has('email'))
-                        @foreach ($errors->get('email') as $error)
-                            <p class="error">{{ $error }}</p>
-                        @endforeach
-                    @endif
-                </div>
+                {!! Form::inEmail('email', null, 'Correo eléctronico', 'group--material group--material-icon', 'mail') !!}
                 <div class="group group--material">
                     {!! Form::label('password', 'Contraseña', ['class' => 'label']) !!}
                     <i class="login__icon ion-md-key"></i>
@@ -33,6 +23,7 @@
                     @endif
                 </div>
 
+                {!! Form::inCheck('remember', 'remember', 'Mantener sesión abierta') !!}
                 <a href="{{ route('password.request') }}" class="login__link link text--right">¿Olvidó su contraseña?</a>
                 {!! Form::submit('Iniciar Sesión', ['class' => 'btn']) !!}
 

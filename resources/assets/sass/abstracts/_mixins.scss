@@ -17,17 +17,17 @@
     display: none;
 }
 
+@mixin circle($size, $percent: 50%) {
+    width: $size;
+    height: $size;
+    border-radius: $percent;
+}
+
 @mixin keyframes($name) {
     @keyframes #{$name} {
         @content;
     }
 }
-
-// @mixin mobile() {
-//     @media screen and (min-width: 768px) {
-//         @content;
-//     }
-// }
 
 @mixin tablet() {
     @media screen and (min-width: 768px) {

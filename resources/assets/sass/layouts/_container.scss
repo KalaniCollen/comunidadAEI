@@ -8,11 +8,22 @@
     position: relative;
 }
 
-.row {
-    margin: 0;
-    padding: 0;
+.full--height {
+    min-height: 100vh;
 }
 
+@for $i from 1 through 10 {
+    .w-#{$i*10} {
+        width: ($i*10) * 1%;
+    }
+}
+
+// .row,
+// [class|="col"] {
+//     margin: 0;
+//     padding: 0;
+// }
+//
 .section {
     padding: getSpace(min);
     position: relative;
@@ -28,7 +39,6 @@
         margin-bottom: 1.5vh;
         @include montserrat(l);
     }
-
     &--cards {
         padding: 0;
         @include d-grid;
@@ -57,6 +67,7 @@
 
         &--cards {
             grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: 2;
             grid-column-gap: getSpace(med);
         }
     }

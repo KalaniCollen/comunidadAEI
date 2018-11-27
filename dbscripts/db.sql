@@ -21,7 +21,7 @@ set time_zone = "+00:00";
 --
 -- base de datos: `aei`
 --
-drop database `aei`;
+drop database if exists `aei`;
 create database if not exists `aei` default character set utf8 collate utf8_swedish_ci;
 use `aei`;
 

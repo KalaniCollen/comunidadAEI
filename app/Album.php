@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace ComunidadAEI;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,6 +24,11 @@ class Album extends Model
     public function getRouteKeyName()
     {
         return 'slug_album';
+    }
+
+    // Retorna todas la imagenes pertenecientes a cada album del usuario
+    public function imagenes() {
+        return $this->hasMany('ComunidadAEI\Imagenes', 'id_album');
     }
 
 }

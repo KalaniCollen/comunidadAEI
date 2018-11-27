@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Auth;
+namespace ComunidadAEI\Services\Auth;
 use Illuminate\Support\Facades\Auth;
 
 trait RedirectsUsers

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ComunidadAEI\Http\Controllers;
 
-use App\User;
-use App\Perfil_Empresa;
-use App\Servicios;
+use ComunidadAEI\User;
+use ComunidadAEI\Perfil_Empresa;
+use ComunidadAEI\Servicios;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Input;
@@ -48,9 +48,9 @@ class BuscadorController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function search(Response $response, Request $request){
+    public function search(Request $request){
         // $busqueda = Perfil_Empresa::search($request->buscar)->get();
-        $data = User::search("*{$request->buscar}*")->orderBy('id_usuario','desc')->get();
+        // $data = User::search("*{$request->buscar}*")->orderBy('id_usuario','desc')->get();
         $data = Servicios::search("*{$request->buscar}*")->get();
         return response()->json($data, Response::HTTP_OK);
     }

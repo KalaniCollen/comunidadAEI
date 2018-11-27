@@ -1,19 +1,9 @@
-@extends('layouts.head')
+@extends('layouts.app')
 @section('content')
     <section class="section">
         <h1 class="section__title">Eventos</h1>
-
         <div class="row">
-            <div class="col-md-4 col-lg-4">
-                @foreach ($eventos as $evento)
-                    <a href="{{ route('evento.show', $evento->slug_evento) }}" class="card card--mini">
-                        <p class="card__title">{{ $evento->nombre_evento }}</p>
-                        <p class="card__date">{{ \Carbon\Carbon::parse($evento->fecha_inicio)->format('d M Y') }}</p>
-                        <p class="card__time">{{ \Carbon\Carbon::parse($evento->fecha_inicio)->format('H:i') }} - {{ \Carbon\Carbon::parse($evento->fecha_final)->format('H:i') }} hrs.</p>
-                        <span class="card__decoration"></span>
-                    </a>
-                @endforeach
-            </div>
+            <item-evento></item-evento>
 
             <div class="col-md-8 col-lg-8">
                 <div id="calendar"></div>
@@ -84,13 +74,20 @@
                 day: 'dia',
                 list: 'lista'
             },
-
             events: {
                 url:"evento"
             },
             modal: '#events-modal',
             timeFormat: 'H:mm',
-
+            locale: 'es',
+            nowIndicator: true,
+            eventLimit: true,
+            eventLimitText: 'más',
+            views: {
+                month: {
+                    eventLimit: 2
+                }
+            },
             eventMouseover: function( event, jsEvent, view ) {
                 var start = (event.start.format("HH:mm"));
                 var back=event.backgroundColor;

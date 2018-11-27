@@ -1,13 +1,9 @@
-@extends('layouts.head')
+@extends('layouts.app')
 @section('content')
     <section class="section">
-        <h1 class="section__title">Agregar Servicio</h1>
-
-        @if ($errors->any())
-            @foreach ($errors->all() as $error)
-                <p>{{ $error }}</p>
-            @endforeach
-        @endif
+        <div class="section__header">
+            <h1 class="section__title">Agregar Servicio</h1>
+        </div>
 
         <div class="row">
             <div class="col-md-6">
@@ -20,7 +16,7 @@
             </div>
 
             <div class="col-md-6">
-                <img src="{{ asset('storage/catalogos_img/defaultService.jpg') }}" alt="" id="js-img-preview" class="col-md-6">
+                <img src="{{ asset('storage/catalogos_img/defaultService.jpg') }}" alt="" id="js-img-preview" class="col-12">
             </div>
         </div>
     </section>

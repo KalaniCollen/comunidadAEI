@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace ComunidadAEI;
 
 use Sofa\Eloquence\Eloquence;
 use Illuminate\Database\Eloquent\Model;
@@ -44,10 +44,10 @@ class Servicios extends Model
     /**
      * Get the name of the business who publishes a new service
      * @method user
-     * @return \App\Perfil_Empresa
+     * @return \ComunidadAEI\Perfil_Empresa
      */
     public function empresa()
     {
-        return $this->belongsTo('App\Perfil_Empresa', 'id_empresa');
+        return $this->belongsTo('ComunidadAEI\Perfil_Empresa', 'id_empresa');
     }
 }

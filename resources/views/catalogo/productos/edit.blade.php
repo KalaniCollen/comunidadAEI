@@ -1,4 +1,4 @@
-@extends('layouts.head')
+@extends('layouts.app')
 @section('content')
 <section class="section">
     <h1 class="section__title">Actualizar Producto</h1>

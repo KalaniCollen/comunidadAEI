@@ -21,3 +21,8 @@ $gray-color: hsl(240, 2%, 52%);
 $gray-color-l: hsl(240, 2%, 64%);
 $ghost-color: hsl(240, 2%, 76%);
 $ghost-color-l: hsl(240, 4%, 88%);
+
+:root {
+    --alert-color: #{$red-color-l};
+    --success-color: #{$green-color-l};
+}

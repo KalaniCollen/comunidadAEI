@@ -1,215 +1,119 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Guias de estilo | AEI</title>
-    <link rel="stylesheet" href="css/app.css">
-</head>
-<body>
-    {{-- <div class="menu menu--main">
-        <div class="menu__brand">
-            <div class="brand">
-                <img src="http://v.fastcdn.co/t/e9b79025/fd2e429a/1533247864-21926311-168x168-logo-aei-BLANCO.fw.png" alt="" class="brand__logo">
-                <p class="brand__title">Comunidad AEI</p>
-            </div>
+@extends('layouts.html')
+@section('content')
+    <section class="section">
+        <div class="section__header">
+            <h1 class="section__title">Título de la sección</h1>
         </div>
-
-        <div class="menu__search">
-            <i class="ion-ios-search search__icon"></i>
-            <form action="#" class="form form--search-bar">
-                <input type="search" name="" id="" class="form__input-input form__input--search-main" placeholder="Buscar...">
-            </form>
-        </div>
-
-        <div class="menu__wrap {{ Auth::check() ? '' : 'menu--guest' }}">
-            <div class="menu__nav">
-                <nav class="nav nav--main">
-                    <ul class="nav__list">
-                        <li class="nav__item">
-                            <a href="#" class="nav__link">Incio</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="{{ route('home') }}" class="nav__link">Catálogo</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="#" class="nav__link">Galería</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            @if (Auth::check())
-                <div class="menu__user">
-                    <div class="user">
-                        <img src="https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/012016/untitled-1_77.png?itok=lw7cADiJ" alt="" class="user__picture user__picture--big">
-                        <p class="user__username">{{ Auth::user()->name }}</p>
-                    </div>
-                    <div class="menu__account">
-                        <a href="#" class="menu__account-configure">Configurar Cuenta</a>
-                        <a href="{{ route('logout') }}" class="menu__account-logout" onclick="event.preventDefault();document.getElementById('form-logout').submit();">Cerrar Sesión</a>
-                        <form action="{{ route('logout') }}" method="post" class="form form--logout" id="form-logout">
-                            {{ csrf_field() }}
-                        </form>
-                    </div>
-                </div>
-            @else
-                <div class="menu__user">
-                    <a href="{{ route('login') }}" class="btn btn--accent">Iniciar Sesión</a>
-                    <a href="{{ route('register') }}" class="btn">Registrarse</a>
-                </div>
-            @endif
-        </div>
-
-        <div class="menu__hamburger">
-            <div class="hamburger">
-                <span class="hamburger__bar"></span>
-                <span class="hamburger__bar"></span>
-                <span class="hamburger__bar"></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <main>
-            <section class="section">
-                <h1>Asociación de Empresarios de Iztapalapa A.C</h1>
-                <img src="https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                <a href="#" class="btn btn--accent">Iniciar Sesión</a>
-                <button class="btn">Registrarse</button>
-                <a href="#" class="btn"><i class="ion-ios-alarm btn__icon"></i>Hola</a>
-            </section>
-
-            <section class="section">
-                <div class="card">
-                    <div class="card__owner">
-                        <img src="https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/012016/untitled-1_77.png?itok=lw7cADiJ" class="user__picture card-user--picture">
-                        <p class="user__username card-user--username">HEINEKEN MÉXICO</p>
-                    </div>
-                    <div class="card__image">
-                        <div style="background-image: url(https://d50xhnwqnrbqk.cloudfront.net/images/products/large/WhatsApp%20Image%202017%2012%2026%20at%2015.36.17.jpeg)" class="card__image-img"></div>
-                    </div>
-                    <div class="card__body">
-                        <p class="card__title">Computadora lenovo x12</p>
-                        <p class="card__date">01/Nov/2018</p>
-                        <p class="card__content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci hic at dolorum similique error suscipit impedit, illo, eaque sit, et nulla ducimus eveniet, qui. Fugit dolorum, debitis saepe maxime sed.</p>
-                    </div>
-                    <div class="card__actions">
-                        <a href="#" class="btn btn--accent">Ver más</a>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section">
-                <form action="#" class="form">
-                        <div class="form__checkbox">
-                            <input type="checkbox" name="" value="" id="check" class="form__checkbox-input">
-                            <label for="check" class="form__checkbox-label">Ckeck</label>
+        <div class="section__body">
+            <div class="row">
+                <div class="col-md-6 col-lg-5">
+                    <div class="card">
+                        <a href="#" class="card__owner">
+                            <img src="https://i.kinja-img.com/gawker-media/image/upload/s--_DBGLHVf--/c_scale,f_auto,fl_progressive,q_80,w_800/eibgv7kctah62iddzywm.jpg" alt="" class="card__owner-picture">
+                            <p class="card__owner-name">BICod#</p>
+                        </a>
+                        <div class="card__image" style="background-image: url('https://images.pexels.com/photos/1436289/pexels-photo-1436289.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');"></div>
+                        <div class="card__body">
+                            <p class="card__title">Pantalones de mezclilla modelo x89</p>
+                            <p class="card__date">10 Octubre 2018</p>
+                            <p class="card__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod error nulla iusto rerum debitis qui necessitatibus aut doloremque eligendi optio quo impedit corrupti voluptatum, dolorum eveniet doloribus commodi possimus? Earum!</p>
                         </div>
-
-                    <div class="form__input">
-                        <label for="input-name" class="form__input-label">Nombre</label>
-                        <input type="text" name="" value="" id="input-name" class="form__input-input">
-                        <span class="form__error">¡El correo que ingreso no existe!</span>
-                    </div>
-
-                    <div class="form__input">
-                        <label for="passwd" class="form__input-label">Pass</label>
-                        <input type="password" name="" value="" id="passwd" class="form__input-input">
-                        <span class="form__error"></span>
-                    </div>
-
-                    <div class="form__input form__input--material">
-                        <input type="text" name="" value="" id="input-nm" class="form__input-input" required>
-                        <label for="input-nm" class="form__input-label">Usuario</label>
-                        <span class="form__input--material-decoration"></span>
-                        <span class="form__error">¡El correo que ingreso no existe!</span>
-                    </div>
-
-                    @component('components.in', [
-                        'type' => 'text',
-                        'name' => 'nombre',
-                        'id' => 'in-name',
-                        'label' => 'Nombre Full'
-                    ])
-                    @endcomponent
-
-                    <div class="form__file">
-                        <input type="file" name="" id="file" class="form__file-input" onchange="getNameFile(this)">
-                        <label for="file" class="btn btn--fab btn--fab-icon"><i class="ion-ios-cloud-upload"></i></label>
-                        <span class="form__error"></span>
-                    </div>
-
-                    <div class="form__switch">
-                        <label for="switch" class="form__switch-label">
-                            <input type="checkbox" name="" id="switch" class="form__switch-input">
-                            <div class="form__switch-switch"></div>
-                            Privado
-                        </label>
-                    </div>
-
-                    <div class="form__radio">
-                        <input type="radio" name="sexo" id="mujer" class="form__radio-input">
-                        <label class="form__radio-label" for="mujer">Mujer</label>
-                    </div>
-
-                    <div class="form__radio">
-                        <input type="radio" name="sexo" id="hombre" class="form__radio-input">
-                        <label class="form__radio-label" for="hombre">Hombre</label>
-                    </div>
-                </form>
-            </section>
-
-            <section class="section-form-slider">
-                <div class="decoration">
-                    <div class="decoration__content">
-                        <h2 class="decoration__title">¡Avanza firme a tus metas!</h2>
-                        <p class="decoration__text">Jóse M. C.</p>
+                        <div class="card__footer">
+                            <button class="btn btn--accent">hello</button>
+                            <a href="#" class="btn btn--ghost btn--ghost-transparent">Contactar</a>
+                        </div>
                     </div>
                 </div>
-                <form action="#" class="form form--form-slider">
+            </div>
 
-                    <div class="form__input">
-                        <label for="input" class="form__input-label">Nombre</label>
-                        <input type="text" name="" value="" id="input" class="form__input-input">
-                        <span class="form__error">¡El correo que ingreso no existe!</span>
+            <div class="row">
+                <div class="col-md-6 col-lg-5">
+                    <div class="card card--mini">
+                        <div class="card__body">
+                            <p class="card__title">Mi super asombroso producto mamalón extra cool.</p>
+                            <p class="card__time">10:00 - 12:00 hrs.</p>
+                            <p class="card__date">10 Octubre 2018</p>
+                        </div>
                     </div>
+                </div>
+                <div class="col-md-6 col-lg-5">
+                    <div class="card card--mini card--mini-left">
+                        <p class="card__date">10 <span class="card__date-month">Oct</span> </p>
+                        <div class="card__body">
+                            <p class="card__title">Mi super asombroso evento chidori mamalón extra cool.</p>
+                            <p class="card__time">10:00 - 12:00 hrs.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-5">
+                    <a href="#" class="card card--mini card--mini-image">
+                        <img src="https://www.elpais.com.co/files/article_main/uploads/2018/04/22/5add1a2c70082.jpeg" alt="" class="card__image">
+                        <div class="card__body">
+                            <p class="card__title">Servicio de luces y sonido.</p>
+                            <p class="card__date">10 Octubre 2018</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
 
-                    <input type="submit" class="btn" value="Enviar">
-                </form>
-            </section>
-        </main>
-    </div>
+            <div class="row">
+            </div>
 
-    <div class="modal">
+        </div>
+    </section>
+    <section class="section">
+        <div class="section__header">
+            <h1 class="section__title">Botones</h1>
+        </div>
+        <div class="section__body">
+            <button class="btn">Botón default</button>
+            <button class="btn">
+                <i class="btn__icon ion-md-create"></i>
+                Botón default con icono
+            </button>
+            <button class="btn btn--accent">Botón accent</button>
+            <button class="btn btn--ghost">Botón ghost</button>
+            <button class="btn btn--ghost">
+                <i class="btn__icon ion-md-camera"></i>
+                Botón ghost
+            </button>
+        </div>
+    </section>
+    <section class="section">
+        <div class="section__header">
+            <h1 class="section__title">Texto</h1>
+        </div>
+        <div class="section__body">
+            <h1>H1 Montserrat</h1>
+            <h2>H2 Montserrat</h2>
+            <h3>H3 Montserrat</h3>
+            <h4>H4 Montserrat</h4>
+            <h5>H5 Montserrat</h5>
+            <h6>H6 Montserrat</h6>
 
-    </div>
+            <a href="#" class="link">Mi link</a>
+        </div>
+    </section>
+    <section class="section">
 
-    <script type="text/javascript">
 
-        const fileTypes = ["image/jpeg", "image/svg+xml"];
-        let iconMenu = document.getElementsByClassName('hamburger');
-        iconMenu[0].addEventListener('click', e => {
-            iconMenu[0].classList.toggle('hamburger--open');
-            document.getElementsByClassName('menu__wrap')[0].classList.toggle('menu__wrap--open');
-        });
+        {!! Form::open(['route' => ['fake'], 'class' => 'form']) !!}
+        <div class="form__header">
+            <img class="form__image" src="/img/logoAEI-azul.png" alt="">
+            <p class="form__title">Login</p>
+            <p class="form__subititle">¡Welcome come back!</p>
+        </div>
 
-        function getNameFile(input) {
-            if(input.files && input.files[0]) {
-                let name = input.files[0].name;
-                document.getElementById('file-text').innerHTML = name;
-            }
-        }
-    </script> --}}
+        <div class="form__body">
+            {!! Form::inText('nombre', null, 'Hola', null) !!}
+            {!! Form::inTel('numero', null, 'Teléfono', null) !!}
+            <input type="submit" value="Enviar" class="btn btn--ghost">
+        </div>
 
-    <form class="" action="index.html" method="post">
-        @component('components.in',[
-            'id' => 'uno',
-            'type' => 'checkbox',
-            'name' => 'id_usuario',
-            'label' => 'Texto'
-        ])
-        @endcomponent
-    </form>
-</body>
-</html>
+        <div class="form__footer">
+            <p>Asociación de Empresarios de Iztapala A.C. {{ Date::now()->year }}</p>
+        </div>
+        {!! Form::close() !!}
+
+    </section>
+@endsection

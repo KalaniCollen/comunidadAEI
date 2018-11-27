@@ -88,9 +88,36 @@
 }
 
 .lato {
-    @include lato;
     &-regular {
+        @include lato;
+    }
 
+    &-bold {
+        @include lato(b);
+    }
+}
+
+.montserrat {
+    &-regular {
+        @include montserrat;
+    }
+
+    &-bold {
+        @include montserrat(b);
+    }
+
+    &-light {
+        @include montserrat(l);
+    }
+}
+
+.roboto {
+    &-regular {
+        @include roboto;
+    }
+
+    &-bold {
+        @include roboto(b);
     }
 }
 
@@ -103,6 +130,10 @@ select,
     color: $text-color;
     font-size: getFontSize(h5);
     @include lato;
+}
+
+.link--undecorate {
+    text-decoration: none;
 }
 
 .text--accent {

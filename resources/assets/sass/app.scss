@@ -7,13 +7,24 @@
 @import "./abstracts/mixins";
 @import "./abstracts/colors";
 @import "./abstracts/placeholders";
-
+//
 @import "./vendor/normalize";
+// @import "node_modules/bootstrap/scss/bootstrap";
 @import "node_modules/bootstrap/scss/bootstrap-grid";
-@import "node_modules/ionicons/dist/scss/ionicons.scss";
+@import "node_modules/bootstrap/scss/mixins/_border-radius";
+@import "node_modules/bootstrap/scss/mixins/_lists";
+@import "node_modules/bootstrap/scss/mixins/_pagination";
+@import "node_modules/bootstrap/scss/_pagination";
+@import "node_modules/bootstrap/scss/utilities/_spacing";
+
+@import "node_modules/ionicons/dist/scss/ionicons";
 @import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
 @import "node_modules/@glidejs/glide/src/assets/sass/glide.theme";
 @import "node_modules/fullcalendar/dist/fullcalendar.min";
+@import "node_modules/izimodal/css/iziModal.min";
+@import "node_modules/izitoast/dist/css/iziToast.min";
+@import "node_modules/cropperjs/dist/cropper.min";
+@import "node_modules/croppie/croppie";
 @import "./vendor/dropzone";
 
 @import "./base/reset";

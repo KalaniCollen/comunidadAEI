@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ComunidadAEI\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 
 
-use App\Perfil_Empresa;
+use ComunidadAEI\Perfil_Empresa;
 class MisLogrosController extends Controller
 {
 

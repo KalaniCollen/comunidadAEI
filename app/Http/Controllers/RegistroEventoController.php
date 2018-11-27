@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ComunidadAEI\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Registro_Evento;
-use App\Registro_Invitado_Evento;
+use ComunidadAEI\Registro_Evento;
+use ComunidadAEI\Registro_Invitado_Evento;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\InvitadoRequest;
+use ComunidadAEI\Http\Requests\InvitadoRequest;
 
 class RegistroEventoController extends Controller
 {

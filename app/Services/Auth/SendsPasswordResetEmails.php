@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Auth;
+namespace ComunidadAEI\Services\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;

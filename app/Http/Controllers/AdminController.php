@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ComunidadAEI\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\User;
-use App\Perfil_Empresa;
-use App\Evento;
-use App\Servicios;
-use App\Productos;
+use ComunidadAEI\User;
+use ComunidadAEI\Perfil_Empresa;
+use ComunidadAEI\Evento;
+use ComunidadAEI\Servicios;
+use ComunidadAEI\Productos;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
-use App\Perfil_Usuario;
+use ComunidadAEI\Perfil_Usuario;
 use Illuminate\Support\Str as Str;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;

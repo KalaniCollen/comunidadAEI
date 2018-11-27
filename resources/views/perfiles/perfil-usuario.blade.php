@@ -1,4 +1,4 @@
-@extends('layouts.head')
+@extends('layouts.app')
 @section('content')
     <section class="section">
         <h1>Configuración de la cuenta</h1>

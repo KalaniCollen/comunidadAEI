@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace ComunidadAEI;
 
 use Sofa\Eloquence\Eloquence;
 use Illuminate\Notifications\Notifiable;

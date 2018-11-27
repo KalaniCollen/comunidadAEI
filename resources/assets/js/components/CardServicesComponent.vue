@@ -1,43 +1,41 @@
 <template>
-    <section class="section section--cards">
-        <div class="card" v-for="(servicio, i) in servicios" :key="servicio.slug">
-            <div class="card__owner">
-                <img :src="servicio.empresa.logo_empresa" class="user__picture card-user--picture">
-                <p class="user__username card-user--username">{{ servicio.empresa.nombre_empresa }}</p>
-            </div>
-            <div class="card__image">
-                <div :style="{ backgroundImage: 'url(/storage/catalogos_img/' + servicio.imagen + ')' }" class="card__image-img"></div>
-            </div>
+    <section class="row no-gutters d-flex justify-content-center">
+        <div class="card col-md-10 col-lg-5 ml-2 mr-2" v-for="(servicio, i) in servicios.data" :key="servicio.slug">
+            <a :href="`/perfil-empresa/${servicio.empresa.slug_empresa}`" class="card__owner">
+                <img :src="servicio.empresa.logo_empresa" class="card__owner-picture">
+                <p class="card__owner-name">{{ servicio.empresa.nombre_empresa }}</p>
+            </a>
+            <div class="card__image" :style="{ backgroundImage: 'url(/storage/catalogos_img/' + servicio.imagen + ')' }"></div>
             <div class="card__body">
                 <p class="card__title">{{ servicio.nombre }}</p>
                 <p class="card__date">{{ servicio.created_at | moment("D MMMM YYYY") }}</p>
-                <p class="card__content">{{ servicio.descripcion }}</p>
-                <p><b>Horario de atención: </b>{{ servicio.horario_inicio }} a {{ servicio.horario_cierre }}</p>
+                <p class="card__description">{{ servicio.descripcion }}</p>
             </div>
-            <div class="card__actions card__actions--space">
+            <div class="card__footer">
                 <a :href="`servicios/${servicio.slug}`" class="btn btn--accent">Ver más</a>
-                <a :href="`servicios/${servicio.slug}/contact`">Contactar</a>
+                <a :href="`servicios/${servicio.slug}/contact`" class="btn btn--ghost btn--ghost-transparent">Contactar</a>
             </div>
+        </div>
+        <div class="section__footer w-100">
+            <pagination :data="servicios" @pagination-change-page="getResults"></pagination>
         </div>
     </section>
 </template>
 
 <script type="text/javascript">
-    const moment = require('moment')
-    // require('moment/locale/es')
-
-    Vue.use(require('vue-moment'), {
-        moment
-    });
-
     export default {
         data() {
             return {
-                servicios: []
+                servicios: {},
             }
         },
         mounted() {
-            axios.get('/v1/servicios').then(response => (this.servicios = response.data));
+            this.getResults();
+        },
+        methods: {
+            getResults(page = 1) {
+                axios.get('/v1/servicios?page=' + page).then(response => (this.servicios = response.data));
+            }
         }
     }
 </script>

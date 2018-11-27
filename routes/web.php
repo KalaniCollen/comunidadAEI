@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -96,14 +97,14 @@ Route::get('/servicios/{servicio}/contact/', 'ServiciosController@contact')->nam
 Route::group(['middleware' => 'auth'], function() {
     Route::resource('perfil-empresa','PerfilEmpresaController');
     Route::resource('perfil-usuario', 'PerfilUsuarioController');
-    Route::resource('album', 'AlbumController');
+    Route::get('albums/view', 'AlbumController@view')->name('albums.view');
+    Route::resource('albums', 'AlbumController');
     Route::resource('videos', 'VideosController');
+
+    Route::resource('imagenes', 'ImagenesController', [ 'except' => ['update', 'edit', 'create'] ]);
     Route::resource('servicios', 'ServiciosController', [ 'except' => ['index','show'] ]);
     Route::resource('productos', 'ProductosController', [ 'except' => ['index','show'] ]);
-    Route::resource('evento', 'EventoController');
-
-    Route::post('album/{image}', 'AlbumController@addImage')->name('album.add-image');
-
+    Route::resource('evento', 'EventoController', [ 'except' => ['index', 'show'] ]);
     Route::get('catalogo', 'CatalogoController@index')->name('catalogo.index');
     Route::get('perfil-usuario/update-email', 'PerfilUsuarioController@updateEmail')->name('perfil-usuario.update-email');
 });
@@ -118,11 +119,10 @@ Route::resource('bolsa-trabajo', 'BolsaDeTrabajoController');
 // Rutas públicas para consultar productos y servicios de los socios
 Route::get('/servicios/{servicio}', 'ServiciosController@show')->name('servicios.show');
 Route::get('/productos/{producto}', 'ProductosController@show')->name('productos.show');
+Route::get('evento/{evento}', 'EventoController@show')->name('evento.show');
+Route::get('evento', 'EventoController@index')->name('evento.index');
 
-
-#########################################################
-#              RUTAS A API'S PÚBLICAS
-#########################################################
+# API'S
 Route::prefix('v1')->group(function () {
     Route::get('servicios', 'ServiciosController@api')->name('servicios.api');
     Route::get('productos', 'ProductosController@api')->name('productos.api');
@@ -147,3 +147,10 @@ Route::get('developers', function() {
 Route::get('guidelines', function() {
     return view('guidelines');
 });
+
+
+
+Route::post('fake', function(Request $request) {
+    dd($request->all());
+    // return redirect('guidelines')->withErrors(['numero', 'El numero']);
+})->name('fake');

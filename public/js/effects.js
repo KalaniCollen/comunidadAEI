@@ -1,3 +1,4 @@
+// document.addEventListener('touchstart', ontouchstart, true);
 let iconMenu = document.getElementsByClassName('hamburger');
 let account = document.getElementsByClassName('user');
 let links = document.getElementsByClassName('nav__link');
@@ -9,13 +10,6 @@ iconMenu[0].addEventListener('click', e => {
     iconMenu[0].classList.toggle('hamburger--open');
     document.getElementsByClassName('menu__wrap')[0].classList.toggle('menu__wrap--open');
 });
-
-// [].forEach.call(links, function(link) {
-//     link.addEventListener('click', e => {
-//         iconMenu[0].classList.toggle('hamburger--open');
-//         document.getElementsByClassName('menu__wrap')[0].classList.toggle('menu__wrap--open');
-//     });
-// });
 
 function previewImage(input, img, text) {
     if(input.files && input.files[0]) {
@@ -55,14 +49,16 @@ function submenu(element) {
  * Funciones GLOBALES
  */
 // Función para usar ajax
-function ajaxData(url = '', type = 'POST', token = '' , data = {}, success) {
+function ajaxData(url = '', type = 'POST', token = '' , data = {}, func) {
     $.ajax(url, {
         headers: { 'X-CSRF-TOKEN': token },
         type: type,
         dataType: 'json',
-        data: data
-    }).done(success());
+        data: data,
+        success: func()
+    });
 }
+
 
 function deleteItem(form) {
     event.preventDefault();

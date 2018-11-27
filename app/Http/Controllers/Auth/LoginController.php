@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace ComunidadAEI\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Services\Auth\AuthenticatesUsers;
-use App\Services\Auth\RedirectsUsers;
+use ComunidadAEI\Http\Controllers\Controller;
+use ComunidadAEI\Services\Auth\AuthenticatesUsers;
+use ComunidadAEI\Services\Auth\RedirectsUsers;
 use Illuminate\Support\Facades\Auth;
 
 

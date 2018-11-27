@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace ComunidadAEI;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -38,7 +38,7 @@ class Productos extends Model
      */
     public function empresa()
     {
-        return $this->belongsTo('App\Perfil_Empresa', 'id_empresa');
+        return $this->belongsTo('ComunidadAEI\Perfil_Empresa', 'id_empresa');
     }
 
 

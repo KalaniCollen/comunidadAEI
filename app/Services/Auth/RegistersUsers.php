@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services\Auth;
+namespace ComunidadAEI\Services\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
-use App\Http\Requests\RegisterRequest;
+use ComunidadAEI\Http\Requests\RegisterRequest;
 
 trait RegistersUsers
 {

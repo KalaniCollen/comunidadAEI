@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ComunidadAEI\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App/Perfil_Usuario;

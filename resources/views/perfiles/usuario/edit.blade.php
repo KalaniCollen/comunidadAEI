@@ -1,17 +1,20 @@
-@extends('layouts.head')
+@extends('layouts.app')
 @section('styles')
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" /> --}}
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/croppie.css')}}" />
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/croppie.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{ asset ('css/css.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{ asset ('css/privacity.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{ asset ('css/tarjeta.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset ('css/enlaces.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset ('css/enlaces.css')}}" /> --}}
 
 @endsection
 
 @section('content')
     <section class="section">
-        <h1 class="section__title">Configurar cuenta</h1>
+        <div class="section__header">
+            <h1 class="section__title">Configurar cuenta</h1>
+
+        </div>
         <div class="panel-body">
             @if (session('status'))
                 <div class="alert alert-success">
@@ -20,8 +23,29 @@
             @endif
         </div>
 
+        <div class="section__body">
 
-        <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
+
+            {{-- {!! Form::model($user, ['route' => 'perfil-usuario.update', $user->slug_usuario]) !!} --}}
+
+
+            {{-- {!! Form::close() !!} --}}
+
+            <p>{{ $perfil }}</p>
+
+
+            {!! Form::model($perfil, ['route' => ['perfil-usuario.update', $perfil->slug_usuario], 'method' => 'PUT']) !!}
+            @include('components.form-register')
+
+            {!! Form::submit('Actualiza perfil', ['class' => 'btn btn--accent']) !!}
+
+            {!! Form::close() !!}
+
+        </div>
+
+
+
+        {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
         <input type="hidden" id="id" value="{{ auth()->user()->id_usuario }}">
 
         <div class="panel-body" align="center">
@@ -123,15 +147,15 @@
                 <p>***************</p>
                 <a href="{{ route('perfil-usuario.index') }}" class="btn">Cambiar contraseña</a>
             </div>
-        </div>
+        </div> --}}
     </section>
 @endsection
 @section('scripts')
-    <script src="{{ asset('js/croppie.js')}}"></script>
+    {{-- <script src="{{ asset('js/croppie.js')}}"></script> --}}
     {{-- <script src="{{ asset('js/bootstrap.min.js')}}" ></script> --}}
-    <script src="{{ asset('js/Perfil.js')}}" type="text/javascript"></script>
+    {{-- <script src="{{ asset('js/Perfil.js')}}" type="text/javascript"></script>
     <script src="{{ asset('js/crop.js')}}" type="text/javascript"></script>
     <script>
-    var url = "{{asset('')}}";
-</script>
+    var url = "{{asset('')}}"; --}}
+{{-- </script> --}}
 @endsection

@@ -1,9 +1,9 @@
-@extends('layouts.head')
+@extends('layouts.app')
 @section('styles')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/eventos/css/bootstrap.min.css')}}">
-        <link rel="stylesheet" href="{{ asset('css/eventos/css/calendar.css')}}">
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/eventos/css/bootstrap.min.css')}}"> --}}
+        {{-- <link rel="stylesheet" href="{{ asset('css/eventos/css/calendar.css')}}"> --}}
 {{-- <link rel="stylesheet" href="{{ asset('css/eventos/css/btn2.css')}}" /> --}}
-        <link rel="stylesheet" href="{{ asset('css/eventos/css/bootstrap-datetimepicker.min.css')}}" />
+        {{-- <link rel="stylesheet" href="{{ asset('css/eventos/css/bootstrap-datetimepicker.min.css')}}" /> --}}
 
 @endsection
 @section('content')
@@ -27,6 +27,11 @@
             <p><b>Nota:</b> El evento registrado será validado por el administrador!</p>
         </div>
     </div> --}}
+
+    {!! Form::open(['route' => 'evento.store']) !!}
+        {!! Form::inDateTime('fecha_inicio', Date::parse(Date::now())->format('Y-m-d\TH:m'), 'Fecha') !!}
+    {!! Form::close() !!}
+
 
 
     <form  method="POST" action="{{ route('evento.store') }}">
@@ -111,7 +116,7 @@
 {{-- </div> --}}
 {{-- </div> --}}
 @endsection
-@section('scripts')
+{{-- @section('scripts')
     <script type="text/javascript" src="{{ asset('js/eventos/js/es-ES.js')}}"></script>
     <script src="{{ asset('js/jquery.min.js')}}"></script>
     <script src="{{ asset('js/eventos/js/moment.js')}}"></script>
@@ -140,4 +145,4 @@
 <script type="text/javascript">
 
 </script>
-@endsection
+@endsection --}}

@@ -1,4 +1,4 @@
-@extends('layouts.head')
+@extends('layouts.app')
 @section('content')
     <header class="header">
         <div class="header__container">
@@ -102,7 +102,10 @@
                 {!! Form::textarea('mensaje', null, ['class' => 'input']) !!}
             </div>
 
-            {!! Form::submit('Enviar', ['class' => 'btn btn--big btn--ghost-accent']) !!}
+            <button type="submit" class="btn btn--ghost">
+                <i class="btn__icon ion-md-send"></i>
+                Enviar
+            </button>
 
             {!! Form::close() !!}
         </section>

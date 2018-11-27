@@ -1,20 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ComunidadAEI\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Videos;
+use ComunidadAEI\Videos;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class VideosController extends Controller
 {
-
+    private $url = "multimedia.videos";
 
     public function index()
     {
-
-        return view('multimedia.videos.VideosAlbum');
+        return view("{$this->url}.VideosAlbum");
     }
 
     public function show($id_usuario)
@@ -23,6 +22,7 @@ class VideosController extends Controller
 
         return view('multimedia.video.Videos')->with('Videos', $Videos);
     }
+
     public function mostrar($id_usuario)
     {
         $Videos = Videos::where('id_usuario',$id_usuario)->where('tipo','Video')->get();

@@ -3,7 +3,7 @@
     border: 0;
     border-radius: $borde-material;
     color: $text-color;
-    min-width: to-rem(120px);
+    min-width: to-rem(100px);
     height: to-rem(38px);
     padding: getSpace(min) getSpace(med);
     font-size: getFontSize(h6);
@@ -22,14 +22,23 @@
         margin-right: getSpace(sml);
     }
 
-    &--big {
-        width: to-rem(146px);
-        height: to-rem(40px);
-    }
+    &--ghost {
+        background: transparent;
+        border: {
+            width: thin;
+            style: solid;
+            color: $main-color;
+        }
+        color: $title-color;
 
-    &--ghost-accent {
-        background: $main-color;
-        color: #fff;
+        &-white {
+            border-color: #fff;
+            color: #fff;
+        }
+
+        &-transparent {
+            border-color: transparent;
+        }
     }
 
     &--accent {
@@ -46,7 +55,7 @@
 
 
 .fab {
-    position: fixed;
+    position: absolute;
     width: 56px;
     height: 56px;
     border: 0;

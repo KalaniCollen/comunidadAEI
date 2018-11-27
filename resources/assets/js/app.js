@@ -4,53 +4,41 @@
 * includes Vue and other libraries. It is a great starting point when
 * building robust, powerful web applications using Vue and Laravel.
 */
-// require('./bootstrap');
+require('./bootstrap');
+window.Vue = require('vue');
+const moment = require('moment');
 import Glide from '@glidejs/glide';
+import iziModal from 'izimodal/js/iziModal';
+import iziToast from 'izitoast';
+import Cropper from 'cropperjs';
+import { Croppie } from 'croppie/croppie';
 import 'fullcalendar';
-try {
-    window.$ = window.jQuery = require('jquery');
-    window.Glide = Glide;
-    window.moment = require('moment');
-    window.Vue = require('vue');
-    window.axios = require('axios');
-} catch (e) {
-    console.log(e.message);
-}
+require('moment/locale/es');
 
-/**
-* We'll load the axios HTTP library which allows us to easily issue requests
-* to our Laravel back-end. This library automatically handles sending the
-* CSRF token as a header based on the value of the "XSRF" token cookie.
-*/
-
-
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-/**
-* Next we will register the CSRF Token as a common header with Axios so that
-* all outgoing HTTP requests automatically have it attached. This is just
-* a simple convenience so we don't have to attach every token manually.
-*/
-
-let token = document.head.querySelector('meta[name="csrf-token"]');
-
-if (token) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-} else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
-}
-
+window.Glide = Glide;
+$.fn.iziModal = iziModal;
+window.iziToast = iziToast;
+window.Cropper = Cropper;
+require('default-passive-events');
 /**
 * Next, we will create a fresh Vue application instance and attach it to
 * the page. Then, you may begin adding components to this application
 * or customize the JavaScript scaffolding to fit your unique needs.
 */
+Vue.component('pagination', require('laravel-vue-pagination'));
+Vue.use(require('vue-moment'), {
+    moment
+});
 
+// Vue.component('vue-picture-swipe', VuePictureSwipe);
 Vue.component('card-servicios', require('./components/CardServicesComponent.vue'));
 Vue.component('card-productos', require('./components/CardProductsComponent.vue'));
-Vue.component('header-slider', require('./components/SliderContent.vue'));
+Vue.component('images-album', require('./components/ImageComponent.vue'));
+Vue.component('upload-images-album', require('./components/UploadImagesAlbumComponent.vue'));
+Vue.component('ej', require('./components/Ejemplo.vue'));
+Vue.component('albums-list', require('./components/AlbumsComponent.vue'));
 Vue.component('noticias', require('./components/NoticiasComponent.vue'));
-
+Vue.component('item-evento', require('./components/ItemEventsComponent.vue'));
 const app = new Vue({
     el: '#app',
 });

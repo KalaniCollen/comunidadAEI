@@ -1,44 +1,37 @@
 /*
     URL fija del recurso
 */
-const URL = "/album";
-
-$('#js-album-new').on('click', function(){
-    $.alertable.prompt('Nombre del album')
-    .then(function(data){
-        let album = data.value;
-        let token = $('#js-album-token').val();
-        ajaxData(URL, 'POST', token, {nombre: album}, function() {
-            location.href = URL;
+const URL = "/albums";
+const token = $('meta[name="csrf-token"]').attr('content');
+$('#js-create-album-modal').iziModal({
+    title: 'Nuevo album',
+    icon: 'ion-md-create',
+    padding: '1em',
+    headerColor: '#567',
+    zindex: 1003,
+    onOpened: function(modal) {
+        $('#js-btn-create').on('click', function(el) {
+            axios.post('/albums', {
+                nombre: this.value
+            }).then(function(response) {
+                this.nombre = '';
+                console.log(respo);
+                $('#js-create-album-modal').iziModal('close');
+                iziToast.success({
+                    title: 'Ok!',
+                    icon: 'ion-md-done-all',
+                    message: response.data.message,
+                    position: 'topRight'
+                });
+                // EventBus.$emit('images-added', response.al);
+            }).catch(function(error) {
+                console.log(error);
+                iziToast.error({
+                    title: 'Error!',
+                    message: error,
+                    position: 'topRight'
+                });
+            });
         });
-    }, function() {
-        console.log('cancelado');
-    });
-});
-
-$('.js-album-delete').on('click', function() {
-    let token = $(this).data('token');
-    let slug = $(this).data('slug');
-    let name = $(this).data('name');
-    $.alertable
-    .confirm(`¿Desea eliminar el album ${name}?`)
-    .then(function() {
-        ajaxData(`${URL}/${slug}`, 'DELETE', token, {slug: slug}, function() {
-            location.href = URL;
-        });
-    });
-});
-
-$('.js-album-edit').on('click', function() {
-    let token = $(this).data('token');
-    let slug = $(this).data('slug');
-    $.alertable.prompt('Nuevo nombre del album')
-    .then(function(data){
-        let album = data.value;
-        ajaxData(`${URL}/${slug}`, 'PUT', token, {nombre: album}, function() {
-            location.href = URL;
-        });
-    }, function() {
-        console.log('cancelado');
-    });
+    }
 });

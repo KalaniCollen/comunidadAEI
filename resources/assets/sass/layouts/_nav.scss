@@ -1,6 +1,6 @@
 .menu {
     width: 100%;
-    min-height: to-rem(80px);
+    min-height: var(--nav-height);
 
     &--main {
         background: $main-color;
@@ -13,7 +13,7 @@
         grid-template-areas: "navigation-search navigation-brand navigation-hamburger";
 
         + .container-fluid {
-            padding-top: to-rem(80px);
+            padding-top: var(--nav-height);
         }
     }
 
@@ -86,8 +86,8 @@
         &--open {
             background: $main-color;
             width: 100%;
-            height: calc(100vh - 80px);
-            top: to-rem(80px);
+            height: calc(100vh - var(--nav-height));
+            top: var(--nav-height);
             position: absolute;
             @include hidden(visible);
             @include d-flex($dir: column-reverse, $jc: space-around, $ai: center);
@@ -135,7 +135,7 @@
     }
 
     &-input {
-        width: calc(100% - 80px);
+        width: calc(100% - var(--nav-height));
         height: to-rem(40px);
         border: 0;
         padding: getSpace(sml);
@@ -378,7 +378,7 @@
         position: absolute;
         background: #fff;
         border-radius: $borde-material;
-        box-sizing: $shadow-material;
+        box-shadow: $shadow-material;
         padding: getSpace(min) getSpace(med);
         top: to-rem(70px);
         right: 0;

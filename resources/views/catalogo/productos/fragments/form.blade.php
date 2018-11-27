@@ -1,4 +1,7 @@
-{!! Form::inText('nombre', isset($producto->nombre) ? $producto->nombre : '' , 'Nombre del producto', false) !!}
+{!! Form::inText('nombre', null, 'Nombre del producto') !!}
+
+
+{{-- {!! Form::inText('nombre', isset($producto->nombre) ? $producto->nombre : '' , 'Nombre del producto', false) !!}
 
 <div class="group">
     {!! Form::label('descripcion', 'Descripción', ['class' => 'label']) !!}
@@ -39,4 +42,4 @@
         <input type="file" class="input" name="imagen" id="imagen-producto" accept="image/*" onchange="previewImage(this, 'js-img-preview', 'js-file-text');">
     </label>
     <span class="file__text" id="js-file-text"></span>
-</div>
+</div> --}}

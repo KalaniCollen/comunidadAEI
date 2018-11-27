@@ -1,23 +1,24 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ComunidadAEI\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Perfil_Usuario;
-use App\Perfil_Empresa;
-use App\User;
+use ComunidadAEI\Perfil_Usuario;
+use ComunidadAEI\Perfil_Empresa;
+use ComunidadAEI\User;
 use Illuminate\Support\Str as Str;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\PerfilRequest;
-use App\Http\Requests\CorreoRequest;
-use App\Http\Requests\CuentaRequest;
-use App\Http\Requests\passwordRequest;
+use ComunidadAEI\Http\Requests\PerfilRequest;
+use ComunidadAEI\Http\Requests\CorreoRequest;
+use ComunidadAEI\Http\Requests\CuentaRequest;
+use ComunidadAEI\Http\Requests\passwordRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Hash;
 class PerfilUsuarioController extends Controller
 {
+    private $view = "perfiles.usuario";
     /**
     * Store a newly created resource in storage.
     *
@@ -29,7 +30,7 @@ class PerfilUsuarioController extends Controller
         $perfil = Perfil_Usuario::where('id_usuario',Auth::id())->first();
         $perfilE = Perfil_Empresa::where('id_usuario',Auth::id())->first();
         $User = User::where('id_usuario',Auth::id())->first();
-        return view('perfiles.usuario.index',[
+        return view("{$this->view}.index",[
             'perfil'=>$perfil,
             'perfilE'=> $perfilE,
             'user' => $User
@@ -37,15 +38,15 @@ class PerfilUsuarioController extends Controller
     }
 
     public function edit(PerfilRequest $request) {
-        $perfil = Perfil_Usuario::where('id_usuario',Auth::id())->first();
-        $perfilE = Perfil_Empresa::where('id_usuario',Auth::id())->first();
-        $User = User::where('id_usuario',Auth::id())->first();
-        return view('perfiles.usuario.edit',[
+        $perfil = Perfil_Usuario::where('id_usuario', Auth::id())->first();
+        $perfilE = Perfil_Empresa::where('id_usuario', Auth::id())->first();
+        $User = User::where('id_usuario', Auth::id())->first();
+        return view("{$this->view}.edit",[
             'perfil'=>$perfil,
             'perfilE'=> $perfilE,
             'user' => $User
         ]);
-        return view('form.campo')->with('dato', $request);
+        // return view('form.campo')->with('dato', $request);
     }
 
     public function store(Request $request)
@@ -80,19 +81,22 @@ class PerfilUsuarioController extends Controller
 
     public function update(PerfilRequest $request, Perfil_Usuario $usuario)
     {
-        $User=User::where('id_usuario',Auth::id())->first();
-        $User->names=Str::upper($request->name);
-        $User->apellido_paterno=Str::upper($request->apellido_materno);
-        $User->apellido_materno=Str::upper($request->apellido_materno);
-        $slug=str::slug($request->name.' '.$request->apellido_paterno.' '.$request->apellido_materno.' '.Auth::id());
-        $User->slug_empresa=$slug;
-        $Perfil=Perfil_Usuario::where('id_usuario', Auth::id())->first();
-        $Perfil->sexo=$request->sexo;
-        $Perfil->telefono_movil=$request->telefono_movil;
-        $Perfil->fecha_nacimiento=$request->fecha_nacimiento;
-        $Perfil->slug_usuario=$slug;
-        $Perfil->save();
-        return redirect()->route('perfil-usuario.index');
+
+        $usuario->fill($request->except('slug_usuario'));
+        $usuario->save();
+    //     $User=User::where('id_usuario',Auth::id())->first();
+    //     $User->names=Str::upper($request->name);
+    //     $User->apellido_paterno=Str::upper($request->apellido_materno);
+    //     $User->apellido_materno=Str::upper($request->apellido_materno);
+    //     $slug=str::slug($request->name.' '.$request->apellido_paterno.' '.$request->apellido_materno.' '.Auth::id());
+    //     $User->slug_empresa=$slug;
+    //     $Perfil=Perfil_Usuario::where('id_usuario', Auth::id())->first();
+    //     $Perfil->sexo=$request->sexo;
+    //     $Perfil->telefono_movil=$request->telefono_movil;
+    //     $Perfil->fecha_nacimiento=$request->fecha_nacimiento;
+    //     $Perfil->slug_usuario=$slug;
+    //     $Perfil->save();
+        return redirect()->route("perfil-usuario.index");
     }
 
     public function updateEmail() {

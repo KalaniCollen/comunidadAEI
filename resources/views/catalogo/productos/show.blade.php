@@ -1,4 +1,4 @@
-@extends('layouts.head')
+@extends('layouts.app')
 @section('content')
     <div class="section">
         <img src="{{ asset('/storage/catalogos_img/'.$producto->imagen) }}" alt="" width="350px">

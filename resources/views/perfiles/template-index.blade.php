@@ -1,21 +1,34 @@
-<div class="section__header">
+{{-- <div class="section__header">
     <h1 class="section__title">{{ $titleSection }}</h1>
     @if (Auth::check())
         <div class="profile__edit">
-            <a href="{{ route($route, $object) }}" class="btn btn--accent">
-                <i class="btn__icon ion-md-create"></i>
-                Editar perfil
-            </a>
         </div>
+    @endif
+</div> --}}
+<div class="profile__cover" style="background-image: url({{ asset('img/404.jpg') }});">
+    <div class="profile__header">
+        <img src="{{ $profileImage }}" alt="" class="profile__picture">
+        <p class="montserrat-light h2 text--white">{{ $profileName }}</p>
+        @isset($website)
+            <a href="{{ $website }}" target="_blank" class="text--white"><i class="ion-md-globe"></i> {{ $website }}</a>
+        @endisset
+    </div>
+    @if (Auth::check())
+        <a href="{{ route($route, $object) }}" class="btn btn--accent">
+            <i class="btn__icon ion-md-create"></i>
+            Editar perfil
+        </a>
+
+        {{-- <button class="btn btn--ghost btn--ghost-white" id="js-btn-cover">
+            <i class="btn__icon ion-md-camera"></i>
+            Foto de portada
+        </button> --}}
     @endif
 </div>
 
-<header class="profile__header">
+{{-- <header class="profile__header">
     <img src="{{ $profileImage }}" alt="Imagen de perfil" class="profile__picture">
     <h1 class="profile__name">{{ $profileName }}</h1>
-    @isset($profileSubtitle)
-        <h2 class="profile__pin"><i class="ion-md-{{ $profileSubtitleIcon }}"></i> {{ $profileSubtitle }}</h2>
-    @endisset
 </header>
 
 <div class="row profile__information">
@@ -31,5 +44,5 @@
                 @endisset
             </div>
         @endisset
-    @endforeach
-</div>
+    @endforeach --}}
+{{-- </div> --}}

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services\Auth;
+namespace ComunidadAEI\Services\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\User;
-use App\Perfil_Usuario;
+use ComunidadAEI\User;
+use ComunidadAEI\Perfil_Usuario;
 use Illuminate\Support\Facades\Mail;
 trait AuthenticatesUsers
 {

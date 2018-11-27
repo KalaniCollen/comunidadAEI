@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ComunidadAEI\Http\Controllers;
 
 use Auth;
-use App\Productos;
-use App\Http\Requests\StoreProductosRequest;
+use ComunidadAEI\Productos;
+use ComunidadAEI\Http\Requests\StoreProductosRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;

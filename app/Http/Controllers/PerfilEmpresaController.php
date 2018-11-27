@@ -1,20 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ComunidadAEI\Http\Controllers;
 
-use App\User;
-use App\Perfil_Empresa;
-use App\Perfil_Usuario;
-use Illuminate\Http\Request;
 use Redirect;
-use App\Http\Requests\PerfilRequest;
+use ComunidadAEI\User;
+use ComunidadAEI\Perfil_Empresa;
+use ComunidadAEI\Perfil_Usuario;
+use ComunidadAEI\Http\Requests\PerfilRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str as Str;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
 
 class PerfilEmpresaController extends Controller
 {
+
+    private  $view = "perfiles.empresa";
 
     /**
     * Display the specified resource.
@@ -25,25 +27,34 @@ class PerfilEmpresaController extends Controller
     public function index()
     {
         $perfilEmpresa = Auth::user()->empresa()->first();
-            $Perfil=Perfil_Usuario::where('id_usuario',Auth::id())->first();
-        return view('perfiles.empresa.index')->with([
-            'perfilE'=>$perfilEmpresa,
-            'perfil'=>$Perfil]);
+        // $Perfil = Perfil_Usuario::where('id_usuario',Auth::id())->first();
+        // return view("{$this->view}.index")->with([
+        //     'perfilE'=>$perfilEmpresa,
+        //     'perfil'=>$Perfil]);
+        return view("{$this->view}.index", compact('perfilEmpresa'));
     }
 
-    public function show($slug_empresa)
+    public function show(Perfil_Empresa $perfilEmpresa)
     {
-        $perfilEmpresa = Auth::user()->empresa()->first();
+        // $perfilEmpresa = Auth::user()->empresa()->first();
         // $PerfilEmpresa = Perfil_Empresa::where('slug_empresa',$slug_empresa)->first();
-        $Perfil=Perfil_Usuario::where('id_usuario',Auth::id())->first();
-        return view('perfiles.Empresa.EditarPerfilEmpresa')->with([
-            'perfilE'=>$perfilEmpresa,
-            'perfil'=>$Perfil]);
+        // $Perfil=Perfil_Usuario::where('id_usuario',Auth::id())->first();
+        // $Perfil =
+        // dd($perfilEmpresa);
+
+        return view("{$this->view}.show")->with([
+            'perfilEmpresa'=>$perfilEmpresa]);
+        // return view("{$this->view}.show");
     }
 
     public function update(PerfilRequest $request, Perfil_Empresa $perfilEmpresa)
     {
-        $perfilEmpresa->fill($request->all());
+        $perfilEmpresa->fill($request->except('servicio_empresa', 'producto_empresa'));
+        $perfilEmpresa->servicio_empresa = $request->has('servicio_empresa') ? 1 : 0;
+        $perfilEmpresa->producto_empresa = $request->has('producto_empresa') ? 1 : 0;
+        $perfilEmpresa->save();
+        // dd($perfilEmpresa);
+        // $perfilEmpresa->fill($request->all());
         // $PerfilEmpresa = Perfil_Empresa::where('id_usuario',Auth::id())->first();
         // $PerfilEmpresa->nombre_empresa=Str::upper($request->nombre_empresa);
         // $user =User::where('id_usuario',Auth::id())->first();
@@ -78,11 +89,12 @@ class PerfilEmpresaController extends Controller
         // }
         //
         // $perfilU->save();
-        $perfilEmpresa->save();
+        // $perfilEmpresa->save();
         // $user->save();
         // $Perfil=Perfil_Usuario::where('id_usuario',Auth::id())->first();
-        return redirect()->route('perfil-empresa.index');
+        // return redirect()->route("{$this->view}.index");
         // return strcmp($request->oferta, "servicio");
+        return redirect()->back()->with('info', 'Datos acualizados correctamente!');
     }
 
 
@@ -95,11 +107,11 @@ class PerfilEmpresaController extends Controller
 
     public function edit(Perfil_Empresa $perfilEmpresa)
     {
-        $perfil = Auth::user()->perfil;
-        return view('perfiles.Empresa.EditarPerfilEmpresa', [
-            'perfil' => $perfil,
-            'perfilE' => $perfilEmpresa,
-        ]);
+        if($perfilEmpresa->id_usuario == Auth::user()->id_usuario) {
+            return view('perfiles.empresa.edit', compact('perfilEmpresa'));
+        } else {
+            return view('errors.404');
+        }
     }
 
 }

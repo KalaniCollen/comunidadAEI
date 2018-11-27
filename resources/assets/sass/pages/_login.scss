@@ -45,15 +45,21 @@
 
 
 .group--material {
+    &-icon {
+        .input {
+            width: 90%;
+        }
+    }
 
     .label {
         width: 100%;
     }
 
+
     .input {
         border: 0;
         border-radius: 0;
-        width: 90%;
+        width: 100%;
         &:focus {
             outline: none;
 
@@ -89,7 +95,7 @@
         }
     }
 
-    .login__icon {
+    .input__icon {
         font-size: 1.2rem;
         width: 10%;
         color: $title-color;

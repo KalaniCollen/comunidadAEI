@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ComunidadAEI\Http\Controllers;
 
-use App\Catalogo;
-use App\Productos;
-use App\Servicios;
-use App\Perfil_Empresa;
 use Auth;
+use ComunidadAEI\Catalogo;
+use ComunidadAEI\Productos;
+use ComunidadAEI\Servicios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -19,8 +18,21 @@ class CatalogoController extends Controller
      */
     public function index()
     {
-        $servicios = Servicios::where('id_empresa', Auth::user()->empresa->id_empresa)->get();
-        $productos = Productos::where('id_empresa', Auth::user()->empresa->id_empresa)->get();
-        return view('catalogo.index', compact('productos', 'servicios'));
+        $statusServicio = Auth::user()->empresa->servicio_empresa;
+        $statusProducto = Auth::user()->empresa->producto_empresa;
+        if($statusServicio == 1 && $statusProducto == 0) {
+            $servicios = Servicios::where('id_empresa', Auth::user()->empresa->id_empresa)->get();
+            return view('catalogo.index', compact('servicios'));
+        }
+        if($statusProducto == 1 && $statusServicio == 0) {
+            $productos = Productos::where('id_empresa', Auth::user()->empresa->id_empresa)->get();
+            return view('catalogo.index', compact('productos'));
+        }
+        if($statusServicio == 1 && $statusProducto == 1) {
+            $servicios = Servicios::where('id_empresa', Auth::user()->empresa->id_empresa)->get();
+            $productos = Productos::where('id_empresa', Auth::user()->empresa->id_empresa)->get();
+            return view('catalogo.index', compact('productos', 'servicios'));
+        }
+        return view('catalogo.index')->with('configure', '<p class="roboto-regular h2">¡Bienvenid@, ' . Auth::user()->name . '!</p><br /><p class="h3">Para de comenzar a publicar sus productos/servicios por favor complete los datos de la sección <a class="link--accent" href="/perfil-empresa/' . Auth::user()->slug_usuario . '/edit">Perfil empresa</a>.</p>');
     }
 }

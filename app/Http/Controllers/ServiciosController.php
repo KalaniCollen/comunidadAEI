@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ComunidadAEI\Http\Controllers;
 
 use Auth;
-use App\Servicios;
-use App\Mail\OrdenServicio;
+use ComunidadAEI\Servicios;
+use ComunidadAEI\Mail\OrdenServicio;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
-use App\Http\Requests\StoreServiciosRequest;
+use ComunidadAEI\Http\Requests\StoreServiciosRequest;
 
 
 class ServiciosController extends Controller
@@ -79,7 +79,7 @@ class ServiciosController extends Controller
         if($servicio->id_empresa == Auth::user()->empresa->id_empresa) {
             return view('catalogo.servicios.edit', compact('servicio'));
         } else {
-            return "Error 404";
+            return view('errors.404');
         }
     }
 
@@ -117,7 +117,7 @@ class ServiciosController extends Controller
 
     public function api(Request $request)
     {
-        $servicios = Servicios::all();
+        $servicios = Servicios::orderBy('created_at', 'DESC')->paginate(6);
         $servicios->each(function ($servicio) {
             $servicio->empresa;
         });

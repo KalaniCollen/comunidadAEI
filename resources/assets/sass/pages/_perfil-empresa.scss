@@ -1,35 +1,135 @@
 .profile {
-    min-height: 100vh;
-    // padding-top: getSpace(big);
+
+    &--section {
+        padding: 0;
+    }
+
+    &__cover {
+        width: 100%;
+        height: 280px;
+        padding: {
+            left: var(--med-mp);
+            right: var(--med-mp);
+        }
+        background: {
+            repeat: no-repeat;
+            size: cover;
+            position: center bottom;
+        }
+        position: relative;
+        @include d-flex($dir: column, $ai: center, $jc: center);
+
+        &-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    }
 
     &__header {
         @include d-flex($dir: column, $jc: center, $ai: center);
-        margin-bottom: getSpace(big);
-    }
-
-    &__name,
-    &__pin {
-        width: 100%;
-        text-align: center;
-        margin-bottom: getSpace(min);
-    }
-
-    &__name {
-        font-size: getFontSize(h2);
-    }
-
-    &__pin {
-        font-size: getFontSize(h5);
+        margin-bottom: var(--big-mp);
     }
 
     &__data {
-        @include d-flex($dir: column, $ai: center);
-        margin-bottom: getSpace(big);
+        margin-bottom: var(--big-mp);
+        text-align: center;
+    }
+
+    &__profile {
+        text-align: center;
+        padding: var(--med-mp);
+        border-radius: $borde-material;
+        box-shadow: $shadow-material;
+        background: #fff;
+        position: relative;
+        @include d-flex($dir: column, $ai: center, $jc: center);
     }
 
     &__picture {
-        width: 180px;
-        height: 180px;
+        width: var(--big-size);
+        height: var(--big-size);
         border-radius: 50%;
     }
+
+    &__username {
+        color: $title-color;
+        font-size: getFontSize(h2);
+        @include montserrat(l);
+    }
+
+    &__information {
+        transform: translateY(-10%);
+        padding: var(--med-mp);
+    }
+
+    &__body {
+        padding: var(--med-mp);
+    }
+
+    &__content {
+        padding-top: 2rem;
+    }
+
+    &__footer {
+        margin-top: var(--big-mp);
+        .profile__data {
+            margin: 0;
+        }
+    }
 }
+
+.red--social {
+    font-size: 1.3rem;
+}
+
+.fab--profile-empresa {
+    background: $main-color-l;
+    color: #fff;
+    top: 10px;
+    right: 10px;
+}
+
+@include media-breakpoint-up(xs) {
+}
+
+@include tablet {
+    .profile {
+        &__cover {
+            flex-direction: row;
+            justify-content: space-between;
+            .btn {
+                align-self: flex-end;
+            }
+        }
+
+        &__profile {
+            width: 70%;
+        }
+    }
+};
+
+@include widescreen {
+    .profile {
+        &__cover {
+        }
+
+        &__profile {
+            width: 45%;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &__picture {
+            margin-bottom: var(--med-mp);
+        }
+
+        &__username {
+            margin-left: var(--min-mp);
+            + * {
+                width: calc(100% - var(--big-size));
+            }
+        }
+    }
+};

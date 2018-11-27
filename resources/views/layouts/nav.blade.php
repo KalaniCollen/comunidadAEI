@@ -12,7 +12,7 @@
     <div class="menu__brand">
         <a class="brand" href="/">
             <img src="/img/logoAEI-blanco.png" alt="" class="brand__logo">
-            <p class="brand__title">Comunidad AEI</p>
+            <p class="brand__title">{{ config('app.name') }}</p>
         </a>
     </div>
 
@@ -38,10 +38,10 @@
                             <p class="nav__link">Multimedia</p>
                             <ul class="submenu">
                                 <li class="submenu__item">
-                                    <a href="{{ route('album.index') }}" class="submenu__link"><i class="account__icon ion-ios-camera"></i>Galería</a>
+                                    <a href="{{ route('albums.view') }}" class="submenu__link"><i class="account__icon ion-md-camera"></i>Galería</a>
                                 </li>
                                 <li class="submenu__item">
-                                    <a href="{{ route('videos.index') }}" class="submenu__link"><i class="account__icon ion-ios-videocam"></i>Videos</a>
+                                    <a href="{{ route('videos.index') }}" class="submenu__link"><i class="account__icon ion-md-videocam"></i>Videos</a>
                                 </li>
                             </ul>
                         </li>
@@ -52,13 +52,13 @@
                             </div>
                             <ul class="submenu">
                                 <li class="submenu__item">
-                                    <a href="{{ route('perfil-usuario.index') }}" class="submenu__link"><i class="account__icon ion-ios-settings"></i>Mi Cuenta</a>
+                                    <a href="{{ route('perfil-usuario.index') }}" class="submenu__link"><i class="account__icon ion-md-person"></i>Mi Cuenta</a>
                                 </li>
                                 <li class="submenu__item">
-                                    <a href="{{ route('perfil-empresa.index') }}" class="submenu__link"><i class="account__icon ion-ios-business"></i>Mi Empresa</a>
+                                    <a href="{{ route('perfil-empresa.index') }}" class="submenu__link"><i class="account__icon ion-md-business"></i>Mi Empresa</a>
                                 </li>
                                 <li class="submenu__item">
-                                    <a href="{{ route('logout') }}" class="submenu__link" onclick="event.preventDefault();document.getElementById('form-logout').submit();"><i class="account__icon ion-ios-log-out"></i>Cerrar Sesión</a>
+                                    <a href="{{ route('logout') }}" class="submenu__link" onclick="event.preventDefault();document.getElementById('form-logout').submit();"><i class="account__icon ion-md-log-out"></i>Cerrar Sesión</a>
                                     <form action="{{ route('logout') }}" method="post" style="display: none;" id="form-logout">
                                         {{ csrf_field() }}
                                     </form>

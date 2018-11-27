@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ComunidadAEI\Http\Controllers;
 
 use Auth;
-use App\Album;
-use App\Imagenes;
+use ComunidadAEI\Album;
+use ComunidadAEI\Imagenes;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
@@ -16,7 +16,10 @@ class AlbumController extends Controller
     public function index()
     {
         $albums = Album::where('id_usuario', Auth::id())->get();
-        return view('multimedia.album.index')->with('albums', $albums);
+        $albums->each(function ($album) {
+            $album->imagenes;
+        });
+        return response()->json($albums, Response::HTTP_OK);
     }
 
     public function store(Request $request)
@@ -28,16 +31,18 @@ class AlbumController extends Controller
             $album->id_usuario = Auth::user()->id_usuario;
             $album->save();
             $folder = "/public/galeria/{$album->slug_album}";
-            File::makeDirectory("storage/galeria/{$album->slug_album}", 0777, true);
+            Storage::makeDirectory("public/galeria/{$album->slug_album}");
             return response()->json([
-                "message" => "Album creado"
-            ]);
+                "message" => "Album {$album->nombre} creado!",
+                "album" => $album
+            ], Response::HTTP_CREATED);
         }
     }
 
     public function show(Album $album) {
         if (Auth::user()->id_usuario == $album->id_usuario) {
-            return view('multimedia.album.veralbum', compact('album'));
+            $imagenes = $album->imagenes;
+            return view('multimedia.album.show', compact('album', 'imagenes'));
         } else {
             return view('errors.404');
         }
@@ -45,18 +50,23 @@ class AlbumController extends Controller
 
     public function destroy(Album $album) {
         $tmp = $album->nombre;
+        $album->imagenes()->forceDelete();
         $album->delete();
-        return response()->json("¡Album eliminado! {$tmp}", Response::HTTP_OK);
+        Storage::deleteDirectory("public/galeria/{$album->slug_album}");
+        return response()->json([
+            "message" => "¡Album " . $tmp .  " eliminado!"
+        ], Response::HTTP_OK);
     }
 
     public function update(Request $request, Album $album) {
-        $album->fill($request->all());
-        $album->save();
-        return response()->json("¡Album actualizado!", Response::HTTP_OK);
+        if ($request->ajax()) {
+            $album->fill($request->all());
+            $album->save();
+            return response()->json("¡Album actualizado!", Response::HTTP_OK);
+        }
     }
 
-    public function addImage(Request $request) {
-        $data = $request->file('file');
-        return response()->json($data, Response::HTTP_OK);
+    public function view() {
+        return view('multimedia.album.index');
     }
 }

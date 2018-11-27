@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace ComunidadAEI;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,7 +22,6 @@ class Evento extends Model
         'organizador',
         'correo_electronico_organizador',
         'telefono_organizador',
-        // 'color'
         'slug_evento',
         'id_usuario',
         'direccion_evento',

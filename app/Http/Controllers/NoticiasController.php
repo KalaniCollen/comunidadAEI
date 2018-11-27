@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ComunidadAEI\Http\Controllers;
 
-use App\Noticias;
+use ComunidadAEI\Noticias;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -42,7 +42,7 @@ class NoticiasController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Noticias  $noticias
+     * @param  \ComunidadAEI\Noticias  $noticias
      * @return \Illuminate\Http\Response
      */
     public function show(Noticias $noticias)
@@ -53,7 +53,7 @@ class NoticiasController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Noticias  $noticias
+     * @param  \ComunidadAEI\Noticias  $noticias
      * @return \Illuminate\Http\Response
      */
     public function edit(Noticias $noticias)
@@ -65,7 +65,7 @@ class NoticiasController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Noticias  $noticias
+     * @param  \ComunidadAEI\Noticias  $noticias
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Noticias $noticias)
@@ -76,7 +76,7 @@ class NoticiasController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Noticias  $noticias
+     * @param  \ComunidadAEI\Noticias  $noticias
      * @return \Illuminate\Http\Response
      */
     public function destroy(Noticias $noticias)

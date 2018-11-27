@@ -1,4 +1,4 @@
-@extends('layouts.head')
+@extends('layouts.app')
 @section('styles')
 <link href="{{asset('css/main.css')}}" rel="stylesheet">
     {{-- <link href="{{asset('galeria/fine-uploader-gallery.css')}}" rel="stylesheet"> --}}

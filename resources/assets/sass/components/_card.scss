@@ -1,65 +1,55 @@
 .card {
-    min-width: 30vw;
-    min-height: 70vh;
-    background: #fff;
+    overflow: hidden;
+    text-decoration: none;
     border-radius: $borde-material;
     box-shadow: $shadow-material;
-    padding: {
-        top: getSpace(min);
-        bottom: getSpace(med);
-    }
-    overflow: hidden;
+    margin-bottom: getSpace(min);
     @include d-flex($dir: column);
 
     &__owner,
     &__body,
-    &__actions {
-        padding: {
-            left: getSpace(min);
-            right: getSpace(min);
-        }
+    &__footer {
+        padding: getSpace(min);
+        text-decoration: none;
     }
+
 
     &__owner {
+        text-decoration: none;
         @include d-flex($ai: center);
-        padding-bottom: getSpace(min);
+        &-picture {
+            object-fit: cover;
+            margin-right: getSpace(min);
+            @include circle(var(--min-size));
+        }
+
+        &-name {
+            @include montserrat;
+        }
     }
 
-    &-user {
-        &--picture {
-            margin-right: getSpace(min);
-        }
-
-        &--username {
-            color: $title-color;
-        }
+    &__body {
+        flex: 1 1 auto;
     }
 
     &__image {
-        width: 100%;
-        height: 300px;
-        margin-bottom: getSpace(min);
+        height: to-rem(220px);
+        flex-grow: 1;
         flex-shrink: 0;
+        // object-fit: contain;
+        // object-position: center;
+        background: {
+            repeat: no-repeat;
+            size: cover;
+            position: center;
 
-        &-img {
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        &--circle {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            @include d-flex();
         }
     }
 
     &__title {
-        font-size: getFontSize(h4);
+        text-align: center;
+        font-size: getFontSize(h3);
+        margin-bottom: getSpace(min);
         @include montserrat;
     }
 
@@ -69,97 +59,98 @@
         @include roboto(b);
     }
 
-    &__content,
-    &__actions {
-        padding-top: getSpace(min);
+    &__date {
+        text-align: right;
     }
 
-    &__decoration {
-        display: block;
-        width: to-rem(15px);
-        height: to-rem(15px);
-        border-radius: 50%;
-        background: orange;
-    }
-
-    &__body {
-        min-height: 150px;
-        // max-height: 180px;
+    &__description {
+        margin-top: getSpace(med);
         overflow: hidden;
-        text-overflow: ellipsis;
+        height: to-rem(70px);
     }
 
-    &__wrap {
-        @include d-flex($dir: column, $jc: space-between);
-    }
-
-    &__actions--space {
+    &__footer {
         @include d-flex($ai: center, $jc: space-between);
-    }
-
-    &--configure-account {
-        .card {
-            &__image {
-                height: 250px;
-                @include d-flex($ai: center, $jc: center);
-                position: relative;
-            }
-
-            &__image-img {
-                width: 120px;
-                height: 120px;
-                border-radius: 50%;
-            }
-
-            &__body {
-                max-height: fit-content;
-            }
-        }
-
-        .form {
-            width: auto;
-            position: absolute;
-            top: 20px;
-            right: 10px;
-        }
     }
 }
 
 
-@include tablet {
-    .card {
-        &__owner,
-        &__body,
-        &__actions {
-            padding: {
-                left: getSpace(med);
-                right: getSpace(med);
-            }
-        }
-    }
-};
-
-
-// THEMES
+// Temas
 .card {
-    &--album {
-        width: 33.3%;
-        height: max-content;
-        // background: orange;
-        // min-height: max-content;
+    &--link {
+        box-shadow: none;
+        border-radius: 0;
     }
 
     &--mini {
-        min-width: auto;
-        min-height: auto;
-        width: 100%;
-        margin-bottom: getSpace(min);
-        padding: getSpace(med);
-        text-decoration: none;
-
         .card {
             &__title {
+                text-align: left;
+            }
+            &__body {
                 width: 100%;
+                @include d-flex($dir: column, $jc: space-between);
+            }
+            &__time {
+                text-align: right;
+            }
+        }
+
+        &-left,
+        &-image {
+            flex-direction: row;
+            flex-wrap: nowrap;
+        }
+
+        &-left {
+            .card__date {
+                color: #fff;
+                background: $ghost-color-l;
+                width: var(--big-size);
+                font-size: getFontSize(h3);
+                @include d-flex($dir: column, $ai: center, $jc: center);
+                &-month {
+                    font-size: 1rem;
+                }
+            }
+        }
+
+        &-image {
+            .card {
+                &__image {
+                    width: var(--big-size);
+                    height: var(--big-size);
+                    flex-basis: var(--big-size);
+                }
+            }
+        }
+    }
+
+    &--profile {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        padding: getSpace(min);
+
+        .profile {
+            &__info {
+                @include d-flex($ai: center);
+
+                @include media-breakpoint-down(xs) {
+                    text-align: center;
+                    margin-bottom: var(--med-mp);
+                    flex-direction: column;
+                    justify-content: center;
+                };
+
+                &-user {
+                    margin-left: var(--min-mp);
+                }
+
+            }
+            &__name {
+                font-size: getFontSize(h3);
+                word-wrap: break-word;
             }
         }
     }

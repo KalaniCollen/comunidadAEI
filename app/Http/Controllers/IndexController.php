@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ComunidadAEI\Http\Controllers;
 
-use App\Mail\ContactoAfiliate;
+use ComunidadAEI\Mail\ContactoAfiliate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 

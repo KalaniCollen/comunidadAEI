@@ -1,40 +1,56 @@
-@extends('layouts.head')
+@extends('layouts.app')
 @section('content')
-<section class="section profile">
-@include('perfiles.template-index', [
-    'titleSection' => 'Perfil empresa',
-    'route' => 'perfil-empresa.edit',
-    'object' => $perfilE->slug_empresa,
-    'profileImage' => $perfilE->logo_empresa,
-    'profileName' => $perfilE->nombre_empresa,
-    'profileSubtitleIcon' => 'pin',
-    'profileSubtitle' => $perfilE->direccion_empresa,
-    'information' => [
-        ['title' => 'Tipo empresa', 'icon' => 'business', 'text' => $perfilE->tipo_empresa],
-        ['title' => 'Giro empresa', 'icon' => 'briefcase', 'text' => $perfilE->giro_empresa],
-        ['title' => 'Teléfono empresa', 'icon' => 'call', 'text' => $perfilE->telefono_fijo_empresa],
-        ['title' => 'Correo empresa', 'icon' => 'mail', 'text' => $perfilE->correo_electronico_empresa],
-        ['title' => 'Horario de atención', 'icon' => 'time', 'text' => $perfilE->horario_atencion],
-        ['title' => 'Página web', 'icon' => 'globe', 'text' => '', 'link' => $perfilE->pag_web_empresa],
-    ]
-])
+<section class="section profile profile--section">
 
-    <div class="row">
-        @isset($perfilE->red_social_twitter_empresa)
-            <div class="col-md-4 profile__data">
-                <a href="{{ $perfilE->red_social_twitter_empresa }}" target="_blank"><i class="ion-logo-twitter"></i> Twitter</a>
+    <div class="profile__cover" style="background-image: url('/img/login-goal.jpg');"></div>
+
+    <div class="profile__information">
+        <div class="profile__profile">
+            <img src="{{ $perfilEmpresa->logo_empresa }}" alt="" class="profile__picture">
+            <h1 class="profile__username">{{ $perfilEmpresa->nombre_empresa }}</h1>
+            @isset($perfilEmpresa->pag_web_empresa)
+                <a href="{{ $perfilEmpresa->pag_web_empresa }}" target="_blank" class="text--accent"><i class="ion-md-globe"></i> {{ $perfilEmpresa->pag_web_empresa }}</a>
+            @endisset
+            @isset($perfilEmpresa->direccion_empresa)
+                <p><i class="ion-md-pin"></i> {{ $perfilEmpresa->direccion_empresa }}</p>
+            @endisset
+            @if (Auth::user()->id_usuario == $perfilEmpresa->id_usuario )
+                <a href="{{ route('perfil-empresa.edit', $perfilEmpresa->slug_empresa) }}" class="fab fab--profile-empresa">
+                    <i class="ion-md-create"></i>
+                </a>
+            @endif
+        </div>
+        <div class="profile__content row no-gutters">
+            @php
+                $infoEmpresa = [
+                    [ 'data' => $perfilEmpresa->tipo_empresa, 'size' => 'col-md-6 col-lg-4', 'title' => 'Tipo de empresa', 'icon' => 'ion-md-business' ],
+                    [ 'data' => $perfilEmpresa->giro_empresa, 'size' => 'col-md-6 col-lg-4', 'title' => 'Giro de la empresa', 'icon' => 'ion-md-briefcase' ],
+                    [ 'data' => $perfilEmpresa->horario_atencion, 'size' => 'col-md-6 col-lg-4', 'title' => 'Horario de atención', 'icon' => 'ion-md-time' ],
+                    [ 'data' => $perfilEmpresa->correo_electronico_empresa, 'size' => 'col-md-6 col-lg-4', 'title' => 'Correo eléctronico', 'icon' => 'ion-md-email' ],
+                    [ 'data' => $perfilEmpresa->telefono_fijo_empresa, 'size' => 'col-md-6 col-lg-4', 'title' => 'Teléfono de la empresa', 'icon' => 'ion-md-call' ],
+                ];
+            @endphp
+            @each('perfiles.item-data', $infoEmpresa, 'obj')
+            @isset($perfilEmpresa->descripcion)
+                <div class="col-12">
+                    <div class="row no-gutters">
+                        <h2 class="h1">Descripción de la empresa</h2>
+                        <p>{{ $perfilEmpresa->descripcion }}</p>
+                    </div>
+                </div>
+            @endisset
+        </div>
+        <div class="row no-gutters profile__footer">
+            <div class="col-md-4 col-lg-4 profile__data">
+                <a href="{{ $perfilEmpresa->red_social_facebook_empresa }}" target="_blank" class="link--undecorate red--social"><i class="ion-logo-facebook"></i> Facebook</a>
             </div>
-        @endisset
-        @isset($perfilE->red_social_facebook_empresa)
-            <div class="col-md-4 profile__data">
-                <a href="{{ $perfilE->red_social_facebook_empresa }}" target="_blank"><i class="ion-logo-facebook"></i> Facebook</a>
+            <div class="col-md-4 col-lg-4 profile__data">
+                <a href="{{ $perfilEmpresa->red_social_twitter_empresa }}" target="_blank" class="link--undecorate red--social"><i class="ion-logo-twitter"></i> Twitter</a>
             </div>
-        @endisset
-        @isset($perfilE->red_social_instagram)
-            <div class="col-md-4 profile__data">
-                <a href="{{ $perfilE->red_social_instagram }}" target="_blank"><i class="ion-logo-facebook"></i> Instagram</a>
+            <div class="col-md-4 col-lg-4 profile__data">
+                <a href="{{ $perfilEmpresa->red_social_instagram }}" target="_blank" class="link--undecorate red--social"><i class="ion-logo-instagram"></i> Instagram</a>
             </div>
-        @endisset
+        </div>
     </div>
 </section>
 @endsection

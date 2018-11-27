@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace ComunidadAEI\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Services\Auth\ResetsPasswords;
+use ComunidadAEI\Http\Controllers\Controller;
+use ComunidadAEI\Services\Auth\ResetsPasswords;
 
 class ResetPasswordController extends Controller
 {

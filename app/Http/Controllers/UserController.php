@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ComunidadAEI\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Perfil_Usuario;
-use App\Perfil_Empresa;
+use ComunidadAEI\User;
+use ComunidadAEI\Perfil_Usuario;
+use ComunidadAEI\Perfil_Empresa;
 use Redirect;
-use App\Http\Requests\RegistroRequest;
-use App\Http\Requests\Perfilrequest;
+use ComunidadAEI\Http\Requests\RegistroRequest;
+use ComunidadAEI\Http\Requests\Perfilrequest;
 use Illuminate\Support\Str as Str;
 use Illuminate\Support\Facades\Input;
 
