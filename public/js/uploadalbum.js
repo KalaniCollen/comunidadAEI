@@ -61,13 +61,3 @@ modalConfirm(function(confirm){
     }
 });
 });
-$('body').on('click', '#abrir', function(){
-    $('#myModal').show();
-    $("#galeria").load(" #galeria");
-
-});
-$('body').on('click', '.close', function(){
-    $('#myModal').hide();
-    $("#galeria").load(" #galeria");
-
-});

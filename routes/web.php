@@ -59,7 +59,7 @@ Route::get('verificar_evento/{id}', 'AdminController@verificar_evento')->name('v
 
 Route::get('calendario', 'EventoController@showCalendar')->name('calendario');
 
-// Route::get('/solicitarevento','EventoController@index');
+Route::get('/solicitarevento','EventoController@index');
 // Route::post('/AgregarEvento','EventoController@create')->name('agregarevento');
 // Route::get('/calendario','EventoController@store');
 // Route::get('cargaEventos{id?}','EventoController@select');
