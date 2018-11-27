@@ -6,7 +6,7 @@
                 <input type="text" id="js-in-create" value="" class="input">
             </div>
             <button class="btn btn--accent" id="js-btn-create">Crear album</button>
-            <button class="btn" data-izimodal-close="" data-izimodal->Cancelar</button>
+            <button class="btn" data-izimodal-close="" id="js-btn-cancel">Cancelar</button>
         </div>
 
         <div class="section__header">

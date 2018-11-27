@@ -108100,7 +108100,7 @@ var staticRenderFns = [
             "button",
             {
               staticClass: "btn",
-              attrs: { "data-izimodal-close": "", "data-izimodal-": "" }
+              attrs: { "data-izimodal-close": "", id: "js-btn-cancel" }
             },
             [_vm._v("Cancelar")]
           )
@@ -108231,13 +108231,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this2 = this;
 
-        iziToast.settings({
-            timeout: 2000,
-            icon: 'ionicons',
-            transitionIn: 'flipInX',
-            transitionOut: 'flipOutX',
-            progressBar: false
-        });
         axios.get('/albums').then(function (response) {
             return _this2.albums = response.data;
         });

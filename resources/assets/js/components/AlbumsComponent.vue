@@ -33,13 +33,6 @@ export default {
         });
     },
     mounted() {
-        iziToast.settings({
-            timeout: 2000,
-            icon: 'ionicons',
-            transitionIn: 'flipInX',
-            transitionOut: 'flipOutX',
-            progressBar: false
-        });
         axios.get('/albums').then(response => this.albums = response.data);
     },
     methods: {
