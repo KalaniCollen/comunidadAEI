@@ -7,8 +7,14 @@
 
         {!! Form::open(['route' => ['servicio.orden-servicio']]) !!}
 
+        {!! Form::hidden('servicio', $servicio->nombre) !!}
+
+
+        {!! Form::hidden('destinatario', $servicio->empresa->nombre_empresa) !!}
+        {!! Form::hidden('destinatarioCorreo', $servicio->empresa->correo_electronico_empresa) !!}
+
         {!! Form::inText('nombreRemitente', null, 'Nombre Completo') !!}
-        {!! Form::inEmail('correo', null, 'Correo eléctronico') !!}
+        {!! Form::inEmail('remitente', null, 'Correo eléctronico') !!}
         {!! Form::inTextArea('mensaje', null, 'Mensaje') !!}
 
         <button class="btn btn--accent">
