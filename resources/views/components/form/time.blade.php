@@ -1,6 +1,6 @@
 <div class="group {{ $classesIn }} {{ ($errors->has($name) == 1) ? 'group--error' : '' }}">
     @php
-        $value = Form::getValueAttribute($name);
+        $value = (Form::getValueAttribute($name) == null) ? $value:Form::getValueAttribute($name);
     @endphp
     {!! Form::label($name, $label, ['class' => 'label']) !!}
     <input type="time" name="{{ $name }}" id="{{ $name }}" value="{{ $value }}" class="input" {{ $options }}>

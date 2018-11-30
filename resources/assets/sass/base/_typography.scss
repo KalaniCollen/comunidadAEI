@@ -141,6 +141,11 @@ select,
     @include lato(b);
 }
 
+.text--decorate {
+    text-align: center;
+    text-decoration: overline underline;
+}
+
 .link,
 .label {
     @include roboto(b);

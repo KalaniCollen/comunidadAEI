@@ -2,7 +2,7 @@
     {!! Form::label($name, $label, ['class' => 'label']) !!}
 
     @php
-        $selected = Form::getValueAttribute($name);
+        $selected = (Form::getValueAttribute($name) == null) ? $selected:Form::getValueAttribute($name);
     @endphp
 
     {!! Form::select($name, $list, $selected, array_merge(['class' => 'input', 'style' => 'background-color: #fff'], $options)) !!}

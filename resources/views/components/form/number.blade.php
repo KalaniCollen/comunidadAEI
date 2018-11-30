@@ -2,7 +2,7 @@
     {!! Form::label($name, $label, ['class' => 'label']) !!}
 
     @php
-        $value = Form::getValueAttribute($name);
+        $value = (Form::getValueAttribute($name) == null) ? $value:Form::getValueAttribute($name);
     @endphp
 
     @if (str_contains($classesIn, 'group--material'))

@@ -11,7 +11,7 @@
 
         {!! Form::inDateTime('fecha_final', null, 'Final') !!}
 
-        {!! Form::inSelect('tipo', null, 'Tipo de evento',['exposicion' => 'Exposición', 'convencion' => 'Convención', 'conferencia' => 'Conferencia', 'congreso' => 'Congreso', 'capacitacion' => 'Capacitación', 'comida' => 'Comida']) !!}
+        {!! Form::inSelect('tipo', null, 'Tipo de evento', ['exposicion' => 'Exposición', 'convencion' => 'Convención', 'conferencia' => 'Conferencia', 'congreso' => 'Congreso', 'capacitacion' => 'Capacitación', 'comida' => 'Comida']) !!}
 
         {!! Form::inText('nombre_evento', null, 'Nombre del evento') !!}
 

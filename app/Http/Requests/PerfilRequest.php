@@ -24,18 +24,15 @@ class Perfilrequest extends FormRequest
     public function rules()
     {
         return [
-
           'correo_electronico_empresa' => 'nullable|email',
           'telefono_fijo_empresa'  => 'nullable|regex:/(55)[0-9]{8}/',
-
         ];
     }
     public function messages()
     {
         return [
-            'telefono_fijo_empresa.regex' => 'Número de telefono es incorrecto ej: 5518943674',
-            'correo_electronico_empresa.email' => 'Correo electronico invalido'
-
+            'telefono_fijo_empresa.regex' => 'Número de teléfono es incorrecto ej: 5518943674',
+            'correo_electronico_empresa.email' => 'Correo eléctronico inválido'
         ];
     }
 }

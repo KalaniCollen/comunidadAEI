@@ -10,7 +10,7 @@
             </div>
 
             {!! Form::open(['class' => 'login__form']) !!}
-                {!! Form::inEmail('email', null, 'Correo eléctronico', 'group--material group--material-icon', 'mail') !!}
+                {!! Form::inEmail('email', null, 'Correo eléctronico', 'group--material group--material-icon', [], 'mail') !!}
 
                 <div class="group group--material group--material-icon">
                     {!! Form::label('password', 'Contraseña', ['class' => 'label']) !!}
@@ -25,7 +25,7 @@
                 </div>
                 <a href="{{ route('password.request') }}" class="login__link link text--left">¿Olvidó su contraseña?</a>
 
-                {!! Form::inCheck('remember', 'remember', 'Mantener sesión abierta') !!}
+                {!! Form::inCheck('remember', 'remember', true, 'Mantener sesión abierta') !!}
 
                 <button class="btn btn--accent"><i class="btn__icon ion-md-send"></i> Iniciar Sesión</button>
 

@@ -51,7 +51,7 @@ class ServiciosController extends Controller
         } else {
             $servicio->imagen = 'defaultService.jpg';
         }
-        $servicio->id_empresa = Auth::user()->empresa->id_empresa;
+        $servicio->id_empresa = auth()->user()->empresa->id_empresa;
         $servicio->slug = Str::slug( $servicio->nombre . $servicio->id_empresa );
         $servicio->save();
         return redirect()->route('catalogo.index');
@@ -76,7 +76,7 @@ class ServiciosController extends Controller
      */
     public function edit(Servicios $servicio)
     {
-        if($servicio->id_empresa == Auth::user()->empresa->id_empresa) {
+        if($servicio->id_empresa == auth()->user()->empresa->id_empresa) {
             return view('catalogo.servicios.edit', compact('servicio'));
         } else {
             return view('errors.404');

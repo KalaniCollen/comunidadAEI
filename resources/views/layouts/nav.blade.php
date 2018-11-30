@@ -47,8 +47,7 @@
                         </li>
                         <li class="nav__item nav__item--active" onclick="submenu(this)">
                             <div class="user">
-                                <img src="{{ Auth::user()->perfil->imagen }}" alt="" class="user__picture user__picture--big">
-                                <p class="user__username">{{ Auth::user()->name }}</p>
+                                <img src="{{ auth()->user()->perfil->imagen }}" alt="" class="user__picture user__picture--big">
                             </div>
                             <ul class="submenu">
                                 <li class="submenu__item">

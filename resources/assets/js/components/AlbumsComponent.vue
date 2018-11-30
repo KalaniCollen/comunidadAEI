@@ -2,8 +2,6 @@
     <div>
         <div class="card" v-for="album of albums" :key="album.id_album">
             <a class="card card--link" :href="`${album.slug_album}`">
-                <!-- <p>{{ album.imagenes }}</p> -->
-                <!-- <div class="card__image" :style="backgroundImage: url(album.imagenes);"></div> -->
                 <div class="card__body">
                     <p class="card__title">{{ album.nombre }}</p>
                 </div>
@@ -13,7 +11,6 @@
 
                 <a href="#" class="btn js-btn-delete-album" @click.prevent="destroyAlbum(album.slug_album, album.nombre)"><i class="btn__icon ion-md-trash"></i> Eliminar</a>
             </div>
-            <!-- <p>{{ album.imagenes[0].direccion }}</p> -->
         </div>
     </div>
 </template>
@@ -21,7 +18,6 @@
 <script>
 import EventBus from '../event-bus';
 export default {
-    props: ['albumes'],
     data() {
         return {
             albums: []
@@ -49,13 +45,16 @@ export default {
                         axios.delete(`${slug}`, {
                             slug: slug
                         }).then(response => {
+                            instance.hide({}, toast);
                             iziToast.success({
-                                title: response.data.message
+                                title: response.data.message,
+                                displayMode: 1,
                             });
-                            // axios.get('/albums').then(response => this.albums = response.data);
+                            location.reload();
                         }).catch(error => {
                             iziToast.error({
-                                title: error.message
+                                title: error.message,
+                                displayMode: 1,
                             });
                         });
                     }]

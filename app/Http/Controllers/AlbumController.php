@@ -28,7 +28,7 @@ class AlbumController extends Controller
             $album = new Album();
             $album->nombre = $request->nombre;
             $album->slug_album = str_slug( $request->nombre . '-' . time() );
-            $album->id_usuario = Auth::user()->id_usuario;
+            $album->id_usuario = auth()->user()->id_usuario;
             $album->save();
             $folder = "/public/galeria/{$album->slug_album}";
             Storage::makeDirectory("public/galeria/{$album->slug_album}");
@@ -40,7 +40,7 @@ class AlbumController extends Controller
     }
 
     public function show(Album $album) {
-        if (Auth::user()->id_usuario == $album->id_usuario) {
+        if (auth()->user()->id_usuario == $album->id_usuario) {
             $imagenes = $album->imagenes;
             return view('multimedia.album.show', compact('album', 'imagenes'));
         } else {

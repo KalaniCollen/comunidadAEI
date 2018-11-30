@@ -19,7 +19,7 @@
                         <main>
                             <section class="cards" id="cartas">
                               <article >
-                                <a href="{{ route('videos.show', Auth::user()->id_usuario) }}">
+                                <a href="{{ route('videos.show', auth()->user()->id_usuario) }}">
                                 <img class="article-img" src="/storage/img/you.png" alt=" " />
                                 <h1 class="article-title" style="bottom:-10px;">
                                 Link en YouTube

@@ -23,6 +23,13 @@ function previewImage(input, img, text) {
     }
 }
 
+function previewImageOnlyText(input, text) {
+    if(input.files && input.files[0]) {
+        document.getElementById(text).innerHTML =  input.files[0].name;
+    }
+}
+
+
 // Acordeon del footer
 let btns = document.getElementsByClassName('footer__title');
 [].forEach.call(btns , function(btn) {

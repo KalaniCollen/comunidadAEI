@@ -6,8 +6,10 @@ use Redirect;
 use ComunidadAEI\User;
 use ComunidadAEI\Perfil_Empresa;
 use ComunidadAEI\Perfil_Usuario;
+use ComunidadAEI\Traits\UploadImage;
 use ComunidadAEI\Http\Requests\PerfilRequest;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -15,6 +17,7 @@ use Illuminate\Support\Facades\Storage;
 
 class PerfilEmpresaController extends Controller
 {
+    use UploadImage;
 
     private  $view = "perfiles.empresa";
 
@@ -26,7 +29,7 @@ class PerfilEmpresaController extends Controller
     */
     public function index()
     {
-        $perfilEmpresa = Auth::user()->empresa()->first();
+        $perfilEmpresa = auth()->user()->empresa()->first();
         // $Perfil = Perfil_Usuario::where('id_usuario',Auth::id())->first();
         // return view("{$this->view}.index")->with([
         //     'perfilE'=>$perfilEmpresa,
@@ -36,14 +39,16 @@ class PerfilEmpresaController extends Controller
 
     public function show(Perfil_Empresa $perfilEmpresa)
     {
-        // $perfilEmpresa = Auth::user()->empresa()->first();
+        // $perfilEmpresa = auth()->user()->empresa()->first();
         // $PerfilEmpresa = Perfil_Empresa::where('slug_empresa',$slug_empresa)->first();
-        // $Perfil=Perfil_Usuario::where('id_usuario',Auth::id())->first();
+        $perfil = Perfil_Usuario::where('id_usuario', $perfilEmpresa->id_usuario)->first();
         // $Perfil =
         // dd($perfilEmpresa);
 
         return view("{$this->view}.show")->with([
-            'perfilEmpresa'=>$perfilEmpresa]);
+            'perfilEmpresa'=>$perfilEmpresa,
+            'perfil' => $perfil
+        ]);
         // return view("{$this->view}.show");
     }
 
@@ -107,10 +112,20 @@ class PerfilEmpresaController extends Controller
 
     public function edit(Perfil_Empresa $perfilEmpresa)
     {
-        if($perfilEmpresa->id_usuario == Auth::user()->id_usuario) {
+        if($perfilEmpresa->id_usuario == auth()->user()->id_usuario) {
             return view('perfiles.empresa.edit', compact('perfilEmpresa'));
         } else {
             return view('errors.404');
+        }
+    }
+
+    public function saveImage(PerfilRequest $request, Perfil_Empresa $perfil_empresa) {
+        if ($request->ajax()) {
+            $data = $request->logo_empresa;
+            Storage::delete($perfil_empresa->logo_empresa);
+            $perfil_empresa->logo_empresa = '/' . $this->getImagePNG('storage/imagen_empresa/', $data);
+            $perfil_empresa->save();
+            return response()->json("¡Logotipo actualizado correctamente!", Response::HTTP_OK);
         }
     }
 

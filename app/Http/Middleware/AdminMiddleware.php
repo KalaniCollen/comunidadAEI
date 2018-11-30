@@ -17,7 +17,7 @@ class AdminMiddleware
     public function handle($request, Closure $next)
     {
 
-        if(Auth::check() &&Auth::user()->privilegios_administrador=="1"){
+        if(Auth::check() &&auth()->user()->privilegios_administrador=="1"){
 
 
         return $next($request);

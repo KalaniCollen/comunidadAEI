@@ -50,11 +50,11 @@ class ProductosController extends Controller
         } else {
             $producto->imagen = 'defaultProduct.jpg';
         }
-        $producto->id_empresa = Auth::user()->empresa->id_empresa;
+        $producto->id_empresa = auth()->user()->empresa->id_empresa;
         $producto->slug = Str::slug( $producto->nombre . $producto->id_empresa );
         $producto->save();
 
-        return redirect()->route('home');
+        return redirect()->route('catalogo.index');
 
     }
 
@@ -66,7 +66,7 @@ class ProductosController extends Controller
      */
     public function show(Productos $producto)
     {
-        return view('catalogo.productos.show', ['producto' => $producto]);
+        return view('catalogo.productos.show', compact('producto'));
     }
 
     /**
@@ -77,7 +77,11 @@ class ProductosController extends Controller
      */
     public function edit(Productos $producto)
     {
-        return view('catalogo.productos.edit', ['producto' => $producto]);
+        if ($producto->id_empresa == auth()->user()->empresa->id_empresa) {
+            return view('catalogo.productos.edit', ['producto' => $producto]);
+        } else {
+            return view('errors.404');
+        }
     }
 
     /**
@@ -95,12 +99,12 @@ class ProductosController extends Controller
             $imagen = Storage::putFile('public/catalogos_img', $request->file('imagen'));
             $producto->imagen = basename($imagen);
         }
-        $producto->id_empresa = Auth::user()->empresa->id_empresa;
-        $producto->id_empresa = Auth::user()->empresa->id_empresa;
+        $producto->id_empresa = auth()->user()->empresa->id_empresa;
+        $producto->id_empresa = auth()->user()->empresa->id_empresa;
         $producto->slug = Str::slug($producto->nombre);
         $producto->save();
 
-        return redirect()->route('home');
+        return redirect()->route('catalogo.index');
     }
 
     /**
@@ -116,7 +120,7 @@ class ProductosController extends Controller
     }
 
     public function api(Request $request) {
-        $productos = Productos::all();
+        $productos = Productos::orderBy('created_at', 'DESC')->paginate(6);
         $productos->each(function ($producto) {
             $producto->empresa;
         });

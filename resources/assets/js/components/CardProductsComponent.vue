@@ -1,7 +1,7 @@
 <template>
-    <section class="section section--cards">
-        <div class="card" v-for="(producto, i) in productos" :key="producto.slug">
-            <a href="#" class="card__owner">
+    <section class="row no-gutters d-flex justify-content-center">
+        <div class="card col-md-10 col-lg-5 ml-2 mr-2" v-for="(producto, i) in productos.data" :key="producto.slug">
+            <a :href="`/perfil-empresa/${producto.empresa.slug_empresa}`" class="card__owner">
                 <img :src="producto.empresa.logo_empresa" alt="" class="card__owner-picture">
                 <p class="card__owner-name">{{ producto.empresa.nombre_empresa }}</p>
             </a>
@@ -15,6 +15,9 @@
                 <a :href="`productos/${producto.slug}`" class="btn btn--accent">Ver más</a>
             </div>
         </div>
+        <div class="section__footer">
+            <pagination :data="productos" @pagination-change-page="getResults"></pagination>
+        </div>
     </section>
 </template>
 
@@ -22,13 +25,16 @@
     export default {
         data() {
             return {
-                productos: []
+                productos: {}
             }
         },
         mounted() {
-            axios.get('/v1/productos').then(response => (this.productos = response.data));
+            this.getResults();
         },
         methods: {
+            getResults(page = 1) {
+                axios.get('/v1/productos?page=' + page).then(response => (this.productos = response.data));
+            },
             formatPrice(value) {
                 let val = (value/1).toFixed(2).replace(',', '.');
                 return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

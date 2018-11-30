@@ -3,38 +3,18 @@
     <section class="section">
         <h2>Orden de Servicio</h2>
         <p class="h5"><b>Servicio a realizar: </b> {{ $servicio->nombre }}</p>
-        <p class="h5"><b>Horario de atención: </b> {{ $servicio->horario_inicio }} - {{ $servicio->horario_cierre }}</p>
-        <br>
-        <form action="{{ route('servicio.orden-servicio') }}" method="post" class="form">
-            {{ csrf_field('POST') }}
+        <p class="h5"><b>Horario de atención: </b> {{ Date::parse($servicio->horario_inicio)->format('H:m') }} - {{ Date::parse($servicio->horario_cierre)->format('H:m') }} hrs.</p>
 
-            <input type="hidden" name="destinatario" value="{{ $servicio->empresa->nombre_empresa }}">
-            <input type="hidden" name="destinatarioCorreo" value="{{ $servicio->empresa->correo_electronico_empresa }}">
-            <input type="hidden" name="servicio" value="{{ $servicio->nombre}}">
+        {!! Form::open(['route' => ['servicio.orden-servicio']]) !!}
 
-            <div class="form__input form__input--column">
-                <label for="">Nombre Completo</label>
-                @if (Auth::check())
-                    <input class="form__input-input" type="text" name="nombreRemitente" id="nombreRemitente" value="{{ Auth::user()->name }}" autocomplete>
-                @else
-                    <input class="form__input-input" type="text" name="nombreRemitente" id="nombreRemitente" autocomplete>
-                @endif
-            </div>
+        {!! Form::inText('nombreRemitente', null, 'Nombre Completo') !!}
+        {!! Form::inEmail('correo', null, 'Correo eléctronico') !!}
+        {!! Form::inTextArea('mensaje', null, 'Mensaje') !!}
 
-            <div class="form__input form__input--column">
-                <label for="remitente">Correo</label>
-                @if (Auth::check())
-                    <input class="form__input-input" type="email" name="remitente" id="remitente" value="{{ Auth::user()->email }}" autocomplete="email">
-                @else
-                    <input class="form__input-input" type="email" name="remitente" id="remitente" autocomplete="email">
-                @endif
-            </div>
-            <div class="form__input form__input--column">
-                <label for="mensaje">Mensaje:</label>
-                <textarea class="form__text-input" name="mensaje"></textarea>
-            </div>
+        <button class="btn btn--accent">
+            <i class="ion-md-send btn__icon"></i> Enviar
+        </button>
 
-            <input class="btn btn--accent" type="submit" value="Enviar">
-        </form>
+        {!! Form::close() !!}
     </section>
 @endsection

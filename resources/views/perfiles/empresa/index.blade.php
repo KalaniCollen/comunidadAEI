@@ -14,10 +14,8 @@
             @isset($perfilEmpresa->direccion_empresa)
                 <p><i class="ion-md-pin"></i> {{ $perfilEmpresa->direccion_empresa }}</p>
             @endisset
-            @if (Auth::user()->id_usuario == $perfilEmpresa->id_usuario )
-                <a href="{{ route('perfil-empresa.edit', $perfilEmpresa->slug_empresa) }}" class="fab fab--profile-empresa">
-                    <i class="ion-md-create"></i>
-                </a>
+            @if (auth()->user()->id_usuario == $perfilEmpresa->id_usuario )
+                <a href="{{ route('perfil-empresa.edit', $perfilEmpresa->slug_empresa) }}" class="btn btn--profile"><i class="btn__icon ion-md-create"></i> Editar perfil</a>
             @endif
         </div>
         <div class="profile__content row no-gutters">

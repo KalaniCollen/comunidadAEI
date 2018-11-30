@@ -1,9 +1,10 @@
 <style>
     .viewer-backdrop {
-        background-color: rgba(0,0,0,.9);
+        background-color: rgba(0,0,0,.8);
     }
     .vue_viewer_item {
         width: 310px;
+        height: 180px;
         overflow: hidden;
     }
 
@@ -15,7 +16,7 @@
     <vue-viewer
         :images="images"
         v-if="images.length"
-        :zIndex="1002"
+        :zIndex="1004"
     ></vue-viewer>
 </template>
 <script type="text/javascript">
@@ -47,11 +48,9 @@ export default {
         for (let imagen of this.imagenes) {
             let image = {
                 url: imagen.direccion,
-                title: "Hola"
             }
             this.images.push(image);
         }
     }
 }
-
 </script>

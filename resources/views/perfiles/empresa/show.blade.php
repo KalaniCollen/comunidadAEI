@@ -1,13 +1,21 @@
 @extends('layouts.app')
+@section('styles')
+    <link rel="stylesheet" type="text/css" href="{{ asset ('css/botonessociales.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset ('css/tarjetadesplegar.css')}}" />
+@endsection
+
 @section('content')
 <section class="section profile profile--section">
+    @include('Modal.tarjeta')
 
     <div class="profile__cover" style="background-image: url('/img/login-goal.jpg');"></div>
 
     <div class="profile__information">
-        <div class="profile__profile">
+        <div class="profile__profile d-flex flex-column">
             <img src="{{ $perfilEmpresa->logo_empresa }}" alt="" class="profile__picture">
             <h1 class="profile__username">{{ $perfilEmpresa->nombre_empresa }}</h1>
+
+            <button id="Tarjeta" class="btn btn--ghost">Contacto Directo</button>
             @isset($perfilEmpresa->pag_web_empresa)
                 <a href="{{ $perfilEmpresa->pag_web_empresa }}" target="_blank" class="text--accent"><i class="ion-md-globe"></i> {{ $perfilEmpresa->pag_web_empresa }}</a>
             @endisset
@@ -48,4 +56,7 @@
         </div>
     </div>
 </section>
+@endsection
+@section('scripts')
+    <script src="{{ asset('js/PerfilEm.js')}}" harset="utf-8"></script>
 @endsection

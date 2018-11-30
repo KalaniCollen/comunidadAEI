@@ -95,6 +95,8 @@ Route::get('/servicios/{servicio}/contact/', 'ServiciosController@contact')->nam
 
 // Rutas cada usuario autorizado
 Route::group(['middleware' => 'auth'], function() {
+    Route::put('perfil-usuario/{perfil_usuario}/save-image', 'PerfilUsuarioController@saveImage')->name('perfil-usuario.save-image');
+    Route::put('perfil-empresa/{perfil_empresa}/save-image', 'PerfilEmpresaController@saveImage')->name('perfil-empresa.save-image');
     Route::resource('perfil-empresa','PerfilEmpresaController');
     Route::resource('perfil-usuario', 'PerfilUsuarioController');
     Route::get('albums/view', 'AlbumController@view')->name('albums.view');

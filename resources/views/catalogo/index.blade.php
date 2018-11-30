@@ -21,10 +21,10 @@
             <div class="section__body">
                 <div class="row no-gutters">
                     @isset($productos)
-                        <h2>Productos</h2>
+                        <h2 class="col-12">Productos</h2>
                         <div class="section row">
                             @foreach ($productos as $producto)
-                                <div class="col-md-4 col-lg-4">
+                                <div class="col-md-6 col-lg-4">
                                     @component('components.card', [
                                         'url'         => route('perfil-empresa.show', $producto->empresa->slug_empresa),
                                         'picture'     => $producto->empresa->logo_empresa,

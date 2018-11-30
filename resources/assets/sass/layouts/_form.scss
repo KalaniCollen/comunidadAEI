@@ -81,6 +81,10 @@
     padding: getSpace(sml);
     border-radius: $borde-material;
     border: 1px solid $gray-color-l;
+
+    &--disabled {
+        background: lightgray;
+    }
 }
 
 .checkmark {
@@ -89,6 +93,10 @@
         size: 1.3rem;
     }
     margin: 0 getSpace(sml);
+
+    + .label {
+        cursor: pointer;
+    }
 
     &--checkbox,
     &--radio {

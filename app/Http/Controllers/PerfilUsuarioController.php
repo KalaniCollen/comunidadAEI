@@ -2,11 +2,13 @@
 
 namespace ComunidadAEI\Http\Controllers;
 
-use Illuminate\Http\Request;
+use ComunidadAEI\Traits\UploadImage;
 use ComunidadAEI\Perfil_Usuario;
 use ComunidadAEI\Perfil_Empresa;
 use ComunidadAEI\User;
-use Illuminate\Support\Str as Str;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
 use ComunidadAEI\Http\Requests\PerfilRequest;
@@ -18,6 +20,8 @@ use Illuminate\Support\Facades\Mail;
 use Hash;
 class PerfilUsuarioController extends Controller
 {
+    use UploadImage;
+
     private $view = "perfiles.usuario";
     /**
     * Store a newly created resource in storage.
@@ -37,16 +41,8 @@ class PerfilUsuarioController extends Controller
         ]);
     }
 
-    public function edit(PerfilRequest $request) {
-        $perfil = Perfil_Usuario::where('id_usuario', Auth::id())->first();
-        $perfilE = Perfil_Empresa::where('id_usuario', Auth::id())->first();
-        $User = User::where('id_usuario', Auth::id())->first();
-        return view("{$this->view}.edit",[
-            'perfil'=>$perfil,
-            'perfilE'=> $perfilE,
-            'user' => $User
-        ]);
-        // return view('form.campo')->with('dato', $request);
+    public function edit(Perfil_Usuario $perfil_usuario) {
+        return view('perfiles.usuario.edit', compact('perfil_usuario'));
     }
 
     public function store(Request $request)
@@ -79,23 +75,28 @@ class PerfilUsuarioController extends Controller
         return redirect('/cambiarpassword')->withErrors($errors);
     }
 
-    public function update(PerfilRequest $request, Perfil_Usuario $usuario)
+    public function update(PerfilRequest $request, $slug_usuario)
     {
+        $perfil_usuario = Perfil_Usuario::where('slug_usuario', $slug_usuario)->first();
+        $user = auth()->user();
 
-        $usuario->fill($request->except('slug_usuario'));
-        $usuario->save();
-    //     $User=User::where('id_usuario',Auth::id())->first();
-    //     $User->names=Str::upper($request->name);
-    //     $User->apellido_paterno=Str::upper($request->apellido_materno);
-    //     $User->apellido_materno=Str::upper($request->apellido_materno);
-    //     $slug=str::slug($request->name.' '.$request->apellido_paterno.' '.$request->apellido_materno.' '.Auth::id());
-    //     $User->slug_empresa=$slug;
-    //     $Perfil=Perfil_Usuario::where('id_usuario', Auth::id())->first();
-    //     $Perfil->sexo=$request->sexo;
-    //     $Perfil->telefono_movil=$request->telefono_movil;
-    //     $Perfil->fecha_nacimiento=$request->fecha_nacimiento;
-    //     $Perfil->slug_usuario=$slug;
-    //     $Perfil->save();
+        $user->name = strtoupper($request->name);
+        $user->apellido_paterno = strtoupper($request->apellido_paterno);
+        $user->apellido_materno = strtoupper($request->apellido_materno);
+        // $user->email = $request->email;
+        // $user->password = (!empty($request->password)) ? bcrypt($request->password) : $user->password;
+        $user->notificacion_correo = isset($request->notificacion_correo) ? 1 : 0;
+        $user->slug_usuario = str_slug("{$request->name} {$request->apellido_paterno} {$request->apellido_materno} {$user->id_usuario}");
+
+        $perfil_usuario->slug_usuario = str_slug("{$request->name} {$request->apellido_paterno} {$request->apellido_materno} {$user->id_usuario}");
+        $perfil_usuario->correo_electronico = $request->correo_electronico;
+        $perfil_usuario->red_social = $request->red_social;
+        $perfil_usuario->telefono_movil = $request->telefono_movil;
+        $perfil_usuario->sexo = $request->sexo;
+        $perfil_usuario->fecha_nacimiento = $request->fecha_nacimiento;
+        $perfil_usuario->privacidad = isset($request->privacidad) ? 1 : 0;
+        $perfil_usuario->save();
+        $user->save();
         return redirect()->route("perfil-usuario.index");
     }
 
@@ -126,17 +127,21 @@ class PerfilUsuarioController extends Controller
             }
 
             if ($result){
-
                 return response()->json(['success'=>'true']);
             }
-            //else
-            //{
-            //return response()->json(['success'=>'false']);
-            //}
         }
 
     }
 
+    public function saveImage(PerfilRequest $request, Perfil_Usuario $perfil_usuario) {
+        if ($request->ajax()) {
+            $data = $request->imagen;
+            Storage::delete($perfil_usuario->imagen);
+            $perfil_usuario->imagen = '/' . $this->getImagePNG('storage/imagen_usuario/', $data);
+            $perfil_usuario->save();
+            return response()->json("¡Imagen de perfil actualizada correctamente!", Response::HTTP_OK);
+        }
+    }
 
 
 }

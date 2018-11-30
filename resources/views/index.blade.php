@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('content')
-    <header class="header">
+    <header class="header d-flex align-items-center">
+        <video autoplay loop muted class="header__video" poster="/videos/Boulevard.jpg">
+            <source src="/videos/Boulevard.webm" type="video/webm">
+            <source src="/videos/Boulevard.mp4" type="video/mp4">
+        </video>
         <div class="header__container">
             <div class="header__logo"></div>
             <h1 class="header__title">Asociación de Empresarios de Iztapalapa A.C.</h1>

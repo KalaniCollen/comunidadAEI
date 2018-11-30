@@ -45,7 +45,7 @@ class EventoController extends Controller
         $evento->fecha_inicio = \Date::parse($request->fecha_inicio)->format('Y-m-d H:m:s');
         $evento->fecha_final = \Date::parse($request->fecha_final)->format('Y-m-d H:m:s');
         $evento->slug_evento = str_slug($request->nombre_evento);
-        $evento->id_usuario = Auth::user()->id_usuario;
+        $evento->id_usuario = auth()->user()->id_usuario;
         $evento->save();
         return redirect()->back()->with('info', '¡Solicitud enviada correctamente!');
     }

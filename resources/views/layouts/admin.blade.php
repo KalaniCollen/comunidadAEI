@@ -46,24 +46,24 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-                  <?php if(Auth::user()->avatarurl==""){ Auth::user()->avatarurl="img/DefaultEmpresa.png"; }  ?>
-                  <img src={{ Auth::user()->avatarurl }}  class="user-image" alt="User Image">
-                  <span class="hidden-xs">{{ Auth::user()->name }} {{ Auth::user()->last_name }}</span>
+                  <?php if(auth()->user()->avatarurl==""){ auth()->user()->avatarurl="img/DefaultEmpresa.png"; }  ?>
+                  <img src={{ auth()->user()->avatarurl }}  class="user-image" alt="User Image">
+                  <span class="hidden-xs">{{ auth()->user()->name }} {{ auth()->user()->last_name }}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <?php if(Auth::user()->avatarurl==""){ Auth::user()->avatarurl="images/avatar.jpg"; }  ?>
-                    <img src={{ Auth::user()->avatarurl }}  class="img-circle" alt="User Image">
+                    <?php if(auth()->user()->avatarurl==""){ auth()->user()->avatarurl="images/avatar.jpg"; }  ?>
+                    <img src={{ auth()->user()->avatarurl }}  class="img-circle" alt="User Image">
                     <p>
-                     {{ Auth::user()->name }} {{ Auth::user()->last_name }}
-                      <small>Miembro desde {{ Auth::user()->created_at }}</small>
+                     {{ auth()->user()->name }} {{ auth()->user()->last_name }}
+                      <small>Miembro desde {{ auth()->user()->created_at }}</small>
                     </p>
                   </li>
 
                   <li class="user-footer">
                     {{-- <div class="pull-left">
-                      <a onclick="mostrarperfil({{Auth::user()->id_usuario }});" class="btn btn-default btn-flat">Perfil</a>
+                      <a onclick="mostrarperfil({{auth()->user()->id_usuario }});" class="btn btn-default btn-flat">Perfil</a>
                     </div> --}}
 
                     <div class="pull-right">
@@ -87,11 +87,11 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <?php if(Auth::user()->avatarurl==""){ Auth::user()->avatarurl="images/avatar.jpg"; }  ?>
-              <img src={{ Auth::user()->avatarurl }}  class="img-circle" alt="User Image">
+              <?php if(auth()->user()->avatarurl==""){ auth()->user()->avatarurl="images/avatar.jpg"; }  ?>
+              <img src={{ auth()->user()->avatarurl }}  class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>{{ Auth::user()->name }} {{ Auth::user()->last_name }}</p>
+              <p>{{ auth()->user()->name }} {{ auth()->user()->last_name }}</p>
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
           </div>

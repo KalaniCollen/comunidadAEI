@@ -27,27 +27,34 @@ export default {
             zindex: 1003,
             onOpened: function(modal) {
                 $('#js-btn-create').on('click', function(el) {
-                    let name = $('#js-in-create').val();
+                    console.log($('#js-in-create').val());
                     axios.post('/albums', {
-                        nombre: name
+                        nombre: $('#js-in-create').val()
                     }).then(function(response) {
-                        $('#js-in-create').val('');
                         $('#js-create-album-modal').iziModal('close');
                         iziToast.success({
                             title: 'Ok!',
                             icon: 'ion-md-done-all',
                             message: response.data.message,
-                            position: 'topRight'
+                            displayMode: 1,
                         });
                         EventBus.$emit('album-added', response.data.album);
                     }).catch(function(error) {
                         iziToast.error({
                             title: 'Error!',
                             message: error.message,
-                            position: 'topRight'
+                            position: 'topRight',
+                            displayMode: 1,
                         });
                     });
                 });
+
+                $('#js-btn-cancel').on('click', function() {
+                    $('#js-in-create').val('');
+                });
+            },
+            onClosed: function() {
+                $('#js-in-create').val('');
             }
         });
     }

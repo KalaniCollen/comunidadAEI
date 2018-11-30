@@ -12,9 +12,7 @@ body {
     height: 100vh;
 }
 
-/*
-    CSS CUSTOM PROPERTIES
-*/
+/* CSS CUSTOM PROPERTIES */
 :root {
 
     --twitter-color:  #1DA1F2;
@@ -81,14 +79,14 @@ img {
 }
 
 
-[class*="facebook"] {
+.fb {
     color: var(--facebook-color);
 }
 
-[class*="twitter"] {
+.tw {
     color: var(--twitter-color);
 }
 
-[class*="instagram"] {
+.ig {
     color: var(--instagram-color);
 }

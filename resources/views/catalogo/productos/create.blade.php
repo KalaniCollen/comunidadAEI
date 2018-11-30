@@ -4,7 +4,6 @@
     <div class="section__header">
         <h1 class="section__title">Agregar Producto</h1>
     </div>
-
     <div class="row">
         <div class="col-md-6">
             {!! Form::open(['route' => ['productos.store'], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
@@ -17,7 +16,7 @@
 
         <div class="col-md-6">
             <img src="{{ asset('storage/catalogos_img/defaultService.jpg') }}" alt="" id="js-img-preview" class="col-12">
-        </div>
+        </divd>
     </div>
 </section>
 @endsection

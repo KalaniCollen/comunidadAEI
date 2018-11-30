@@ -15,11 +15,11 @@ class FormServiceProvider extends ServiceProvider
     {
 
         # Registrar componentes para Laravel Collective
-        \Form::component('inRadio', 'components.form.radio', ['name', 'value', 'label' => 'Radio', 'checked' => false,  'attributes' => []]);
+        \Form::component('inRadio', 'components.form.radio', ['name', 'value', 'checked' => false, 'label' => 'Radio', 'attributes' => []]);
 
-        \Form::component('inCheck', 'components.form.checkbox', ['name', 'checked' => false, 'label' => 'Checkbox', 'attributes' => []]);
+        \Form::component('inCheck', 'components.form.checkbox', ['name', 'value', 'checked' => false, 'label' => 'Checkbox', 'attributes' => []]);
 
-        \Form::component('inSwitch', 'components.form.switch', ['name', 'checked' => false, 'label' => 'Switch', 'attributes' => []]);
+        \Form::component('inSwitch', 'components.form.switch', ['name', 'value', 'checked' => false, 'label' => 'Switch', 'attributes' => []]);
 
         \Form::component('inTel', 'components.form.tel', ['name', 'value', 'label' => 'Phone', 'classesIn' => '', 'options' => '']);
 
@@ -31,11 +31,11 @@ class FormServiceProvider extends ServiceProvider
 
         \Form::component('inNumber', 'components.form.number', ['name', 'value', 'label' => 'Texto', 'classesIn' => '', 'options' => []]);
 
-        \Form::component('inEmail', 'components.form.email', ['name', 'value', 'label' => 'Email', 'classesIn' => '', 'icon' => null]);
+        \Form::component('inEmail', 'components.form.email', ['name', 'value', 'label' => 'Email', 'classesIn' => '', 'options' => [] , 'icon' => null]);
 
-        \Form::component('inTextArea', 'components.form.textarea', ['name', 'value', 'label' => 'TextArea', 'classesIn' => '', 'options' => [], 'icon' => null ] );
+        \Form::component('inTextArea', 'components.form.textarea', ['name', 'value', 'label' => 'TextArea', 'classesIn' => '', 'icon' => null, 'options' => [] ] );
 
-        \Form::component('inSelect', 'components.form.select', ['name', 'value', 'label' => 'TextArea', 'list' => [], 'classesIn' => '', 'options' => []] );
+        \Form::component('inSelect', 'components.form.select', ['name', 'selected', 'label' => 'TextArea', 'list' => [], 'classesIn' => '', 'options' => []] );
 
     }
 
