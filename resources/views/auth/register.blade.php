@@ -21,6 +21,7 @@
                 {!! Form::inText('name', null, 'Nombre(s)') !!}
                 {!! Form::inText('apellido_paterno', null, 'Apellido Paterno') !!}
                 {!! Form::inText('apellido_materno', null, 'Apellido Materno') !!}
+                {!! Form::inText('nombre_empresa', null, 'Nombre Empresa') !!}
 
                 <div class="group">
                     <p class="label w-100">Sexo</p>
@@ -58,6 +59,8 @@
                 </div>
 
                 {!! Form::inCheck('notificacion_correo', null, true,'Recibir notificaciones por correo') !!}
+                {!! Form::inCheck('acuerdo', null, true,'Estoy de acuerdo con los terminos', array('required' => 'required')) !!}
+                <a href="/politicas" target="_blank">Terminos y condiciones</a>
 
                 <button class="btn btn--accent">
                     <i class="btn__icon ion-md-send"></i> Registrarse

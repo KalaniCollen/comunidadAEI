@@ -47,6 +47,10 @@ create table `album` (
 create table `bolsa_trabajo` (
   `id_trabajo` int(11) not null,
   `nombre` varchar(255) not null,
+  `empresa` varchar(255) not null,
+  `salario` varchar(255) not null,
+  `direccion` varchar(255) not null,
+  `telefono` varchar(255) not null,
   `descripcion` varchar(255) not null,
   `created_at` timestamp not null default current_timestamp on update current_timestamp,
   `updated_at` timestamp not null default '0000-00-00 00:00:00'

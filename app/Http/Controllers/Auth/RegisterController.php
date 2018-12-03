@@ -102,8 +102,10 @@ class RegisterController extends Controller
 
             return Perfil_Empresa::create([
                 'id_usuario'=>$user->id_usuario,
+                'nombre_empresa'=>Str::upper(Input::get('nombre_empresa')),
                 'mis_logros'=>$mensaje,
-                'slug_empresa'=> $useru->slug_empresa,
+                'slug_empresa'=> Str::slug(Str::upper(Input::get('nombre_empresa')).' '.$useru->id_usuario),
+                        // 'slug_empresa'=> $useru->slug_empresa,
             ]);
         });
         return view('auth.register');

@@ -42,14 +42,20 @@ trait AuthenticatesUsers
         $user=User::where('email', '=', $request->email,'and','password', '=', $request->password)->first();
           if($user){
             $mensaje="";
-                if($user->status == "0" ){
-                  if($user->tipo_usuario=="asociado"){
-                    $dates= array('name' => $user->name,'code'=>$user['confirmation_code']);
-                    $this->Email($dates,$request->email);
-
-                  $mensaje='Se ha enviado un enlace a tu correo electronico para que actives tu cuenta como Asociado';
+                // if($user->status == "0" ){
+                //   if($user->tipo_usuario=="asociado"){
+                //     $dates= array('name' => $user->name,'code'=>$user['confirmation_code']);
+                //     $this->Email($dates,$request->email);
+                //
+                //   $mensaje='Se ha enviado un enlace a tu correo electronico para que actives tu cuenta como Asociado';
+                // }
+                //   return view('response')->with('mensaje',$mensaje);
+                // }
+                if($user->status == "0" and $user->tipo_usuario=="no asociado" ){
+                    return view('response');
                 }
-                  return view('response')->with('mensaje',$mensaje);
+                if($user->status == "1" and $user->tipo_usuario=="no asociado" ){
+                    return view('solicitud_response')->with('user',$user);
                 }
 }
         if ($this->attemptLogin($request)) {

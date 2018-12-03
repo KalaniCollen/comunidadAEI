@@ -56,6 +56,11 @@
                                 <li class="submenu__item">
                                     <a href="{{ route('perfil-empresa.index') }}" class="submenu__link"><i class="account__icon ion-md-business"></i>Mi Empresa</a>
                                 </li>
+                                @if(Auth::check() and Auth()->user()->privilegios_administrador=="1")
+                                    <li class="submenu__item">
+                                        <a href="{{ route('admin') }}" class="submenu__link"><i class="account__icon ion-md-build"></i>Admin</a>
+                                    </li>
+                                @endif
                                 <li class="submenu__item">
                                     <a href="{{ route('logout') }}" class="submenu__link" onclick="event.preventDefault();document.getElementById('form-logout').submit();"><i class="account__icon ion-md-log-out"></i>Cerrar Sesión</a>
                                     <form action="{{ route('logout') }}" method="post" style="display: none;" id="form-logout">

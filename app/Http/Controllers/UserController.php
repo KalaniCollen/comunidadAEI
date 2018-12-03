@@ -11,6 +11,8 @@ use ComunidadAEI\Http\Requests\RegistroRequest;
 use ComunidadAEI\Http\Requests\Perfilrequest;
 use Illuminate\Support\Str as Str;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
+use Config;
 
 class UserController extends Controller
 {
@@ -24,7 +26,7 @@ class UserController extends Controller
     {
         //
     }
-    public function activate($code)
+    public function activates($code)
     {
         $user = User::where('confirmation_code', $code)->first();
         $user->status = 1;
@@ -34,7 +36,32 @@ class UserController extends Controller
         }
         return redirect('login')->with('info','¡Cuenta activada satisfactoriamente!');
     }
+    public function activate($code)
+    {
+        $user = User::where('confirmation_code', $code)->first();
+        $user->status = 1;
+        $user->save();
+        $empresa=Perfil_Empresa::where('id_usuario',$user->id_usuario)->first();
+        // if ($user->tipo_usuario == "asociado") {
+        //     return view('auth.date_complete')->with('user', $user);
+        // }
+            $dates= array('name' => $user->name,
+            'apellido_paterno'=>$user->apellido_paterno,
+            'apellido_materno'=>$user->apellido_materno,
+            'email'=>$user->email,
+            'empresa'=>$empresa->nombre_empresa,);
+$mail= Config::get('mail.from.address');
 
+        $this->Email($dates,$mail,$user->email);
+        return view('solicitud_response')->with('user',$user);
+    }
+    function Email($dates,$mail,$email){
+          Mail::send('emails.plantilla2',$dates,function($message) use ($email,$mail){
+            $message->subject('Bienvenido a AEI');
+            $message->to($mail);
+            $message->from($email);
+          });
+        }
     public function complete(RegistroRequest $request, $id_usuario)
     {
 

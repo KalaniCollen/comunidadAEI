@@ -151,6 +151,15 @@
                   <li class="active"><a href="{{url('lista_evento')}}"><i class="fa fa-calendar-check-o"></i>Lista de eventos</a></li>
                 </ul>
               </li>
+              <li class="treeview">
+                <a href="#">
+                  <i class="fa fa-calendar"></i> <span>Bolsa de trabajo</span><i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                  <li class="active"><a  href="{{ url('agregar-trabajo') }}"> <i class="fa fa-calendar-plus-o"></i>Agregar trabajo</a></li>
+                  <li class="active"><a href="{{route('store-trabajo')}}"><i class="fa fa-calendar-check-o"></i>Lista de trabajos</a></li>
+                </ul>
+              </li>
 
 
 
