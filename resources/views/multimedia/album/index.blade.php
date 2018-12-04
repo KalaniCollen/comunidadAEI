@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
     <section class="section">
-        <ej></ej>
+        <create-album></create-album>
         <section class="section">
-            <albums-list></albums-list>
+            <list-album></list-album>
         </section>
     </section>
 @endsection

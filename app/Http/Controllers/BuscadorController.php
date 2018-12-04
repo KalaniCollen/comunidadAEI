@@ -5,6 +5,7 @@ namespace ComunidadAEI\Http\Controllers;
 use ComunidadAEI\User;
 use ComunidadAEI\Perfil_Empresa;
 use ComunidadAEI\Servicios;
+use ComunidadAEI\Productos;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Input;
@@ -49,9 +50,19 @@ class BuscadorController extends Controller
     * @return \Illuminate\Http\Response
     */
     public function search(Request $request){
-        // $busqueda = Perfil_Empresa::search($request->buscar)->get();
-        // $data = User::search("*{$request->buscar}*")->orderBy('id_usuario','desc')->get();
-        $data = Servicios::search("*{$request->buscar}*")->get();
-        return response()->json($data, Response::HTTP_OK);
+
+        if (strcmp($request->topic, 'empresa') === 0) {
+            $busqueda = Perfil_Empresa::search("*{$request->buscar}*")->get();
+        }
+
+        if (strcmp($request->topic, 'servicio') === 0) {
+            $busqueda = Servicios::search("*{$request->buscar}*")->get();
+        }
+
+        if (strcmp($request->topic, 'producto') === 0) {
+            $busqueda = Productos::search("*{$request->buscar}*")->get();
+        }
+
+        return response()->json($busqueda, Response::HTTP_OK);
     }
 }

@@ -122,11 +122,9 @@
         }
 
         &__picture {
-            margin-bottom: var(--med-mp);
         }
 
         &__username {
-            margin-left: var(--min-mp);
             + * {
                 width: calc(100% - var(--big-size));
             }

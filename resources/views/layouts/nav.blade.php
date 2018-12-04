@@ -4,8 +4,10 @@
         <button type="submit" name="buscar" class="form__search-btn">
             <i class="ion-ios-search" id="js-search"></i>
         </button>
-        <input type="search" name="buscar" id="js-search-input" class="form__search-input" placeholder="Buscar..." autofocus>
-        <ul id="js-search-list"></ul>
+        <input type="search" name="buscar" id="js-search-input" class="input" placeholder="Buscar..." autofocus>
+
+        {!! Form::select('topic', ['empresa' => 'Empresa', 'servicio' => 'Servicio', 'producto' => 'Producto'], null, ['class' => 'input']) !!}
+
         <i class="form__search-icon ion-ios-close" id="js-search-close"></i>
         {!! Form::close() !!}
     </div>
@@ -28,15 +30,17 @@
                         @php
                             $links = [
                                 ['link' => 'home', 'name' => 'Inicio'],
+                                ['link' => '/', 'name' => 'Catálogos'],
                                 ['link' => 'catalogo.index', 'name' => 'Mi Catálogo'],
                                 ['link' => 'calendario', 'name' => 'Calendario'],
                                 ['link' => 'evento.create', 'name' => 'Solicitar Evento'],
                             ];
                         @endphp
                         @each('components.item-menu', $links, 'link')
-                        <li class="nav__item" onclick="submenu(this)">
-                            <p class="nav__link">Multimedia</p>
-                            <ul class="submenu">
+                        <div class="nav__item dropdown">
+                            <a href="#" class="dropdown-toggle nav__link" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Multimedia</a>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <li class="submenu__item">
                                     <a href="{{ route('albums.view') }}" class="submenu__link"><i class="account__icon ion-md-camera"></i>Galería</a>
                                 </li>
@@ -44,12 +48,13 @@
                                     <a href="{{ route('videos.index') }}" class="submenu__link"><i class="account__icon ion-md-videocam"></i>Videos</a>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="nav__item nav__item--active" onclick="submenu(this)">
-                            <div class="user">
-                                <img src="{{ auth()->user()->perfil->imagen }}" alt="" class="user__picture user__picture--big">
+                        </div>
+                        <li class="nav__item dropdown">
+                            <div class="user dropdown-toggle" id="dropdownUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #fff;">
+                                <img src="{{ auth()->user()->perfil->imagen }}" alt="" class="user__picture user__picture--big" >
+                                <p class="user__username">{{ auth()->user()->name }}</p>
                             </div>
-                            <ul class="submenu">
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <li class="submenu__item">
                                     <a href="{{ route('perfil-usuario.index') }}" class="submenu__link"><i class="account__icon ion-md-person"></i>Mi Cuenta</a>
                                 </li>

@@ -22,7 +22,7 @@ set time_zone = "+00:00";
 -- base de datos: `aei`
 --
 drop database if exists `aei`;
-create database if not exists `aei` default character set utf8 collate utf8_swedish_ci;
+create database if not exists `aei` default character set utf8 collate utf8_spanish2_ci;
 use `aei`;
 
 -- --------------------------------------------------------
@@ -38,7 +38,7 @@ create table `album` (
   `created_at` timestamp not null default current_timestamp on update current_timestamp,
   `updated_at` timestamp not null default '0000-00-00 00:00:00',
   `id_usuario` int(11) not null
-) engine=innodb default charset=utf8;
+) engine=innodb default charset=utf8 collate=utf8_spanish2_ci;
 
 --
 -- estructura de tabla para la tabla `bolsa_trabajo`
@@ -50,7 +50,7 @@ create table `bolsa_trabajo` (
   `descripcion` varchar(255) not null,
   `created_at` timestamp not null default current_timestamp on update current_timestamp,
   `updated_at` timestamp not null default '0000-00-00 00:00:00'
-) engine=innodb default charset=utf8;
+) engine=innodb default charset=utf8 collate=utf8_spanish2_ci;
 
 -- --------------------------------------------------------
 
@@ -60,25 +60,26 @@ create table `bolsa_trabajo` (
 
 create table `evento` (
   `id_evento` int(10) unsigned not null,
-  `nombre_evento` varchar(191) collate utf8_spanish2_ci not null,
-  `descripcion_evento` longtext collate utf8_spanish2_ci not null,
+  `nombre_evento` varchar(191)  not null,
+  `descripcion_evento` longtext  not null,
   `fecha_inicio` datetime,
   `fecha_final` datetime,
-  `direccion_evento` longtext collate utf8_spanish2_ci not null,
+  `direccion_evento` longtext  not null,
   `num_invitados` int(10) unsigned not null default '0',
   `costo_asociado` int(10) unsigned not null default '0',
   `costo_no_asociado` int(10) unsigned not null default '0',
-  `ponente` varchar(191) collate utf8_spanish2_ci not null default 'NINGUNO',
-  `organizador` varchar(191) collate utf8_spanish2_ci not null,
-  `correo_electronico_organizador` varchar(191) collate utf8_spanish2_ci not null,
-  `telefono_organizador` bigint(20) unsigned not null default '0',
+  `ponente` varchar(191)  not null default 'NINGUNO',
+  `organizador` varchar(191)  not null,
+  `correo_electronico_organizador` varchar(191)  not null,
+  `telefono_organizador` varchar(20) not null,
   `estado_evento` tinyint(1) not null default '0',
   `tipo` varchar(255),
   `color`varchar(255),
-  `slug_evento` varchar(255) collate utf8_spanish2_ci not null,
+  `imagen` varchar(192),
+  `slug_evento` varchar(255)  not null,
   `id_usuario` int(10) unsigned default null,
-  `created_at` timestamp null default null,
-  `updated_at` timestamp null default null
+  `created_at` timestamp not null default current_timestamp on update current_timestamp,
+  `updated_at` timestamp not null default '0000-00-00 00:00:00'
 ) engine=innodb default charset=utf8 collate=utf8_spanish2_ci;
 
 -- --------------------------------------------------------
@@ -93,7 +94,7 @@ create table `imagenes` (
   `created_at` timestamp not null default current_timestamp on update current_timestamp,
   `updated_at` timestamp not null default '0000-00-00 00:00:00',
   `id_album` int(11) not null
-) engine=innodb default charset=utf8;
+) engine=innodb default charset=utf8 collate=utf8_spanish2_ci;
 
 --
 -- estructura de tabla para la tabla `migrations`
@@ -101,7 +102,7 @@ create table `imagenes` (
 
 create table `migrations` (
   `id` int(10) unsigned not null,
-  `migration` varchar(191) collate utf8_spanish2_ci not null,
+  `migration` varchar(191)  not null,
   `batch` int(11) not null
 ) engine=innodb default charset=utf8 collate=utf8_spanish2_ci;
 
@@ -113,7 +114,7 @@ create table `migrations` (
 
 create table `notificacion_administrador` (
   `id_notificacion` int(10) unsigned not null,
-  `descripcion` longtext collate utf8_spanish2_ci not null,
+  `descripcion` longtext  not null,
   `visto` tinyint(1) not null default '0',
   `created_at` timestamp null default null,
   `updated_at` timestamp null default null,
@@ -127,8 +128,8 @@ create table `notificacion_administrador` (
 --
 
 create table `password_resets` (
-  `email` varchar(191) collate utf8_spanish2_ci not null,
-  `token` varchar(191) collate utf8_spanish2_ci not null,
+  `email` varchar(191)  not null,
+  `token` varchar(191)  not null,
   `created_at` timestamp null default null
 ) engine=innodb default charset=utf8 collate=utf8_spanish2_ci;
 
@@ -140,24 +141,30 @@ create table `password_resets` (
 
 create table `perfil_empresa` (
   `id_empresa` int(10) unsigned not null,
-  `nombre_empresa` varchar(191) collate utf8_spanish2_ci default '',
-  `tipo_empresa` varchar(191) collate utf8_spanish2_ci default 'PUBLICA',
-  `giro_empresa` varchar(191) collate utf8_spanish2_ci not null default 'COMERCIAL',
-  `servicio_empresa` varchar(191) collate utf8_spanish2_ci default '',
-  `producto_empresa` varchar(191) collate utf8_spanish2_ci default '',
-  `logo_empresa` varchar(191) collate utf8_spanish2_ci not null default '/storage/img/empresa.png',
-  `horario_atencion` varchar(191) collate utf8_spanish2_ci default null,
-  `telefono_fijo_empresa` bigint(20) unsigned default null,
-  `correo_electronico_empresa` varchar(191) collate utf8_spanish2_ci default null,
-  `direccion_empresa` longtext collate utf8_spanish2_ci,
-  `red_social_twitter_empresa` varchar(191) collate utf8_spanish2_ci default null,
-  `pag_web_empresa` varchar(191) collate utf8_spanish2_ci default null,
-  `red_social_facebook_empresa` varchar(191) collate utf8_spanish2_ci default null,
-  `red_social_instagram` varchar(191) collate utf8_spanish2_ci default null,
-  `descripcion` varchar(255) collate utf8_spanish2_ci default null,
-  `mis_logros` text collate utf8_spanish2_ci,
-  `img_logros` varchar(191) collate utf8_spanish2_ci not null default '/storage/img/empresa.png',
-  `slug_empresa` varchar(150) collate utf8_spanish2_ci not null,
+  `nombre_empresa` varchar(191) default '',
+  `tipo_empresa` varchar(191) default 'PUBLICA',
+  `giro_empresa` varchar(191) not null default 'COMERCIAL',
+  -- `servicio_empresa` varchar(191)  default '',
+  -- `producto_empresa` varchar(191)  default '',
+  -- `horario_atencion` varchar(191) default null,
+  -- `telefono_fijo_empresa` bigint(20) unsigned default null,
+  `servicio_empresa` tinyint default 0,
+  `producto_empresa` tinyint default 0,
+  `logo_empresa` varchar(191) not null default '/storage/img/empresa.png',
+  `horario_inicio` time,
+  `horario_cierre` time,
+  `telefono_fijo_empresa` varchar(12) default null,
+  `correo_electronico_empresa` varchar(191) default null,
+  `direccion_empresa` longtext,
+  `pag_web_empresa` varchar(191)  default null,
+  `red_social_twitter_empresa` varchar(191)  default null,
+  `red_social_facebook_empresa` varchar(191)  default null,
+  `red_social_instagram_empresa` varchar(191)  default null,
+  `descripcion` varchar(255)  default null,
+  `mis_logros` text,
+  `img_logros` varchar(191)  not null default '/storage/img/empresa.png',
+  `img_cover` varchar(191) not null default '/storage/img/cover.jpg',
+  `slug_empresa` varchar(150)  not null,
   `created_at` timestamp null default null,
   `updated_at` timestamp null default null,
   `id_usuario` int(10) unsigned default null
@@ -170,13 +177,14 @@ create table `perfil_empresa` (
 create table `perfil_usuario` (
   `id_perfil` int(10) unsigned not null,
   `fecha_nacimiento` date not null,
-  `sexo` varchar(191) collate utf8_spanish2_ci not null,
-  `imagen` varchar(191) collate utf8_spanish2_ci not null default '/storage/img/download.png',
-  `telefono_movil` bigint(12) default null,
+  `sexo` varchar(191)  not null,
+  `imagen` varchar(191)  not null default '/storage/img/download.png',
+  -- `telefono_movil` bigint(12) default null,
+  `telefono_movil` varchar(12) default null,
   `privacidad` tinyint(4) default '0',
-  `correo_electronico` varchar(255) collate utf8_spanish2_ci default 'example@dominio.com',
-  `red_social` varchar(255) collate utf8_spanish2_ci default 'mi red social',
-  `slug_usuario` varchar(150) collate utf8_spanish2_ci not null,
+  -- `correo_electronico` varchar(255),
+  `red_social` varchar(255),
+  `slug_usuario` varchar(150)  not null,
   `created_at` timestamp not null default current_timestamp on update current_timestamp,
   `updated_at` timestamp not null default '0000-00-00 00:00:00',
   `id_usuario` int(10) unsigned default null
@@ -203,11 +211,11 @@ create table `registro_evento` (
 
 create table `registro_invitado_evento` (
   `id_invitado` int(10) unsigned not null,
-  `nombre_invitado` varchar(191) collate utf8_spanish2_ci not null,
-  `apellido_invitado` varchar(191) collate utf8_spanish2_ci not null,
-  `correo_electronico_invitado` varchar(191) collate utf8_spanish2_ci not null,
+  `nombre_invitado` varchar(191)  not null,
+  `apellido_invitado` varchar(191)  not null,
+  `correo_electronico_invitado` varchar(191)  not null,
   `edad_invitado` int(10) unsigned not null,
-  `sexo_invitado` varchar(191) collate utf8_spanish2_ci not null,
+  `sexo_invitado` varchar(191)  not null,
   `created_at` timestamp null default null,
   `updated_at` timestamp null default null,
   `id_usuario` int(10) unsigned default null,
@@ -222,21 +230,21 @@ create table `registro_invitado_evento` (
 
 create table `users` (
   `id_usuario` int(10) unsigned not null,
-  `name` varchar(255) collate utf8_spanish2_ci not null,
-  `apellido_paterno` varchar(191) collate utf8_spanish2_ci not null,
-  `apellido_materno` varchar(191) collate utf8_spanish2_ci not null,
-  `email` varchar(191) collate utf8_spanish2_ci not null,
-  `password` varchar(191) collate utf8_spanish2_ci not null,
-  `tipo_usuario` varchar(191) collate utf8_spanish2_ci not null default 'no asociado',
+  `name` varchar(255)  not null,
+  `apellido_paterno` varchar(191)  not null,
+  `apellido_materno` varchar(191)  not null,
+  `email` varchar(191)  not null,
+  `password` varchar(191)  not null,
+  `tipo_usuario` varchar(191)  not null default 'no asociado',
   `privilegios_administrador` tinyint(1) not null default '0',
   `status` tinyint(1) not null default '0',
   `notificacion_correo` tinyint(4) default '0',
-  `confirmation_code` varchar(191) collate utf8_spanish2_ci default null,
-  `remember_token` varchar(100) collate utf8_spanish2_ci default null,
+  `confirmation_code` varchar(191)  default null,
+  `remember_token` varchar(100)  default null,
   `created_at` timestamp null default null,
-  `updated_at` timestamp null default null,
-  `slug_empresa` varchar(150) collate utf8_spanish2_ci not null,
-  `slug_usuario` varchar(150) collate utf8_spanish2_ci not null
+  `updated_at` timestamp null default null
+  -- `slug_empresa` varchar(150)  not null,
+  -- `slug_usuario` varchar(150)  not null
 ) engine=innodb default charset=utf8 collate=utf8_spanish2_ci;
 
 --
@@ -251,7 +259,7 @@ create table `videos` (
   `created_at` timestamp not null default current_timestamp on update current_timestamp,
   `updated_at` timestamp not null default '0000-00-00 00:00:00',
   `id_usuario` int(11) not null
-) engine=innodb default charset=utf8;
+) engine=innodb default charset=utf8 collate=utf8_spanish2_ci;
 
 
 create table `productos` (
@@ -264,9 +272,9 @@ create table `productos` (
     `slug` varchar(250) not null,
     `id_empresa` int(11) unsigned not null,
     `descuento` int(10) unsigned not null default '0',
-    `created_at` timestamp null default null,
-    `updated_at` timestamp null default null
-) engine=innodb default charset=utf8;
+    `created_at` timestamp not null default current_timestamp on update current_timestamp,
+    `updated_at` timestamp not null default '0000-00-00 00:00:00'
+) engine=innodb default charset=utf8 collate=utf8_spanish2_ci;
 
 -- --------------------------------------------------------
 
@@ -282,12 +290,12 @@ create table `servicios` (
     `tipo` varchar(200) default null,
     `slug` varchar(250) default null,
     `id_empresa` int(11) unsigned not null,
-    `descuento` int(10) unsigned default '0',
+    `descuento` int(10) unsigned default 0,
     `horario_inicio` time default null,
     `horario_cierre` time default null,
     `created_at` timestamp null default current_timestamp on update current_timestamp,
     `updated_at` timestamp null default '0000-00-00 00:00:00'
-) engine=innodb default charset=utf8;
+) engine=innodb default charset=utf8 collate=utf8_spanish2_ci;
 
 --
 -- estructura para la tabla noticias
@@ -301,7 +309,7 @@ create table `noticias` (
     `id_empresa` int(11) unsigned not null,
     `created_at` timestamp null default current_timestamp on update current_timestamp,
     `updated_at` timestamp null default '0000-00-00 00:00:00'
-) engine=innodb default charset=utf8;
+) engine=innodb default charset=utf8 collate=utf8_spanish2_ci;
 
 
 --
@@ -377,7 +385,7 @@ add key `productos_id_empresa_foreign` (`id_empresa`);
 alter table `servicios`
 add primary key (`id_servicio`),
 add unique key `slug` (`slug`),
-add key `Servicios_id_empresa_foreign` (`id_empresa`);
+add key `servicios_id_empresa_foreign` (`id_empresa`);
 
 --
 -- indices de la tabla `perfil_empresa`
@@ -389,7 +397,8 @@ alter table `perfil_empresa`
   add unique key `perfil_empresa_red_social_twitter_empresa_unique` (`red_social_twitter_empresa`),
   add unique key `perfil_empresa_pag_web_empresa_unique` (`pag_web_empresa`),
   add unique key `perfil_empresa_red_social_facebook_empresa_unique` (`red_social_facebook_empresa`),
-  add unique key `perfil_empresa_red_social_instagram_unique` (`red_social_instagram`),
+  -- add unique key `perfil_empresa_red_social_instagram_unique` (`red_social_instagram`),
+  add unique key `perfil_empresa_red_social_instagram_unique` (`red_social_instagram_empresa`),
   add key `perfil_empresa_id_usuario_foreign` (`id_usuario`);
 
 --
@@ -422,9 +431,9 @@ alter table `registro_invitado_evento`
 --
 alter table `users`
   add primary key (`id_usuario`),
-  add unique key `users_email_unique` (`email`),
-  add unique key `slug_usuario` (`slug_usuario`),
-  add unique key `slug_empresa` (`slug_empresa`);
+  add unique key `users_email_unique` (`email`);
+  -- add unique key `slug_usuario` (`slug_usuario`);
+  -- add unique key `slug_empresa` (`slug_empresa`);
 
 --
 -- indices de la tabla `videos`
@@ -448,7 +457,7 @@ alter table `noticias`
 -- auto_increment de la tabla `album`
 --
 alter table `album`
-  modify `id_album` int(11) not null auto_increment, auto_increment=43;
+  modify `id_album` int(11) not null auto_increment;
 
 --
 -- auto_increment de la tabla `bolsa_trabajo`
@@ -467,7 +476,7 @@ alter table `evento`
 -- auto_increment de la tabla `imagenes`
 --
 alter table `imagenes`
-  modify `id_imagen` int(11) not null auto_increment, auto_increment=11;
+  modify `id_imagen` int(11) not null auto_increment;
 
 --
 -- auto_increment de la tabla `migrations`
@@ -602,7 +611,7 @@ create table `calendario_eventos` (
   `titulo` mediumtext collate utf8_unicode_ci,
   `created_at` timestamp null default null,
   `updated_at` timestamp null default null
-) engine=innodb default charset=utf8 collate=utf8_unicode_ci;
+) engine=innodb default charset=utf8 collate=utf8_spanish2_ci;
 
 /*!40101 set character_set_client=@old_character_set_client */;
 /*!40101 set character_set_results=@old_character_set_results */;

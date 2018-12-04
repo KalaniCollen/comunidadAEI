@@ -26,7 +26,7 @@ class Album extends Model
         return 'slug_album';
     }
 
-    // Retorna todas la imagenes pertenecientes a cada album del usuario
+    // Retorna todas la imagenes pertenecientes a cada album
     public function imagenes() {
         return $this->hasMany('ComunidadAEI\Imagenes', 'id_album');
     }

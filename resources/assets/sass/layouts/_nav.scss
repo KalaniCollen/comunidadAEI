@@ -29,9 +29,13 @@
 
     &__form-search {
         width: 100%;
-        height: 80%;
-        background: $main-color;
+        height: 100vh;
+        background: darkorange;
         position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
         padding: 0 getSpace(min);
         z-index: 100;
         transform: scaleX(1);
@@ -110,10 +114,10 @@
     &-form {
         background: #fff;
         width: 100%;
-        height: to-rem(40px);
+        height: 100vh;
         border-radius: $borde-material;
         overflow: hidden;
-        @include d-flex($ai: center, $jc: center);
+        // @include d-flex($ai: center, $jc: center);
     }
 
     &-btn,
@@ -135,9 +139,9 @@
         display: inline-block;
     }
 
-    &-input {
-        width: calc(100% - var(--nav-height));
-        height: to-rem(40px);
+    .input {
+        width: 20%;
+        height: 100%;
         border: 0;
         padding: getSpace(sml);
         -webkit-appearance: none;
@@ -231,11 +235,11 @@
     padding: getSpace(min);
     cursor: pointer;
     @include d-flex($ai: center);
+
     &__picture {
         object-fit: contain;
         object-position: center;
         border-radius: 50%;
-        background: #fff;
         margin-right: getSpace(min);
         @include d-flex($flex: inline-flex);
 
@@ -258,11 +262,14 @@
     &__item {
         width: 100%;
         border: 0;
-        @include d-flex($ai: center, $jc: center);
+        padding: 0 getSpace(min);
+        // @include d-flex($ai: center, $jc: center);
     }
 
     &__link {
-        @extend .nav__link;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
     }
 
     &--open {

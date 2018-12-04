@@ -18,34 +18,36 @@ class ImagenesController extends Controller
     }
 
     public function store(Request $request) {
-        $photos = $request->file('file');
-        $data = [];
-        if (!is_null($photos)) {
-            foreach ($photos as $photo) {
-                $imagen = new Imagenes;
-                $pathImage = Storage::putFile("public/galeria/{$request->slug_album}", $photo);
-                $imagen->direccion = Storage::url($pathImage);
-                $imagen->id_album = $request->id_album;
-                $imagen->save();
-                array_push($data, $imagen);
+
+        $imagenesCount = Imagenes::where('id_album', $request->id_album)->count();
+        if ($imagenesCount <= 9) {
+            $photos = $request->file('file');
+            $data = [];
+            if (!is_null($photos)) {
+                foreach ($photos as $photo) {
+                    $imagen = new Imagenes;
+                    $pathImage = Storage::putFile("public/galeria/{$request->slug_album}", $photo);
+                    $imagen->direccion = Storage::url($pathImage);
+                    $imagen->id_album = $request->id_album;
+                    $imagen->save();
+                    array_push($data, $imagen);
+                }
             }
+            return response()->json(['error' => 0,"message" => 'Imagenes almacenadas!', "imagenes" => $data], Response::HTTP_CREATED);
+        } else {
+            return response()->json(['error' => 1,'message' => 'Solo se pueden 10 imagenes por album!'], Response::HTTP_OK);
         }
-        return response()->json(["message" => 'Imagenes almacenadas!', "imagenes" => $data], Response::HTTP_OK);
     }
 
     public function show(Imagenes $imagen) {
 
     }
 
-    public function destroy(Imagenes $imagen)
+    public function destroy($id)
     {
-        // if ($request->ajax())
-        // {
-        //     $Album=Album::where('slug_album',$request->album)->where('id_usuario',Auth::id())->first();
-        //     $imagen=Imagenes::where('id_album',$Album->id_album)->where('id_imagen',$request->imagen)->first();
-        //     Storage::delete(str_replace("/storage", "public", $imagen->direccion));
-        //     $imagen->delete();
-        //     return  response()->json("ok");
-        // }
+        $imagen = Imagenes::where('id_imagen', $id)->first();
+        Storage::delete(str_replace("/storage", "public", $imagen->direccion));
+        $imagen->delete();
+        return  response()->json(['message' => "Imagen eliminada correctament!"], Response::HTTP_OK);
     }
 }

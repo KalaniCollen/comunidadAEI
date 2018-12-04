@@ -13,7 +13,9 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'ComunidadAEI\Model' => 'ComunidadAEI\Policies\ModelPolicy',
+        'ComunidadAEI\Perfil_Usuario' => 'ComunidadAEI\Policies\PerfilUsuarioPolicy',
+        'ComunidadAEI\Perfil_Empresa' => 'ComunidadAEI\Policies\PerfilEmpresaPolicy',
+        'ComunidadAEI\Album' => 'ComunidadAEI\Policies\AlbumPolicy',
     ];
 
     /**
@@ -25,6 +27,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('owner', function($user, $perfil) {
+            return $user->id_usuario == $perfil->id_usuario;
+        });
     }
 }

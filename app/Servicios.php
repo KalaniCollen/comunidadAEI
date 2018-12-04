@@ -28,7 +28,7 @@ class Servicios extends Model
     ];
 
     protected $searchableColumns = [
-        'nombre',
+        'nombre'
     ];
 
     /**

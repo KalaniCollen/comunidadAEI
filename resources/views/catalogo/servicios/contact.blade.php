@@ -6,10 +6,7 @@
         <p class="h5"><b>Horario de atención: </b> {{ Date::parse($servicio->horario_inicio)->format('H:m') }} - {{ Date::parse($servicio->horario_cierre)->format('H:m') }} hrs.</p>
 
         {!! Form::open(['route' => ['servicio.orden-servicio']]) !!}
-
         {!! Form::hidden('servicio', $servicio->nombre) !!}
-
-
         {!! Form::hidden('destinatario', $servicio->empresa->nombre_empresa) !!}
         {!! Form::hidden('destinatarioCorreo', $servicio->empresa->correo_electronico_empresa) !!}
 

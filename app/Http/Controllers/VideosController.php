@@ -13,7 +13,7 @@ class VideosController extends Controller
 
     public function index()
     {
-        return view("{$this->url}.VideosAlbum");
+        return view("multimedia.videos.VideosAlbum");
     }
 
     public function show($id_usuario)

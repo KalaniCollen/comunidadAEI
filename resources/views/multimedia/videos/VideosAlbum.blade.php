@@ -1,16 +1,16 @@
 @extends('layouts.app')
 @section('styles')
-    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" /> --}}
-
   <link rel="stylesheet" type="text/css" href="{{ asset ('css/reset.css')}}"/>
   <link rel="stylesheet" type="text/css" href="{{ asset ('css/styles.css')}}"/>
-  <link rel="stylesheet" type="text/css" href="{{ asset ('css/jquery.alertable.css')}}"/>
-    {{-- <link rel="stylesheet" type="text/css" href="{{ asset ('css/album.css')}}"/> --}}
 
 @endsection
 @section('content')
+    <section class="section">
+        <div class="row">
 
-  <div class="container">
+        </div>
+    </section>
+  {{-- <div class="container">
       <div class="row">
             <div class="col-md-12">
               <div class="panel panel-default">
@@ -41,16 +41,5 @@
               </div>
           </div>
       </div>
-  </div>
+  </div> --}}
 @endsection
-
-@section('scripts')
-
-<script src="{{ asset('js/Album.js')}}" ></script>
-<script src="{{ asset('js/jquery.alertable.js')}}" ></script>
-
-<script>
-var servidor ="{{asset ('') }}";
-
-</script>
-  @endsection

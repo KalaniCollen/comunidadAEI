@@ -16,7 +16,7 @@ class Perfil_Usuario extends Model
         'sexo',
         'telefono_movil',
         'imagen',
-        'correo_electronico',
+        // 'correo_electronico',
         'slug_usuario',
     ];
 

@@ -39,8 +39,20 @@ export default {
             formData.append('slug_album', this.album.slug_album);
         },
         vSuccess(files, response) {
-            EventBus.$emit('images-added', response.imagenes);
-            this.$refs.myVueDropzone.removeAllFiles();
+            if(response.error == 1) {
+                iziToast.error({
+                    title: response.message,
+                    timeout: 1500
+                });
+            } else {
+                EventBus.$emit('images-added', response.imagenes);
+                this.$refs.myVueDropzone.removeAllFiles();
+                iziToast.success({
+                    title: response.message,
+                    timeout: 800
+                });
+            }
+
         },
         sendData() {
             this.$refs.myVueDropzone.processQueue();

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str as Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use ComunidadAEI\Mail\RegisterUser;
 
 class RegisterController extends Controller
 {
@@ -68,52 +69,37 @@ class RegisterController extends Controller
     */
     protected function create(array $data)
     {
-        DB::transaction(function()
-        {
-            $code = str_random(25);
-            $email = Input::get('email');
-            $nombre = Input::get('name');
-            $data['name'] = 'usuario';
-            $dates = array('code'=>$code);
-            $this->Email($dates,$email);
-            $user=User::create([
-                'name' => Str::upper($nombre),
-                'apellido_paterno'=> Str::upper(Input::get('apellido_paterno')),
-                'apellido_materno'=> Str::upper(Input::get('apellido_materno')),
-                'email' => Input::get('email'),
-                'password' => bcrypt(Input::get('password')),
-                'confirmation_code'=>$code,
-                'notificacion_correo' => Input::get('notificacion_correo'),
-            ]);
-            $useru = User::where('id_usuario',$user->id_usuario)->first();
-            $useru->slug_usuario = Str::slug( Str::upper($nombre).' '.Str::upper(Input::get('apellido_paterno')).
-            ' '.Str::upper(Input::get('apellido_materno')).' '.$user->id_usuario);
-            $useru->slug_empresa = Str::slug( Str::upper($nombre).' '.Str::upper(Input::get('apellido_paterno')).
-            ' '.Str::upper(Input::get('apellido_materno')).' '.$user->id_usuario);
-            $useru->save();
-            $mensaje='El punto de partida de todo logro es el deseo...';
-            Perfil_Usuario::create([
-                'fecha_nacimiento' => Input::get('fecha_nacimiento'),
-                'id_usuario' => $user->id_usuario,
-                'sexo' => Str::upper(Input::get('sexo')),
-                'slug_usuario' => $useru->slug_usuario,
+        $code = str_random(25);
 
-            ]);
+        $user = User::create([
+            'name' => strtoupper($data['name']),
+            'apellido_paterno' => strtoupper($data['apellido_paterno']),
+            'apellido_materno' => strtoupper($data['apellido_materno']),
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+            'notificacion_correo' => isset($data['notificacion_correo']) ? 1 : 0,
+            'confirmation_code' => $code,
+            $this->sendEmail($code, $data['email'])
+        ]);
 
-            return Perfil_Empresa::create([
-                'id_usuario'=>$user->id_usuario,
-                'mis_logros'=>$mensaje,
-                'slug_empresa'=> $useru->slug_empresa,
-            ]);
-        });
+        $slugUsuario = str_slug("{$data['name']} {$data['apellido_paterno']} {$data['apellido_materno']} {$user->id_usuario}");
+
+        Perfil_Usuario::create([
+            'fecha_nacimiento' => $data['fecha_nacimiento'],
+            'sexo' => $data['sexo'],
+            'id_usuario' => $user->id_usuario,
+            'slug_usuario' => $slugUsuario
+        ]);
+
+        Perfil_Empresa::create([
+            'id_usuario' => $user->id_usuario,
+            'slug_empresa' => "empresa-{$user->id_usuario}"
+        ]);
         return view('auth.register');
     }
-    function Email($dates,$email){
-        Mail::send('emails.plantilla',$dates,function($message) use ($email){
-            $message->subject('Bienvenido a AEI');
-            $message->to($email);
-            $message->from('kalanicollen1410@gmail.com','AEI');
-        });
+
+    function sendEmail($code, $email) {
+        Mail::to($email)->send(new RegisterUser($code));
     }
 
 }

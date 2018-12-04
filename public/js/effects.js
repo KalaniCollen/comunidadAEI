@@ -48,9 +48,9 @@ btnCloseSearch.addEventListener('click', e =>  {
     document.getElementById('js-search-form').classList.remove('menu__form-search--open');
 });
 
-function submenu(element) {
-    element.lastChild.classList.toggle('submenu--open');
-}
+// function submenu(element) {
+//     element.lastChild.classList.toggle('submenu--open');
+// }
 
 /*
  * Funciones GLOBALES
@@ -74,4 +74,32 @@ function deleteItem(form) {
     } else {
         return;
     }
+}
+
+
+// Configuración para las imagenes de perfil Croppie
+let croppieConfig = {
+    boundary: { width: 260, height: 260 },
+    viewport: { width: 180, height: 180, type: 'circle' }
+};
+
+let croppieResults = { type: 'base64', size: 'viewport', circle: true };
+
+function bindCroppie(input, crop) {
+    let reader = new FileReader();
+    reader.onload = e => {
+        crop.bind({
+            url: e.target.result
+        });
+    };
+    reader.readAsDataURL(input.files[0]);
+}
+
+function saveImage(path, data) {
+    axios.put(path ,{ imagen: data });
+}
+
+function beforeCroppie(image, modal, response) {
+    image.src = response;
+    modal.modal('hide');
 }

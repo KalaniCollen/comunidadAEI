@@ -13,8 +13,6 @@ let mix = require('laravel-mix');
 
 
 mix.js('resources/assets/js/app.js', 'public/js')
-    .copy('node_modules/@glidejs/glide/dist/glide.min.js', 'public/js')
-    .copy('resources/assets/js/dropzone.js', 'public/js')
     .copyDirectory('resources/assets/fonts', 'public/fonts')
     .copyDirectory('resources/assets/imgs', 'public/img')
     .sass('resources/assets/sass/app.scss', 'public/css');

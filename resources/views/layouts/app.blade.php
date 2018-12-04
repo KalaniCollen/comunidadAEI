@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" prefix="og: http://ogp.me/ns#">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,5 +30,6 @@
         <script src="{{ asset('js/app.js') }}" charset="utf-8"></script>
         <script src="{{ asset('js/effects.js') }}" charset="utf-8"></script>
         @yield('scripts')
+        @stack('scripts')
     </body>
 </html>

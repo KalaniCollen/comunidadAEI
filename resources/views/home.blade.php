@@ -1,15 +1,13 @@
 @extends('layouts.app')
 @section('content')
-    <div class="row no-gutters">
-        <div class="section__header col-9">
-            <h1 class="section__title">Publicaciones</h1>
-        </div>
-        <div class="col-md-8 col-lg-9">
+    <main class="publicaciones">
+        <article class="publicaciones__main row no-gutters">
             <card-servicios></card-servicios>
             <card-productos></card-productos>
-        </div>
-        <div class="col-md-4 col-lg-3" style="background: #eee;">
+        </article>
+        <aside class="publicaciones__aside row no-gutters">
             <h2>ASIDE</h2>
-        </div>
-    </div>
+
+        </aside>
+    </main>
 @endsection

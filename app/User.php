@@ -32,8 +32,8 @@ class User extends Authenticatable
         'apellido_materno',
         'privilegios_administrador',
         'notificacion_correo',
-        'slug_usuario',
-        'slug_empresa',
+        // 'slug_usuario',
+        // 'slug_empresa',
         'tipo_usuario',
         'status',
     ];

@@ -1,12 +1,5 @@
 @extends('layouts.html')
 @section('content')
-
-@if ($errors->any())
-    @foreach ($errors->all() as $error)
-        <p>{{ $error }}</p>
-    @endforeach
-@endif
-
 <section class="section login registro">
     <div class="row no-gutters">
         <div class="card card--login">

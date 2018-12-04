@@ -41,7 +41,9 @@ class PerfilUsuarioController extends Controller
         ]);
     }
 
-    public function edit(Perfil_Usuario $perfil_usuario) {
+    public function edit(Perfil_Usuario $perfil_usuario)
+    {
+        $this->authorize('view', $perfil_usuario);
         return view('perfiles.usuario.edit', compact('perfil_usuario'));
     }
 
@@ -78,18 +80,15 @@ class PerfilUsuarioController extends Controller
     public function update(PerfilRequest $request, $slug_usuario)
     {
         $perfil_usuario = Perfil_Usuario::where('slug_usuario', $slug_usuario)->first();
+        $this->authorize('update', $perfil_usuario);
         $user = auth()->user();
 
         $user->name = strtoupper($request->name);
         $user->apellido_paterno = strtoupper($request->apellido_paterno);
         $user->apellido_materno = strtoupper($request->apellido_materno);
-        // $user->email = $request->email;
-        // $user->password = (!empty($request->password)) ? bcrypt($request->password) : $user->password;
         $user->notificacion_correo = isset($request->notificacion_correo) ? 1 : 0;
-        $user->slug_usuario = str_slug("{$request->name} {$request->apellido_paterno} {$request->apellido_materno} {$user->id_usuario}");
 
         $perfil_usuario->slug_usuario = str_slug("{$request->name} {$request->apellido_paterno} {$request->apellido_materno} {$user->id_usuario}");
-        $perfil_usuario->correo_electronico = $request->correo_electronico;
         $perfil_usuario->red_social = $request->red_social;
         $perfil_usuario->telefono_movil = $request->telefono_movil;
         $perfil_usuario->sexo = $request->sexo;
@@ -134,9 +133,11 @@ class PerfilUsuarioController extends Controller
     }
 
     public function saveImage(PerfilRequest $request, Perfil_Usuario $perfil_usuario) {
+        $oldImage = ltrim($perfil_usuario->imagen, '/storage');
+        $oldImage = "/public/{$oldImage}";
+        Storage::delete($oldImage);
         if ($request->ajax()) {
             $data = $request->imagen;
-            Storage::delete($perfil_usuario->imagen);
             $perfil_usuario->imagen = '/' . $this->getImagePNG('storage/imagen_usuario/', $data);
             $perfil_usuario->save();
             return response()->json("¡Imagen de perfil actualizada correctamente!", Response::HTTP_OK);

@@ -18,6 +18,22 @@
     }
 }
 
+.publicaciones {
+    @include d-grid();
+    grid-template-areas: "main-content aside-content";
+    grid-template-columns: 1fr 25vw;
+
+
+    &__main {
+        grid-area: main-content;
+    }
+
+    &__aside {
+        background: #eee;
+        grid-area: aside-content;
+    }
+}
+
 .section {
     padding: getSpace(min);
     position: relative;
@@ -37,6 +53,10 @@
         padding: 0;
         @include d-grid;
         grid-template-columns: 1fr;
+    }
+
+    &--profile {
+        height: calc(100vh - var(--nav-height));
     }
 }
 

@@ -1,6 +1,6 @@
 <template>
-    <section class="row no-gutters d-flex justify-content-center">
-        <div class="card col-md-10 col-lg-5 ml-2 mr-2" v-for="(servicio, i) in servicios.data" :key="servicio.slug">
+    <section>
+        <div class="card" v-for="(servicio, i) in servicios.data" :key="servicio.slug">
             <a :href="`/perfil-empresa/${servicio.empresa.slug_empresa}`" class="card__owner">
                 <img :src="servicio.empresa.logo_empresa" class="card__owner-picture">
                 <p class="card__owner-name">{{ servicio.empresa.nombre_empresa }}</p>

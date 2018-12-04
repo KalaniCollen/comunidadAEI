@@ -19,28 +19,33 @@ class Perfil_Empresa extends Model
         'servicio_empresa',
         'producto_empresa',
         'logo_empresa',
-        'horario_atencion',
-        'cantidad_productos',
+        'horario_inicio',
+        'horario_cierre',
         'telefono_fijo_empresa',
-        'Telefono_Movil_Empresa',
         'correo_electronico_empresa',
         'direccion_empresa',
         'pag_web_empresa',
         'red_social_twitter_empresa',
         'red_social_facebook_empresa',
-        'red_social_instagram',
+        'red_social_instagram_empresa',
+        'descripcion',
         'mis_logros',
         'slug_empresa',
-        'descripcion',
         'img_logros',
+        'img_cover',
     ];
 
-    protected $searchable = [
-        'nombre_empresa'
+    protected $searchableColumns = [
+        'nombre_empresa',
+        'giro_empresa'
     ];
 
     public function getRouteKeyName()
     {
         return 'slug_empresa';
+    }
+
+    public function usuario(){
+        return $this->hasOne('ComunidadAEI\User','id_usuario', 'id_usuario');
     }
 }

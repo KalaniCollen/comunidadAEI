@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
 <section class="section">
     <div class="section__header">
         <div class=" row card--profile no-gutters">

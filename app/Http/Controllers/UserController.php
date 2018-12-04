@@ -38,14 +38,14 @@ class UserController extends Controller
     public function complete(RegistroRequest $request, $id_usuario)
     {
 
-     $user = User::find($id_usuario);
-     if($user->tipo_usuario=="Asociado"){
-     $user->password=bcrypt($request->password);
-     }
-     $user->status=true; //true
-     $user->save();
-     return redirect::to('/login');
-}
+        $user = User::find($id_usuario);
+        if($user->tipo_usuario=="Asociado"){
+            $user->password=bcrypt($request->password);
+        }
+        $user->status=true; //true
+        $user->save();
+        return redirect::to('/login');
+    }
 
 
 
@@ -104,9 +104,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+
     }
 
     /**
