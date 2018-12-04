@@ -14,6 +14,7 @@
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
         "laraveles/spanish": "^1.1",
+        "maatwebsite/excel": "^2.1",
         "nesbot/carbon": "^1.36",
         "sofa/eloquence": "5.4.*"
     },

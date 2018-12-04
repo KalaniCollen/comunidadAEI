@@ -15,16 +15,36 @@ class BolsaDeTrabajoController extends Controller
     public function index()
     {
         //
+        $bolsas=BolsaDeTrabajo::all();
+        return view('bolsa-trabajo.index')->with('bolsas', $bolsas);
     }
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function crear()
+    {
+
+        return view('Admin.bolsa-trabajo.create');
+    }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Request $request)
     {
         //
+        BolsaDeTrabajo::create([
+            'nombre'=>$request->name,
+            'empresa'=>$request->empresa,
+            'salario'=>$request->salario,
+            'descripcion'=>$request->descripcion,
+            'direccion'=>$request->direccion,
+            'telefono'=>$request->telefono,
+        ]);
+            return redirect('/Admin');
     }
 
     /**
@@ -36,6 +56,8 @@ class BolsaDeTrabajoController extends Controller
     public function store(Request $request)
     {
         //
+        $bolsas=BolsaDeTrabajo::all();
+        return view('Admin.bolsa-trabajo.lista')->with('bolsas', $bolsas);
     }
 
     /**
@@ -78,8 +100,10 @@ class BolsaDeTrabajoController extends Controller
      * @param  \ComunidadAEI\BolsaDeTrabajo  $bolsaDeTrabajo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BolsaDeTrabajo $bolsaDeTrabajo)
+    public function destroy( $bolsaDeTrabajo)
     {
-        //
+        $trabajo=BolsaDeTrabajo::where('id_trabajo',$bolsaDeTrabajo)->first();
+        $trabajo->delete();
+        return redirect()->route('store-trabajo');
     }
 }

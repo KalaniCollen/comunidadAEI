@@ -9,6 +9,7 @@
             'links' => [
                 ['link' => 'noticias.index', 'name' => 'Noticias', 'icon' => 'ion-md-paper'],
                 ['link' => 'bolsa-trabajo.index', 'name' => 'Bolsa de Trabajo', 'icon' => 'ion-md-briefcase'],
+                ['link' => 'politicas', 'name' => 'Terminos de uso ', 'icon' => 'ion ion-ios-document'],
 
             ]
         ])

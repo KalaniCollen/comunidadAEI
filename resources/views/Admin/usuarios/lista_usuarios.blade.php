@@ -43,8 +43,11 @@ if( count($usuarios) >0){
     <td><?= $usuario->direccion;  ?></td>
     <td><?= $usuario->created_at;  ?></td>
     <td>
+    @if($usuario->tipo_usuario=="no asociado")
+    <a href="{{url('asociar/'.$usuario->id_usuario)  }}" class="btn btn-lg btn-success glyphicon glyphicon-ok btn-xs" ></a>
+    @endif
     <a class="btn btn-lg btn-danger glyphicon glyphicon-trash btn-xs" onclick="borrarusu(<?= $usuario->id_usuario; ?>);"></a>
-    <button class="btn  btn-skin-green btn-xs" onclick="mostrarficha(<?= $usuario->id_usuario; ?>);" ><i class="fa fa-fw fa-eye"></i>Ver</button></td>
+    <button class="btn  btn-skin-green btn-xs" onclick="mostrarficha(<?= $usuario->id_usuario; ?>);" ><i class="fa fa-fw fa-eye"></i></button></td>
 
 </tr>
 <?php

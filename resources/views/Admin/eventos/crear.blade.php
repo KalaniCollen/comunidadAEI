@@ -8,7 +8,7 @@
 @endsection
 @section('content')
     <div class="panel panel-default">
-    <div class="panel-heading"> <h2>&nbsp;&nbsp;&nbsp;Información de usuarios del sistema</h2></div>
+    <div class="panel-heading"> <h2>&nbsp;&nbsp;&nbsp;Información de eventos del sistema</h2></div>
     <div class="panel-body">
         <h4 class="modal-title" id="myModalLabel">Agregar nuevo evento</h4>
 

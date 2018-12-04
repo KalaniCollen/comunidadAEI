@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/politicas',function(){
     return view('politicas');
-});
+})->name('politicas');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/search','BuscadorController@search')->name('search.search');
@@ -40,7 +40,7 @@ Route::get('listado_usuarios_asociados/{page?}', 'AdminController@lista_usuarios
 Route::get('listado_usuarios_no_asociados/{page?}', 'AdminController@lista_usuariosnoa');
 Route::get('listado_empresas/{page?}', 'AdminController@lista_empresas');
 Route::get('borrarusu/{id}', 'AdminController@deleteUser');
-Route::get('/Admin','AdminController@index');
+Route::get('/Admin','AdminController@index')->name('admin');
 Route::get('form_editar_usuario/{id}', 'AdminController@form_editar_usuario');
 Route::post('actualizar_usuario', 'AdminController@actualizar_usuario');
 Route::post('cambiar_password', 'AdminController@cambiar_password');
@@ -52,6 +52,7 @@ Route::post('crear_evento', 'AdminController@crear_evento')->name('crear_evento'
 Route::get('lista_evento', 'AdminController@lista_evento')->name('lista_evento');
 Route::get('eliminar_evento/{id}', 'AdminController@eliminar_evento')->name('eliminar_evento');
 Route::get('verificar_evento/{id}', 'AdminController@verificar_evento')->name('verificar_evento');
+Route::get('asociar/{id_usuario}', 'AdminController@asociar');
 
 
 
@@ -116,7 +117,17 @@ Route::group(['middleware' => 'auth'], function() {
 #########################################################
 
 Route::resource('noticias', 'NoticiasController');
+
 Route::resource('bolsa-trabajo', 'BolsaDeTrabajoController');
+Route::get('agregar-trabajo', 'BolsaDeTrabajoController@crear')->name('agregar-trabajo');
+Route::post('agregar_nuevo_trabajo', 'BolsaDeTrabajoController@create')->name('agregar_Ntrabajo');
+Route::get('bolsa', 'BolsaDeTrabajoController@store')->name('store-trabajo');
+Route::get('eliminar_bolsa/{id_trabajo}', 'BolsaDeTrabajoController@destroy')->name('eliminar-trabajo');
+
+Route::get('publicaciones', function(){
+    return view('publicaciones.index');
+});
+
 
 // Rutas públicas para consultar productos y servicios de los socios
 Route::get('/servicios/{servicio}', 'ServiciosController@show')->name('servicios.show');

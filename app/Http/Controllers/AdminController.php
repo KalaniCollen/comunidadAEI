@@ -202,6 +202,23 @@ $fecha_final->format('Y-m-d H:i:s');
 
 return redirect()->route('lista_evento');
 }
+public function asociar($id_usuario){
+    $user=User::where('id_usuario',$id_usuario)->first();
+    $user->tipo_usuario="asociado";
+    $user->save();
+    $dates=array('name'=>$user->names,'ap'=>$user->apellido_paterno,'am'=>$user->apellido_materno);
+    $this->Emailasociar($dates,$user->email);
+    return redirect('/Admin');
+}
+function Emailasociar($dates,$email){
+
+      Mail::send('emails.plantilla3',$dates,function($message) use ($email){
+    $message->subject('Bienvenido!');
+    $message->to($email);
+    $message->from('kalanicollen1410@gmail.com','AEI');
+
+      });
+    }
 public function deleteUser($id){
      DB::statement('SET FOREIGN_KEY_CHECKS=0');
     $eventos=Evento::where('id_usuario',$id)->get();

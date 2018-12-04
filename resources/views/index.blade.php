@@ -62,7 +62,7 @@
                 <h2 class="section__title">¿Quiénes Somos?</h2>
                 <p>Somos una Organización No Gubernamental (ONG) <span class="text--accent">Fundada el 04 de abril de 1968</span>.</p><br>
                 <p>En los 50 años de haberse formado esta Asociación al día de hoy nos hemos fortalecido y <span class="text--accent">contamos con más de 180 empresas asociadas de 6 diferentes delegaciones</span>, siendo en su mayoría pertenecientes a esta demarcación, <span class="text--accent">nuestros agremiados generan más de 50,000 puestos de trabajo alrededor de la República Mexicana.</span></p><br>
-                <p>Siendo la delegación Iztapalapa el 2º municipio más poblado del país, teniendo el mayor presupuesto de la Ciudad, viviendo diversas problemáticas, con un mayor número de empresas en comparación con 10 entidades de la República Mexicana, es un honor para nosotros trabajar día a día para generar impulso en la economía e incentivar a las empresas para que apoyen la labor de gobierno y sociedad, de ésta forma crear mayores y mejores oportunidades.</p>
+                <p>Siendo la Alcaldia Iztapalapa el 2º municipio más poblado del país, teniendo el mayor presupuesto de la Ciudad, viviendo diversas problemáticas, con un mayor número de empresas en comparación con 10 entidades de la República Mexicana, es un honor para nosotros trabajar día a día para generar impulso en la economía e incentivar a las empresas para que apoyen la labor de gobierno y sociedad, de ésta forma crear mayores y mejores oportunidades.</p>
             </div>
         </section>
 
@@ -80,7 +80,7 @@
 
             @endif
             {!! Form::open(['route' => ['afiliate'], 'class' => 'section-afiliate__form']) !!}
-            <h2>Afiliate</h2>
+            <h2>Contactanos</h2>
             <div class="group">
                 {!! Form::label('nombre', 'Nombre', ['class' => 'label']) !!}
                 {!! Form::text('nombre', null, ['class' => 'input']) !!}
