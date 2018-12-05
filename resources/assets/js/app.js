@@ -39,7 +39,6 @@ Vue.component('create-album', require('./components/CreateAlbumComponent.vue'));
 Vue.component('list-album', require('./components/ListAlbumComponent.vue'));
 Vue.component('noticias', require('./components/NoticiasComponent.vue'));
 Vue.component('item-evento', require('./components/ItemEventsComponent.vue'));
-Vue.component('item-result', require('./components/ListResultsComponent.vue'));
 
 const app = new Vue({
     el: '#app',

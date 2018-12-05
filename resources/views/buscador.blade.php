@@ -7,15 +7,17 @@
 
         <div class="section__body">
             @if ($tipo == 0)
-                <div class="row ">
+                <div class="row">
                     @foreach ($busqueda as $res)
-                        <div class="card">
-                            <a href="{{ route('perfil-empresa.show', $res->slug_empresa) }}" class="card__owner">
-                                <img src="{{ $res->logo_empresa }}" alt="" class="card__owner-picture">
-                                <p class="card__owner-name">{{ $res->nombre_empresa }}</p>
-                            </a>
-                            <div class="card__body">
-                                <p><b>Giro de la empresa:</b> {{ $res->giro_empresa }}</p>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card">
+                                <a href="{{ route('perfil-empresa.show', $res->slug_empresa) }}" class="card__owner">
+                                    <img src="{{ $res->logo_empresa }}" alt="" class="card__owner-picture">
+                                    <p class="card__owner-name">{{ $res->nombre_empresa }}</p>
+                                </a>
+                                <div class="card__body">
+                                    <p><b>Giro de la empresa:</b> {{ $res->giro_empresa }}</p>
+                                </div>
                             </div>
                         </div>
                     @endforeach

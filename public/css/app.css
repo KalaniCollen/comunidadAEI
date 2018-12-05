@@ -12781,6 +12781,32 @@ select {
   height: 100vh;
   border-radius: 3px;
   overflow: hidden;
+  display: -ms-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.form__search-form .input {
+  min-width: auto;
+  width: 30%;
+  height: 2.5rem;
+  border: 0;
+  padding: 0.25rem;
+}
+
+.form__search-form .input:focus {
+  outline: none;
 }
 
 .form__search-btn,
@@ -12803,20 +12829,6 @@ select {
   border: 0;
   background: #dfdfe2;
   display: inline-block;
-}
-
-.form__search .input {
-  width: 20%;
-  height: 100%;
-  border: 0;
-  padding: 0.25rem;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-.form__search .input:focus {
-  outline: none;
 }
 
 .form__search-icon {

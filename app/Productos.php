@@ -2,10 +2,13 @@
 
 namespace ComunidadAEI;
 
+use Sofa\Eloquence\Eloquence;
 use Illuminate\Database\Eloquent\Model;
 
 class Productos extends Model
 {
+    use Eloquence;
+
     protected $table = 'productos';
     protected $primaryKey = 'id_producto';
     protected $fillable = [
@@ -17,6 +20,10 @@ class Productos extends Model
         'tipo',
         'slug',
         'id_empresa'
+    ];
+
+    protected $searchableColumns = [
+        'nombre'
     ];
 
     protected $hidden = [

@@ -117,7 +117,19 @@
         height: 100vh;
         border-radius: $borde-material;
         overflow: hidden;
-        // @include d-flex($ai: center, $jc: center);
+        @include d-flex($ai: center, $jc: center);
+        .input {
+            min-width: auto;
+            width: 30%;
+            height: to-rem(40px);
+            border: 0;
+            padding: getSpace(sml);
+
+
+            &:focus {
+                outline: none;
+            }
+        }
     }
 
     &-btn,
@@ -139,19 +151,6 @@
         display: inline-block;
     }
 
-    .input {
-        width: 20%;
-        height: 100%;
-        border: 0;
-        padding: getSpace(sml);
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-
-        &:focus {
-            outline: none;
-        }
-    }
 
     &-icon {
         background: #fff;
