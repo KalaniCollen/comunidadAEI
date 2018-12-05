@@ -49,7 +49,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <li class="nav__item dropdown">
+                        <li class="nav__item nav__item--user dropdown">
                             <div class="user dropdown-toggle" id="dropdownUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #fff;">
                                 <img src="{{ auth()->user()->perfil->imagen }}" alt="" class="user__picture user__picture--big" >
                                 <p class="user__username">{{ auth()->user()->name }}</p>

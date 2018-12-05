@@ -28,7 +28,7 @@ export default {
                 addRemoveLinks: true,
                 autoProcessQueue: false,
                 uploadMultiple: true,
-                dictDefaultMessage: "<i class='ion-md-cloud-upload'></i> UPLOAD ME",
+                dictDefaultMessage: "<i class='ion-md-cloud-upload'></i> SUBIR IMAGENES",
                 headers: { 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') },
             }
         }

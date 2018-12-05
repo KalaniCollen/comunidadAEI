@@ -49,7 +49,7 @@ class ServiciosController extends Controller
             $imagen = Storage::putFile('public/catalogos_img', $request->file('imagen'));
             $servicio->imagen = basename($imagen);
         } else {
-            $servicio->imagen = 'defaultService.jpg';
+            $servicio->imagen = 'defaultService.jpeg';
         }
         $servicio->id_empresa = auth()->user()->empresa->id_empresa;
         $servicio->slug = Str::slug( $servicio->nombre . $servicio->id_empresa );
@@ -76,11 +76,8 @@ class ServiciosController extends Controller
      */
     public function edit(Servicios $servicio)
     {
-        if($servicio->id_empresa == auth()->user()->empresa->id_empresa) {
-            return view('catalogo.servicios.edit', compact('servicio'));
-        } else {
-            return view('errors.404');
-        }
+        $this->authorize('view', $servicio);
+        return view('catalogo.servicios.edit', compact('servicio'));
     }
 
     /**
@@ -92,9 +89,12 @@ class ServiciosController extends Controller
      */
     public function update(StoreServiciosRequest $request, Servicios $servicio)
     {
+        $this->authorize('update', $servicio);
         $servicio->fill($request->except('imagen', 'slug'));
         if ($request->hasFile('imagen')) {
-            Storage::delete("public/catalogos_img/{$servicio->imagen}");
+            if ($servicio->imagen != "defaultService.jpeg") {
+                Storage::delete("public/catalogos_img/{$servicio->imagen}");
+            }
             $imagen = Storage::putFile('public/catalogos_img', $request->file('imagen'));
             $servicio->imagen = basename($imagen);
         }
@@ -106,12 +106,14 @@ class ServiciosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  string $slug
+     * @param  Servicios servicio
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy(Servicios $servicio)
     {
-        $servicio = Servicios::where('slug', $slug)->delete();
+        $this->authorize('delete', $servicio);
+        $servicio->delete();
+        Storage::delete("public/catalogos_img/{$servicio->imagen}");
         return redirect()->route('catalogo.index');
     }
 

@@ -6,38 +6,80 @@
     </div>
 
     <div class="row no-gutters">
-        {!! Form::open(['route' => 'evento.store']) !!}
-        {!! Form::inDateTime('fecha_inicio', null, 'Inicio') !!}
+        {!! Form::open(['route' => 'evento.store', 'class' => 'col-md-6 col-lg-4', 'files' => true]) !!}
 
-        {!! Form::inDateTime('fecha_final', null, 'Final') !!}
+        <div class="col-12">
+            <div class="group">
+                <p class="w-100 label">Imagen del evento</p>
+                <label for="imagen-evento" class="file">
+                    <i class="file__icon ion-md-cloud-upload"></i>
+                    <input type="file" class="input" name="imagen" id="imagen-evento" accept="image/*" onchange="previewImage(this, 'js-img-preview', 'js-file-text');">
+                </label>
+                <span class="file__text" id="js-file-text"></span>
+            </div>
+        </div>
 
-        {!! Form::inSelect('tipo', null, 'Tipo de evento', ['exposicion' => 'Exposición', 'convencion' => 'Convención', 'conferencia' => 'Conferencia', 'congreso' => 'Congreso', 'capacitacion' => 'Capacitación', 'comida' => 'Comida']) !!}
+        <div class="col-12">
+            {!! Form::inDateTime('fecha_inicio', null, 'Inicio') !!}
+        </div>
 
-        {!! Form::inText('nombre_evento', null, 'Nombre del evento') !!}
+        <div class="col-12">
+            {!! Form::inDateTime('fecha_final', null, 'Final') !!}
+        </div>
 
-        {!! Form::inTextArea('descripcion_evento', null, 'Descripción del evento') !!}
+        <div class="col-12">
+            {!! Form::inSelect('tipo', null, 'Tipo de evento', ['exposicion' => 'Exposición', 'convencion' => 'Convención', 'conferencia' => 'Conferencia', 'congreso' => 'Congreso', 'capacitacion' => 'Capacitación', 'comida' => 'Comida']) !!}
+        </div>
 
-        {!! Form::inNumber('num_invitados', null, 'Capacidad de asistencia') !!}
+        <div class="col-12">
+            {!! Form::inText('nombre_evento', null, 'Nombre del evento') !!}
+        </div>
 
-        {!! Form::inNumber('costo_asociado', null, 'Costo Asociados') !!}
+        <div class="col-12">
+            {!! Form::inTextArea('descripcion_evento', null, 'Descripción del evento') !!}
+        </div>
 
-        {!! Form::inNumber('costo_no_asociado', null, 'Costo  No Asociados') !!}
+        <div class="col-12">
+            {!! Form::inNumber('num_invitados', null, 'Capacidad de asistencia') !!}
+        </div>
 
-        {!! Form::inTextArea('direccion_evento', null, 'Dirección del evento') !!}
+        <div class="col-12">
+            {!! Form::inNumber('costo_asociado', null, 'Costo Asociados') !!}
+        </div>
 
-        {!! Form::inText('organizador', null, 'Organizador') !!}
+        <div class="col-12">
+            {!! Form::inNumber('costo_no_asociado', null, 'Costo  No Asociados') !!}
+        </div>
 
-        {!! Form::inEmail('correo_electronico_organizador', null, 'Correo eléctronico del organizador') !!}
+        <div class="col-12">
+            {!! Form::inTextArea('direccion_evento', null, 'Dirección del evento') !!}
+        </div>
 
-        {!! Form::inTel('telefono_organizador', null, 'Teléfono del organizador') !!}
+        <div class="col-12">
+            {!! Form::inText('organizador', null, 'Organizador') !!}
+        </div>
 
-        {!! Form::inText('ponente', null, 'Ponente') !!}
+        <div class="col-12">
+            {!! Form::inEmail('correo_electronico_organizador', null, 'Correo eléctronico del organizador') !!}
+        </div>
+
+        <div class="col-12">
+            {!! Form::inTel('telefono_organizador', null, 'Teléfono del organizador') !!}
+        </div>
+
+        <div class="col-12">
+            {!! Form::inText('ponente', null, 'Ponente') !!}
+        </div>
 
         <button type="submit" class="btn btn--accent">
             <i class="btn__icon ion-md-send"></i> Enviar solicitud
         </button>
 
         {!! Form::close() !!}
+
+        <div class="col-lg-8">
+            <img src="/img/defaultEvent.jpg" id="js-img-preview" alt="">
+        </div>
     </div>
 </section>
 @endsection

@@ -2,11 +2,7 @@
 @section('content')
 <section class="section profile profile--section">
 
-    <div class="profile__cover" style="background-image: url('/img/login-goal.jpg');">
-        <button class="btn btn--accent profile__cover-btn">
-            <i class="btn__icon ion-md-create"></i> Cambiar foto de portada
-        </button>
-    </div>
+    <div class="profile__cover" style="background-image: url('/img/login-goal.jpg');"></div>
 
     <div class="profile__information">
         <div class="profile__profile d-flex flex-column align-items-center">
@@ -24,7 +20,9 @@
         </div>
 
         <div class="profile__content d-flex justify-content-center">
-            {!! Form::model($perfilEmpresa, ['route' => ['perfil-empresa.update', $perfilEmpresa->slug_empresa], 'class' => 'row', 'method' => 'PUT', 'class' => 'row no-gutters w-50 d-flex align-items-center justify-content-center']) !!}
+            {!! Form::model($perfilEmpresa, ['route' => ['perfil-empresa.update', $perfilEmpresa->slug_empresa], 'class' => 'row', 'method' => 'PUT', 'class' => 'row no-gutters col-lg-6 d-flex align-items-center justify-content-center form pt-4 pb-4 pl-4 pr-4']) !!}
+
+                <h2 class="h1 mb-3">Actualizar Información</h2>
 
                 {!! Form::inText('nombre_empresa', null, 'Nombre de la empresa', 'col-12 pr-2 pl-2') !!}
 
@@ -56,6 +54,11 @@
 
                 {!! Form::inText('pag_web_empresa', null, 'Página web de la empresa', 'col-12 pr-2 pl-2') !!}
 
+                {!! Form::inText('red_social_facebook_empresa', null, 'Facebook de la empresa', 'col-6 pr-2 pl-2', ['placeholder' => 'https://www.facebook.com/usuario']) !!}
+
+                {!! Form::inText('red_social_twitter_empresa', null, 'Twitter de la empresa', 'col-6 pr-2 pl-2', ['placeholder' => 'https://twitter.com/usuario']) !!}
+
+                {!! Form::inText('red_social_instagram_empresa', null, 'Instagram de la empresa', 'col-12 pr-2 pl-2', ['placeholder' => 'https://www.instagram.com/usuario']) !!}
 
                 {!! Form::submit('Actualizar información', ['class' => 'btn btn--accent']) !!}
             {!! Form::close() !!}

@@ -23,6 +23,7 @@ Route::get('/politicas',function(){
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/search','BuscadorController@search')->name('search.search');
+Route::get('/results','BuscadorController@results')->name('search.results');
 
 Route::get('/respuesta',function(){
   return view('response');
@@ -34,6 +35,8 @@ Route::put('complete/{id}','UserController@complete');
 Route::get('/imagen', function () {
     return view('multimedia.p');
 });
+
+
 
 Route::get('listado_usuarios/{page?}', 'AdminController@lista_usuarios');
 Route::get('listado_usuarios_asociados/{page?}', 'AdminController@lista_usuariosaso');
@@ -66,7 +69,7 @@ Route::get('/solicitarevento','EventoController@index');
 // Route::get('/calendario','EventoController@store');
 // Route::get('cargaEventos{id?}','EventoController@select');
 // Route::get('evento/{slug}','EventoController@show');
-// Route::get('/evento/registro/{id}','RegistroEventoController@create');
+Route::get('/evento/registro/{id}','RegistroEventoController@create');
 // Route::get('/evento/cancelar/registro/{id}','RegistroEventoController@destroy');
 // Route::get('/evento/registro/invitado/{id}',function ($id) {
 //     return view('eventos.invitado')->with('id_evento', $id);
@@ -109,7 +112,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('productos', 'ProductosController', [ 'except' => ['index','show'] ]);
     Route::resource('evento', 'EventoController', [ 'except' => ['index', 'show'] ]);
     Route::get('catalogo', 'CatalogoController@index')->name('catalogo.index');
-    Route::get('perfil-usuario/update-email', 'PerfilUsuarioController@updateEmail')->name('perfil-usuario.update-email');
+    Route::put('perfil-usuario/update-email', 'PerfilUsuarioController@updateAccount')->name('perfil-usuario.update-account');
 });
 
 #########################################################
@@ -155,15 +158,3 @@ Route::get('api', function() {
 Route::get('developers', function() {
     return view('developers');
 })->name('developers.index');
-
-// Ruta para la guía de estilos del sitio web aei
-Route::get('guidelines', function() {
-    return view('guidelines');
-});
-
-
-
-Route::post('fake', function(Request $request) {
-    dd($request->all());
-    // return redirect('guidelines')->withErrors(['numero', 'El numero']);
-})->name('fake');

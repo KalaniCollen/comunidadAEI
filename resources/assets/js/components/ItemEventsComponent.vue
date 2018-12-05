@@ -1,5 +1,5 @@
 <template>
-    <div class="col-md-4 col-lg-4" style="overflow: auto;">
+    <div class="col-md-4 col-lg-4 pl-2 pr-2" style="overflow: auto;">
         <a :href=evento.url class="card card--mini card--mini-left" v-for="(evento, i) in eventos" :key="evento.id">
             <p class="card__date" :style="{ backgroundColor: evento.color }">{{ evento.start | moment("D") }} <span class="card__date-month">{{ evento.start | moment("MMM") }}</span> </p>
             <div class="card__body">

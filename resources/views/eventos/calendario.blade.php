@@ -1,8 +1,32 @@
 @extends('layouts.app')
 @section('content')
     <section class="section">
-        <h1 class="section__title">Eventos</h1>
-        <div class="row">
+        <div class="section__header">
+            <h1 class="section__title">Eventos</h1>
+        </div>
+        <div class="row no-gutters mt-2 mb-2">
+            @php
+                $listaTiposEvento = [
+                    ['color' => '#4f58da', 'evento' => 'Congreso'],
+                    ['color' => '#556677', 'evento' => 'Exposición'],
+                    ['color' => '#009688', 'evento' => 'Convención'],
+                    ['color' => '#E91E63', 'evento' => 'Conferencia'],
+                    ['color' => '#e34bae', 'evento' => 'Capacitación'],
+                    ['color' => '#FF9800', 'evento' => 'Comida']
+                ];
+            @endphp
+
+            @foreach ($listaTiposEvento as $tipoEvento)
+                <div class="col-md-6 col-lg-2">
+                    <div class="line d-flex align-items-center">
+                        <span class="line__dot" style="display: block; width: 10px; height: 10px; border-radius: 50%; background-color: {{ $tipoEvento['color'] }}; margin: 6px;"></span>
+                        <p class="line__text">{{ $tipoEvento['evento'] }}</p>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <div class="row no-gutters">
+
             <item-evento></item-evento>
 
             <div class="col-md-8 col-lg-8">
@@ -15,19 +39,6 @@
 @section('scripts')
     <script>
     $(function () {
-        // $('#calendar').fullCalendar({
-        //     header: {
-        //         center: 'month, agendaWeek'
-        //     },
-        //     events: {
-        //         url: '/evento',
-        //         type: 'GET',
-        //         data: {
-        //             titulo: ''
-        //         },
-        //         color: 'orange'
-        //     }
-        // });
         /* initialize the external events
         -----------------------------------------------------------------*/
         function ini_events(ele) {

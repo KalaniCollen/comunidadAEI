@@ -16,6 +16,8 @@ class AuthServiceProvider extends ServiceProvider
         'ComunidadAEI\Perfil_Usuario' => 'ComunidadAEI\Policies\PerfilUsuarioPolicy',
         'ComunidadAEI\Perfil_Empresa' => 'ComunidadAEI\Policies\PerfilEmpresaPolicy',
         'ComunidadAEI\Album' => 'ComunidadAEI\Policies\AlbumPolicy',
+        'ComunidadAEI\Servicios' => 'ComunidadAEI\Policies\ServicesPolicy',
+        'ComunidadAEI\Productos' => 'ComunidadAEI\Policies\ProductsPolicy',
     ];
 
     /**

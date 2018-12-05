@@ -50,23 +50,26 @@ class UserController extends Controller
             'apellido_materno'=>$user->apellido_materno,
             'email'=>$user->email,
             'empresa'=>$empresa->nombre_empresa,);
-$mail= Config::get('mail.from.address');
+            $mail= Config::get('mail.from.address');
 
         $this->Email($dates,$mail,$user->email);
         return view('solicitud_response')->with('user',$user);
     }
+
     function Email($dates,$mail,$email){
-          Mail::send('emails.plantilla2',$dates,function($message) use ($email,$mail){
+        Mail::send('emails.plantilla2',$dates,function($message) use ($email,$mail){
             $message->subject('Bienvenido a AEI');
             $message->to($mail);
             $message->from($email);
-          });
-        }
+        });
+    }
+
+
     public function complete(RegistroRequest $request, $id_usuario)
     {
 
         $user = User::find($id_usuario);
-        if($user->tipo_usuario=="Asociado"){
+        if($user->tipo_usuario=="asociado"){
             $user->password=bcrypt($request->password);
         }
         $user->status=true; //true

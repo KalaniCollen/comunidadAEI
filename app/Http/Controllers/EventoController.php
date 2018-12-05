@@ -8,15 +8,17 @@ use ComunidadAEI\Registro_Evento;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class EventoController extends Controller
 {
     private $listaColores = [
-        'exposicion' => 'Exposición', 'convencion' => 'Convención', 'conferencia' => 'Conferencia', 'congreso' => 'Congreso', 'capacitacion' => 'Capacitación', 'comida' => 'Comida',
-        'juntas' => '#556677',
-        'event-success' => '#009688',
-        'comidas' => '#FF9800',
-        'event-important' => '#E91E63',
+        'exposicion' => '#556677',
+        'convencion' => '#009688',
+        'conferencia' => '#E91E63',
+        'congreso' => '#4f58da',
+        'capacitacion' => '#e34bae',
+        'comida' => '#FF9800'
     ];
 
     public function index(Response $response){
@@ -29,7 +31,7 @@ class EventoController extends Controller
             $data['start'] = $evento->fecha_inicio;
             $data['end'] = $evento->fecha_final;
             $data['url'] = "/evento/$evento->slug_evento";
-            // $data['color'] = $this->listaColores[$evento->tipo];
+            $data['color'] = $this->listaColores[$evento->tipo];
             array_push($eventosList, $data);
         }
         return response()->json($eventosList, Response::HTTP_OK);
@@ -41,7 +43,12 @@ class EventoController extends Controller
 
     public function store(Request $request) {
         $evento = new Evento();
-        $evento->fill($request->except('slug_evento', 'fecha_inicio', 'fecha_final', 'id_usuario'));
+        $evento->fill($request->except('slug_evento', 'fecha_inicio', 'fecha_final', 'id_usuario', 'imagen'));
+        if ($request->hasFile('imagen')) {
+            $evento->imagen = '/storage/imagen_evento/' . $request->file('imagen');
+            Storage::put('/public/imagen_evento/', $request->file('imagen'));
+        }
+
         $evento->fecha_inicio = \Date::parse($request->fecha_inicio)->format('Y-m-d H:m:s');
         $evento->fecha_final = \Date::parse($request->fecha_final)->format('Y-m-d H:m:s');
         $evento->slug_evento = str_slug($request->nombre_evento);

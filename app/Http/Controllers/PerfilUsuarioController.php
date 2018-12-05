@@ -99,11 +99,8 @@ class PerfilUsuarioController extends Controller
         return redirect()->route("perfil-usuario.index");
     }
 
-    public function updateEmail() {
-        if(Auth::check()){
-            return view('perfiles.Perfil.Correo');
-        }
-        return redirect('/');
+    public function updateAccount(Request $request, $idUser) {
+        dd($request->all());
     }
 
     public function mostrar(Request $request)

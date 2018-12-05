@@ -26,6 +26,7 @@ class Evento extends Model
         'id_usuario',
         'direccion_evento',
         'estado_evento',
+        'imagen'
     ];
 
     public function getRouteKeyName()

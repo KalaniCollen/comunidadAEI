@@ -217,7 +217,8 @@
     </div><!-- ./wrapper -->
     <!-- jQuery 2.1.4 -->
 <!-- fullCalendar 2.2.5 -->
-<script src="js/jquery.min.js"></script>
+<script src="/js/jquery-3.3.1.min.js" charset="utf-8"></script>
+<script src="/js/popper.min.js" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
 {{-- <script src="plugins/fullcalendar/fullcalendar.min.js"></script> --}}
 

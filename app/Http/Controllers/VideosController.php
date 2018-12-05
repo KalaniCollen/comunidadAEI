@@ -36,7 +36,6 @@ class VideosController extends Controller
         {
             try {
 
-
                 if($request->hasFile('qqfile')){
                     $Videos =$request->file('qqfile')->store('public/videos');
                     $videos = str_replace("public", "/storage", $Videos);

@@ -53,16 +53,20 @@ class BuscadorController extends Controller
 
         if (strcmp($request->topic, 'empresa') === 0) {
             $busqueda = Perfil_Empresa::search("*{$request->buscar}*")->get();
+            $tipo = 0;
         }
 
         if (strcmp($request->topic, 'servicio') === 0) {
             $busqueda = Servicios::search("*{$request->buscar}*")->get();
+            $tipo = 1;
         }
 
         if (strcmp($request->topic, 'producto') === 0) {
             $busqueda = Productos::search("*{$request->buscar}*")->get();
+            $tipo = 2;
         }
 
-        return response()->json($busqueda, Response::HTTP_OK);
+        return view('buscador', compact('busqueda', 'tipo'));
     }
+
 }

@@ -6,7 +6,10 @@
 @endsection
 @section('content')
     <section class="section">
-        <div class="row">
+        <div class="section__header">
+            <h1 class="section__title">Videos</h1>
+        </div>
+        <div class="row no-gutters">
 
         </div>
     </section>
@@ -42,4 +45,7 @@
           </div>
       </div>
   </div> --}}
+@endsection
+@section('scripts')
+
 @endsection

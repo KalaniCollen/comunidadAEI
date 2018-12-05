@@ -18,21 +18,21 @@
     }
 }
 
-.publicaciones {
-    @include d-grid();
-    grid-template-areas: "main-content aside-content";
-    grid-template-columns: 1fr 25vw;
-
-
-    &__main {
-        grid-area: main-content;
-    }
-
-    &__aside {
-        background: #eee;
-        grid-area: aside-content;
-    }
-}
+// .publicaciones {
+//     @include d-grid();
+//     grid-template-areas: "main-content aside-content";
+//     grid-template-columns: 1fr 25vw;
+//
+//
+//     &__main {
+//         grid-area: main-content;
+//     }
+//
+//     &__aside {
+//         background: #eee;
+//         grid-area: aside-content;
+//     }
+// }
 
 .section {
     padding: getSpace(min);

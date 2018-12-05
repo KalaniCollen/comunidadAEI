@@ -2,8 +2,8 @@
 @section('content')
     <section class="section">
         <create-album></create-album>
-        <section class="section">
+        <div class="section__body">
             <list-album></list-album>
-        </section>
+        </div>
     </section>
 @endsection

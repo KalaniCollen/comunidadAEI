@@ -48,7 +48,7 @@ class ProductosController extends Controller
             $imagen = Storage::putFile('public/catalogos_img', $request->file('imagen'));
             $producto->imagen = basename($imagen);
         } else {
-            $producto->imagen = 'defaultProduct.jpg';
+            $producto->imagen = 'defaultProduct.jpeg';
         }
         $producto->id_empresa = auth()->user()->empresa->id_empresa;
         $producto->slug = Str::slug( $producto->nombre . $producto->id_empresa );
@@ -77,11 +77,8 @@ class ProductosController extends Controller
      */
     public function edit(Productos $producto)
     {
-        if ($producto->id_empresa == auth()->user()->empresa->id_empresa) {
-            return view('catalogo.productos.edit', ['producto' => $producto]);
-        } else {
-            return view('errors.404');
-        }
+        $this->authorize('view', $producto);
+        return view('catalogo.productos.edit', ['producto' => $producto]);
     }
 
     /**
@@ -93,14 +90,15 @@ class ProductosController extends Controller
      */
     public function update(StoreProductosRequest $request, Productos $producto)
     {
-        $producto->fill($request->except('id_empresa','imagen', 'slug'));
+        $this->authorize('update', $producto);
+        $producto->fill($request->except('imagen', 'slug'));
         if ($request->hasFile('imagen')) {
-            Storage::delete("public/catalogos_img/{$producto->imagen}");
+            if ($producto->imagen != "defaultProduct.jpeg") {
+                Storage::delete("public/catalogos_img/{$producto->imagen}");
+            }
             $imagen = Storage::putFile('public/catalogos_img', $request->file('imagen'));
             $producto->imagen = basename($imagen);
         }
-        $producto->id_empresa = auth()->user()->empresa->id_empresa;
-        $producto->id_empresa = auth()->user()->empresa->id_empresa;
         $producto->slug = Str::slug($producto->nombre);
         $producto->save();
 
@@ -110,12 +108,14 @@ class ProductosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Productos $producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy(Productos $producto)
     {
-        $producto = Productos::where('slug', $slug)->delete();
+        $this->authorize('delete', $producto);
+        $producto->delete();
+        Storage::delete("public/catalogos_img/{$producto->imagen}");
         return redirect()->route('catalogo.index');
     }
 
